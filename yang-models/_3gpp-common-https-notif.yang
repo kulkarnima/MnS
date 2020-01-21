@@ -1,0 +1,70 @@
+module _3gpp-common-https-notif {
+  yang-version 1.1;
+  namespace urn:3gpp:sa5:_3gpp-common-https-client;
+  prefix hnot3gpp;
+  
+  import ietf-inet-types { prefix inet; }
+  import ietf-subscribed-notifications { prefix sn; }
+  import ietf-yang-push { prefix yp; }
+  import _3gpp-common-yang-types { prefix  types3gpp ; }
+
+  organization "3gpp SA5";
+  description "The model defines a extensions to IETF subscribed nodification 
+    (RFC8639) and IETF YANG-Push (RFC8641) for realizing 3GPP https notifications";
+  reference "3GPP TS 28.532 Generic management services";
+
+  revision 2019-10-11 {
+    description "Initial revision";
+  }
+  
+  identity https-3gpp {
+    base sn:transport;
+    base sn:configurable-encoding;
+    description
+      "3GPP HTTPS transport for notifications.";
+  }
+
+  augment "/sn:subscriptions/sn:subscription/sn:receivers/sn:receiver" {
+    description "Augment the subscriptions container to define the receiver.";
+      leaf uri-for-https-notifications {
+        when derived-from-or-self(../../../sn:transport,"hnot3gpp:https-3gpp") ;
+        type inet:uri;  
+        description "The presence of this URI indicates that the 
+          notifications for this subscription SHALL be sent over 
+          HTTPS as specified in 3GPP TS 28.532 to the receiver.
+          A uniform resource locator that SHALL identify the file 
+          transfer protocol, destination path. 
+          E.g. 
+          https://myserver.mydomain.com/cmChangeNotifications ";
+      }
+  }
+  
+  augment "/yp:push-change-update" {
+    description "Augment the notification with 3GPP specific data.";
+    
+    leaf additionalText {
+      type string ;
+      description "It can contain further information in text on the 
+        event of the ManagedEntity(s).";
+    }
+
+    leaf systemDN {
+      type types3gpp:DistinguishedName ;
+      description "It shall carry the DN of management service providers.";
+    }
+    
+    list correlatedNotifications {
+      leaf source {
+        type types3gpp:DistinguishedName ;
+        description "The entity emiting the notification as used in
+          /push-change-update/systemDN." ;
+      }
+      
+      leaf-list notificationId {
+        type string;
+        description "Id of a correlated notification as used in 
+          /push-change-update/datastore-changes/yang-patch/patch-id." ;
+      }
+    }
+  }
+}
