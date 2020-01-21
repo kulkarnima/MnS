@@ -8,6 +8,7 @@ module _3gpp-5gc-nrm-seppfunction {
   import _3gpp-common-managed-element { prefix me3gpp; }
   import _3gpp-common-yang-types { prefix types3gpp; }
   import _3gpp-common-top { prefix top3gpp; }
+  import ietf-inet-types { prefix inet; }
   
   organization "3gpp SA5";
   description "This IOC represents the SEPP function which support message filtering

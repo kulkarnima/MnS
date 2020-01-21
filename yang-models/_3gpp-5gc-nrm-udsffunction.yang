@@ -18,7 +18,6 @@ module _3gpp-5gc-nrm-udsffunction {
   
   revision 2019-05-22 {
     description "initial revision";
-    reference "Based on
   }
   
   grouping UDSFFuntionGrp {

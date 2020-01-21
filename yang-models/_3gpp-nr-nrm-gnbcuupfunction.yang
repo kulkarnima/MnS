@@ -41,6 +41,7 @@ module _3gpp-nr-nrm-gnbcuupfunction {
     }
             
     list pLMNIdList {
+      key "mcc mnc";
       description "A list of PLMN identifiers. Defines from which set of PLMNs
         an UE must have as its serving PLMN to be allowed to use the
         gNB CU-UP.";
