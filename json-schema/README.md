@@ -1,0 +1,1 @@
+Folder for all 3GPP SA5 JsonSchema
