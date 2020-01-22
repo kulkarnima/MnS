@@ -1,5 +1,7 @@
 # Data models for Management and Orchestration - 3GPP SA5 WG
 
+The master branch currently tracks 3GPP Release-16
+
 (c) 2019, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC). 
 All rights reserved.
 
