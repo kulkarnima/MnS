@@ -1,6 +1,9 @@
 # Data models for Management and Orchestration - 3GPP SA5 WG
 
-The master branch currently tracks 3GPP Release-16
+The master branch represents Rel-16 as approved by SA meetings
+The branch Rel-16-SA5-Agreed contains all changes approved by the SA5 meetings, but not yet approved by the SA meeting.
+
+
 
 (c) 2019, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC). 
 All rights reserved.
