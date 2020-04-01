@@ -16,6 +16,7 @@ module _3gpp-nr-nrm-ep {
     Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2020-03-02 { reference S5-201191"; }
   revision 2019-06-17 {
     description "Initial revision";
   }
@@ -117,8 +118,10 @@ module _3gpp-nr-nrm-ep {
 
     list EP_XnC {
       description "Represents the local gNB node end point of the logical
-        link, supporting Xn application protocols, to a neighbour gNB node.";
-      reference "3GPP TS 28.541, 3GPP TS 38.420";
+        link, supporting Xn application protocols, to a neighbour NG-RAN node 
+        (including gNB and ng-eNB). The Xn Application PDUs are carried over 
+        SCTP/IP/Data link layer/Physical layer stack.";
+      reference "3GPP TS 28.541, 3GPP TS 38.420 subclause 7";
       key id;
       uses top3gpp:Top_Grp;
       container attributes {    

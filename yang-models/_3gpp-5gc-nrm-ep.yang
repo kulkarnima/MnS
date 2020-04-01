@@ -480,8 +480,8 @@ module _3gpp-5gc-nrm-ep {
         uses EP_N32Grp;
       }
     }
-  }
-    
+
+ }    
   augment "/me3gpp:ManagedElement/smsf3gpp:SMSFFunction" {
     list EP_N20 {
       description "Represents the EP_20 IOC.";

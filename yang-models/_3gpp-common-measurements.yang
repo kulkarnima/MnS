@@ -8,26 +8,28 @@ module _3gpp-common-measurements {
 
   organization "3GPP SA5";
     
-  description "Defines Measurement related groupings
-    Any list/class intending to use this should include 2 uses statements 
+  description "Defines Measurement and KPI related groupings
+    Any list/class intending to use this should include 2 or 3 uses statements
     controlled by a feature:
     
     A)  
 +++     feature MeasurementsUnderMyClass {
-+++       description 'Indicates whether measurements are supported for this class.';
++++       description 'Indicates whether measurements and/or KPIs are supported 
++++       for this class.';
 +++     }
     
-    B) include the attribute supportedMeasurementsGPs indicating the 
-      supported measurmentTypes and GPs. Note that for classes inheriting from 
-      ManagedFunction, EP_RP or SubNetwork this attribute is already inherited, 
-      so there is no need to include it once more.E.g.
+    B) include the attribute measurementsList and/or kPIsList indicating the 
+      supported measurment and KPI types and GPs. Note that for classes 
+      inheriting from ManagedFunction, EP_RP or SubNetwork these attributes are 
+      already inherited, so there is no need to include them once more. E.g.
     
-        grouping MyClassGrp {
++++     grouping MyClassGrp {
 +++        uses meas3gpp:Measurements;
-        }
++++        uses meas3gpp:KPIs; 
++++     }
     
-    C) include the classes MeasurementControl & MeasuremntReader to 
-      control the measurements. E.g. 
+    C) include the classes MeasurementControl & MeasurementReader to 
+      control the measurements/KPIs. E.g. 
       
         list MyClass {
           container attributes {
@@ -40,12 +42,19 @@ module _3gpp-common-measurements {
         
     Measurements can be contained under ManagedElement, SubNetwork, or
     any list representing a class inheriting from EP_RP, Subnetwork or 
-    ManagedFunction.";
+    ManagedFunction. Note: KPIs will only be supported under SubNetwork";
     
-  reference "3GPP TS 28.622
+  reference "3GPP TS 28.623
+      Generic Network Resource Model (NRM)
+      Integration Reference Point (IRP);
+      Solution Set (SS) definitions
+  
+      3GPP TS 28.622
       Generic Network Resource Model (NRM)
       Integration Reference Point (IRP);
       Information Service (IS)";
+
+  revision 2020-03-11 { reference "S5-201581, SP-200229"; }
 
   revision 2019-11-21 {
     reference "S5-197275, S5-197735";
@@ -62,9 +71,43 @@ module _3gpp-common-measurements {
     description "The delivery of measurement data using streaming is supported.";
   }
 
+  grouping KPIs {
+    description "Identifies the supported KPI names and their 
+      supported GPs.
+      KPIs can be used by SubNetwork, or any list representing a class 
+      inheriting from Subnetwork.";
+      
+    list kPIsList {
+      key idx;
+      config false;
+      description "List of supported KPI names and their 
+        supported GPs for the parent function/class";
+        
+      leaf idx { type uint32 ; }
+        
+      leaf-list kPINames {
+        type string;
+        min-elements 1;
+        description "The KPI names can be those specified 
+          in TS 28.554 and can be those specified by 
+          other SDOs or can be vendor-specific.";
+      }
+      
+      leaf-list gPs {
+      type uint32 ;
+      units second;
+      min-elements 1;
+      description "Identifies supported GPs.
+          GP (granularity period) is the time between the initiation
+          of two successive gatherings of performance data.";
+      }
+    }
+  }   
+  
   grouping Measurements {
     description "Identifies the supported Measurement types and their 
-      supported GPs.";
+      supported GPs. Measurements can be used by SubNetwork, MnagedElement, 
+      ManagedFunction or any list representing a class inheriting from them.";
       
     list measurementsList {
       key idx;
@@ -106,8 +149,8 @@ module _3gpp-common-measurements {
         using the capability of MeasurementControl, imposed through the consumer 
         of OAM services produced by MeasurementControl,
 
-        The measurement report production would begin when pMadministrativeState 
-        is UNLOCKED and pMoperationalState is ENABLED.";
+        The measurement or KPI report production would begin when 
+        pMadministrativeState is UNLOCKED and pMoperationalState is ENABLED.";
     }
     
     leaf pMOperationalState {
@@ -197,22 +240,29 @@ module _3gpp-common-measurements {
 
     leaf-list measurementTypes {
       type string ;
-      description "The Measurement type to be reported. It must be one of the 
-        measurmentTypes supported by the containing function/class.
-        The Measurement type can be those specified in TS 28.552, 
-        TS 32.404 and can be those specified by other SDOs or can be 
-        vendor-specific.";
+      description "If the MeasurementControl contaning this attribute is used  
+          for measurement collecting purpose, it identifies one or more  
+          Measurement types. The Measurement type can be those specified in  
+          TS 28.552, TS 32.404 and can be those specified by other SDOs or 
+          can be vendor-specific.
+
+          If the MeasurementControl is used for KPIs reporting purpose, it 
+          identifies one or more KPI names. The KPI name can be those specified 
+          in TS 28.554 and can be those specified by other SDOs or can be 
+          vendor-specific.
+          KPI names can only be specified if this MeasurementReader is 
+          contained under a SubNetwork or derived IOC.";
     }
     
     leaf-list managedObjectDNsBasic {
       type types3gpp:DistinguishedName ;
-      description "Identifies the managed functions whose Measurements are 
-        required to be produced.
+       description "Identifies the managed functions whose Measurements or KPIs 
+        are required to be produced.
         
         It identifies specific managed entities (say X, Y, Z). It would mean 
-        Measurements type specified in MeasurementReader.measurementTypes, 
-        are required to be produced if X, Y, Z are capable of supporting 
-        the Measurement types.
+        Measurements or KPI names type specified in 
+        MeasurementReader.measurementTypes, are required to be produced 
+        if X, Y, Z are capable of supporting the Measurement types or KPI names.
 
         If managedObjectDNs of the same MeasurementReader instance has valid 
         information, the information of this leaf-list is ignored.";
@@ -220,8 +270,9 @@ module _3gpp-common-measurements {
     
     leaf-list managedObjectDNs {
       type types3gpp:DistinguishedName ;
-      description "Identifies the managed entities whose Measurements are 
-        required to be produced.  
+      description "Identifies the managed entities whose Measurements or KPIs 
+        are required to be produced.  
+
 
         In case the base is SubNetwork, it identifies all, including the base, 
         managed entities that are subordinates, in the sense of name-containment, 
@@ -232,24 +283,24 @@ module _3gpp-common-measurements {
         with the base. 
 
         We called the identified entities a collection. It would mean 
-        Measurement types specified in attribute 
+        Measurement types or KPI names specified in attribute 
         MeasurementReader.measurementTypes, are required to be produced if the 
         member (of the collection) is capable of supporting the Measurement 
-        types.";
+        types or KPI names.";
     }
 
     leaf fileLocation {
       type string ;
       description "It is the path to the location where produced 
-        measurement reports (containing PM data) are stored. File based 
-        measurement delivery will not start if this leaf does not have a 
+        performance reports (containing PM data) are stored. File based 
+        delivery will not start if this leaf does not have a 
         valid value. 
         
         It is the path to a location on either the producer's file system or a 
         URI to a network file location that is not part of the producer's file 
         system. In case it points to a location on the producer's file system, 
         it is a relative path based on a vendor-specified root directory for 
-        measurement files.
+        performance data  files.
               
         The size of this fileLocation is decided by consumer and producer. 
         The producer is expected to remove old files to make room for 
@@ -265,7 +316,7 @@ module _3gpp-common-measurements {
       type uint32 ;
       units second;
       description "GP (granularity period) defines the frequency of producing 
-        measurement data.";     
+        performance  data.";     
     }
     
     leaf fileReportingPeriod {
@@ -276,17 +327,17 @@ module _3gpp-common-measurements {
       mandatory true;
       type uint32 ;
       units minute;
-      description "The frequency of producing the measurement report files.";
+      description "The frequency of producing the performance  report files.";
     }
     
     leaf streamTarget {
       when 'not(../fileLocation)' ;
       type string ;
       description "Identifies the target of the notification carrying the 
-        content of the measurement report.
+        content of the measurement or KPI report.
         There are two delivery methods (i.e. file-based and stream-based) via 
-        which the consumer(s) can receive the Measurements. This attribute 
-        is used for the stream-based delivery method.";
+        which the consumer(s) can receive the Measurements or KPIs. This  
+        attribute is used for the stream-based delivery method.";
     }    
     
     leaf streamBasedGP {
@@ -295,7 +346,7 @@ module _3gpp-common-measurements {
       type uint32 ;
       units second;
       description "Defines the frequency of producing and sending the 
-        Measurement to the consumer.";
+        Measurements or KPIs to the consumer.";
     }
   }
    
@@ -456,7 +507,13 @@ module _3gpp-common-measurements {
         shall be created and deleted by the system. 
 
         Depending on particular deployment context and agreement between 
-        operator and vendor, all attributes could be config=false.";
+        operator and vendor, all attributes could be config=false. 
+        
+        Can be used for measurement collecting or KPI reporting. 
+        When used for measurement collecting, it can be contained by 
+        ManagedElement, ManagedFunction and SubNetwork or derived IOCs. 
+        When used for KPI reporting, it can be contained by SubNetwork 
+        or derived IOCs.";
 
       key id;   
       uses top3gpp:Top_Grp ;      
@@ -465,13 +522,13 @@ module _3gpp-common-measurements {
       }
       
       list MeasurementReader {
-        description "Identifies the entity (derivatives of ManagedFunction) 
-          whose Measurements are required by consumer to be produced and 
-          captured. The types of Measurements required are identified by the 
+        description "Identifies the entity whose Measurements or KPIs are 
+          required by consumer to be produced and captured. The types of 
+          Measurements or the names of KPIs required are identified by the 
           measurementNames. 
            
           It captures the properties of the two delivery methods for delivering 
-          the Measurements.
+          measurements or KPIs.
           The file-based delivery method has properties: fileLocation, 
           reportingPeriod and fileBasedGP. 
           The stream-based delivery method has properties: streamTarget and 
@@ -491,7 +548,8 @@ module _3gpp-common-measurements {
           of other MeasurementReader instances. 
 
           This IOC uses managedObjectDNs or managedObjectDNsBasic to identify 
-          specific managed entities whose Measurements are required by consumer.";
+          specific managed entities whose Measurements or KPIs are required by 
+          consumer.";
   
         key id; 
         uses top3gpp:Top_Grp ;

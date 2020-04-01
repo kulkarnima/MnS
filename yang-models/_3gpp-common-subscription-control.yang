@@ -40,7 +40,7 @@ module _3gpp-common-subscription-control {
 
     list scope {
       key "scopeType";
-      min-elements 0;
+      min-elements 1;
       max-elements 1;
       description "Describes which object instances are selected with 
         respect to a base object instance.";
