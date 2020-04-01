@@ -7,12 +7,14 @@ module _3gpp-nr-nrm-gnbcucpfunction {
   import _3gpp-common-managed-function { prefix mf3gpp; }
   import _3gpp-common-managed-element { prefix me3gpp; }
   import _3gpp-common-top { prefix top3gpp; }
+  import _3gpp-nr-nrm-rrmpolicy { prefix nrrrmpolicy3gpp; }
 
   organization "3GPP SA5";
   description "Defines the YANG mapping of the GNBCUCPFunction Information 
     Object Class (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2020-02-14 { reference S5-20XXXX ; }
   revision 2019-10-28 { reference S5-193518 ; }
   revision 2019-06-17 {
     description "Initial revision";
@@ -22,6 +24,7 @@ module _3gpp-nr-nrm-gnbcucpfunction {
     description "Represents the GNBCUCPFunction IOC.";
     reference "3GPP TS 28.541";
     uses mf3gpp:ManagedFunctionGrp;
+    uses nrrrmpolicy3gpp:RRMPolicy_Grp;
 
     leaf gNBId {
       description "Identifies a gNB within a PLMN. The gNB Identifier (gNB ID)

@@ -3,6 +3,7 @@ module _3gpp-5g-common-yang-types {
   namespace "urn:3gpp:sa5:_3gpp-5g-common-yang-types";
   prefix "types5g3gpp";
   
+  
   import _3gpp-common-yang-types { prefix types3gpp; }
 
   organization "3GPP SA5";
@@ -50,7 +51,8 @@ module _3gpp-5g-common-yang-types {
        type CommModelType;
     }  
     leaf-list targetNFServiceList {
-      type types3gpp:DistinguishedName;   
+      
+	  type types3gpp:DistinguishedName;    
     }
     leaf commModelConfiguration {
        type string;

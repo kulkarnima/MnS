@@ -6,31 +6,54 @@ module _3gpp-common-subnetwork {
   import _3gpp-common-yang-types { prefix types3gpp; }
   import _3gpp-common-top { prefix top3gpp; }
   import _3gpp-common-measurements { prefix meas3gpp; }
+  import _3gpp-common-fm { prefix fm3gpp; }
   import ietf-yang-schema-mount { prefix yangmnt; }
 
   organization "3GPP SA5";
     
   description "Defines basic SubNetwork which will be augmented by other IOCs";
-  reference "3GPP TS 28.622
+  reference "3GPP TS 28.623
       Generic Network Resource Model (NRM)
       Integration Reference Point (IRP);
-      Information Service (IS)  
+      Solution Set (SS) definitions
+      
+      3GPP TS 28.622
+      Generic Network Resource Model (NRM)
+      Integration Reference Point (IRP);
+      Information Service (IS)
       
       3GPP TS 28.620 
       Umbrella Information Model (UIM)";
   
+
+    
+  revision 2020-03-11 { 
+    description "Added KPIs and corrections";
+    reference "S5-201365, S5-201581, SP-200229";
+  }
+
+  revision 2020-02-24 {
+    reference "S5-201365";
+  }
+
   revision 2019-06-17 {
     description "Initial revision";
   }
 
   feature ExternalsUnderSubNetwork {
+
     description "Classes representing external entities like EUtranFrequency, 
       ExternalGNBCUCPFunction, ExternalENBFunction 
       are contained under a Subnetwork list/class.";
   }
   
   feature MeasurementsUnderSubNetwork {
-    description "The MeasurementSubtree shall be contained under SubNetwork";
+    description "The MeasurementSubtree shall be contained under SubNetwork
+      indicating the support of Measurements and/or KPIs";
+  }
+  
+  feature FmUnderSubNetwork {
+    description "The FmSubtree shall be contained under SubNetwork";
   }
   
   grouping Domain_Grp {
@@ -60,6 +83,8 @@ module _3gpp-common-subnetwork {
   grouping SubNetworkGrp {
     uses Domain_Grp;
     uses meas3gpp:Measurements;
+    uses meas3gpp:KPIs;
+
       
     leaf-list setOfMcc {
       description "Set of Mobile Country Code (MCC). 
@@ -117,6 +142,10 @@ module _3gpp-common-subnetwork {
         
     uses meas3gpp:MeasurementSubtree {
       if-feature MeasurementsUnderSubNetwork ;
+    }
+
+    uses fm3gpp:FmSubtree {
+      if-feature FmUnderSubNetwork ;
     }
 
     yangmnt:mount-point children-of-SubNetwork {

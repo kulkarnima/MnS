@@ -43,7 +43,7 @@ module _3gpp-5gc-nrm-amffunction {
       type inet:domain-name;
     }
 
-    leaf-list NSSAIList {
+    leaf-list sNSSAIList {
       min-elements 0;  // conditionally mandatory if network slicing feature is supported
       description "List of S-NSSAIs the managed object is capable of supporting.
                   (Single Network Slice Selection Assistance Information)

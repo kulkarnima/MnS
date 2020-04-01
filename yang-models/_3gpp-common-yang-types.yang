@@ -12,6 +12,11 @@ module _3gpp-common-yang-types {
     network slicing.";
   reference "3GPP TS 28.541";
 
+  revision 2020-03-10 {
+    description "Removed faulty when statements.";
+    reference "SP-200229";
+  }
+ 
   revision 2019-10-25 {
     description "Added ManagedNFProfile.";
     reference "S5-194457";
@@ -81,45 +86,41 @@ module _3gpp-common-yang-types {
     }
       
     leaf nFSrvGroupId {
-      when '../nfType = "UDM" or ../nfType = "AUSF" or ../nfType = "UDR"';
-      mandatory true;
       type string ;
       description "This parameter defines identity of the group that is 
         served by the NF instance.
         May be config false or true depending on the ManagedFunction. 
-        Config=true for Udrinfo. Config=false for UdmInfo and AusfInfo.";
+        Config=true for Udrinfo. Config=false for UdmInfo and AusfInfo. 
+        Shall be present if ../nfType = UDM or AUSF or UDR. ";
       reference "TS 29.510" ;
     }
     
     leaf-list supportedDataSetIds {
-      when '../nfType = "UDR"';
       type enumeration {
         enum SUBSCRIPTION;
         enum POLICY;
         enum EXPOSURE;
         enum APPLICATION;
       }
-      description "List of supported data sets in the UDR instance.";
+      description "List of supported data sets in the UDR instance. 
+        May be present if ../nfType = UDR";
       reference "TS 29.510" ;
     }
     
     leaf-list smfServingAreas {
-      when '../nfType = "UPF"';
-      min-elements 1;
       type string ;
-      description "Defines the SMF service area(s) the UPF can serve.";
+      description "Defines the SMF service area(s) the UPF can serve. 
+        Shall be present if ../nfType = UPF";
       reference "TS 29.510" ;
     }
     
     leaf priority {
-      when '../nfType = "AMF"';
-      mandatory true;
       type uint16;
       description "This parameter defines Priority (relative to other NFs 
         of the same type) in the range of 0-65535, to be used for NF selection; 
         lower values indicate a higher priority. If priority is also present 
         in the nfServiceList parameters, those will have precedence over 
-        this value ";
+        this value. Shall be present if ../nfType = AMF ";
       reference "TS 29.510" ;
     }
   }

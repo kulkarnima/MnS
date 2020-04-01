@@ -8,12 +8,16 @@ module _3gpp-nr-nrm-nrcelldu {
   import _3gpp-common-managed-element { prefix me3gpp; }
   import _3gpp-common-top { prefix top3gpp; }
   import _3gpp-nr-nrm-gnbdufunction { prefix gnbdu3gpp; }
+  import _3gpp-nr-nrm-rrmpolicy { prefix nrrrmpolicy3gpp; }
+  import _3gpp-nr-nrm-common { prefix nrcommon3gpp; }
+
 
   organization "3GPP SA5";
   description "Defines the YANG mapping of the NRCellDU Information Object
     Class (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2020-02-14 { reference S5-20XXXX ; }
   revision 2019-10-28 { reference S5-193518 ; }
   revision 2019-09-03 {
     description "Initial revision";
@@ -23,6 +27,7 @@ module _3gpp-nr-nrm-nrcelldu {
     description "Represents the NRCellDU IOC.";
     reference "3GPP TS 28.541";
     uses mf3gpp:ManagedFunctionGrp;
+    uses nrrrmpolicy3gpp:RRMPolicy_Grp;
         
     leaf cellLocalId {
       description "Identifies an NR cell of a gNB. Together with the
@@ -58,22 +63,16 @@ module _3gpp-nr-nrm-nrcelldu {
       type types3gpp:CellState;
     }
 
-    list pLMNIdList {
-      description "Defines which PLMNs that can be served by the NR cell. The
-        first entry of the list is the PLMN used to construct the nCGI for the
-        NR cell.";
+    list pLMNInfoList {
+      description "The PLMNInfoList is a list of PLMNInfo data type. It defines which PLMNs that
+        can be served by the NR cell, and which S-NSSAIs that can be supported by the NR cell for
+        corresponding PLMN in case of network slicing feature is supported. The plMNId of the first
+        entry of the list is the PLMNId used to construct the nCGI for the NR cell.";
       key "mcc mnc";
       min-elements 1;
-      max-elements 12;
-      uses types3gpp:PLMNId;
+      uses nrcommon3gpp:PLMNInfo;
     }
 		
-    leaf-list sNSSAIList {
-      description "List of S-NSSAIs the NR cell is supporting. NSSAI is a set
-        of supported S-NSSAI(s), and an S-NSSAI is comprised of a SST
-        (Slice/Service type) and an optional SD (Slice Differentiator) field.";
-      reference "3GPP TS 23.003";      type types3gpp:SNssai;
-      }
 
     leaf nRPCI {
       description "The Physical Cell Identity (PCI) of the NR cell.";
