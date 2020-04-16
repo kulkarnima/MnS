@@ -10,41 +10,41 @@ The links below will open the Swagger Editor/UI and auto-load the OpenAPI YAML f
 
 * Generic NRM (TS 28.623)
 ([Editor](https://forge.etsi.org/swagger/tools/loader.html?repo=3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&yaml=OpenAPI/genericNrm.yaml))
-([UI](https://forge.etsi.org/swagger/tools/loader.html?3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&action=ui&yaml=OpenAPI/genericNrm.yaml))
+([UI](https://forge.etsi.org/swagger/tools/loader.html?repo=3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&action=ui&yaml=OpenAPI/genericNrm.yaml))
 
 * NR NRM (TS 28.541)
-([Editor](https://forge.etsi.org/swagger/tools/loader.html?3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&yaml=OpenAPI/nrNrm.yaml))
-([UI](https://forge.etsi.org/swagger/tools/loader.html?3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&action=ui&yaml=OpenAPI/nrNrm.yaml))
+([Editor](https://forge.etsi.org/swagger/tools/loader.html?repo=3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&yaml=OpenAPI/nrNrm.yaml))
+([UI](https://forge.etsi.org/swagger/tools/loader.html?repo=3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&action=ui&yaml=OpenAPI/nrNrm.yaml))
 
 * 5GC NRM (TS 28.541)
-([Editor](https://forge.etsi.org/swagger/tools/loader.html?3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&yaml=OpenAPI/5gcNrm.yaml))
-([UI](https://forge.etsi.org/swagger/tools/loader.html?3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&action=ui&yaml=OpenAPI/5gcNrm.yaml))
+([Editor](https://forge.etsi.org/swagger/tools/loader.html?repo=3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&yaml=OpenAPI/5gcNrm.yaml))
+([UI](https://forge.etsi.org/swagger/tools/loader.html?repo=3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&action=ui&yaml=OpenAPI/5gcNrm.yaml))
 
 * Slice NRM (TS 28.541)
-([Editor](https://forge.etsi.org/swagger/tools/loader.html?3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&yaml=OpenAPI/sliceNrm.yaml))
-([UI](https://forge.etsi.org/swagger/tools/loader.html?3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&action=ui&yaml=OpenAPI/sliceNrm.yaml))
+([Editor](https://forge.etsi.org/swagger/tools/loader.html?repo=3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&yaml=OpenAPI/sliceNrm.yaml))
+([UI](https://forge.etsi.org/swagger/tools/loader.html?repo=3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&action=ui&yaml=OpenAPI/sliceNrm.yaml))
 
 ## Management Services (MnS)
 
 * Provisioning MnS (TS 28.532)
-([Editor](https://forge.etsi.org/swagger/tools/loader.html?3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&yaml=OpenAPI/provMnS.yaml))
-([UI](https://forge.etsi.org/swagger/tools/loader.html?3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&action=ui&yaml=OpenAPI/provMnS.yaml))
+([Editor](https://forge.etsi.org/swagger/tools/loader.html?repo=3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&yaml=OpenAPI/provMnS.yaml))
+([UI](https://forge.etsi.org/swagger/tools/loader.html?repo=3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&action=ui&yaml=OpenAPI/provMnS.yaml))
 
 * Fault Supervision MnS (TS 28.532)
-([Editor](https://forge.etsi.org/swagger/tools/loader.html?3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&yaml=OpenAPI/faultMnS.yaml))
-([UI](https://forge.etsi.org/swagger/tools/loader.html?3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&action=ui&yaml=OpenAPI/faultMnS.yaml))
+([Editor](https://forge.etsi.org/swagger/tools/loader.html?repo=3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&yaml=OpenAPI/faultMnS.yaml))
+([UI](https://forge.etsi.org/swagger/tools/loader.html?repo=3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&action=ui&yaml=OpenAPI/faultMnS.yaml))
 
 * Performance Data File Reporting MnS (TS 28.532)
-([Editor](https://forge.etsi.org/swagger/tools/loader.html?3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&yaml=OpenAPI/PerDataFileReportMnS.yaml))
-([UI](https://forge.etsi.org/swagger/tools/loader.html?3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&action=ui&yaml=OpenAPI/PerDataFileReportMnS.yaml))
+([Editor](https://forge.etsi.org/swagger/tools/loader.html?repo=3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&yaml=OpenAPI/PerDataFileReportMnS.yaml))
+([UI](https://forge.etsi.org/swagger/tools/loader.html?repo=3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&action=ui&yaml=OpenAPI/PerDataFileReportMnS.yaml))
 
 * Performance Threshold Monitoring MnS (TS 28.532)
-([Editor](https://forge.etsi.org/swagger/tools/loader.html?3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&yaml=OpenAPI/PerThresMonMnS.yaml))
-([UI](https://forge.etsi.org/swagger/tools/loader.html?3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&action=ui&yaml=OpenAPI/PerThresMonMnS.yaml))
+([Editor](https://forge.etsi.org/swagger/tools/loader.html?repo=3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&yaml=OpenAPI/PerThresMonMnS.yaml))
+([UI](https://forge.etsi.org/swagger/tools/loader.html?repo=3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&action=ui&yaml=OpenAPI/PerThresMonMnS.yaml))
 
 * Heartbeat Notifications(TS 28.532)
-([Editor](https://forge.etsi.org/swagger/tools/loader.html?3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&yaml=OpenAPI/heartbeatNtf.yaml))
-([UI](https://forge.etsi.org/swagger/tools/loader.html?3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&action=ui&yaml=OpenAPI/heartbeatNtf.yaml))
+([Editor](https://forge.etsi.org/swagger/tools/loader.html?repo=3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&yaml=OpenAPI/heartbeatNtf.yaml))
+([UI](https://forge.etsi.org/swagger/tools/loader.html?repo=3GPP/SA5/data-models&branch=Anatoly_YAMLs_from_specs_approved_at_SA87&action=ui&yaml=OpenAPI/heartbeatNtf.yaml))
 
 
 
