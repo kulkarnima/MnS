@@ -1,0 +1,769 @@
+<?xml version="1.1" encoding="UTF-8"?>
+
+<!--
+  3GPP TS 28.623 Generic Network Resources IRP
+  Bulk CM Configuration data file NRM-specific XML schema
+  genericNrm.xsd
+-->
+
+<schema
+  targetNamespace="http://www.3gpp.org/ftp/specs/archive/28_series/28.623#genericNrm"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:xn="http://www.3gpp.org/ftp/specs/archive/28_series/28.623#genericNrm"
+  xmlns:sp="http://www.3gpp.org/ftp/specs/archive/28_series/28.629#sonPolicyNrm"
+>
+<import namespace="http://www.3gpp.org/ftp/specs/archive/28_series/28.629#sonPolicyNrm"/>
+  <!-- Base XML type for all NRM class associated XML elements -->
+
+  <complexType name="NrmClass">
+    <attribute name="id" type="string" use="required"/>
+    <attribute name="modifier" use="optional">
+      <simpleType>
+        <restriction base="string">
+          <enumeration value="create"/>
+          <enumeration value="delete"/>
+          <enumeration value="update"/>
+        </restriction>
+      </simpleType>
+    </attribute>
+  </complexType>
+
+  <!-- Generic Network Resources IRP NRM attribute related XML types -->
+
+  <simpleType name="dn">
+    <restriction base="string">
+      <maxLength value="400"/>
+    </restriction>
+  </simpleType>
+
+  <complexType name="dnList">
+    <sequence minOccurs="0" maxOccurs="unbounded">
+      <element name="dn" type="xn:dn"/>
+    </sequence>
+  </complexType>
+
+  <simpleType name="linkType">
+    <list>
+      <simpleType>
+        <restriction base="string">
+          <enumeration value="Signalling"/>
+          <enumeration value="Bearer"/>
+          <enumeration value="OAM_AND_P"/>
+          <enumeration value="Other"/>
+        </restriction>
+      </simpleType>
+    </list>
+  </simpleType>
+
+  <complexType name="linkListType">
+    <sequence minOccurs="0" maxOccurs="unbounded">
+      <element name="dn" type="xn:dn"/>
+    </sequence>
+  </complexType>
+
+ <complexType name="managedElementTypeListType">
+	<sequence minOccurs="0" maxOccurs="unbounded">
+      <element name="managedElementType" type="string"/>
+    </sequence>
+  </complexType>
+
+<complexType name="vnfParametersListType">
+	<sequence minOccurs="1" maxOccurs="unbounded">
+      <element name="vnfInstanceId" type="string"/>
+      <element name="vnfdId" type="string" minOccurs="0"/>
+<element name="flavourId" type="string" minOccurs="0"/>
+<element name="autoScalable" type="boolean"/>
+    </sequence>
+  </complexType>
+
+  <simpleType name="latitude">
+    <restriction base="decimal">
+      <fractionDigits value="4"/>
+      <minInclusive value="-90.0000"/>
+      <maxInclusive value="90.0000"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="longitude">
+    <restriction base="decimal">
+      <fractionDigits value="4"/>
+      <minInclusive value="-180.0000"/>
+      <maxInclusive value="180.0000"/>
+    </restriction>
+  </simpleType>
+
+
+<complexType name="peeParametersListType">
+	<sequence minOccurs="1" maxOccurs="unbounded">
+      <element name="siteIdentification" type="string"/>
+      <element name="siteLatitude" type="xn:latitude" minOccurs="0"/>
+      <element name="siteLongitude" type="xn:longitude" minOccurs="0"/>
+      <element name="siteDescription" type="string"/>
+<element name="equipmentType" type="string"/>
+<element name="environmentType" type="string"/>
+<element name="powerInterface" type="string"/>
+    </sequence>
+  </complexType>
+
+  <simpleType name="pMAdministrativeStateType">
+    <restriction base="string">
+      <enumeration value="LOCKED"/>
+      <enumeration value="SHUTTINGDOWN"/>
+      <enumeration value="UNLOCKED"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="pMOperationalStateType">
+    <restriction base="string">
+      <enumeration value="ENABLED"/>
+      <enumeration value="DISABLED"/>
+    </restriction>
+  </simpleType>
+
+<simpleType name="nFServiceType">
+    <restriction base="string">
+      <enumeration value="Namf_Communication"/>
+      <enumeration value="Namf_EventExposure"/>
+      <enumeration value="Namf_MT"/>
+      <enumeration value="Namf_Location"/>
+      <enumeration value="Nsmf_PDUSession"/>
+      <enumeration value="Nsmf_EventExposure"/>
+      <enumeration value="others"/>
+    </restriction>
+  </simpleType>
+
+<simpleType name="usageStateType">
+    <restriction base="string">
+      <enumeration value="IDEL"/>
+      <enumeration value="ACTIVE"/>
+      <enumeration value="BUSY"/>
+    </restriction>
+  </simpleType>
+
+<simpleType name="registrationStateType">
+    <restriction base="string">
+      <enumeration value="LOCKED"/>
+      <enumeration value="SHUTTING_DOWN"/>
+      <enumeration value="UNLOCKED"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="NFType">
+    <restriction base="string">
+      <enumeration value="NRF"/>
+      <enumeration value="UDM"/>
+      <enumeration value="AMF"/>
+      <enumeration value="SMF"/>
+      <enumeration value="AUSF"/>
+      <enumeration value="NEF"/>
+      <enumeration value="PCF"/>
+      <enumeration value="SMSF"/>
+      <enumeration value="NSSF"/>
+      <enumeration value="UDR"/>
+      <enumeration value="GMLC"/>
+      <enumeration value="5G EIR"/>
+      <enumeration value="SEPP"/>
+      <enumeration value="UPF"/>
+      <enumeration value="N3IWF"/>
+      <enumeration value="AF"/>
+      <enumeration value="UDSF"/>
+      <enumeration value="DN"/>
+    </restriction>
+  </simpleType>
+
+<simpleType name="operationSemanticsType">
+    <restriction base="string">
+      <enumeration value="REQUEST_RESPONSE"/>
+      <enumeration value="SUBSCRIBE_NOTIFY"/>
+    </restriction>
+  </simpleType>
+
+  <complexType name="SAP">
+    <sequence>
+      <element name="host" type="xn:hostType"/>
+      <element name="port" type="integer"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="hostType">
+	<sequence>
+	<element name="ipv4Address" type="string"/>
+	<element name="ipv6Address" type="string"/>
+	<element name="fqdn" type="string"/>
+	</sequence>
+</complexType>
+
+<complexType name="operationsList">
+    <sequence>
+      <element name="operation" type="xn:operationType" minOccurs="1" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="operationType">
+    <sequence>
+      <element name="name" type="string"/>
+      <element name="allowedNFTypes" type="xn:NFType"/>
+      <element name="operationSemantics" type="xn:operationSemanticsType"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="MeasurementTypeList">
+    <sequence minOccurs="1" maxOccurs="unbounded">
+      <element name="measurementType" type="string"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="GPList">
+    <sequence minOccurs="1" maxOccurs="unbounded">
+      <element name="gP" type="integer"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="Measurements">
+    <sequence>
+      <element name="measurementTypes" type="xn:MeasurementTypeList"/>
+      <element name="GPs" type="xn:GPList"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="MeasurementsList">
+    <sequence>
+      <element name="measurements" type="xn:Measurements" minOccurs="1" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+
+
+<complexType name="GPListType">
+	<sequence minOccurs="1" maxOccurs="unbounded">
+      <element name="GP" type="integer"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="KPINameList">
+    <sequence minOccurs="1" maxOccurs="unbounded">
+      <element name="kPIName" type="string"/>
+    </sequence>
+  </complexType>
+
+<complexType name="KPIs">
+    <sequence>
+      <element name="kPITypes" type="xn:KPINameList"/>
+      <element name="GPs" type="xn:GPList"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="KPIsList">
+    <sequence>
+      <element name="kPIs" type="xn:KPIs" minOccurs="1" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+
+
+  <simpleType name="directionType">
+    <list>
+      <simpleType>
+        <restriction base="string">
+          <enumeration value="increasing"/>
+          <enumeration value="decreasing"/>
+        </restriction>
+      </simpleType>
+    </list>
+  </simpleType>
+
+<complexType name="thrsholdPackType">
+	<sequence minOccurs="1" maxOccurs="unbounded">
+      <element name="thresholdPackElement" type="xn:thresholdPackElementType"/>
+    </sequence>
+  </complexType>
+
+<complexType name="thresholdPackElementType">
+	<all>
+      <element name="thresholdValue" type="string"/>
+      <element name="thresholdLevel" type="integer"/>
+      <element name="hysteresis" type="decimal" minOccurs="0"/>
+    </all>
+  </complexType>
+
+<complexType name="thresholdInfoType">
+	<all>
+      <element name="measurementType" type="string"/>
+      <element name="direction" type=" xn:directionType"/>
+      <element name="thresholdPack" type=" xn:thrsholdPackType"/>
+    </all>
+  </complexType>
+
+<complexType name="thresholdInfoListType">
+	<sequence minOccurs="1" maxOccurs="unbounded">
+      <element name="ThresholdInfoElement" type="xn:thresholdInfoType"/>
+    </sequence>
+  </complexType>
+
+  <simpleType name="ScopeType">
+    <restriction base="string">
+      <enumeration value="BASE_ONLY"/>
+      <enumeration value="BASE_ALL"/>
+      <enumeration value="BASE_NTH_LEVEL"/>
+      <enumeration value="BASE_SUBTREE"/>
+    </restriction>
+  </simpleType>
+
+  <complexType name="Scope">
+    <sequence>
+      <element name="scopeType" type="xn:ScopeType"/>
+      <element name="scopeLevel" type="integer" minOccurs="0"/>
+    </sequence>
+  </complexType>
+
+
+ <!-- Generic Network Resources IRP NRM class associated XML elements -->
+
+  <element name="SubNetwork">
+    <complexType>
+      <complexContent>
+        <extension base="xn:NrmClass">
+          <sequence>
+            <element name="attributes" minOccurs="0">
+              <complexType>
+                <all>
+                  <element name="dnPrefix" minOccurs="0"/>
+                  <element name="userLabel"/>
+                  <element name="userDefinedNetworkType"/>
+                  <element name="setOfMcc" minOccurs="0"/>
+                  <element name="priority" type="integer" minOccurs="0"/>
+                  <element name="measurementsList" type="xn:MeasurementsList" minOccurs="0"/>
+                  <element name="kPIsList" type="xn:KPIsList" minOccurs="0"/>
+                </all>
+              </complexType>
+            </element>
+            <choice minOccurs="0" maxOccurs="unbounded">
+              <element ref="xn:SubNetwork"/>
+              <element ref="xn:ManagedElement"/>
+              <element ref="xn:MeContext"/>
+              <element ref="xn:ManagementNode"/>
+              <element ref="xn:IRPAgent"/>
+              <element ref="xn:SubNetworkOptionallyContainedNrmClass"/>
+              <element ref="xn:VsDataContainer"/>
+              <element ref="xn:ThresholdMonitoringCapability"/>
+              <element ref="xn:ThresholdMonitor"/>
+              <element ref="xn:MeasurementControl"/>
+              <element ref="xn:NtfSubscriptionControl"/>
+            </choice>
+            <choice minOccurs="0" maxOccurs="1">
+              <element ref="sp:ESPolicies"/>
+            </choice>
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+
+  <element name="ManagedElement">
+    <complexType>
+      <complexContent>
+        <extension base="xn:NrmClass">
+          <sequence>
+            <element name="attributes" minOccurs="0">
+              <complexType>
+                <all>
+                  <element name="dnPrefix"/>
+                  <element name="managedElementTypeList" type="xn: managedElementTypeListType" minOccurs="0"/>
+                  <element name="userLabel"/>
+                  <element name="vendorName"/>
+                  <element name="userDefinedState"/>
+                  <element name="locationName"/>
+                  <element name="swVersion"/>
+                  <element name="managedBy" type="xn:dnList" minOccurs="0"/>
+                  <element name="priority" type="integer" minOccurs="0"/>
+                  <element name="measurementsList" type="xn:MeasurementsList" minOccurs="0"/>
+                </all>
+              </complexType>
+            </element>
+            <choice minOccurs="0" maxOccurs="unbounded">
+              <element ref="xn:IRPAgent"/>
+              <element ref="xn:ManagedElementOptionallyContainedNrmClass"/>
+              <element ref="xn:VsDataContainer"/>
+              <element ref="xn:ThresholdMonitoringCapability"/>
+              <element ref="xn:ThresholdMonitor"/>
+              <element ref="xn:MeasurementControl"/>
+              <element ref="xn:NtfSubscriptionControl"/>
+            </choice>
+
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+
+  <element name="ManagedFunction">
+    <complexType>
+      <complexContent>
+        <extension base="xn:NrmClass">
+          <sequence>
+            <element name="attributes" minOccurs="0">
+              <complexType>
+                <all>
+                  <element name="userLabel" type="string"/>
+                  <element name="vnfParametersList" type="xn:vnfParametersListType"/>
+                  <element name="peeParametersList" type="xn:peeParametersListType"/>
+                  <element name="priority" type="integer" minOccurs="0"/>
+                  <element name="measurementsList" type="xn:MeasurementsList" minOccurs="0"/>
+                </all>
+              </complexType>
+            </element>
+            <choice minOccurs="0" maxOccurs="unbounded">
+              <element ref="xn:VsDataContainer"/>
+              <element ref="xn:EP_RP"/>
+              <element ref="xn:ThresholdMonitoringCapability"/>
+              <element ref="xn:ThresholdMonitor"/>
+              <element ref="xn:MeasurementControl"/>
+            </choice>
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+
+<element name="ManagedNFService">
+    <complexType>
+      <complexContent>
+        <extension base="xn:NrmClass">
+          <sequence>
+            <element name="attributes" minOccurs="0">
+              <complexType>
+                <all>
+                  <element name="userLabel" type="string"/>
+                  <element name="nFServiceType" type="xn:nFServiceType"/>
+                  <element name="sAP" type="xn:sAPType"/>
+                  <element name="operations" type="xn:operationsType" minOccurs="0"/>
+                  <element name="AdministrativeState" type="xn:pMAdministrativeStateType"/>
+                  <element name="OperationalState" type="xn:pMOperationalStateType"/>
+                  <element name="usageState" type="xn:usageStateType"/>
+                  <element name="registrationState" type="xn:registrationStateType"/>
+                  <element name="sAP" type="xn:SAP" minOccurs="0"/>
+<element name="operations" type="xn:operationsList" minOccurs="0"/>
+                </all>
+              </complexType>
+            </element>
+            <choice minOccurs="0" maxOccurs="unbounded">
+              <element ref="xn:VsDataContainer"/>
+              <element ref="xn:ThresholdMonitoringCapability"/>
+              <element ref="xn:ThresholdMonitor"/>
+            </choice>
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+
+  <element name="MeContext">
+    <complexType>
+      <complexContent>
+        <extension base="xn:NrmClass">
+          <sequence>
+            <element name="attributes" minOccurs="0">
+              <complexType>
+                <all>
+                 <element name="dnPrefix" minOccurs="0"/>
+                </all>
+              </complexType>
+            </element>
+            <choice minOccurs="0" maxOccurs="unbounded">
+              <element ref="xn:ManagedElement"/>
+            </choice>
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+
+  <element name="ManagementNode">
+    <complexType>
+      <complexContent>
+        <extension base="xn:NrmClass">
+          <sequence>
+            <element name="attributes" minOccurs="0">
+              <complexType>
+                <all>
+                  <element name="userLabel"/>
+                  <element name="vendorName"/>
+                  <element name="locationName"/>
+                  <element name="managedElements" type="xn:dnList" minOccurs="0"/>
+                  <element name="swVersion"/>
+                  <element name="userDefinedState"/>
+                </all>
+              </complexType>
+            </element>
+            <choice minOccurs="0" maxOccurs="unbounded">
+              <element ref="xn:IRPAgent"/>
+              <element ref="xn:VsDataContainer"/>
+            </choice>
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+
+  <element name="MeasurementControl">
+    <complexType>
+      <complexContent>
+        <extension base="xn:NrmClass">
+          <sequence>
+            <element name="attributes" minOccurs="0">
+              <complexType>
+                <all>
+                  <element name="pMAdministrativeState" type="xn:pMAdministrativeStateType"/>
+                  <element name="pMOperationalState" type="xn:pMOperationalStateType"/>
+                  <element name="defaultFileBasedGP" type="integer"/>
+                  <element name="defaultFileReportingPeriod" type="integer"/>
+                  <element name="defaultFileLocation" type="string"/>
+                  <element name="defaultStreamBasedGP" type="integer"/>
+                  <element name="defaultStreamTarget" type="string"/>
+                </all>
+              </complexType>
+            </element>
+            <choice minOccurs="0" maxOccurs="unbounded">
+              <element ref="xn:MeasurementReader"/>
+            </choice>
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+
+  <element name="MeasurementReader">
+    <complexType>
+      <complexContent>
+        <extension base="xn:NrmClass">
+          <sequence>
+            <element name="attributes" minOccurs="0">
+              <complexType>
+                <all>
+                  <element name="measurementTypes"/>
+                  <element name="fileBasedGP" type="integer" minOccurs="0"/>
+                  <element name="fileReportingPeriod" type="integer" minOccurs="0"/>
+                  <element name="fileLocation" type="string" minOccurs="0"/>
+                  <element name="streamBasedGP" type="integer" minOccurs="0"/>
+                  <element name="streamTarget" type="string" minOccurs="0"/>
+                  <element name="managedObjectDNsBasic" type="xn:dnList" minOccurs="0"/>
+                  <element name="managedObjectDNs" type="xn:dnList" minOccurs="0"/>
+                </all>
+              </complexType>
+            </element>
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+
+  <element name="IRPAgent">
+    <complexType>
+      <complexContent>
+        <extension base="xn:NrmClass">
+          <sequence>
+            <element name="attributes" minOccurs="0">
+              <complexType>
+                <all>
+                  <element ref="xn:systemDN" minOccurs="0"/>
+                </all>
+              </complexType>
+            </element>
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+
+  <element name="EP_RP">
+    <complexType>
+      <complexContent>
+        <extension base="xn:NrmClass">
+          <sequence>
+            <element name="attributes" minOccurs="0">
+              <complexType>
+                <all>
+                  <element name="farEndEntity" type="xn:dn" minOccurs="0"/>
+                  <element name="userLabel" type="string" minOccurs="0"/>
+					<element name="measurementsList" type="xn:MeasurementsList" minOccurs="0"/>
+                  <element name="measurements" type="xn:MeasurementTypesAndGPsList" minOccurs="0"/>
+                </all>
+              </complexType>
+            </element>
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+
+  <element name="VsDataContainer">
+    <complexType>
+      <complexContent>
+        <extension base="xn:NrmClass">
+          <sequence>
+            <element name="attributes" minOccurs="0">
+              <complexType>
+                <all>
+                  <element name="vsDataType"/>
+                  <element name="vsDataFormatVersion"/>
+                  <element ref="xn:vsData"/>
+                </all>
+              </complexType>
+            </element>
+            <choice minOccurs="0" maxOccurs="unbounded">
+              <element ref="xn:VsDataContainer"/>
+            </choice>
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+
+  <element name="ThresholdMonitoringCapability">
+    <complexType>
+      <complexContent>
+        <extension base="xn:NrmClass">
+          <sequence>
+            <element name="attributes" minOccurs="0">
+              <complexType>
+                <all>
+                 <element name="supportedMonitoringGPs" type="xn:GPListType"/>
+                </all>
+              </complexType>
+            </element>
+            <choice minOccurs="0" maxOccurs="unbounded">
+              <element ref="xn:ThresholdMonitoringCapabilityOptionallyContainedNrmClass"/>
+            </choice>
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+
+  <element name="HeartbeatControl">
+    <complexType>
+      <complexContent>
+        <extension base="xn:NrmClass">
+          <sequence>
+            <element name="attributes" minOccurs="0">
+              <complexType>
+                <all>
+                  <element name="heartbeatNtfPeriod" type="integer"/>
+                  <element name="triggerHeartbeatNtf" type="boolean"/>
+                </all>
+              </complexType>
+            </element>
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+
+  <element name="ThresholdMonitor">
+    <complexType>
+      <complexContent>
+        <extension base="xn:NrmClass">
+          <sequence>
+            <element name="attributes" minOccurs="0">
+              <complexType>
+                <all>
+                 <element name="thresholdInfoList" type="xn:thresholdInfoListType"/>
+                 <element name="monitoringGP" type="integer"/>
+                 <element name="monitoringNotifTarget" type="string"/>
+                 <element name="monitoredIOCName" type="string"/>
+                 <element name="monitoredObjectDNs" type="xn:dnList"/>
+                </all>
+              </complexType>
+            </element>
+            <choice minOccurs="0" maxOccurs="unbounded">
+              <element ref="xn:ThresholdMonitorOptionallyContainedNrmClass"/>
+            </choice>
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+
+  <element name="NtfSubscriptionControl">
+    <complexType>
+      <complexContent>
+        <extension base="xn:NrmClass">
+          <sequence>
+            <element name="attributes" minOccurs="0">
+              <complexType>
+                <all>
+                  <element name="notificationRecipientAddress" type="string"/>
+                  <element name="notificationTypes" type="string" minOccurs="0" />
+                  <element name="scope" type="Scope"/>
+                  <element name="notificationFilter" type="string" minOccurs="0" />
+                </all>
+              </complexType>
+            </element>
+            <choice minOccurs="0" maxOccurs="1">
+              <element ref="xn:HeartbeatControl"/>
+            </choice>
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+
+  <!--
+    IRPAgent IOC attributes
+  -->
+
+  <element name="systemDN" type="xn:dn"/>
+
+  <!--
+    VsDataContainer NRM class vsData attribute associated empty XML element
+  -->
+
+  <complexType name="vsData"/>
+  <element name="vsData" type="xn:vsData"/>
+
+  <!--
+    Abstract head XML element for all XML elements associated to further
+    NRM classes optionally contained under SubNetwork NRM class
+  -->
+
+  <element
+    name="SubNetworkOptionallyContainedNrmClass"
+    type="xn:NrmClass"
+    abstract="true"
+  />
+
+  <!--
+    Abstract head XML element for all XML elements associated to further
+    NRM classes optionally contained under ManagedElement NRM class
+  -->
+
+  <element
+    name="ManagedElementOptionallyContainedNrmClass"
+    type="xn:NrmClass"
+    abstract="true"
+  />
+
+  <!--
+    Abstract head XML element for all XML elements associated to further
+    NRM classes optionally contained under ThresholdMonitoringCapability NRM class
+  -->
+
+  <element
+    name="ThresholdMonitoringCapabilityOptionallyContainedNrmClass"
+    type="xn:NrmClass"
+    abstract="true"
+  />
+
+  <!--
+    Abstract head XML element for all XML elements associated to further
+    NRM classes optionally contained under ThresholdMonitor NRM class
+  -->
+
+  <element
+    name="ThresholdMonitorOptionallyContainedNrmClass"
+    type="xn:NrmClass"
+    abstract="true"
+  />
+
+
+</schema>
