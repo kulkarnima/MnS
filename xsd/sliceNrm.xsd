@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  3GPP TS 28.541 network slice Network Resource Model
+  XML schema definition
+  sliceNrm.xsd
+-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+  xmlns:xn="http://www.3gpp.org/ftp/specs/archive/28_series/28.623#genericNrm" 
+  xmlns:sl="http://www.3gpp.org/ftp/specs/archive/28_series/28.541#sliceNrm" 
+  xmlns:nn="http://www.3gpp.org/ftp/specs/archive/28_series/28.541#nrNrm" 
+  xmlns:ngc="http://www.3gpp.org/ftp/specs/archive/28_series/28.541#ngcNrm" 
+  xmlns:en="http://www.3gpp.org/ftp/specs/archive/28_series/28.659#eutranNrm" 
+  xmlns:sm="http://www.3gpp.org/ftp/specs/archive/28_series/28.626#stateManagementIRP"
+  targetNamespace="http://www.3gpp.org/ftp/specs/archive/28_series/28.541#sliceNrm" elementFormDefault="qualified">
+  <import namespace="http://www.3gpp.org/ftp/specs/archive/28_series/28.623#genericNrm"/>
+  <import namespace="http://www.3gpp.org/ftp/specs/archive/28_series/28.541#nrNrm"/>
+  <import namespace="http://www.3gpp.org/ftp/specs/archive/28_series/28.541#ngcNrm"/>
+  <import namespace="http://www.3gpp.org/ftp/specs/archive/28_series/28.659#eutranNrm"/>
+  <import namespace="http://www.3gpp.org/ftp/specs/archive/28_series/28.626#stateManagementIRP"/>
+
+  <simpleType name="MobilityLevel">
+    <restriction base="string">
+      <enumeration value="STATIONARY"/>
+      <enumeration value="NOMADIC"/>
+      <enumeration value="RESTRICTED MOBILITY"/>
+      <enumeration value="FULLY MOBILITY"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="SharingLevel">
+    <restriction base="string">
+      <enumeration value="SHARED"/>
+      <enumeration value="NON-SHARED"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="Category">
+    <restriction base="string">
+      <enumeration value="character"/>
+      <enumeration value="scalability"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="Tagging">
+    <restriction base="string">
+      <enumeration value="performance"/>
+      <enumeration value="function"/>
+      <enumeration value="operation"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="Exposure">
+    <restriction base="string">
+      <enumeration value="API"/>
+      <enumeration value="KPI"/>
+    </restriction>
+  </simpleType>
+
+  <complexType name="ServAttrCom">
+    <sequence>
+      <element name="category" type="sl:Category"/>
+      <element name="tagging" type="sl:Tagging" minOccurs="0"/>
+      <element name="exposure" type="sl:Exposure" minOccurs="0"/>
+    </sequence>
+  </complexType >
+
+  <simpleType name="DelayToleranceSupport">
+    <restriction base="string">
+      <enumeration value="NOT SUPPORTED"/>
+      <enumeration value="SUPPORTED"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="DeterminCommAvailability">
+    <restriction base="string">
+      <enumeration value="NOT SUPPORTED"/>
+      <enumeration value="SUPPORTED"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="UserMgmtOpenSupport">
+    <restriction base="string">
+      <enumeration value="NOT SUPPORTED"/>
+      <enumeration value="SUPPORTED"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="V2XCommModelsV2XMode">
+    <restriction base="string">
+      <enumeration value="NOT SUPPORTED"/>
+      <enumeration value="SUPPORTED BY NR"/>
+    </restriction>
+  </simpleType>
+
+  <complexType name="DelayTolerance">
+    <sequence>
+      <element name="servAttrCom" type="sl:ServAttrCom"/>
+      <element name="support" type="sl:DelayToleranceSupport"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="DeterminComm">
+    <sequence>
+      <element name="servAttrCom" type="sl:ServAttrCom"/>
+      <element name="availability" type="sl:DeterminCommAvailability"/>
+      <element name="periodicityList" type="string"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="DLThpt">
+    <sequence>
+      <element name="servAttrCom" type="sl:ServAttrCom"/>
+      <element name="guaThpt" type="float"/>
+      <element name="maxThpt" type="float"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="ULThpt">
+    <sequence>
+      <element name="servAttrCom" type="sl:ServAttrCom"/>
+      <element name="guaThpt" type="float" minOccurs="0"/>
+      <element name="maxThpt" type="float" minOccurs="0"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="MaxPktSize">
+    <sequence>
+      <element name="servAttrCom" type="sl:ServAttrCom"/>
+      <element name="maxsize" type="integer"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="KPIMonitoring">
+    <sequence>
+      <element name="servAttrCom" type="sl:ServAttrCom"/>
+      <element name="kPIList" type="string"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="SupportedAccessTech">
+    <sequence>
+      <element name="servAttrCom" type="sl:ServAttrCom"/>
+      <element name="accTechList" type="integer"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="UserMgmtOpen">
+    <sequence>
+      <element name="servAttrCom" type="sl:ServAttrCom"/>
+      <element name="support" type="sl:UserMgmtOpenSupport"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="V2XCommMode">
+    <sequence>
+      <element name="servAttrCom" type="sl:ServAttrCom"/>
+      <element name="v2XMode" type="sl:V2XCommModelsV2XMode"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="TermDensity">
+    <sequence>
+      <choice minOccurs="1" maxOccurs="1">
+        <element name="servAttrCom" type="sl:ServAttrCom"/>
+        <element name="density" type="integer"/>
+      </choice>
+    </sequence>
+  </complexType>
+
+  <complexType name="ServiceProfile">
+    <sequence>
+      <element name="serviceProfileId" type="string"/>
+      <element name="sNSSAIList" type="ngc:SnssaiList"/>
+      <element name="pLMNIdList" type="en:PLMNIdList"/>
+      <element name="maxNumberofUEs" type="long" minOccurs="0"/>
+      <element name="latency" type="integer" minOccurs="0"/>
+      <element name="uEMobilityLevel" type="integer" minOccurs="0"/>
+      <element name="resourceSharingLevel" type="integer" minOccurs="0"/>
+      <element name="sst" type="ngc:Sst"/>
+      <element name="availability" type="float" minOccurs="0"/>
+      <element name="delayTolerance" type="sl:DelayTolerance" minOccurs="0"/>
+      <element name="deterministicComm" type="sl:DeterminComm" minOccurs="0"/>
+      <element name="dLThptPerSlice" type="sl:DLThpt" minOccurs="0"/>
+      <element name="dLThptPerUE" type="sl:DLThpt" minOccurs="0"/>
+      <element name="uLThptPerSlic" type="sl:ULThpt" minOccurs="0"/>
+      <element name="uLThptPerUE" type="sl:ULThpt" minOccurs="0"/>
+      <element name="maxPktSize" type="sl:MaxPktSize" minOccurs="0"/>
+      <element name="maxNumberofConns" type="long" minOccurs="0"/>
+      <element name="kPIMonitoring" type="sl:KPIMonitoring" minOccurs="0"/>
+      <element name="supportedAccessTech" type="sl:SupportedAccessTech" minOccurs="0"/>
+      <element name="userMgmtOpen" type="sl:UserMgmtOpen" minOccurs="0"/>
+      <element name="v2XCommModels" type="sl:V2XCommMode" minOccurs="0"/>
+      <element name="coverageArea" type="string" minOccurs="0"/>
+      <element name="termDensity" type="sl:TermDensity" minOccurs="0"/>
+      <element name="activityFactor" type="float" minOccurs="0"/>
+      <element name="uESpeed" type="integer" minOccurs="0"/>
+      <element name="jitter" type="integer" minOccurs="0"/>
+      <element name="survivalTime" type="string" minOccurs="0"/>
+      <element name="reliability" type="string" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="ServiceProfileList">
+    <sequence>
+      <element name="serviceProfile" type="sl:ServiceProfile"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="SliceProfile">
+    <sequence>
+      <element name="sliceProfileId" type="string"/>
+      <element name="sNSSAIList" type=" ngc:SnssaiList"/>
+      <element name="pLMNIdList" type="en:PLMNIdList"/>
+      <element name="maxNumberofUEs" type="long" minOccurs="0"/>
+      <element name="coverageAreaTAList" type="ngc:NrTACList" minOccurs="0"/>
+      <element name="latency" type="integer" minOccurs="0"/>
+      <element name="uEMobilityLevel" type="sl:MobilityLevel" minOccurs="0"/>
+      <element name="resourceSharingLevel" type="integer" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="SliceProfileList">
+    <sequence>
+      <element name="sliceProfile" type="sl:SliceProfile"/>
+    </sequence>
+  </complexType>
+  <complexType name="NsInfo">
+    <!-- Refer to definitions in subclause 8.3.3.2.2 of ETSI NFV IFA013 -->
+    <sequence>
+      <element name="nsInstanceId" type="string"/>
+      <element name="nsName" type="string"/>
+      <element name="description" type="string"/>
+    </sequence>
+  </complexType>
+
+  <element name="NetworkSlice" substitutionGroup="xn:SubNetworkOptionallyContainedNrmClass">
+    <complexType>
+      <complexContent>
+        <extension base="xn:NrmClass">
+          <sequence>
+            <element name="attributes">
+              <complexType>
+                <all>
+                  <!-- Inherited attributes from SubNetwork -->
+                  <element name="dnPrefix" type="string" minOccurs="0"/>
+                  <element name="userLabel" type="string"/>
+                  <element name="userDefinedNetworkType" type="string"/>
+                  <element name="setOfMcc" type="string" minOccurs="0"/>
+                  <element name="measurements" type="xn:MeasurementTypesAndGPsList" minOccurs="0"/>
+                  <!-- End of inherited attributes from SubNetwork -->
+
+                  <element name="operationalState" type="sm:operationalStateType"/>
+                  <element name="administrativeState" type="sm:administrativeStateType"/>
+                  <element name="serviceProfileList" type="sl:ServiceProfileList"/>
+                  <element name="networkSliceSubnetRef" type="xn:dn"/>
+                </all>
+              </complexType>
+            </element>
+            <choice minOccurs="0" maxOccurs="unbounded">
+              <element ref="xn:MeasurementControl"/>
+            </choice>
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+  <element name="NetworkSliceSubnet" substitutionGroup="xn:SubNetworkOptionallyContainedNrmClass">
+    <complexType>
+      <complexContent>
+        <extension base="xn:NrmClass">
+          <sequence>
+            <element name="attributes">
+              <complexType>
+                <all>
+                  <!-- Inherited attributes from SubNetwork -->
+                  <element name="dnPrefix" type="string" minOccurs="0"/>
+                  <element name="userLabel" type="string"/>
+                  <element name="userDefinedNetworkType" type="string"/>
+                  <element name="setOfMcc" type="string" minOccurs="0"/>
+                  <element name="measurements" type="xn:MeasurementTypesAndGPsList" minOccurs="0"/>
+                  <!-- End of inherited attributes from SubNetwork -->
+
+                  <element name="operationalState" type="sm:operationalStateType"/>
+                  <element name="administrativeState" type="sm:administrativeStateType"/>
+                  <element name="nsInfo" type="sl:NsInfo" minOccurs="0"/>
+                  <element name="sliceProfileList" type="sl:SliceProfileList"/>
+                  <element name="managedFunctionRef" type="xn:dnlist"/>
+                  <element name="networkSliceSubnetRef" type="xn:dnlist"/>
+                </all>
+              </complexType>
+            </element>
+            <choice minOccurs="0" maxOccurs="unbounded">
+              <element ref="xn:MeasurementControl"/>
+            </choice>
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+</schema>
