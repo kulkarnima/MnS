@@ -1,18 +1,20 @@
 openapi: 3.0.1
 info:
   title: TS 28.532 Performance data file reporting Service
-  version: 16.1.0
-  description: OAS 3.0.1 specification of the Performance Data File Reporting Service
+  version: 16.4.0
+  description: >-
+    OAS 3.0.1 specification of the Performance data file reporting Management Service © 2020,
+    3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC). All
+    rights reserved.
+externalDocs:
+  description: 3GPP TS 28.532 V16.4.0; Generic management services
+  url: 'http://www.3gpp.org/ftp/Specs/archive/28_series/28.532/'
 servers:
-  - url: >-
-      http://{DN_prefix_authority_part}/{DN_prefix_remainder}/PerfDataFileReportMnS/v1610
+  - url: '{MnSRoot}/PerfDataFileReportMnS/v1640'
     variables:
-      DN_prefix_authority_part:
+      MnSRoot:
         description: See subclause 4.4 of TS 32.158
-        default: example.com
-      DN_prefix_remainder:
-        description: See subclause 4.4 of TS 32.158
-        default: ''
+        default: http://example.com/3GPPManagement
 paths:
   /Files:
     get:
