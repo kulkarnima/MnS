@@ -19,43 +19,26 @@ paths:
   /Files:
     get:
       summary: Read resources of information of available files
-      description: >-
-        With HTTP GET, resources of information of available files are read. The
-        resources to be read are identified with the path component (base
-        resource) and the query component (managementDataType, beginTime and
-        endTime) of the URI. The fields query component allows to select the
-        resource properties to be returned.
+      description: 'With HTTP GET, resources of information of available files are read. The resources to be read are identified with the path component (base resource) and the query component (managementDataType, beginTime and endTime) of the URI. The fields query component allows to select the resource properties to be returned.'
       parameters:
         - name: managementDataType
           in: query
-          description: >-
-            This parameter identifies the type of management data that the file
-            contains to select the resources from the collection resources
-            identified with the path component of the URI.
+          description: This parameter identifies the type of management data that the file contains to select the resources from the collection resources identified with the path component of the URI.
           required: true
           $ref: '#/components/schemas/managementDataType-Type'
         - name: beginTime
           in: query
-          description: >-
-            This parameter identifies the time stamp no later than which the
-            file became available to select the resources from the collection
-            resources identified with the path component of the URI.
+          description: This parameter identifies the time stamp no later than which the file became available to select the resources from the collection resources identified with the path component of the URI.
           required: true
           $ref: '#/components/schemas/dateTime-Type'
         - name: endTime
           in: query
-          description: >-
-            This parameter identifies the time stamp no earlier than which the
-            file became available to select the resources from the collection
-            resources identified with the path component of the URI.
+          description: This parameter identifies the time stamp no earlier than which the file became available to select the resources from the collection resources identified with the path component of the URI.
           required: true
           $ref: '#/components/schemas/dateTime-Type'
       responses:
         '200':
-          description: >-
-            Success case ("200 OK"). The resources identified in the request for
-            retrieval are returned in the response message body. In case the
-            fields query parameter is used, the selected resources are returned.
+          description: 'Success case ("200 OK"). The resources identified in the request for retrieval are returned in the response message body. In case the fields query parameter is used, the selected resources are returned.'
           content:
             application/json:
               schema:
@@ -69,9 +52,7 @@ paths:
   /subscriptions:
     post:
       summary: Create a subscription
-      description: >-
-        To create a subscription the representation of the subscription is
-        POSTed on the /subscriptions collection resource.
+      description: To create a subscription the representation of the subscription is POSTed on the /subscriptions collection resource.
       requestBody:
         required: true
         content:
@@ -80,9 +61,7 @@ paths:
               $ref: '#/components/schemas/subscription-RequestType'
       responses:
         '201':
-          description: >-
-            Success case ("201 Created"). The representation of the newly
-            created subscription resource shall be returned.
+          description: Success case ("201 Created"). The representation of the newly created subscription resource shall be returned.
           content:
             application/json:
               schema:
@@ -105,9 +84,7 @@ paths:
                       $ref: '#/components/schemas/notifyFileReady-NotifType'
               responses:
                 '204':
-                  description: >-
-                    Success case ("204 No Content"). The notification is
-                    successfully delivered. The response message body is absent.
+                  description: Success case ("204 No Content"). The notification is successfully delivered. The response message body is absent.
                 default:
                   description: Error case.
                   content:
@@ -122,13 +99,10 @@ paths:
                 content:
                   application/json:
                     schema:
-                      $ref: >-
-                        #/components/schemas/notifyFilePreparationError-NotifType
+                      $ref: '#/components/schemas/notifyFilePreparationError-NotifType'
               responses:
                 '204':
-                  description: >-
-                    Success case ("204 No Content"). The notification is
-                    successfully delivered. The response message body is absent.
+                  description: Success case ("204 No Content"). The notification is successfully delivered. The response message body is absent.
                 default:
                   description: Error case.
                   content:
@@ -137,11 +111,7 @@ paths:
                         $ref: '#/components/schemas/error-ResponseType'
     delete:
       summary: Delete all subscriptions made with a specific consumerReferenceId
-      description: >-
-        The subscriptions are deleted by deleting the corresponding subscription
-        resources. The resources to be deleted are identified with the path
-        component of the URI pointing to the /subscription collection resource
-        and filtering on the consumerReferenceId provided in the query part.
+      description: The subscriptions are deleted by deleting the corresponding subscription resources. The resources to be deleted are identified with the path component of the URI pointing to the /subscription collection resource and filtering on the consumerReferenceId provided in the query part.
       parameters:
         - name: consumerReferenceId
           in: query
@@ -151,9 +121,7 @@ paths:
             $ref: '#/components/schemas/consumerReferenceId-QueryType'
       responses:
         '204':
-          description: >-
-            Success case ("204 No Content"). The subscription resources have
-            been deleted. The response message body is absent.
+          description: Success case ("204 No Content"). The subscription resources have been deleted. The response message body is absent.
         default:
           description: Error case.
           content:
@@ -163,10 +131,7 @@ paths:
   '/subscriptions/{subscriptionId}':
     delete:
       summary: Delete a single subscription
-      description: >-
-        The subscription is deleted by deleting the corresponding subscription
-        resource. The resource to be deleted is identified with the path
-        component of the URI.
+      description: The subscription is deleted by deleting the corresponding subscription resource. The resource to be deleted is identified with the path component of the URI.
       parameters:
         - name: subscriptionId
           in: path
@@ -176,9 +141,7 @@ paths:
             $ref: '#/components/schemas/subscriptionId-PathType'
       responses:
         '204':
-          description: >-
-            Success case ("204 No Content"). The subscription resource has been
-            deleted. The response message body is absent.
+          description: Success case ("204 No Content"). The subscription resource has been deleted. The response message body is absent.
         default:
           description: Error case.
           content:
