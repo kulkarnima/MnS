@@ -1,10 +1,10 @@
 openapi: 3.0.1
 info:
   title: 3GPP 5GC NRM
-  version: 16.4.0
+  version: 16.5.0
   description: >-
     OAS 3.0.1 specification of the 5GC NRM
-    @ 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    © 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 externalDocs:
   description: 3GPP TS 28.541 V16.4.0; 5G NRM, 5GC NRM
@@ -116,13 +116,13 @@ components:
       enum:
         - REGISTERED
         - SUSPENDED
-    NSIIdList:
+    CNSIIdList:
       type: array
       items:
-        $ref: '#/components/schemas/NSIId'
-    NSIId:
+        $ref: '#/components/schemas/CNSIId'
+    CNSIId:
       type: string
-      description: NSI Id is defined in TS 29.531
+      description: CNSI Id is defined in TS 29.531, only for Core Network
     TACList:
       type: array
       items:
@@ -234,6 +234,70 @@ components:
       type: array
       items:
         type: string
+    FiveQiDscpMapping:
+      type: object
+      properties:
+        fiveQIValues:
+          type: array
+          items:
+          type: integer
+        dscp:
+          type: integer
+
+    PacketErrorRate:
+      type: object
+      properties:
+        scalar:
+          type: integer
+        exponent:
+          type: integer
+    FiveQICharacteristics:
+      type: object
+      properties:
+        fiveQIValue:
+          type: integer
+        resourceType:
+          type: string
+          enum:
+            - GBR
+            - NonGBR
+        priorityLevel:
+          type: integer
+        packetDelayBudget:
+          type: integer
+        packetErrorRate:
+          $ref: '#/components/schemas/PacketErrorRate'
+        averagingWindow:
+          type: integer
+        maximumDataBurstVolume:
+          type: integer
+
+
+    GtpUPathDelayThresholdsType:
+      type: object
+      properties:
+        n3AveragePacketDelayThreshold:
+          type: integer
+        n3MinPacketDelayThreshold:
+          type: integer
+        n3MaxPacketDelayThreshold:
+          type: integer
+        n9AveragePacketDelayThreshold:
+          type: integer
+        n9MinPacketDelayThreshold:
+          type: integer
+        n9MaxPacketDelayThreshold:
+          type: integer
+    QFPacketDelayThresholdsType:
+      type: object
+      properties:
+        thresholdDl:
+          type: integer
+        thresholdUl:
+          type: integer
+        thresholdRtt:
+          type: integer
+
 
 #-------- Definition of concrete IOCs --------------------------------------------
 
@@ -262,6 +326,9 @@ components:
               $ref: '#/components/schemas/AmfSet-Multiple'
             AmfRegion:
               $ref: '#/components/schemas/AmfRegion-Multiple'
+            Configurable5QISet:
+              $ref: '#/components/schemas/Configurable5QISet-Multiple'
+
     ManagedElement-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
@@ -309,6 +376,8 @@ components:
               $ref: '#/components/schemas/ScpFunction-Multiple'
             NefFunction:
               $ref: '#/components/schemas/NefFunction-Multiple'
+            Configurable5QISet:
+              $ref: '#/components/schemas/Configurable5QISet-Multiple'
  
     AmfFunction-Single:
       allOf:
@@ -421,6 +490,9 @@ components:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
+                    Configurable5QISetRef:
+                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
+
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -436,6 +508,13 @@ components:
               $ref: '#/components/schemas/EP_N16-Multiple'
             EP_S5C:
               $ref: '#/components/schemas/EP_S5C-Multiple'
+            FiveQiDscpMappingSet:
+              $ref: '#/components/schemas/FiveQiDscpMappingSet-Single'
+            GtpUPathQoSMonitoringControl:
+              $ref: '#/components/schemas/GtpUPathQoSMonitoringControl-Single'
+            QFQoSMonitoringControl:
+              $ref: '#/components/schemas/QFQoSMonitoringControl-Single'
+
     UpfFunction-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
@@ -629,8 +708,8 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/PlmnIdList'
                     sBIFqdn:
                       type: string
-                    nSIIdList:
-                      $ref: '#/components/schemas/NSIIdList'
+                    cNSIIdList:
+                      $ref: '#/components/schemas/CNSIIdList'
                     nFProfileList:
                       $ref: '#/components/schemas/NFProfileList'
                     snssaiList:
@@ -654,8 +733,8 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/PlmnIdList'
                     sBIFqdn:
                       type: string
-                    nSIIdList:
-                      $ref: '#/components/schemas/NSIIdList'
+                    cNSIIdList:
+                      $ref: '#/components/schemas/CNSIIdList'
                     nFProfileList:
                       $ref: '#/components/schemas/NFProfileList'
                     snssaiList:
@@ -1301,6 +1380,108 @@ components:
                     remoteAddress:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
 
+    FiveQiDscpMappingSet-Single:
+      allOf:
+        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    FiveQiDscpMappingList:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/FiveQiDscpMapping'
+
+    Configurable5QISet-Single:
+      allOf:
+        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    configurable5QIs:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/FiveQICharacteristics'                           
+    GtpUPathQoSMonitoringControl-Single:
+      allOf:
+        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    gtpUPathQoSMonitoringState:
+                      type: string
+                      enum:
+                        - ENABLED
+                        - DISABLED
+                    gtpUPathMonitoredSNSSAIs:
+                      type: array
+                      items:
+                        $ref: 'nrNrm.yaml#/components/schemas/Snssai'
+                    monitoredDSCPs:
+                      type: array
+                      items:
+                        type: integer
+                        minimum: 0
+                        maximum: 255
+                    isEventTriggeredGtpUPathMonitoringSupported:
+                      type: boolean
+                    isPeriodicGtpUMonitoringSupported:
+                      type: boolean
+                    isImmediateGtpUMonitoringSupported:
+                      type: boolean
+                    gtpUPathDelayThresholds:
+                      $ref: '#/components/schemas/GtpUPathDelayThresholdsType'
+                    gtpUPathMinimumWaitTime:
+                      type: integer
+                    gtpUPathMeasurementPeriod:
+                      type: integer
+
+    QFQoSMonitoringControl-Single:
+      allOf:
+        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    qFQoSMonitoringState:
+                      type: string
+                      enum:
+                        - ENABLED
+                        - DISABLED
+                    qFMonitoredSNSSAIs:
+                      type: array
+                      items:
+                        $ref: 'nrNrm.yaml#/components/schemas/Snssai'
+                    qFMonitored5QIs:
+                      type: array
+                      items:
+                        type: integer
+                        minimum: 0
+                        maximum: 255
+                    isEventTriggeredQFMonitoringSupported:
+                      type: boolean
+                    isPeriodicQFMonitoringSupported:
+                      type: boolean
+                    isSessionReleasedQFMonitoringSupported:
+                      type: boolean
+                    qFPacketDelayThresholds:
+                      $ref: '#/components/schemas/QFPacketDelayThresholdsType'
+                    qFMinimumWaitTime:
+                      type: integer
+                    qFMeasurementPeriod:
+                      type: integer
+
+
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
 
     SubNetwork-Multiple:
@@ -1530,70 +1711,79 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/EP_NLG-Single'
+    Configurable5QISet-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/Configurable5QISet-Single'
+
 
 #------------ Definitions in TS 28.541 for TS 28.532 -----------------------------
 
     resources-5gcNrm:
       oneOf:
-       - $ref: '#/components/schemas/SubNetwork-Single'
-       - $ref: '#/components/schemas/ManagedElement-Single'
-       - $ref: '#/components/schemas/AmfFunction-Single'
-       - $ref: '#/components/schemas/SmfFunction-Single'
-       - $ref: '#/components/schemas/UpfFunction-Single'
-       - $ref: '#/components/schemas/N3iwfFunction-Single'
-       - $ref: '#/components/schemas/PcfFunction-Single'
-       - $ref: '#/components/schemas/AusfFunction-Single'
-       - $ref: '#/components/schemas/UdmFunction-Single'
-       - $ref: '#/components/schemas/UdrFunction-Single'
-       - $ref: '#/components/schemas/UdsfFunction-Single'
-       - $ref: '#/components/schemas/NrfFunction-Single'
-       - $ref: '#/components/schemas/NssfFunction-Single'
-       - $ref: '#/components/schemas/SmsfFunction-Single'
-       - $ref: '#/components/schemas/LmfFunction-Single'
-       - $ref: '#/components/schemas/NgeirFunction-Single'
-       - $ref: '#/components/schemas/SeppFunction-Single'
-       - $ref: '#/components/schemas/NwdafFunction-Single'
-       - $ref: '#/components/schemas/ScpFunction-Single'
-       - $ref: '#/components/schemas/NefFunction-Single'
+        - $ref: '#/components/schemas/SubNetwork-Single'
+        - $ref: '#/components/schemas/ManagedElement-Single'
+        - $ref: '#/components/schemas/AmfFunction-Single'
+        - $ref: '#/components/schemas/SmfFunction-Single'
+        - $ref: '#/components/schemas/UpfFunction-Single'
+        - $ref: '#/components/schemas/N3iwfFunction-Single'
+        - $ref: '#/components/schemas/PcfFunction-Single'
+        - $ref: '#/components/schemas/AusfFunction-Single'
+        - $ref: '#/components/schemas/UdmFunction-Single'
+        - $ref: '#/components/schemas/UdrFunction-Single'
+        - $ref: '#/components/schemas/UdsfFunction-Single'
+        - $ref: '#/components/schemas/NrfFunction-Single'
+        - $ref: '#/components/schemas/NssfFunction-Single'
+        - $ref: '#/components/schemas/SmsfFunction-Single'
+        - $ref: '#/components/schemas/LmfFunction-Single'
+        - $ref: '#/components/schemas/NgeirFunction-Single'
+        - $ref: '#/components/schemas/SeppFunction-Single'
+        - $ref: '#/components/schemas/NwdafFunction-Single'
+        - $ref: '#/components/schemas/ScpFunction-Single'
+        - $ref: '#/components/schemas/NefFunction-Single'
 
-       - $ref: '#/components/schemas/ExternalAmfFunction-Single'
-       - $ref: '#/components/schemas/ExternalNrfFunction-Single'
-       - $ref: '#/components/schemas/ExternalNssfFunction-Single'
-       - $ref: '#/components/schemas/ExternalSeppFunction-Single'
+        - $ref: '#/components/schemas/ExternalAmfFunction-Single'
+        - $ref: '#/components/schemas/ExternalNrfFunction-Single'
+        - $ref: '#/components/schemas/ExternalNssfFunction-Single'
+        - $ref: '#/components/schemas/ExternalSeppFunction-Single'
 
-       - $ref: '#/components/schemas/AmfSet-Single'
-       - $ref: '#/components/schemas/AmfRegion-Single'
+        - $ref: '#/components/schemas/AmfSet-Single'
+        - $ref: '#/components/schemas/AmfRegion-Single'
+        - $ref: '#/components/schemas/QFQoSMonitoringControl-Single'
+        - $ref: '#/components/schemas/GtpUPathQoSMonitoringControl-Single'
 
-       - $ref: '#/components/schemas/EP_N2-Single'
-       - $ref: '#/components/schemas/EP_N3-Single'
-       - $ref: '#/components/schemas/EP_N4-Single'
-       - $ref: '#/components/schemas/EP_N5-Single'
-       - $ref: '#/components/schemas/EP_N6-Single'
-       - $ref: '#/components/schemas/EP_N7-Single'
-       - $ref: '#/components/schemas/EP_N8-Single'
-       - $ref: '#/components/schemas/EP_N9-Single'
-       - $ref: '#/components/schemas/EP_N10-Single'
-       - $ref: '#/components/schemas/EP_N11-Single'
-       - $ref: '#/components/schemas/EP_N12-Single'
-       - $ref: '#/components/schemas/EP_N13-Single'
-       - $ref: '#/components/schemas/EP_N14-Single'
-       - $ref: '#/components/schemas/EP_N15-Single'
-       - $ref: '#/components/schemas/EP_N16-Single'
-       - $ref: '#/components/schemas/EP_N17-Single'
+        - $ref: '#/components/schemas/EP_N2-Single'
+        - $ref: '#/components/schemas/EP_N3-Single'
+        - $ref: '#/components/schemas/EP_N4-Single'
+        - $ref: '#/components/schemas/EP_N5-Single'
+        - $ref: '#/components/schemas/EP_N6-Single'
+        - $ref: '#/components/schemas/EP_N7-Single'
+        - $ref: '#/components/schemas/EP_N8-Single'
+        - $ref: '#/components/schemas/EP_N9-Single'
+        - $ref: '#/components/schemas/EP_N10-Single'
+        - $ref: '#/components/schemas/EP_N11-Single'
+        - $ref: '#/components/schemas/EP_N12-Single'
+        - $ref: '#/components/schemas/EP_N13-Single'
+        - $ref: '#/components/schemas/EP_N14-Single'
+        - $ref: '#/components/schemas/EP_N15-Single'
+        - $ref: '#/components/schemas/EP_N16-Single'
+        - $ref: '#/components/schemas/EP_N17-Single'
 
-       - $ref: '#/components/schemas/EP_N20-Single'
-       - $ref: '#/components/schemas/EP_N21-Single'
-       - $ref: '#/components/schemas/EP_N22-Single'
+        - $ref: '#/components/schemas/EP_N20-Single'
+        - $ref: '#/components/schemas/EP_N21-Single'
+        - $ref: '#/components/schemas/EP_N22-Single'
 
-       - $ref: '#/components/schemas/EP_N26-Single'
-       - $ref: '#/components/schemas/EP_N27-Single'
+        - $ref: '#/components/schemas/EP_N26-Single'
+        - $ref: '#/components/schemas/EP_N27-Single'
 
-       - $ref: '#/components/schemas/EP_N31-Single'
-       - $ref: '#/components/schemas/EP_N31-Single'
+        - $ref: '#/components/schemas/EP_N31-Single'
+        - $ref: '#/components/schemas/EP_N31-Single'
 
-       - $ref: '#/components/schemas/EP_S5C-Single'
-       - $ref: '#/components/schemas/EP_S5U-Single'
-       - $ref: '#/components/schemas/EP_Rx-Single'
-       - $ref: '#/components/schemas/EP_MAP_SMSC-Single'
-       - $ref: '#/components/schemas/EP_NLS-Single'
-       - $ref: '#/components/schemas/EP_NLG-Single'
+        - $ref: '#/components/schemas/EP_S5C-Single'
+        - $ref: '#/components/schemas/EP_S5U-Single'
+        - $ref: '#/components/schemas/EP_Rx-Single'
+        - $ref: '#/components/schemas/EP_MAP_SMSC-Single'
+        - $ref: '#/components/schemas/EP_NLS-Single'
+        - $ref: '#/components/schemas/EP_NLG-Single'
+        - $ref: '#/components/schemas/Configurable5QISet-Single'
+        - $ref: '#/components/schemas/FiveQiDscpMappingSet-Single'

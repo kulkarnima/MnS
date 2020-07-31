@@ -1,16 +1,16 @@
 openapi: 3.0.1
 info:
-  title: Provisioning Management Service
-  version: 16.3.0
+  title: Provisioning MnS
+  version: 16.4.0
   description: >-
-    OAS 3.0.1 specification of the Provisioning Management Service
-    @ 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    OAS 3.0.1 definition of the Provisioning MnS
+    © 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 externalDocs:
-  description: 3GPP TS 28.532 V16.3.0; Generic management services
+  description: 3GPP TS 28.532 V16.4.0; Generic management services
   url: http://www.3gpp.org/ftp/Specs/archive/28_series/28.532/
 servers:
-  - url: 'http://{URI-DN-prefix}/{root}/ProvMnS/v1630/{LDN-first-part}'
+  - url: 'http://{URI-DN-prefix}/{root}/ProvMnS/v1640/{LDN-first-part}'
     variables:
       URI-DN-prefix:
         description: See subclause 4.4 of TS 32.158
@@ -83,6 +83,91 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error-ResponseType'
+      callbacks:
+        notifyMOICreation:
+          '{request.body#/notificationRecipientAddress}':
+            post:
+              requestBody:
+                required: true
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/notifyMOICreation-NotifType'
+              responses:
+                '204':
+                  description: >-
+                    Success case ("204 No Content").
+                    The notification is successfully delivered. The response
+                    has no message body.
+                default:
+                  description: Error case.
+                  content:
+                    application/json:
+                      schema:
+                        $ref: '#/components/schemas/error-ResponseType'
+        notifyMOIDeletion:
+          '{request.body#/notificationRecipientAddress}':
+            post:
+              requestBody:
+                required: true
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/notifyMOIDeletion-NotifType'
+              responses:
+                '204':
+                  description: >-
+                    Success case ("204 No Content").
+                    The notification is successfully delivered. The response
+                    has no message body.
+                default:
+                  description: Error case.
+                  content:
+                    application/json:
+                      schema:
+                        $ref: '#/components/schemas/error-ResponseType'
+        notifyMOIAttributeValueChange:
+          '{request.body#/notificationRecipientAddress}':
+            post:
+              requestBody:
+                required: true
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/notifyMOIAttributeValueChange-NotifType'
+              responses:
+                '204':
+                  description: >-
+                    Success case ("204 No Content").
+                    The notification is successfully delivered. The response
+                    has no message body.
+                default:
+                  description: Error case.
+                  content:
+                    application/json:
+                      schema:
+                        $ref: '#/components/schemas/error-ResponseType'
+        notifyMOIChanges:
+          '{request.body#/notificationRecipientAddress}':
+            post:
+              requestBody:
+                required: true
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/notifyMOIChanges-NotifType'
+              responses:
+                '204':
+                  description: >-
+                    Success case ("204 No Content").
+                    The notification is successfully delivered. The response
+                    has no message body.
+                default:
+                  description: Error case.
+                  content:
+                    application/json:
+                      schema:
+                        $ref: '#/components/schemas/error-ResponseType'
     get:
       summary: Reads one or multiple resources
       description: >-
@@ -365,22 +450,11 @@ components:
             errorInfo:
               type: string
     resourceRetrieval-ResponseType:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/resourceRepresentation-Type'
+      $ref: '#/components/schemas/resourceRepresentation-Type'
     resourceCreation-ResponseType:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/resourceRepresentation-Type'
+      $ref: '#/components/schemas/resourceRepresentation-Type'
     resourceUpdate-ResponseType:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/resourceRepresentation-Type'
+      $ref: '#/components/schemas/resourceRepresentation-Type'
     resourceDeletion-ResponseType:
       type: array
       items:
@@ -394,17 +468,47 @@ components:
               type: string
             attributes:
               type: object
-            nameContainedObjects:
-              additionalProperties:
-                type: array
-                items:
-                  type: object
+          additionalProperties:
+            type: array
+            items:
+              type: object
         - anyOf:
             - $ref: 'genericNrm.yaml#/components/schemas/resources-genericNrm'
             - $ref: 'nrNrm.yaml#/components/schemas/resources-nrNrm'
             - $ref: '5gcNrm.yaml#/components/schemas/resources-5gcNrm'
             - $ref: 'sliceNrm.yaml#/components/schemas/resources-sliceNrm'
 
+    mOIChange-Type:
+      type: object
+      properties:
+        notificationId:
+          $ref: '#/components/schemas/notificationId-Type'
+        correlatedNotifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/correlatedNotification-Type'
+        additionalText:
+          $ref: '#/components/schemas/additionalText-Type'
+        sourceIndicator:
+          $ref: '#/components/schemas/sourceIndicator-Type'
+        path:
+          $ref: '#/components/schemas/uri-Type'
+        operation:
+          type: string
+          enum:
+            - CREATE
+            - DELETE
+            - REPLACE
+        value:
+          oneOf:
+            - type: object
+              additionalProperties:
+                nullable: true
+            - type: array
+              items:
+                type: object
+              minItems: 1
+              maxItems: 2
 
     notifyMOICreation-NotifType:
       allOf:
@@ -459,6 +563,17 @@ components:
                 minItems: 1
                 maxItems: 2
                 items:
-                 nullable: true
+                  nullable: true
           required:
             - attributeValueChange
+    notifyMOIChanges-NotifType:
+      allOf:
+        - $ref: '#/components/schemas/header-Type'
+        - type: object
+          properties:
+            mOIChanges:
+              type: array
+              items:
+                $ref: '#/components/schemas/mOIChange-Type'
+          required:
+            - mOIChanges
