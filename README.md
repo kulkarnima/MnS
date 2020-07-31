@@ -12,11 +12,11 @@ All rights reserved.
 
 Branch {+Master+} validation status:
 
-[![pipeline status](https://forge.etsi.org/gitlab/3GPP/SA5/data-models/badges/master/pipeline.svg)](https://forge.etsi.org/gitlab/3GPP/SA5/data-models/commits/master)
+[![pipeline status](https://forge.3gpp.org/rep/SA5/data-models/badges/master/pipeline.svg)](https://forge.3gpp.org/rep/SA5/data-models/commits/master)
 
 ## Data models validation
 
 The YANG data models in the present projects are validated by an automated CI agent. Learn more at:
 
-* [Jenkins job run for this project](https://forge.etsi.org/jenkins/job/3GPP/view/SA5%20Data%20Models%20validation/)
-* [Validation scripts repository](https://forge.etsi.org/rep/forge-tools/3gpp-scripts)
+* [Jenkins job run for this project](https://forge.3gpp.org/jenkins/view/SA5/)
+* [Validation scripts repository](https://forge.3gpp.org/rep/tools/3gpp-scripts)
