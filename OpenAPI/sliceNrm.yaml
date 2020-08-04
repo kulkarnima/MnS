@@ -247,6 +247,11 @@ components:
           resourceSharingLevel:
             $ref: '#/components/schemas/SharingLevel'
 
+    IpAddress:
+      oneOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Ipv6Addr'
+
 #------------ Definition of concrete IOCs ----------------------------------------
 
     NetworkSlice:
@@ -290,10 +295,34 @@ components:
                       $ref: '#/components/schemas/NsInfo'
                     sliceProfileList:
                       $ref: '#/components/schemas/SliceProfileList'
+            EPTransport:
+              $ref: '#/components/schemas/EP_Transport-Multiple'
+                      
+    EP_Transport-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                ipAddress:
+                  $ref: '#/components/schemas/IpAddress'
+                logicInterfaceId:
+                  type: string 
+                nextHopInfo:
+                  type: string 
+                qosProfile:
+                  type: string 
+                      
+    EP_Transport-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_Transport-Single'
 
 #------------ Definitions in TS 28.541 for TS 28.532 -----------------------------
 
     resources-sliceNrm:
       oneOf:
-       - $ref: '#/components/schemas/NetworkSlice'
-       - $ref: '#/components/schemas/NetworkSliceSubnet'
+        - $ref: '#/components/schemas/NetworkSlice'
+        - $ref: '#/components/schemas/NetworkSliceSubnet'
