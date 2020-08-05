@@ -1,7 +1,6 @@
-## 3GPP SA5 models and MnS OpenAPI definitions
+# 3GPP SA5 models and MnS OpenAPI definitions
 
 (c) 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC). All rights reserved.
-
 
 The links below will open the Swagger Editor/UI and auto-load the OpenAPI YAML file of each API:
 
@@ -55,15 +54,16 @@ The links below will open the Swagger Editor/UI and auto-load the OpenAPI YAML f
 ([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/heartbeatNtf.yaml))
 
 * Streaming Data Reporting MnS (TS 28.532)
-([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/streaminfDataMnS.yaml))
-([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/streaminfDataMnS.yaml))
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/streamingDataMnS.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/streamingDataMnS.yaml))
 
-#### Tools
-* <a href="https://forge.3gpp.org/swagger/tools/GitlabOpenAPIFrontend.htm" target="_blank">Frontend</a> to invoke the Swagger Editor, Swagger UI, or to parse OpenAPI files with APIDevTools Swagger Parser/Validator, or to search for APIs referencing a data structure
-* <a href="https://forge.3gpp.org/swagger/tools/parser.html" target="_blank">API Parser/Linter</a> to parse OpenAPI files with APIDevTools Swagger Parser/Validator and run a number of <a href="https://en.wikipedia.org/wiki/Lint_(software)" target="_blank">lint</a> rules to improve API quality
-* <a href="https://forge.3gpp.org/swagger/tools/types.html" target="_blank">Data Type Finder</a> to find the impacted APIs due to a change on a given data type
-* <a href="https://forge.3gpp.org/swagger/tools/versions.html" target="_blank">API Versions Overview</a> to show a comprehensive report of the versions of all APIs in the repository
+## Tools
 
-#### Other 3GPP API definitions
-* <a href="https://forge.3gpp.org/rep/3GPP/5G_APIs">CT4</a> specifications (29.xxx series).
+* [Frontend](https://forge.3gpp.org/swagger/tools/GitlabOpenAPIFrontend.htm) to invoke the Swagger Editor, Swagger UI, or to parse OpenAPI files with APIDevTools Swagger Parser/Validator, or to search for APIs referencing a data structure
+* [API Parser/Linter](https://forge.3gpp.org/swagger/tools/parser.html) to parse OpenAPI files with APIDevTools Swagger Parser/Validator and run a number of [lint](https://en.wikipedia.org/wiki/Lint_\(software\)) rules to improve API quality
+* [Data Type Finder](https://forge.3gpp.org/swagger/tools/types.html) to find the impacted APIs due to a change on a given data type
+* [API Versions Overview](https://forge.3gpp.org/swagger/tools/versions.html) to show a comprehensive report of the versions of all APIs in the repository
 
+## Other 3GPP API definitions
+
+* [CT4](https://forge.3gpp.org/rep/3GPP/5G_APIs) specifications.
