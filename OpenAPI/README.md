@@ -27,6 +27,10 @@ The links below will open the Swagger Editor/UI and auto-load the OpenAPI YAML f
 ([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/sliceNrm.yaml))
 ([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/sliceNrm.yaml))
 
+* Communication Service Assurance NRM (TS 28.536)
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/coslaNrm.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/coslaNrm.yaml))
+
 ## Management Services (MnS)
 
 * Provisioning MnS (TS 28.532)
