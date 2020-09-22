@@ -1,4 +1,4 @@
-# Management and Orchestration - 3GPP SA5 WG
+# Management and Orchestration - 3GPP SA Working Group 5 (SA5)
 
 The Rel-16 branch represents the latest Rel-16 content approved and published after each TSG SA plenary. 
 
