@@ -1,14 +1,13 @@
-# Data models for Management and Orchestration - 3GPP SA5 WG
+# Management and Orchestration - 3GPP SA5 WG
 
-The master branch represents Rel-16 as approved by SA meetings
-The branch Rel-16-SA5-Agreed contains all changes approved by the SA5 meetings, but not yet approved by the SA meeting.
+The Rel-16 branch represents the latest Rel-16 content approved and published after each TSG SA plenary. 
 
+The Rel-17 branch represents the latest Rel-17 content approved and published after each TSG SA plenary. 
 
+Master branch represents the current working in progress release status.
 
-(c) 2019, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC). 
+(c) 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC). 
 All rights reserved.
-
-**{- Important note: This repository serves as a trial for 3GPP SA5 WG adoption. The current name, structure and address (i.e. URL) of the repositository may change at the end of the trial period. -}**
 
 Branch {+Master+} validation status:
 
