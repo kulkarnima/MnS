@@ -10,10 +10,12 @@ module _3gpp-nr-nrm-nrsectorcarrier {
   import _3gpp-common-top { prefix top3gpp; }
 
   organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
   description "Defines the YANG mapping of the NRSectorCarrier Information
     Object Class (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2020-05-28 { reference CR-0316 ; }
   revision 2019-10-28 { reference S5-193518 ; }
   revision 2019-06-17 {
     description "Initial revision";
@@ -32,16 +34,30 @@ module _3gpp-nr-nrm-nrsectorcarrier {
     }
 
     leaf configuredMaxTxPower {
-      description "Maximum possible transmisssion power for all downlink
-        channels, used simultaneously in a sector-carrier, added together.";
+      description "Maximum transmisssion power at the antenna port for all 
+        downlink channels, used simultaneously in a cell, added together.
+        Condition:  The sector-carrier has a downlink and the 
+        configuration of Tx power at antenna port reference point is supported.";
       mandatory true;
       type int32;
       units mW;
     }
 
+    leaf configuredMaxTxEIRP {
+      type int64;
+      units dBm;
+      mandatory true;
+      description "The maximum emitted isotroptic radiated power (EIRP) in dBm 
+        for all downlink channels, used simultaneously in a cell, added together.
+        Condition: the sector-carrier has a downlink and the 
+        configuration of emitted isotropic radiated power is supported";
+    }
+
     leaf arfcnDL {
       description "NR Absolute Radio Frequency Channel Number (NR-ARFCN)
-        for downlink.";
+        for downlink. 
+        Condition:  The sector-carrier has a downlink AND the value 
+        differs from the referring cell's value of arfcnDL.";
       reference "3GPP TS 38.104";
       mandatory true;
       type int32 { range "0..3279165"; }
@@ -49,14 +65,18 @@ module _3gpp-nr-nrm-nrsectorcarrier {
 
     leaf arfcnUL {
       description "NR Absolute Radio Frequency Channel Number (NR-ARFCN)
-        for uplink.";
+        for uplink. 
+        Condition: The sector-carrier has an uplink AND the value 
+        differs from the referring cell's value of arfcnUL.";
       reference "3GPP TS 38.104";
       mandatory true;
       type int32 { range "0..3279165"; }
     }
 
     leaf bSChannelBwDL {
-      description "Base station channel bandwitdth for downlink.";
+      description "Base station channel bandwitdth for downlink. 
+        Condition: The sector-carrier has a downlink AND the value 
+        differs from the referring cell's value of bSChannelBwDL.";
       reference "3GPP TS 38.104";
       mandatory true;
       type int32 { range "5 | 10 | 15 | 20 | 30 | 40 | 50 | 60 | 70 | 80 |

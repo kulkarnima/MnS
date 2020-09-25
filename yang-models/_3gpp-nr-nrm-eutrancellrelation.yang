@@ -67,6 +67,15 @@ module _3gpp-nr-nrm-eutrancellrelation {
       mandatory true;
       type ActionAllowed;
     }
+    leaf isENDCAllowed {
+      description "Indicates if EN-DC is allowed or prohibited. If TRUE,
+        the target cell is allowed to be used for EN-DC. The target cell is
+        referenced by the NRCellRelation that contains this isENDCAllowed.
+        If FALSE, EN-DC shall not be allowed.";
+      mandatory true;
+      type ActionAllowed;
+    }
+
 
     leaf isICICInformationSendAllowed {
       description "Indicates if ICIC (Inter Cell Interference Coordination)

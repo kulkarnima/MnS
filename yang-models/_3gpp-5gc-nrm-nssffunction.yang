@@ -11,22 +11,22 @@ module _3gpp-5gc-nrm-nssffunction {
   import _3gpp-common-top { prefix top3gpp; }
   
   organization "3gpp SA5";
-  description "This IOC represents the NSSF function in 5GC. For more information about the NSSF, see 3GPP TS 23.501.";
+  description "This IOC represents the NSSF function in 5GC. For more 
+    information about the NSSF, see 3GPP TS 23.501.";
   reference "3GPP TS 28.541";
   
+  revision 2020-08-03 { reference "CR-0321"; }
   revision 2019-10-25 { reference "S5-194457 S5-195427 S5-193518"; }
-  
-  revision 2019-05-15 {
-    description "initial revision";
-
-  }
+  revision 2019-05-15 { description "initial revision"; }
   
   grouping NSSFFunctionGrp {
     uses mf3gpp:ManagedFunctionGrp;
     
     list pLMNIdList {
-      description "List of at most six entries of PLMN Identifiers, but at least one (the primary PLMN Id).
-                   The PLMN Identifier is composed of a Mobile Country Code (MCC) and a Mobile Network Code (MNC).";
+      description "List of at most six entries of PLMN Identifiers, but at least 
+        one (the primary PLMN Id).
+        The PLMN Identifier is composed of a Mobile Country Code (MCC) and a 
+        Mobile Network Code (MNC).";
 
       min-elements 1;
       max-elements 6;
@@ -34,8 +34,8 @@ module _3gpp-5gc-nrm-nssffunction {
       uses types3gpp:PLMNId;
     }
     
-    leaf sBIFQDN {
-      description "The FQDN of the registered NF instance in the service-based interface.";
+    leaf sBIFQDN {      description "The FQDN of the registered NF instance in the service-based 
+        interface.";
       type inet:domain-name;
     }
     
@@ -49,10 +49,13 @@ module _3gpp-5gc-nrm-nssffunction {
       type types3gpp:SNssai;
     }
     
-    leaf-list nSIIdListWrap {
-      description "Set of NSI Ids. The NSI ID represents the Network Slice Instance Identifier.";
-      //optional support
-      type types3gpp:NsiId;
+    leaf-list cNSIIdList {
+      description "NSI ID. NSI ID is an identifier for identifying the Core 
+        Network part of a Network Slice instance when multiple Network Slice 
+        instances of the same Network Slice are deployed, and there is a need 
+        to differentiate between them in the 5GC, see clause 3.1 of TS 23.501 
+        and subclause 6.1.6.2.7 of 3GPP TS 29.531";
+      type string;
     }
     
     list managedNFProfile {

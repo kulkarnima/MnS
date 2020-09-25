@@ -10,14 +10,36 @@ module _3gpp-nr-nrm-gnbcucpfunction {
   import _3gpp-nr-nrm-rrmpolicy { prefix nrrrmpolicy3gpp; }
 
   organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
   description "Defines the YANG mapping of the GNBCUCPFunction Information 
     Object Class (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2020-08-06 { reference "CR-0333"; }
+  revision 2020-08-03 { reference "CR-0321"; }
+  revision 2020-06-03 { reference "CR-0286"; }
+  revision 2020-05-08 { reference S5-203316 ; }
+  revision 2020-04-28 { reference "0260"; }
   revision 2020-02-14 { reference S5-20XXXX ; }
   revision 2019-10-28 { reference S5-193518 ; }
   revision 2019-06-17 {
     description "Initial revision";
+  }
+
+  feature DESManagementFunction {
+    description "Classs representing Distributed SON or Domain-Centralized SON Energy Saving feature";
+  }
+
+  feature DANRManagementFunction {
+    description "Classs representing D-SON function of ANR Management feature";
+  }
+
+  feature DRACHOptimizationFunction {
+    description "Classs representing D-SON function of RACH optimization feature";
+  }
+
+  feature DMROFunction {
+    description "Classs representing D-SON function of MRO feature";
   }
  
   grouping GNBCUCPFunctionGrp {
@@ -58,28 +80,41 @@ module _3gpp-nr-nrm-gnbcucpfunction {
     } 
 
     leaf-list x2BlackList {
-      type types3gpp:DistinguishedName;
+      type string;
       description "List of nodes to which X2 connections are prohibited.";
     }
 
     leaf-list x2WhiteList {
-      type types3gpp:DistinguishedName;
+      type string;
       description "List of nodes to which X2 connections are enforced.";
     }
 
     leaf-list xnBlackList {
-      type types3gpp:DistinguishedName;
+      type string;
       description "List of nodes to which Xn connections are prohibited.";
     }
 
     leaf-list xnWhiteList {
-      type types3gpp:DistinguishedName;
+      type string;
       description "List of nodes to which X2 connections are enforced.";
     }
 
-    leaf-list x2XnHOBlackList {
+    leaf-list xnHOBlackList {
+      type string;
+      description "List of nodes to which handovers over  Xn are prohibited.";
+         }
+    leaf configurable5QISetRef {
       type types3gpp:DistinguishedName;
-      description "List of nodes to which handovers over X2 or Xn are prohibited.";
+      description "DN of the Configurable5QISet that the GNBCUCPFunction supports (is associated to).";
+    }
+
+    leaf-list x2HOBlackList {
+      type string;
+      description "List of nodes to which handovers over X2 are prohibited.";
+    }
+    leaf dynamic5QISetRef {
+      type types3gpp:DistinguishedName;
+      description "DN of the Dynamic5QISet that the GNBCUCPFunction supports (is associated to).";
     }
   }
 

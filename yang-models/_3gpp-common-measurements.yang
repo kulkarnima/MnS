@@ -7,6 +7,7 @@ module _3gpp-common-measurements {
   import _3gpp-common-yang-types { prefix types3gpp; }
 
   organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";    
     
   description "Defines Measurement and KPI related groupings
     Any list/class intending to use this should include 2 or 3 uses statements
@@ -24,12 +25,10 @@ module _3gpp-common-measurements {
       already inherited, so there is no need to include them once more. E.g.
     
 +++     grouping MyClassGrp {
-+++        uses meas3gpp:Measurements;
-+++        uses meas3gpp:KPIs; 
++++        uses meas3gpp:SupportedPerfMetricGroup;
 +++     }
     
-    C) include the classes MeasurementControl & MeasurementReader to 
-      control the measurements/KPIs. E.g. 
+    C) include the class PerfmetricJob to control the measurements/KPIs. E.g. 
       
         list MyClass {
           container attributes {
@@ -41,7 +40,7 @@ module _3gpp-common-measurements {
         }
         
     Measurements can be contained under ManagedElement, SubNetwork, or
-    any list representing a class inheriting from EP_RP, Subnetwork or 
+    any list representing a class inheriting from Subnetwork or 
     ManagedFunction. Note: KPIs will only be supported under SubNetwork";
     
   reference "3GPP TS 28.623
@@ -54,555 +53,489 @@ module _3gpp-common-measurements {
       Integration Reference Point (IRP);
       Information Service (IS)";
 
+  revision 2020-09-04 { reference "CR-000107"; }  
+  revision 2020-06-08 { reference "CR-0092"; }  
+  revision 2020-05-31 { reference "CR-0084"; }
   revision 2020-03-11 { reference "S5-201581, SP-200229"; }
-
-  revision 2019-11-21 {
-    reference "S5-197275, S5-197735";
-  }
-
-  revision 2019-10-28 {
-    reference "S5-193516";
-  }
-
-  revision 2019-06-17 {
-  }
+  revision 2019-11-21 { reference "S5-197275, S5-197735"; }
+  revision 2019-10-28 { reference "S5-193516"; }
+  revision 2019-06-17 { }
  
-  feature StreamingSupported {
-    description "The delivery of measurement data using streaming is supported.";
-  }
-
-  grouping KPIs {
-    description "Identifies the supported KPI names and their 
-      supported GPs.
-      KPIs can be used by SubNetwork, or any list representing a class 
-      inheriting from Subnetwork.";
-      
-    list kPIsList {
-      key idx;
-      config false;
-      description "List of supported KPI names and their 
-        supported GPs for the parent function/class";
-        
-      leaf idx { type uint32 ; }
-        
-      leaf-list kPINames {
-        type string;
-        min-elements 1;
-        description "The KPI names can be those specified 
-          in TS 28.554 and can be those specified by 
-          other SDOs or can be vendor-specific.";
-      }
-      
-      leaf-list gPs {
-      type uint32 ;
-      units second;
-      min-elements 1;
-      description "Identifies supported GPs.
-          GP (granularity period) is the time between the initiation
-          of two successive gatherings of performance data.";
-      }
-    }
-  }   
-  
-  grouping Measurements {
-    description "Identifies the supported Measurement types and their 
-      supported GPs. Measurements can be used by SubNetwork, MnagedElement, 
-      ManagedFunction or any list representing a class inheriting from them.";
-      
-    list measurementsList {
-      key idx;
-      config false;
-      description "List of supported Measurement types and their 
-        supported GPs for the parent function/class";
-        
-      leaf idx { type uint32 ; }
-        
-      leaf-list measurementTypes {
-        type string;
-        min-elements 1;
-        description "The Measurement types can be those specified 
-          in TS 28.552, TS 32.404 and can be those specified by 
-          other SDOs or can be vendor-specific.";
-      }
-      
-      leaf-list gPs {
-      type uint32 ;
-      units second;
-      min-elements 1;
-      description "Identifies supported GPs.
-          GP (granularity period) is the time between the initiation
-          of two successive gatherings of measurement data.";
-      }
-    }
-  }   
-  
-  grouping MeasurementControlGrp {
-    description "represents the capabilities to produce and deliver Measurements 
-      identified by a MeasurementReader.
-      There are two delivery methods (i.e. file-based and stream-based) via 
-      which the consumer(s) can receive the Measurements.";
-
-    leaf pMAdministrativeState {
-      default LOCKED;
-      type types3gpp:AdministrativeState ;
-      description "It describes the permission to use or prohibition against 
-        using the capability of MeasurementControl, imposed through the consumer 
-        of OAM services produced by MeasurementControl,
-
-        The measurement or KPI report production would begin when 
-        pMadministrativeState is UNLOCKED and pMoperationalState is ENABLED.";
+  grouping ThresholdInfoGrp {
+    description "Defines a single threshold level.";
+    
+    leaf-list measurementTypes {
+      type string;
+      description "The Measurement type can be those specified in TS 28.552, 
+        TS 32.404 and can be those specified by other SDOs or can be 
+        vendor-specific.";
     }
     
-    leaf pMOperationalState {
+    leaf thresholdLevel {
+      type uint64;
+      mandatory true;
+      description "Number (key) for a single threshold in the threshold list 
+        applicable to the monitored performance metric.";
+    }
+    
+    leaf thresholdDirection {
+      type enumeration {
+        enum UP;
+        enum DOWN;
+        enum UP_AND_DOWN;
+      }
+      must '. = "UP_AND_DOWN" or  not(../hysteresis)' {
+        error-message "In case a threshold with hysteresis is configured, the " 
+          +"threshold direction attribute shall be set to 'UP_AND_DOWN'.";
+      }
+      mandatory true;
+      description "Direction of a threshold indicating the direction for which 
+        a threshold crossing triggers a threshold.
+
+        When the threshold direction is configured to 'UP', the associated 
+        treshold is triggered only when the performance metric value is going 
+        up upon reaching or crossing the threshold value. The treshold is not 
+        triggered, when the performance metric is going down upon reaching or 
+        crossing the threshold value.
+
+        Vice versa, when the threshold direction is configured to 'DOWN', the 
+        associated treshold is triggered only when the performance metric is 
+        going down upon reaching or crossing the threshold value. The treshold 
+        is not triggered, when the performance metric is going up upon reaching 
+        or crossing the threshold value.
+
+        When the threshold direction is set to 'UP_AND_DOWN' the treshold is 
+        active in both direcions.
+
+        In case a threshold with hysteresis is configured, the threshold 
+        direction attribute shall be set to 'UP_AND_DOWN'.";
+    }
+    
+    leaf thresholdValue {
+      type union {
+        type int64;
+        type decimal64 {
+          fraction-digits 2;
+        }
+      }
+      mandatory true;
+      description "Value against which the monitored performance metric is 
+        compared at a threshold level in case the hysteresis is zero";
+    }
+    
+    leaf hysteresis {
+      type union {
+        type uint64;
+        type decimal64 {
+          fraction-digits 2;
+          range "0..max";
+        }
+      }
+      description "Hysteresis of a threshold. If this attribute is present 
+        the monitored performance metric is not compared against the 
+        threshold value as specified by the thresholdValue attribute but 
+        against a high and low threshold value given by
+
+          threshold-high = thresholdValue + hysteresis
+          threshold-low = thresholdValue - hysteresis
+
+        When going up, the threshold is triggered when the performance metric 
+        reaches or crosses the high threshold value. When going down, the 
+        hreshold is triggered when the performance metric reaches or crosses 
+        the low threshold value.
+
+        A hysteresis may be present only when the monitored performance 
+        metric is not of type counter that can go up only. If present 
+        for a performance metric of type counter, it shall be ignored.";
+    }
+  }
+  
+  grouping SupportedPerfMetricGroupGrp {      
+    list SupportedPerfMetricGroup {
+      config false;
+      description "Captures a group of supported performance metrics and 
+        associated parameters related to their production and reporting.
+        A SupportedPerfMetricGroup attribute which is part of an MOI may 
+        define performanceMetrics for any MOI under the subtree contained 
+        under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement 
+        can specify supported metrics for contained ManagedFunctions 
+        like a GNBDUFunction.";
+      
+      leaf-list performanceMetrics {
+        type string;
+        min-elements 1;
+        description "Performance metrics include measurements defined in 
+          TS 28.552 and KPIs defined in TS 28.554. Performance metrics can 
+          also be those specified by other SDOs or vendor specific metrics. 
+          Performance metrics are identfied with their names. A name can also 
+          identify a vendor specific group of performance metrics.
+
+          For measurements defined in TS 28.552 the name is constructed as 
+          follows:
+          - 'family.measurementName.subcounter' for measurement types with 
+          subcounters
+          - 'family.measurementName' for measurement types without subcounters
+          - 'family' for measurement families
+
+          For KPIs defined in TS 28.554 the name is defined in the KPI 
+          definitions template as the component designated with e).";
+      }
+      
+      leaf-list granularityPeriods {
+        type uint32 {
+          range 1..max ;
+        }
+        units seconds;
+      }
+      
+      leaf-list reportingMethods {
+        type enumeration {
+          enum FILE_BASED_LOC_SET_BY_PRODUCER;
+          enum FILE_BASED_LOC_SET_BY_CONSUMER;
+          enum STREAM_BASED;
+        }
+        min-elements 1;
+      }
+      
+      leaf-list monitorGranularityPeriods {
+        type uint32 {
+          range 1..max ;
+        }
+        units seconds;
+        description "Granularity periods supported for the monitoring of 
+          associated measurement types for thresholds";
+      }
+    }
+  }
+
+  grouping PerfMetricJobGrp {
+    description "Represents the attributtes of the IOC PerfMetricJob";
+    
+    leaf administrativeState {
+      default UNLOCKED;
+      type types3gpp:AdministrativeState ;
+      description "Enable or disables production of the metrics";
+    }
+    
+    leaf operationalState {
       config false;
       mandatory true;
       type types3gpp:OperationalState ;
-      description "Indicates whether the MeasurementControl is working.";
+      description "Indicates whether the PerfMetricJob is working.";
     }    
 
-    leaf defaultFileLocation {
-      type string ;
-      description "It is the path to the location where produced 
-        measurement reports (containing PM data) are stored. File based 
-        measurement delivery will not start if this leaf does not have a 
-        valid value. 
-        
-        It is the path to a location on either the producer's file system or a 
-        URI to a network file location that is not part of the producer's file 
-        system. In case it points to a location on the producer's file system, 
-        it is a relative path based on a vendor-specified root directory for 
-        measurement files.
-              
-        The size of this fileLocation is decided by consumer and producer. 
-        The producer is expected to remove old files to make room for 
-        new files, when necessary.
-        
-        This value is ignored in case the fileLocation leaf in the 
-        MeasurementReader is defined.";
-    }
-    
-    leaf defaultFileBasedGP {
-      when '../defaultFileLocation' ;
-      mandatory true;
-      type uint32 ;
-      units second;
-      description "GP (granularity period) defines the frequency of producing 
-        measurement data. Measurement data would be produced immediately at the 
-        end of each fileBasedGP.
-        
-        This value is ignored in case the fileBasedGP leaf in the 
-        MeasurementReader is defined.";     
-    }
-    
-    leaf defaultFileReportingPeriod {
-      when '../defaultFileLocation' ;
-      must '. *60 >= ../defaultFileBasedGP' {
-        error-message "defaultFileBasedGP must not be greater than defaultFileReportingPeriod";
-      }
-      mandatory true;
-      type uint32 ;
-      units minute;
-      description "The frequency of producing the measurement report files. 
-        A measurement report file contains multiple measurement data.
-        
-        This value is ignored in case the fileReportingPeriod leaf in the 
-        MeasurementReader is defined.";
-    }
-    
-    leaf defaultStreamTarget {
-      if-feature StreamingSupported ;
-      type string ;
-      description "Identifies the target of the notifications carrying the 
-        content of the measurement report.
-
-        This value is ignored in case the streamTarget leaf in the 
-        MeasurementReader is defined.";
-    }    
-    
-    leaf defaultStreamBasedGP {
-      if-feature StreamingSupported ;
-      when '../defaultStreamTarget' ;
-      mandatory true;
-      type uint32 ;
-      units second;
-      description "It defines the frequency of producing and sending the 
-        Measurement to the streamTargets.
-        
-        This value is ignored in case the streamBasedGP leaf in the 
-        MeasurementReader is defined.";
-    }    
-  }
-  
-  grouping MeasurementReaderGrp {
-    description "Identifies the entity whose Measurements are required by 
-    consumer, the types of Measurements required and the delivery method for 
-    the measurements.";
-
-    leaf-list measurementTypes {
-      type string ;
-      description "If the MeasurementControl contaning this attribute is used  
-          for measurement collecting purpose, it identifies one or more  
-          Measurement types. The Measurement type can be those specified in  
-          TS 28.552, TS 32.404 and can be those specified by other SDOs or 
-          can be vendor-specific.
-
-          If the MeasurementControl is used for KPIs reporting purpose, it 
-          identifies one or more KPI names. The KPI name can be those specified 
-          in TS 28.554 and can be those specified by other SDOs or can be 
-          vendor-specific.
-          KPI names can only be specified if this MeasurementReader is 
-          contained under a SubNetwork or derived IOC.";
-    }
-    
-    leaf-list managedObjectDNsBasic {
-      type types3gpp:DistinguishedName ;
-       description "Identifies the managed functions whose Measurements or KPIs 
-        are required to be produced.
-        
-        It identifies specific managed entities (say X, Y, Z). It would mean 
-        Measurements or KPI names type specified in 
-        MeasurementReader.measurementTypes, are required to be produced 
-        if X, Y, Z are capable of supporting the Measurement types or KPI names.
-
-        If managedObjectDNs of the same MeasurementReader instance has valid 
-        information, the information of this leaf-list is ignored.";
-    }
-    
-    leaf-list managedObjectDNs {
-      type types3gpp:DistinguishedName ;
-      description "Identifies the managed entities whose Measurements or KPIs 
-        are required to be produced.  
-
-
-        In case the base is SubNetwork, it identifies all, including the base, 
-        managed entities that are subordinates, in the sense of name-containment, 
-        of the base. 
-
-        In case the base is NetworkSliceSubnet, it identifies all, including 
-        the base, managed entities that has aggregation association relation 
-        with the base. 
-
-        We called the identified entities a collection. It would mean 
-        Measurement types or KPI names specified in attribute 
-        MeasurementReader.measurementTypes, are required to be produced if the 
-        member (of the collection) is capable of supporting the Measurement 
-        types or KPI names.";
+    leaf perfMetricJobGroupId {
+      type string;
+      description "Identifies members of a PerfMetricJob group. For the 
+        stream based reporting method this reference shall be present.";
     }
 
-    leaf fileLocation {
-      type string ;
-      description "It is the path to the location where produced 
-        performance reports (containing PM data) are stored. File based 
-        delivery will not start if this leaf does not have a 
-        valid value. 
-        
-        It is the path to a location on either the producer's file system or a 
-        URI to a network file location that is not part of the producer's file 
-        system. In case it points to a location on the producer's file system, 
-        it is a relative path based on a vendor-specified root directory for 
-        performance data  files.
-              
-        The size of this fileLocation is decided by consumer and producer. 
-        The producer is expected to remove old files to make room for 
-        new files, when necessary.
-        
-        If defined this value overrides the value of defaultFileLocation in the 
-        parent MeasuremnetControl.";
-    }
-    
-    leaf fileBasedGP {
-      when '../fileLocation' ;
-      mandatory true;
-      type uint32 ;
-      units second;
-      description "GP (granularity period) defines the frequency of producing 
-        performance  data.";     
-    }
-    
-    leaf fileReportingPeriod {
-      when '../fileLocation' ;
-      must '.  *60 >= ../fileBasedGP' {
-        error-message "fileBasedGP must not be greater than fileReportingPeriod";
-      }
-      mandatory true;
-      type uint32 ;
-      units minute;
-      description "The frequency of producing the performance  report files.";
-    }
-    
-    leaf streamTarget {
-      when 'not(../fileLocation)' ;
-      type string ;
-      description "Identifies the target of the notification carrying the 
-        content of the measurement or KPI report.
-        There are two delivery methods (i.e. file-based and stream-based) via 
-        which the consumer(s) can receive the Measurements or KPIs. This  
-        attribute is used for the stream-based delivery method.";
-    }    
-    
-    leaf streamBasedGP {
-      when '../streamTarget' ;
-      mandatory true;
-      type uint32 ;
-      units second;
-      description "Defines the frequency of producing and sending the 
-        Measurements or KPIs to the consumer.";
-    }
-  }
-   
-  grouping ThresholdMonitoringCapabilityGrp {
-    description "Represents the capability of threshold monitoring(s) 
-      allowed to be created by ThresholdMonitor to monitor some or all 
-      of the measurements identified by supportedMeasurementsGPs.";
-      
-    leaf-list supportedMonitoringGPs {
-      type uint32;
-      units second;
-      config false;
+    leaf-list performanceMetrics { 
+      type string;
       min-elements 1;
-      description "The monitoring granularity periods supported by the 
-        producer for the monitored entities.";
+      description "Performance metrics include measurements defined in 
+        TS 28.552 and KPIs defined in TS 28.554. Performance metrics can 
+        also be those specified by other SDOs or vendor specific metrics. 
+        Performance metrics are identfied with their names. A name can also 
+        identify a vendor specific group of performance metrics.
+
+        For measurements defined in TS 28.552 the name is constructed as 
+        follows:
+        - 'family.measurementName.subcounter' for measurement types with 
+        subcounters
+        - 'family.measurementName' for measurement types without subcounters
+        - 'family' for measurement families
+
+        For KPIs defined in TS 28.554 the name is defined in the KPI 
+        definitions template as the component designated with e).";
+    }
+    
+    leaf granularityPeriod {
+      type uint32 {
+        range 1..max ;
+      }
+      units seconds;
+      mandatory true;
+      description "Granularity period used to produce measurements. The value 
+        must be one of the supported granularity periods for the metric.
+        
+        For measurements of type counter this is the period at which samples 
+        of the internal counter value, that is incremented with every event 
+        occurance, are taken.
+        
+        For measurements of type gauge, this is period, over which the mean 
+        value of the measured variable is calculated. The mean value is 
+        then taken as sample.";
+    }
+
+    leaf-list objectInstances {
+      type types3gpp:DistinguishedName;
+    }
+    
+    leaf-list rootObjectInstances {
+      type types3gpp:DistinguishedName;
+      description "Each object instance designates the root of a subtree that 
+      contains the root object and all descendant objects.";
+    }
+        
+    choice reportingCtrl {
+      mandatory true;
+      description "This choice defines the method for reporting collected 
+        performance metrics to MnS consumers as well as the parameters for 
+        configuring the reporting function. It is a choice between the control 
+        parameter required for the reporting methods, whose presence selects 
+        the reporting method as follows:
+        - When only the fileReportingPeriod attribute is present, the MnS 
+        producer shall store files on the MnS producer at a location selected 
+        by the MnS producer and inform the MnS consumer about the availability 
+        of new files and the file location using the notifyFileReady 
+        notification.
+        - When only the fileReportingPeriod and fileLocation attributes are 
+        present, the MnS producer shall store the files on the MnS consumer at 
+        the location specified by fileLocation. No notification is emitted by 
+        the MnS producer.
+        - When only the streamTarget attribute is present, the MnS producer 
+        shall stream the data to the location specified by streamTarget.
+        
+        For the file-based reporting methods the fileReportingPeriod attribute 
+        specifies the time window during which collected measurements are stored 
+        into the same file before the file is closed and a new file is opened.";
+        
+      case file-based-reporting {
+        leaf fileReportingPeriod {
+          type uint32 {
+            range 1..max;
+          }
+          units minutes";
+          must '(number(.)*"60") mod number(../granularityPeriod) = "0"' {
+            error-message 
+              "The time-period must be a multiple of the granularityPeriod.";          
+          } 
+          mandatory true;
+          description "For the file-based reporting method this is the time 
+            window during which collected measurements are stored into the same 
+            file before the file is closed and a new file is opened. 
+            The time-period must be a multiple of the granularityPeriod.
+            
+            Applicable when the file-based reporting method is supported";
+        }
+        
+        leaf fileLocation { 
+          type string ;
+          description "Applicable and must be present when the file-based 
+            reporting method is supported, and the files are stored on the MnS 
+            consumer.";
+        }
+      }
+      case stream-based-reporting {
+        leaf streamTarget {
+          type string;
+          mandatory true;
+          description "Applicable when stream-based reporting method is 
+            supported.";
+        }
+      }
     }
   }
-  
+
+   
   grouping ThresholdMonitorGrp {
       description "A threshold monitor that is created by the consumer for 
         the monitored entities whose measurements are required by consumer 
         to monitor.";
 
+    leaf administrativeState {
+      default UNLOCKED;
+      type types3gpp:AdministrativeState ;
+      description "Enables or disables the ThresholdMonitor.";
+    }
+    
+    leaf operationalState {
+      config false;
+      mandatory true;
+      type types3gpp:OperationalState ;
+      description "Indicates whether the ThresholdMonitor is working.";
+    }    
+
     list thresholdInfoList {
       key idx;      
+      min-elements 1;
       leaf idx { type uint32 ; }
-      
-      leaf measurementType {
-        type string;
-        mandatory true;
-        description "Shall be in one of the following form:
-          -	'family.measurementName.subcounter' for monitoring the 
-          measurement types with subcounters defined.
-          -	'family.measurementName' for monitoring the measurement 
-          types without subcounters defined.";
-      }
-      
-      leaf direction {
-        type enumeration {
-          enum INCREASING;
-          enum DECREASING;
-        }
-        mandatory true;
-        description "
-          - If it is 'INCREASING', the threshold crossing 
-          notification is triggered when the measurement value 
-          equals or exceeds a thresholdValue.
-          - If it is 'DECREASING', the threshold crossing notification is 
-          triggered when the measurement value equals or below a 
-          thresholdValue.";      
-      }
-      
-      list thresholdPack {
-        key idx;   
-        min-elements 1;
-        leaf idx { type uint32 ; }
-        
-        leaf  thresholdLevel {
-          type int64;
-          mandatory true;
-          description "";            
-        }
-
-        leaf thresholdValue {
-          type int64;
-          mandatory true;
-          description "";                      
-        }
-        
-        leaf threshold-low  {
-          type int64;
-          description "The values threshold-low and threshold-high must 
-            be present or absent together.
-            The measurementType value is allowed to oscillate between 
-            threshold-low and threshold-highwithout triggering the 
-            threshold crossing notification.";            
-        }
-        
-        leaf threshold-high  {
-          when '../threshold-low';
-          type int64;
-          mandatory true;
-          description "The values threshold-low and threshold-high must 
-            be present or absent together.
-            The measurementType value is allowed to oscillate between 
-            threshold-low and threshold-highwithout triggering the 
-            threshold crossing notification.";            
-        }
-      }
+      uses ThresholdInfoGrp;      
     }
     
-    leaf monitoringGP  {
-      type uint32;
+    leaf monitorGranularityPeriod {
+      type uint32 {
+        range "1..max";
+      }
       units second;
       mandatory true;                          
-      description "Monitoring granularity period";
+      description " Granularity period used to monitor measurements for 
+        threshold crossings. ";
     }
     
-    leaf monitoringNotifTarget {
-      type string;
-      description "Identifies the target of the notifications when the 
-        monitored measurement crosses or reaches the threshold set by the 
-        subject threshold monitor.";
-    }
-    
-    leaf monitoredIOCName  {
-      type string;
-      mandatory true;
-      description "Specifies the name of list(s) representing one object 
-        class for which the threshold monitor is created. 
-        When this attribute is effective, the threshold monitor is created 
-        for all list nodes/entries with the specified name in the containment 
-        tree whose top (tree) node is the list entry containing the subject 
-        ThresholdMonitor list-entry containing this leaf.
-        This leaf is effective when the monitoredObjectDNs contained by 
-        the same ThresholdMonitor list entry is empty.
-	
-        AllowedValues: The IOC names defined in the NRMs specifications.";
-    }
-    
-    leaf-list monitoredObjectDNs {
+     leaf-list objectInstances {
       type types3gpp:DistinguishedName;
-      description "Specifies the object instance(s) for threshold monitoring.
-        The attribute monitoredIOCName contained by the same 
-        ThresholdMonitor entry has no effect unless this leaf-list empty.";
     }
+    
+    leaf-list rootObjectInstances {
+      type types3gpp:DistinguishedName;
+      description "Each object instance designates the root of a subtree that 
+      contains the root object and all descendant objects.";
+    }    
   }
     
   grouping MeasurementSubtree {
     description "Contains classes that define measurements. 
-      Should be used in al  classes (or classes inheriting from) 
+      Should be used in all  classes (or classes inheriting from) 
       - SubNnetwork
       - ManagedElement
       - ManagedFunction
-      - NetworkSliceSubnet
-      - EP_RP
       
-      If some YAM wants to augment these classes/list/groupings they must 
+      If a YANG module wants to augment these classes/list/groupings they must 
       augment all user classes!
       
       If a class uses this grouping in its list it shall also use the 
-      grouping Measurements to add supportedMeasurementsGPs as 
+      grouping SupportedPerfMetricGroupGrp to add SupportedPerfMetricGroup as 
       an attribute to its grouping";
       
-    list MeasurementControl {
-      description "Represents the properties of the file-based and stream-based 
-        measurement delivery methods.
+    list PerfMetricJob {
+      description "This IOC represents a performance metric production job. It 
+        can be name-contained by SubNetwork, ManagedElement, or ManagedFunction.
         
-        The file-based delivery method has properties for the file location, 
-        the file reporting period and the file-based GP. 
-        The stream-based delivery method has properties for the stream target 
-        and the stream-based GP.
-        These properties are labelled as default (e.g. defaultFileBasedGP) in 
-        that they will be ignored in case the same properties captured in 
-        MeasurementReader are used.
+        To activate the production of the specified performance metrics, a MnS 
+        consumer needs to create a PerfMetricJob instance on the MnS producer 
+        and ensure that the adminState is sUNLOCKED>. 
+        For ultimate deactivation of metric production, the MnS consumer should 
+        delete the job to free up resources on the MnS producer.
         
-        Instance of this list shall not be created nor deleted by client. It 
-        shall be created and deleted by the system. 
+        For temporary suspension of metric production, the MnS consumer can 
+        manipulate the value of the administrative state attribute. The MnS 
+        producer may disable metric production as well, for example in overload 
+        situations. This situation is indicated by the MnS producer with setting 
+        the operational state attribute to disabled. When production is resumed 
+        the operational state is set again to enabled.
+        
+        The perfMetricJobGroupId is a common reference across all members of a 
+        PerfMetricJob group. A group contains related PerfMetricJob instances.
 
-        Depending on particular deployment context and agreement between 
-        operator and vendor, all attributes could be config=false. 
+        The attribute performanceMetrics defines the performance metrics to be 
+        produced and the attribute granularityPeriod defines the granularity 
+        period to be applied. 
         
-        Can be used for measurement collecting or KPI reporting. 
-        When used for measurement collecting, it can be contained by 
-        ManagedElement, ManagedFunction and SubNetwork or derived IOCs. 
-        When used for KPI reporting, it can be contained by SubNetwork 
-        or derived IOCs.";
+        All object instances below and including the instance name-containing 
+        the PerfMetricJob (base object instance) are scoped for performance 
+        metric production. Performance metrics are produced only on those object 
+        instances whose object class matches the object class associated to the 
+        performance metrics to be produced.
+
+        The attributes objectInstances and rootObjectInstances allow to restrict 
+        the scope. When the attribute objectInstances is present, only the object 
+        instances identified by this attribute are scoped. When the attribute 
+        rootObjectInstances is present, then the subtrees whose root objects are 
+        identified by this attribute are scoped. Both attributes may be present 
+        at the same time meaning the total scope is equal to the sum of both 
+        scopes. Object instances may be scoped by both the objectInstances and 
+        rootObjectInstances attributes. This shall not be considered as an error 
+        by the MnS producer. 
+
+        When the performance metric requires performance metric production on 
+        multiple managed objects, which is for example the case for KPIs, the 
+        MnS consumer needs to ensure all required objects are scoped. Otherwise 
+        a PerfMetricJob creation request shall fail.
+
+        The attribute reportingCtrl specifies the method and associated control 
+        parameters for reporting the produced measurements to MnS consumers. 
+        Three methods are available: file-based reporting with selection of the 
+        file location by the MnS producer, file-based reporting with selection 
+        of the file location by the MnS consumer and stream-based reporting.
+
+        A PerfMetricJob creation request shall fail, when the requested 
+        performance metrics, the requested granularity period, the requested 
+        repoting method, or the requested combination thereof is not supported 
+        by the MnS producer.
+
+        Creation and deletion of PerfMetricJob instances by MnS consumers is 
+        optional; when not supported, PerfMetricJob instances may be created and 
+        deleted by the system or be pre-installed.";
 
       key id;   
       uses top3gpp:Top_Grp ;      
       container attributes {
-        uses MeasurementControlGrp ;
-      }
-      
-      list MeasurementReader {
-        description "Identifies the entity whose Measurements or KPIs are 
-          required by consumer to be produced and captured. The types of 
-          Measurements or the names of KPIs required are identified by the 
-          measurementNames. 
-           
-          It captures the properties of the two delivery methods for delivering 
-          measurements or KPIs.
-          The file-based delivery method has properties: fileLocation, 
-          reportingPeriod and fileBasedGP. 
-          The stream-based delivery method has properties: streamTarget and 
-          streamBasedGP. 
-          The parent MeasurementControl list entry also can capture the 
-          properties of the file-based and stream-based delivery methods.
-          If the MeasurementReader instance's file-based delivery method has 
-          valid properties, the file-based delivery method is used and the 
-          MeasurementControl instance's file-based delivery method is ignored. 
-          If the MeasurementReader instance's stream-based delivery method has 
-          valid properties, the stream-based delivery method is used and the 
-          MeasurementControl instance's stream-based delivery is ignored.
-          The file-based and stream-based delivery methods can be active at the 
-          same time for a MeasurementReader instance.
-
-          The activity of a MeasurementReader instance is independent of that 
-          of other MeasurementReader instances. 
-
-          This IOC uses managedObjectDNs or managedObjectDNsBasic to identify 
-          specific managed entities whose Measurements or KPIs are required by 
-          consumer.";
-  
-        key id; 
-        uses top3gpp:Top_Grp ;
-        container attributes {
-          uses MeasurementReaderGrp;
-        }
-      }    
-    }
-    
-    list ThresholdMonitoringCapability {
-      key id;   
-      max-elements 1;
-      description "Represents the capability of threshold monitoring(s) 
-        allowed to be created by ThresholdMonitor to monitor some or all 
-        of the measurements identified by supportedMeasurementsGPs.
-
-        This list entry instance represents the capability of the 
-        threshold monitor(s) allowed to be created for the measurements of 
-        the (tree) nodes of a containment tree whose top (tree) node is 
-        the list-entry instance containing the ThresholdMonitoringCapability 
-        instance. 
-        
-        In case one entry (say A) is contained by a tree node (say X), and 
-        a similar list entry named ThresholdMonitoringCapability  (say B) is 
-        contained by a subordinate tree node (of tree node X), the entry 
-        (B) contained by the subordinate tree node (Y) prevail.";
-      
-      uses top3gpp:Top_Grp ;      
-      container attributes {
-        uses ThresholdMonitoringCapabilityGrp ;
-      }          
+        uses PerfMetricJobGrp ;
+      }      
     }
     
     list ThresholdMonitor {
       key id;   
-      max-elements 1;
-      description "A threshold monitor that is created by the consumer for 
-        the monitored entities whose measurements are required by consumer 
-        to monitor. The monitored entities are identified by the attribute 
-        monitoredObjectDNs.
-        
-        The creation request for this list entry may be rejected, if
-        the measurements to be monitered are being collected 
-        (e.g., by a measurement job or NRM configurations) with a GP different 
-        from the monitoringGP; or the measurements to be monitered are not 
-        being collected.
-        
-        In case one entry (say A) is contained by a tree node (say X), and 
-        a similar list entry named ThresholdMonitor (say B) is 
-        contained by a subordinate tree node (of tree node X), 
-        when these two instances have overlaps the entry (B)
-        contained by the subordinate tree node (Y) will prevail for the 
-        overlapped parts.";
+      description "Represents a threshold monitor for performance metrics. 
+      It can be contained by SubNetwork, ManagedElement, or ManagedFunction. 
+      A threshold monitor checks for threshold crossings of performance metric 
+      values and generates a notification when that happens.
+
+      To activate threshold monitoring, a MnS consumer needs to create a 
+      ThresholdMonitor instance on the MnS producer. For ultimate deactivation 
+      of threshold monitoring, the MnS consumer should delete the monitor to 
+      free up resources on the MnS producer.
+
+      For temporary suspension of threshold monitoring, the MnS consumer can 
+      manipulate the value of the administrative state attribute. The MnS 
+      producer may disable threshold monitoring as well, for example in 
+      overload situations. This situation is indicated by the MnS producer with 
+      setting the operational state attribute to disabled. When monitoring is 
+      resumed the operational state is set again to enabled.
+
+      All object instances below and including the instance containing the 
+      ThresholdMonitor (base object instance) are scoped for performance 
+      metric production. Performance metrics are monitored only on those 
+      object instances whose object class matches the object class associated 
+      to the performance metrics to be monitored.
+      
+      The optional attributes objectInstances and rootObjectInstances allow to 
+      restrict the scope. When the attribute objectInstances is present, only 
+      the object instances identified by this attribute are scoped. When the 
+      attribute rootObjectInstances is present, then the subtrees whose root 
+      objects are identified by this attribute are scoped. Both attributes may 
+      be present at the same time meaning the total scope is equal to the sum 
+      of both scopes. Object instances may be scoped by both the objectInstances 
+      and rootObjectInstances attributes. This shall not be considered as an 
+      error by the MnS producer.
+
+      Multiple thresholds can be defined for multiple performance metric sets 
+      in a single monitor using thresholdInfoList. The attribute 
+      monitorGranularityPeriod defines the granularity period to be applied.
+
+      Each threshold is identified with a number (key) called thresholdLevel. 
+      A threshold is defined using the attributes thresholdValue , 
+      thresholdDirection and hysteresis.
+
+      When hysteresis is absent or carries no information, a threshold is 
+      triggered when the thresholdValue is reached or crossed. When hysteresis 
+      is present, two threshold values are specified for the threshold as 
+      follows: A high treshold value equal to the threshold value plus the 
+      hysteresis value, and a low threshold value equal to the threshold value 
+      minus the hysteresis value. When the monitored performance metric 
+      increases, the threshold is triggered when the high threshold value is 
+      reached or crossed. When the monitored performance metric decreases, the 
+      threshold is triggered when the low threshold value is reached or crossed. 
+      The hsyteresis ensures that the performance metric value can oscillate 
+      around a comparison value without triggering each time the threshold when 
+      the threshold value is crossed.
+
+      Using the thresholdDirection attribute a threshold can be configured in 
+      such a manner that it is triggered only when the monitored performance 
+      metric is going up or down upon reaching or crossing the threshold.
+
+      A ThresholdMonitor creation request shall be rejected, if the performance 
+      metrics requested to be monitored, the requested granularity period, or 
+      the requested combination thereof is not supported by the MnS producer. 
+      A creation request may fail, when the performance metrics requested to be 
+      monitored are not produced by a PerfMetricJob.
+
+      Creation and deletion of ThresholdMonitor instances by MnS consumers is 
+      optional; when not supported, ThresholdMonitor instances may be created 
+      and deleted by the system or be pre-installed.";
+
   
       uses top3gpp:Top_Grp ;      
       container attributes {

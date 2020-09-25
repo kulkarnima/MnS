@@ -11,10 +11,15 @@ module _3gpp-nr-nrm-gnbcuupfunction {
   import _3gpp-nr-nrm-common { prefix nrcommon3gpp; }
 
   organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
   description "Defines the YANG mapping of the GNBCUUPFunction Information
     Object Class (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2020-08-06 { reference "CR-0333"; }
+  revision 2020-08-03 { reference "CR-0321"; }
+  revision 2020-06-03 { reference "CR-0286"; }
+  revision 2020-05-28 { reference "CR-0318"; } 
   revision 2020-03-12 { reference "SP-200233 S5-201547"; }
   revision 2020-02-14 { reference S5-20XXXX ; }
   revision 2019-10-28 { reference S5-193518 ; }
@@ -104,8 +109,17 @@ module _3gpp-nr-nrm-gnbcuupfunction {
       description "Identifies the gNB-CU-UP at least within a gNB-CU-CP";
       reference "'gNB-CU-UP ID' in subclause 9.3.1.15 of 3GPP TS 38.463";
     }
-    
+
     leaf gNBId {
+      type uint32;
+      mandatory true;
+      description "Identifies a gNB within a PLMN. The gNB ID is part of the 
+        NR Cell Identifier (NCI) of the gNB cells. ";
+      reference "gNB Identifier (gNB ID) of subclause 8.2 of TS 38.300.
+         Global gNB ID in subclause 9.3.1.6 of TS 38.413";
+    }
+    
+    leaf gNBIdLength {
       mandatory true;
       type int32 { range "22..32"; }
       description "Indicates the number of bits for encoding the gNB Id.";
@@ -126,6 +140,15 @@ module _3gpp-nr-nrm-gnbcuupfunction {
         retrieve the backhaul address of the victim set.
         Must be present if Remote Interference Management function is supported.";
       uses MappingSetIDBackhaulAddressGrp;
+    }
+
+    leaf configurable5QISetRef {
+      type types3gpp:DistinguishedName;
+      description "DN of the Configurable5QISet that the GNBCUUPFunction supports (is associated to).";
+    }
+    leaf dynamic5QISetRef {
+      type types3gpp:DistinguishedName;
+      description "DN of the Dynamic5QISet that the GNBCUUPFunction supports (is associated to).";
     }
   }
 

@@ -15,15 +15,25 @@ module _3gpp-nr-nrm-nrcellrelation {
     Object Class (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2020-06-03 { reference S5-202333 ; }
+  revision 2020-04-23 { reference CR0281 ; }
   revision 2019-10-28 { reference S5-193518 ; }
   revision 2019-08-30 {
     description "Initial revision";
   }
 
+
+  typedef EnergySavingCoverage {
+    type enumeration {
+      enum FULL;
+      enum NO; 
+      enum PARTIAL;                       
+    }
+  }
+
   grouping NRCellRelationGrp {
     description "Represents the NRCellRelation IOC.";
     reference "3GPP TS 28.541";
-    uses mf3gpp:ManagedFunctionGrp;
 
     leaf nRTCI {        	
       description "Target NR Cell Identifier. It consists of NR Cell
@@ -101,6 +111,19 @@ module _3gpp-nr-nrm-nrcellrelation {
       description "True if handovers are allowed over this relation.";
     }
   }
+
+    leaf isESCoveredBy {
+      description "Indicates whether the adjacent cell
+        provides no, partial or full coverage for the parent cell
+        instance. Adjacent cells with this attribute equal to FULL are
+        recommended to be considered as candidate cells to take over the
+        coverage when the original cell is about to be changed to energy
+        saving state. All adjacent cells with this property equal
+        to PARTIAL are recommended to be considered as entirety of candidate
+        cells to take over the coverage when the original cell is about to be
+        changed to energy saving state.";
+      type EnergySavingCoverage;
+    }
 
   augment /me3gpp:ManagedElement/gnbcucp3gpp:GNBCUCPFunction/nrcellcu3gpp:NRCellCU {
 

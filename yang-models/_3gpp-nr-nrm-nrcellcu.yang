@@ -11,14 +11,32 @@ module _3gpp-nr-nrm-nrcellcu {
   import _3gpp-nr-nrm-common { prefix nrcommon3gpp; }
 
   organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
   description "Defines the YANG mapping of the NRCellCU Information Object
     Class (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2020-05-08 { reference S5-203316 ; }
   revision 2020-02-14 { reference S5-20XXXX ; }
   revision 2019-10-28 { reference S5-193518 ; }
   revision 2019-06-17 {
     description "Initial revision";
+  }
+
+  feature DESManagementFunction {
+    description "Classs representing Distributed SON or Domain-Centralized SON Energy Saving feature";
+  }
+
+  feature DRACHOptimizationFunction {
+    description "Classs representing D-SON function of RACH optimization feature";
+  }
+
+  feature DMROFunction {
+    description "Classs representing D-SON function of MRO feature";
+  }
+
+  feature CESManagementFunction {
+    description "Classs representing Cross Domain-Centralized SON Energy Saving feature";
   }
 
   grouping NRCellCUGrp {
