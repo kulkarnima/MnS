@@ -265,8 +265,9 @@ module _3gpp-common-yang-types {
 
   typedef SNssai {
     type union {
-      type uint8;
-      type uint32;
+      type Sst;
+	 //optional support
+      type Sd;
     }
     description "Single Network Slice Selection Assistance Information.";
     reference "TS 23.501 clause 5.15.2";
@@ -276,6 +277,13 @@ module _3gpp-common-yang-types {
     type uint8;
   }
   
+  typedef Sd {
+     type string{
+      length 6;
+       pattern '[a-fA-F0-9]*';
+    }
+  }
+
   typedef Nrpci {
     type uint32;
     description "Physical Cell Identity (PCI) of the NR cell.";

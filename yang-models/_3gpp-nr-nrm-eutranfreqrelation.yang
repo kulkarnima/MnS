@@ -74,7 +74,7 @@ module _3gpp-nr-nrm-eutranfreqrelation {
     leaf pMax {
       description "Used for calculation of the parameter Pcompensation 
         (defined in 3GPP TS 38.304), at cell reselection to a cell.";
-      reference "PEMAX in 3GPP TS 38.101";
+      reference "PEMAX in 3GPP TS 38.101-1";
       mandatory true;
       type int32 { range "-30..33"; }
       units dBm;

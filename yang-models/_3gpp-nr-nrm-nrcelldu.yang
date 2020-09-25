@@ -13,14 +13,24 @@ module _3gpp-nr-nrm-nrcelldu {
 
 
   organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
   description "Defines the YANG mapping of the NRCellDU Information Object
     Class (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2020-05-08 { reference S5-203316 ; }
   revision 2020-02-14 { reference S5-20XXXX ; }
   revision 2019-10-28 { reference S5-193518 ; }
   revision 2019-09-03 {
     description "Initial revision";
+  }
+
+  feature DPCIConfigurationFunction {
+    description "Classs representing Distributed SON or Domain-Centralized SON function of PCI configuration feature";
+  }
+  
+  feature CPCIConfigurationFunction {
+    description "Classs representing Cross Domain-Centralized SON function of PCI configuration feature";
   }
 
   grouping NRCellDUGrp {
@@ -137,7 +147,7 @@ module _3gpp-nr-nrm-nrcelldu {
         The frequency identifies the position of resource element RE=#0
         (subcarrier #0) of resource block RB#10 of the SS block. The frequency
         must be positioned on the NR global frequency raster, as defined in
-        3GPP TS 38.101, and within bSChannelBwDL.";
+        3GPP TS 38.101-1, and within bSChannelBwDL.";
       mandatory true;
       type int32 { range "0..3279165"; }
     }       

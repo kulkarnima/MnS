@@ -15,6 +15,10 @@ module _3gpp-5gc-nrm-pcffunction {
   description "This IOC represents the PCF function in 5GC. For more information about the PCF, see 3GPP TS 23.501.";
   reference "3GPP TS 28.541";
   
+  revision 2020-08-06 { reference "CR-0333"; }
+  
+  revision 2020-08-06 {reference "CR-0331"; }
+
   revision 2019-10-25 {reference "S5-194457 S5-193518"; }
 
   revision 2019-05-22 {
@@ -58,6 +62,14 @@ module _3gpp-5gc-nrm-pcffunction {
       min-elements 1;
       key "groupId";
       uses types5g3gpp:CommModel;
+    }
+    leaf dynamic5QISetRef {
+      type types3gpp:DistinguishedName;
+      description "DN of the Dynamic5QISet that the PCFFunction supports (is associated to).";
+    }
+    leaf configurable5QISetRef {
+      type types3gpp:DistinguishedName;
+      description "DN of the Configurable5QISet that the PCFFunction supports (is associated to).";
     }
   }
   

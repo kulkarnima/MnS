@@ -15,6 +15,7 @@ module _3gpp-nr-nrm-nrfreqrelation {
     Object Class (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2020-04-23 { reference CR0281 ; }
   revision 2019-10-28 { reference S5-193518 ; }
   revision 2019-06-17 {
     description "Initial revision";
@@ -23,7 +24,6 @@ module _3gpp-nr-nrm-nrfreqrelation {
   grouping NRFreqRelationGrp {
     description "Represents the NRFreqRelation IOC.";
     reference "3GPP TS 28.541";
-    uses mf3gpp:ManagedFunctionGrp;
 
     container offsetMO {
       description "A set of offset values applicable to all measured cells
@@ -111,7 +111,7 @@ module _3gpp-nr-nrm-nrfreqrelation {
     leaf pMax {
       description "Used for calculation of the parameter Pcompensation 
         (defined in 3GPP TS 38.304), at cell reselection to a cell.";
-      reference "PEMAX in 3GPP TS 38.101";
+      reference "PEMAX in 3GPP TS 38.101-1";
       mandatory false;
       type int32 { range "-30..33"; }
       units dBm;

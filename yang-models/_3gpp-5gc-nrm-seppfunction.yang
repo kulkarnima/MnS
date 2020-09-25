@@ -15,12 +15,9 @@ module _3gpp-5gc-nrm-seppfunction {
                and policing on inter-PLMN control plane interface. For more information about the SEPP, see 3GPP TS 23.501.";
   reference "3GPP TS 28.541";
   
+  revision 2020-08-03 { reference "CR-0321"; }
   revision 2019-10-28 { reference S5-193518 ; }
-
-  revision 2019-11-17 {
-    description "initial revision";
-  }
-  
+    
   typedef SEPPType {
     reference "3GPP TS 23501";
     type enumeration {

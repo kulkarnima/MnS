@@ -16,10 +16,9 @@ module _3gpp-5gc-nrm-nrffunction {
                For more information about the NRF, see 3GPP TS 23.501 [2].";
   reference "3GPP TS 28.541";
   
+  revision 2020-08-03 { reference "CR-0321"; }
   revision 2019-10-28 { reference S5-193518 ; }
-  revision 2019-05-15 {
-    description "initial revision";
-  }
+  revision 2019-05-15 { description "initial revision"; }
   
   grouping NRFFunctionGrp {
     uses mf3gpp:ManagedFunctionGrp;
@@ -38,11 +37,14 @@ module _3gpp-5gc-nrm-nrffunction {
       description "The FQDN of the registered NF instance in the service-based interface.";
       type inet:domain-name;
     }
-    
-    leaf-list nSIIdListWrap {
-      description "Set of NSI Ids. The NSI ID represents the Network Slice Instance Identifier.";
-      //optional support
-      type types3gpp:NsiId;
+
+    leaf-list cNSIIdList {
+      description "NSI ID. NSI ID is an identifier for identifying the Core 
+        Network part of a Network Slice instance when multiple Network Slice 
+        instances of the same Network Slice are deployed, and there is a need 
+        to differentiate between them in the 5GC, see clause 3.1 of TS 23.501 
+        and subclause 6.1.6.2.7 of 3GPP TS 29.531";
+      type string;
     }
     
     leaf-list sNSSAIList {
