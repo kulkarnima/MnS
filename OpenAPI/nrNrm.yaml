@@ -1,13 +1,13 @@
 openapi: 3.0.1
 info:
   title: NR NRM
-  version: 16.5.0
+  version: 16.6.0
   description: >-
     OAS 3.0.1 specification of the NR NRM
     © 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 externalDocs:
-  description: 3GPP TS 28.541 V16.5.0; 5G NRM, NR NRM
+  description: 3GPP TS 28.541 V16.6.0; 5G NRM, NR NRM
   url: http://www.3gpp.org/ftp/Specs/archive/28_series/28.541/
 paths: {}
 components:
@@ -73,16 +73,22 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/PlmnInfo'
+    GGnbId:
+        type: string
+        pattern: '^[0-9]{3}[0-9]{2,3}-(22|23|24|25|26|27|28|29|30|31|32)-[0-9]{1,10}'
+    GEnbId:
+        type: string
+        pattern: '^[0-9]{3}[0-9]{2,3}-(18|20|21|22)-[0-9]{1,7}'
 
     GGnbIdList:
         type: array
-        items: string
-        pattern: '^[0-9]{3}[0-9]{2,3}-(22|23|24|25|26|27|28|29|30|31|32)-[0-9]{1,10}'
+        items: 
+          $ref: '#/components/schemas/GGnbId'
 
     GEnbIdList:
         type: array
-        items: string
-        pattern: '^[0-9]{3}[0-9]{2,3}-(18|20|21|22)-[0-9]{1,7}'
+        items: 
+          $ref: '#/components/schemas/GEnbId'
 
     NrPci:
       type: integer
@@ -262,8 +268,7 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/RrmPolicyMember'
-
-    LocalAddress:
+    AddressWithVlan:
       type: object
       properties:
         ipv4Address:
@@ -274,6 +279,11 @@ components:
           type: integer
           minimum: 0
           maximum: 4096
+    LocalAddress:
+      type: object
+      properties:
+        addressWithVlan:
+          $ref: '#/components/schemas/AddressWithVlan'
         port:
           type: integer
           minimum: 0
@@ -541,6 +551,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RimRSReportInfo'
+    TceMappingInfo:
+      type: object
+      properties:
+        TceIPAddress:
+          oneOf:
+            - $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
+            - $ref: 'genericNrm.yaml#/components/schemas/Ipv6Addr'
+        TceID:
+          type: integer
+        PlmnTarget:
+          $ref: '#/components/schemas/PlmnId'
+    TceMappingInfoList:
+      type: array
+      items:
+        $ref: '#/components/schemas/TceMappingInfo'
 
 #-------- Definition of abstract IOCs --------------------------------------------
 
@@ -593,6 +618,9 @@ components:
               $ref: '5gcNrm.yaml#/components/schemas/Configurable5QISet-Multiple'
             RimRSGlobal:
               $ref: '#/components/schemas/RimRSGlobal-Single'
+            Dynamic5QISet:
+              $ref: '5gcNrm.yaml#/components/schemas/Dynamic5QISet-Multiple'
+
     ManagedElement-Single:
       allOf:
         - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
@@ -623,6 +651,8 @@ components:
               $ref: '#/components/schemas/CESManagementFunction-Single'
             Configurable5QISet:
               $ref: '5gcNrm.yaml#/components/schemas/Configurable5QISet-Multiple'
+            Dynamic5QISet:
+              $ref: '5gcNrm.yaml#/components/schemas/Dynamic5QISet-Multiple'
 
     GnbDuFunction-Single:
       allOf:
@@ -679,6 +709,8 @@ components:
                       $ref: '#/components/schemas/PlmnInfoList'
                     configurable5QISetRef:
                       $ref: 'genericNRM.yaml#/components/schemas/Dn'
+                    dynamic5QISetRef:
+                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
         - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -721,14 +753,18 @@ components:
                     x2WhiteList:
                       $ref: '#/components/schemas/GGnbIdList'
                     xnWhiteList:
-                      $ref: '#/components/schemas/GGnbIdList '
+                      $ref: '#/components/schemas/GGnbIdList'
                     xnHOBlackList:
-                      $ref: '#/components/schemas/GGnbIdList '
+                      $ref: '#/components/schemas/GGnbIdList'
                     x2HOBlackList:
                       $ref: '#/components/schemas/GEnbIdList'
                     mappingSetIDBackhaulAddress:
                       $ref: '#/components/schemas/MappingSetIDBackhaulAddress'
+                    tceMappingInfoList:
+                      $ref: '#/components/schemas/TceMappingInfoList'
                     configurable5QISetRef:
+                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
+                    dynamic5QISetRef:
                       $ref: 'genericNRM.yaml#/components/schemas/Dn'
         - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
@@ -874,29 +910,34 @@ components:
         - type: object
           properties:
             attributes:
-              allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-Attr'
-                - type: object
-                  properties:
-                    absoluteFrequencySSB:
-                      type: integer
-                      minimum: 0
-                      maximum: 3279165
-                    ssbSubCarrierSpacing:
-                      $ref: '#/components/schemas/SsbSubCarrierSpacing'
-                    multiFrequencyBandListNR:
-                      type: integer
-                      minimum: 1
-                      maximum: 256
-        - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-ncO'
+                type: object
+                properties:
+                  absoluteFrequencySSB:
+                    type: integer
+                    minimum: 0
+                    maximum: 3279165
+                  ssbSubCarrierSpacing:
+                    $ref: '#/components/schemas/SsbSubCarrierSpacing'
+                  multiFrequencyBandListNR:
+                    type: integer
+                    minimum: 1
+                    maximum: 256
     EUtranFrequency-Single:
       allOf:
         - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
-              $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-Attr'
-        - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-ncO'
+              type: object
+              properties:
+                earfcnDL:
+                  type: integer
+                  minimum: 0
+                  maximum: 262143
+                multiBandInfoListEutra:
+                  type: integer
+                  minimum: 1
+                  maximum: 256
 
     NrSectorCarrier-Single:
       allOf:
@@ -1123,13 +1164,63 @@ components:
         - type: object
           properties:
             attributes:
-              allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-Attr'
-                - type: object
-                  properties:
+              type: object
+              properties:
+                    cellIndividualOffset:
+                      $ref: '#/components/schemas/CellIndividualOffset'
+                    blackListEntry:
+                      type: array
+                      items:
+                        type: integer
+                        minimum: 0
+                        maximum: 1007
+                    blackListEntryIdleMode:
+                      type: integer
+                    cellReselectionPriority:
+                      type: integer
+                    cellReselectionSubPriority:
+                      type: number
+                      minimum: 0.2
+                      maximum: 0.8
+                      multipleOf: 0.2
+                    pMax:
+                      type: integer
+                      minimum: -30
+                      maximum: 33
+                    qOffsetFreq:
+                      $ref: '#/components/schemas/QOffsetFreq'
+                    qQualMin:
+                      type: number
+                    qRxLevMin:
+                      type: integer
+                      minimum: -140
+                      maximum: -44
+                    threshXHighP:
+                      type: integer
+                      minimum: 0
+                      maximum: 62
+                    threshXHighQ:
+                      type: integer
+                      minimum: 0
+                      maximum: 31
+                    threshXLowP:
+                      type: integer
+                      minimum: 0
+                      maximum: 62
+                    threshXLowQ:
+                      type: integer
+                      minimum: 0
+                      maximum: 31
+                    tReselectionEutran:
+                      type: integer
+                      minimum: 0
+                      maximum: 7
+                    tReselectionNRSfHigh:
+                      $ref: '#/components/schemas/TReselectionNRSf'
+                    tReselectionNRSfMedium:
+                      $ref: '#/components/schemas/TReselectionNRSf'
                     eUTranFrequencyRef:
                       $ref: 'genericNRM.yaml#/components/schemas/Dn'
-        - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-ncO'
     DANRManagementFunction-Single:
       allOf:
         - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
@@ -1538,6 +1629,8 @@ components:
                       $ref: '#/components/schemas/LocalAddress'
                     remoteAddress:
                       $ref: '#/components/schemas/RemoteAddress'
+                    epTransportRefs:
+                      $ref: 'genericNrm.yaml#/components/schemas/DnList'
     EP_X2U-Single:
       allOf:
         - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'

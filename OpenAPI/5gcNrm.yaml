@@ -1,13 +1,13 @@
 openapi: 3.0.1
 info:
   title: 3GPP 5GC NRM
-  version: 16.5.0
+  version: 16.6.0
   description: >-
     OAS 3.0.1 specification of the 5GC NRM
     © 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 externalDocs:
-  description: 3GPP TS 28.541 V16.4.0; 5G NRM, 5GC NRM
+  description: 3GPP TS 28.541 V16.6.0; 5G NRM, 5GC NRM
   url: http://www.3gpp.org/ftp/Specs/archive/28_series/28.541/
 paths: {}
 components:
@@ -240,7 +240,7 @@ components:
         fiveQIValues:
           type: array
           items:
-          type: integer
+            type: integer
         dscp:
           type: integer
 
@@ -298,6 +298,143 @@ components:
         thresholdRtt:
           type: integer
 
+    QosData:
+      type: object
+      properties:
+        qosId:
+          type: string
+        fiveQIValue:
+          type: integer
+        maxbrUl:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/BitRateRm'
+        maxbrDl:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/BitRateRm'
+        gbrUl:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/BitRateRm'
+        gbrDl:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/BitRateRm'
+        arp:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/Arp'
+        qosNotificationControl:
+          type: boolean
+        reflectiveQos:
+          type: boolean
+        sharingKeyDl:
+          type: string
+        sharingKeyUl:
+          type: string
+        maxPacketLossRateDl:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/PacketLossRateRm'
+        maxPacketLossRateUl:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/PacketLossRateRm'
+        extMaxDataBurstVol:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/ExtMaxDataBurstVolRm'
+
+    QosDataList:
+      type: array
+      items:
+        $ref: '#/components/schemas/QosData'
+
+    SteeringMode:
+      type: object
+      properties:
+        steerModeValue:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SteerModeValue'
+        active:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/AccessType'
+        standby:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/AccessTypeRm'
+        threeGLoad:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+        prioAcc:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/AccessType'
+
+    TrafficControlData:
+      type: object
+      properties:
+        tcId:
+          type: string
+        flowStatus:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowStatus'
+        redirectInfo:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RedirectInformation'
+        addRedirectInfo:
+          type: array
+          items:
+            $ref: '/rep/all/5G_APIs/raw/master/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RedirectInformation'
+          minItems: 1
+        muteNotif:
+          type: boolean
+        trafficSteeringPolIdDl:
+          type: string
+          nullable: true
+        trafficSteeringPolIdUl:
+          type: string
+          nullable: true
+        routeToLocs:
+          type: array
+          items:
+            $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/RouteToLocation'
+        traffCorreInd:
+          type: boolean
+        upPathChgEvent:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/UpPathChgEvent'
+        steerFun:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/SteeringFunctionality'
+        steerModeDl:
+          $ref: '#/components/schemas/SteeringMode'
+        steerModeUl:
+          $ref: '#/components/schemas/SteeringMode'
+        mulAccCtrl:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/MulticastAccessControl'
+
+    TrafficControlDataList:
+      type: array
+      items:
+        $ref: '#/components/schemas/TrafficControlData'
+
+    PccRule:
+      type: object
+      properties:
+        pccRuleId:
+          type: string
+          description: Univocally identifies the PCC rule within a PDU session.
+        flowInfoList:
+          type: array
+          items:
+            $ref: '/rep/all/5G_APIs/raw/master/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FlowInformation'
+        applicationId:
+          type: string
+        appDescriptor:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ApplicationDescriptor'
+        contentVersion:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ContentVersion'
+        precedence:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+        afSigProtocol:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AfSigProtocol'
+        isAppRelocatable:
+          type: boolean
+        isUeAddrPreserved:
+          type: boolean
+        qosData:
+          type: array
+          items:
+            $ref: '#/components/schemas/QosDataList'
+        altQosParams:
+          type: array
+          items:
+            $ref: '#/components/schemas/QosDataList'
+        trafficControlData:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrafficControlDataList'
+        conditionData:
+            $ref: '/rep/all/5G_APIs/raw/master/TS29512_Npcf_SMPolicyControl#/components/schemas/ConditionData'
+        tscaiInputDl:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer'
+        tscaiInputUl:
+          $ref: '/rep/all/5G_APIs/raw/master/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer'
 
 #-------- Definition of concrete IOCs --------------------------------------------
 
@@ -328,6 +465,8 @@ components:
               $ref: '#/components/schemas/AmfRegion-Multiple'
             Configurable5QISet:
               $ref: '#/components/schemas/Configurable5QISet-Multiple'
+            Dynamic5QISet:
+              $ref: '#/components/schemas/Dynamic5QISet-Multiple'
 
     ManagedElement-Single:
       allOf:
@@ -378,7 +517,9 @@ components:
               $ref: '#/components/schemas/NefFunction-Multiple'
             Configurable5QISet:
               $ref: '#/components/schemas/Configurable5QISet-Multiple'
- 
+            Dynamic5QISet:
+              $ref: '#/components/schemas/Dynamic5QISet-Multiple'
+
     AmfFunction-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
@@ -490,7 +631,9 @@ components:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
-                    Configurable5QISetRef:
+                    configurable5QISetRef:
+                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
+                    dynamic5QISetRef:
                       $ref: 'genericNRM.yaml#/components/schemas/Dn'
 
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
@@ -514,6 +657,8 @@ components:
               $ref: '#/components/schemas/GtpUPathQoSMonitoringControl-Single'
             QFQoSMonitoringControl:
               $ref: '#/components/schemas/QFQoSMonitoringControl-Single'
+            PredefinedPccRuleSet:
+              $ref: '#/components/schemas/PredefinedPccRuleSet-Single'
 
     UpfFunction-Single:
       allOf:
@@ -589,6 +734,10 @@ components:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
+                    configurable5QISetRef:
+                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
+                    dynamic5QISetRef:
+                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -602,6 +751,9 @@ components:
               $ref: '#/components/schemas/EP_N16-Multiple'
             EP_Rx:
               $ref: '#/components/schemas/EP_Rx-Multiple'
+            PredefinedPccRuleSet:
+              $ref: '#/components/schemas/PredefinedPccRuleSet-Single'
+
     AusfFunction-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
@@ -987,6 +1139,8 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/LocalAddress'
                     remoteAddress:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
+                    epTransportRefs:
+                      $ref: 'genericNrm.yaml#/components/schemas/DnList'
     EP_N4-Single:
       allOf:
         - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
@@ -1406,7 +1560,22 @@ components:
                     configurable5QIs:
                       type: array
                       items:
+                        $ref: '#/components/schemas/FiveQICharacteristics'  
+
+    Dynamic5QISet-Single:
+      allOf:
+        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    dynamic5QIs:
+                      type: array
+                      items:
                         $ref: '#/components/schemas/FiveQICharacteristics'                           
+
     GtpUPathQoSMonitoringControl-Single:
       allOf:
         - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
@@ -1481,6 +1650,19 @@ components:
                     qFMeasurementPeriod:
                       type: integer
 
+    PredefinedPccRuleSet-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    predefinedPccRules:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/PccRule'                           
 
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
 
@@ -1715,6 +1897,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Configurable5QISet-Single'
+    Dynamic5QISet-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/Dynamic5QISet-Single'
 
 
 #------------ Definitions in TS 28.541 for TS 28.532 -----------------------------
@@ -1787,3 +1973,5 @@ components:
         - $ref: '#/components/schemas/EP_NLG-Single'
         - $ref: '#/components/schemas/Configurable5QISet-Single'
         - $ref: '#/components/schemas/FiveQiDscpMappingSet-Single'
+        - $ref: '#/components/schemas/PredefinedPccRuleSet-Single'
+        - $ref: '#/components/schemas/Dynamic5QISet-Single'
