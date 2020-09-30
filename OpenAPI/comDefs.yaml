@@ -1,30 +1,74 @@
 openapi: 3.0.1
 info:
   title: Common Type Definitions
-  version: 16.3.0
+  version: 16.5.0
   description: >-
     OAS 3.0.1 specification of common type definitions in the Generic NRM
     © 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 externalDocs:
-  description: 3GPP TS 28.623 V16.3.0; Generic NRM, Common Type Definitions
+  description: 3GPP TS 28.623 V16.5.0; Generic NRM, Common Type Definitions
   url: http://www.3gpp.org/ftp/Specs/archive/28_series/28.623/
 paths: {}
 components:
   schemas:
     Long:
-      type: string
+      type: number
       format: long
     Float:
-      type: string
+      type: number
       format: float
     DateTime:
       type: string
       format: date-Time
     Dn:
       type: string
+    DnList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Dn'
+    Mcc:
+      type: string
+      pattern: '^[0-9]{3}$'
+    Mnc:
+      type: string
+      pattern: '^[0-9]{2,3}$'
+    Fqdn:
+      type: string
     Uri:
       type: string
+    Ipv4Addr:
+      type: string
+      pattern: '^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$'
+      example: '198.51.100.1'
+    Ipv6Addr:
+      type: string
+      allOf:
+        - pattern: '^((:|(0?|([1-9a-f][0-9a-f]{0,3}))):)((0?|([1-9a-f][0-9a-f]{0,3})):){0,6}(:|(0?|([1-9a-f][0-9a-f]{0,3})))$'
+        - pattern: '^((([^:]+:){7}([^:]+))|((([^:]+:)*[^:]+)?::(([^:]+:)*[^:]+)?))$'
+      example: '2001:db8:85a3::8a2e:370:7334'
+    Ipv6Prefix:
+      type: string
+      allOf:
+        - pattern: '^((:|(0?|([1-9a-f][0-9a-f]{0,3}))):)((0?|([1-9a-f][0-9a-f]{0,3})):){0,6}(:|(0?|([1-9a-f][0-9a-f]{0,3})))(\/(([0-9])|([0-9]{2})|(1[0-1][0-9])|(12[0-8])))$'
+        - pattern: '^((([^:]+:){7}([^:]+))|((([^:]+:)*[^:]+)?::(([^:]+:)*[^:]+)?))(\/.+)$'
+      example: '2001:db8:abcd:12::0/64'
+    AdministrativeState:
+      type: string
+      enum:
+        - LOCKED
+        - UNLOCKED
+    OperationalState:
+      type: string
+      enum:
+        - ENABLED
+        - DISABLED
+    UsageState:
+      type: string
+      enum:
+        - IDEL
+        - ACTIVE
+        - BUSY
     AttributeNameValuePairSet:
       type: object
       minProperties: 1
@@ -47,6 +91,11 @@ components:
       type: string
     NotificationId:
       type: integer
+    NotificationType:
+      oneOf:
+        - $ref: 'faultMnS.yaml#/components/schemas/AlarmNotificationType'
+        - $ref: 'provMnS.yaml#/components/schemas/CmNotificationType'
+        # more to be added
     NotificationHeader:
       description: >-
         Header used for all notifications types
@@ -63,10 +112,7 @@ components:
         notificationId:
           $ref: '#/components/schemas/NotificationId'
         notificationType:
-          oneOf:
-            - $ref: 'faultMnS.yaml#/components/schemas/AlarmNotificationTypes'
-            #- $ref: 'provMnS.yaml#/components/schemas/CmNotificationTypes'
-            # more to be added
+          $ref: '#/components/schemas/NotificationType'
         eventTime:
           $ref: '#/components/schemas/DateTime'
         systemDN:

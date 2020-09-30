@@ -45,10 +45,6 @@ The links below will open the Swagger Editor/UI and auto-load the OpenAPI YAML f
 ([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/PerMeasJobCtlMnS.yaml))
 ([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/PerMeasJobCtlMnS.yaml))
 
-* Performance Data File Reporting MnS (TS 28.532)
-([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/PerDataFileReportMnS.yaml))
-([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/PerDataFileReportMnS.yaml))
-
 * Performance Threshold Monitoring MnS (TS 28.532)
 ([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/PerThresMonMnS.yaml))
 ([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/PerThresMonMnS.yaml))
@@ -60,6 +56,10 @@ The links below will open the Swagger Editor/UI and auto-load the OpenAPI YAML f
 * Streaming Data Reporting MnS (TS 28.532)
 ([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/streamingDataMnS.yaml))
 ([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/streamingDataMnS.yaml))
+
+* File Data Reporting MnS (TS 28.532)
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/FileDataReportMnS.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/FileDataReportMnS.yaml))
 
 ## Tools
 
