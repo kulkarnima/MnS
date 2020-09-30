@@ -2,9 +2,7 @@
 
 The Rel-16 branch represents the latest Rel-16 content approved and published after each TSG SA plenary. 
 
-The Rel-17 branch represents the latest Rel-17 content approved and published after each TSG SA plenary. 
-
-Master branch represents the current working in progress release status.
+Rel-17-draft branch represents the current working in progress release status.
 
 (c) 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC). 
 All rights reserved.
