@@ -30,6 +30,13 @@ components:
       enum:
         - SHARED
         - NON-SHARED
+    ServiceType:
+      type: string
+      enum:
+        - eMBB
+        - RLLC
+        - MIoT
+        - V2X
     PerfReqEmbb:
       type: object
       properties:
@@ -210,6 +217,69 @@ components:
           type: string
         nsName:
           type: string
+    CNSliceSubnetProfile:
+      type: object
+      properties:
+        maxNumberofUEs:
+          type: Integer
+        latency:
+          type: Integer
+        dLThptPerSlice:
+          type: '#/components/schemas/DLThpt'
+        dLThptPerUE:
+          type: '#/components/schemas/DLThpt'
+        uLThptPerSlice:
+          type: '#/components/schemas/ULThpt'
+        uLThptPerUE:
+          type: '#/components/schemas/ULThpt'
+        maxNumberOfPDUSessions:
+          type: Integer
+    RANSliceSubnetProfile:
+      type: object
+      properties:
+        coverageAreaGeoPolygon:
+          type: String
+        coverageAreaTAList:
+          type: Integer
+	    MobilityLevel:
+	      $ref: '#/components/schemas/MobilityLevel'
+        resourceSharingLevel:
+          $ref: '#/components/schemas/SharingLevel'
+        maxNumberofUEs:
+          type: Integer
+        activityFactor:
+          type: Float
+        dLThptPerUE:
+          $ref: '#/components/schemas/ULThpt'
+        uLThptPerUE:
+          $ref: '#/components/schemas/ULThpt'
+        uESpeed:
+          type: Integer
+        reliability:
+          type: String
+        serviceType:
+          $ref: '#/components/schemas/ServiceType'
+    TopSliceSubnetProfile:
+      type: object
+      properties:
+        coverageArea:
+          type: String
+        latency:
+          type: Integer
+        maxNumberofUEs:
+          type: Integer
+        dLThptPerSlice:
+          type: '#/components/schemas/DLThpt'
+        dLThptPerUE:
+          type: '#/components/schemas/DLThpt'
+        uLThptPerSlice:
+          type: '#/components/schemas/ULThpt'
+        uLThptPerUE:
+          type: '#/components/schemas/ULThpt'
+        maxPktSize:
+          $ref: '#/components/schemas/MaxPktSize'
+        maxNumberofConns:
+          type: Integer
     ServiceProfileList:
       type: object
       additionalProperties:
@@ -284,17 +354,12 @@ components:
             $ref: 'nrNrm.yaml#/components/schemas/PlmnIdList'
           perfReq:
             $ref: '#/components/schemas/PerfReq'
-          maxNumberofUEs:
-            type: number
-          coverageAreaTAList:
-            $ref: '5gcNrm.yaml#/components/schemas/TACList'
-          latency:
-            type: number
-          uEMobilityLevel:
-            $ref: '#/components/schemas/MobilityLevel'
-          resourceSharingLevel:
-            $ref: '#/components/schemas/SharingLevel'
-
+		  CNSliceSubnetProfile:
+			$ref: '#/components/schemas/CNSliceSubnetProfile'
+		  RANSliceSubnetProfile:
+			$ref: '#/components/schemas/RANSliceSubnetProfile'
+		  tOPSliceSubnetProfile:
+			$ref: '#/components/schemas/tOPSliceSubnetProfile'
     IpAddress:
       oneOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
