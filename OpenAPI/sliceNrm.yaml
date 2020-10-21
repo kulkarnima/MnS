@@ -241,8 +241,8 @@ components:
           type: String
         coverageAreaTAList:
           type: Integer
-	    MobilityLevel:
-	      $ref: '#/components/schemas/MobilityLevel'
+        MobilityLevel:
+          $ref: '#/components/schemas/MobilityLevel
         resourceSharingLevel:
           $ref: '#/components/schemas/SharingLevel'
         maxNumberofUEs:
@@ -354,12 +354,12 @@ components:
             $ref: 'nrNrm.yaml#/components/schemas/PlmnIdList'
           perfReq:
             $ref: '#/components/schemas/PerfReq'
-		  CNSliceSubnetProfile:
-			$ref: '#/components/schemas/CNSliceSubnetProfile'
-		  RANSliceSubnetProfile:
-			$ref: '#/components/schemas/RANSliceSubnetProfile'
-		  tOPSliceSubnetProfile:
-			$ref: '#/components/schemas/tOPSliceSubnetProfile'
+          CNSliceSubnetProfile:
+            $ref: '#/components/schemas/CNSliceSubnetProfile'
+          RANSliceSubnetProfile
+            $ref: '#/components/schemas/RANSliceSubnetProfile'
+          tOPSliceSubnetProfile:
+            $ref: '#/components/schemas/tOPSliceSubnetProfile'
     IpAddress:
       oneOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
