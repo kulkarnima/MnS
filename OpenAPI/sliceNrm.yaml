@@ -358,7 +358,7 @@ components:
             $ref: '#/components/schemas/CNSliceSubnetProfile'
           RANSliceSubnetProfile
             $ref: '#/components/schemas/RANSliceSubnetProfile'
-          tOPSliceSubnetProfile:
+          TopSliceSubnetProfile:
             $ref: '#/components/schemas/tOPSliceSubnetProfile'
     IpAddress:
       oneOf:
