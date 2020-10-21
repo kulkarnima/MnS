@@ -359,7 +359,7 @@ components:
           RANSliceSubnetProfile
             $ref: '#/components/schemas/RANSliceSubnetProfile'
           TopSliceSubnetProfile:
-            $ref: '#/components/schemas/tOPSliceSubnetProfile'
+            $ref: '#/components/schemas/TopSliceSubnetProfile'
     IpAddress:
       oneOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
