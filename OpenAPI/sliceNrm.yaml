@@ -356,7 +356,7 @@ components:
             $ref: '#/components/schemas/PerfReq'
           CNSliceSubnetProfile:
             $ref: '#/components/schemas/CNSliceSubnetProfile'
-          RANSliceSubnetProfile
+          RANSliceSubnetProfile:
             $ref: '#/components/schemas/RANSliceSubnetProfile'
           TopSliceSubnetProfile:
             $ref: '#/components/schemas/TopSliceSubnetProfile'
