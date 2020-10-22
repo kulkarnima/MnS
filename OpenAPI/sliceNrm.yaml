@@ -269,7 +269,7 @@ components:
         maxNumberofUEs:
           type: Integer
         dLThptPerSlice:
-          type: '#/components/schemas/DLThptPerSlice'
+          type: '#/components/schemas/DLThptPetSlice'
         dLThptPerUE:
           type: '#/components/schemas/DLThptPerUE'
         uLThptPerSlice:
