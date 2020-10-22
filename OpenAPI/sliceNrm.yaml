@@ -242,7 +242,7 @@ components:
         coverageAreaTAList:
           type: Integer
         MobilityLevel:
-          $ref: '#/components/schemas/MobilityLevel
+          $ref: '#/components/schemas/MobilityLevel'
         resourceSharingLevel:
           $ref: '#/components/schemas/SharingLevel'
         maxNumberofUEs:
