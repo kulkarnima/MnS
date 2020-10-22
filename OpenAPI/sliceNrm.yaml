@@ -250,9 +250,9 @@ components:
         activityFactor:
           type: Float
         dLThptPerUE:
-          $ref: '#/components/schemas/ULThpt'
+          $ref: '#/components/schemas/ULThptPerUE'
         uLThptPerUE:
-          $ref: '#/components/schemas/ULThpt'
+          $ref: '#/components/schemas/ULThptPerUE'
         uESpeed:
           type: Integer
         reliability:
