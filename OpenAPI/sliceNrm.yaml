@@ -225,13 +225,13 @@ components:
         latency:
           type: Integer
         dLThptPerSlice:
-          type: '#/components/schemas/DLThpt'
+          type: '#/components/schemas/DLThptPerSlice'
         dLThptPerUE:
-          type: '#/components/schemas/DLThpt'
+          type: '#/components/schemas/DLThptPerUE'
         uLThptPerSlice:
-          type: '#/components/schemas/ULThpt'
+          type: '#/components/schemas/ULThptPerSlice'
         uLThptPerUE:
-          type: '#/components/schemas/ULThpt'
+          type: '#/components/schemas/ULThptPerUE'
         maxNumberOfPDUSessions:
           type: Integer
     RANSliceSubnetProfile:
@@ -269,13 +269,13 @@ components:
         maxNumberofUEs:
           type: Integer
         dLThptPerSlice:
-          type: '#/components/schemas/DLThpt'
+          type: '#/components/schemas/DLThptPerSlice'
         dLThptPerUE:
-          type: '#/components/schemas/DLThpt'
+          type: '#/components/schemas/DLThptPerUE'
         uLThptPerSlice:
-          type: '#/components/schemas/ULThpt'
+          type: '#/components/schemas/ULThptPerSlice'
         uLThptPerUE:
-          type: '#/components/schemas/ULThpt'
+          type: '#/components/schemas/ULThptPerUE'
         maxPktSize:
           $ref: '#/components/schemas/MaxPktSize'
         maxNumberofConns:
