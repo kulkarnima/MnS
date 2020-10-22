@@ -407,7 +407,7 @@ components:
                     nsInfo:
                       $ref: '#/components/schemas/NsInfo'
                     sliceProfileList:
-                      $ref: '#/components/schemas/SliceProfileList'
+                      $ref: '#/components/schemas/sliceProfileList'
             EPTransport:
               $ref: '#/components/schemas/EP_Transport-Multiple'
                       
