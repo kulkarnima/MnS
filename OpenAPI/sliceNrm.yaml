@@ -367,9 +367,9 @@ components:
             type: string
           reliability:
             type: string
-					maxDLDataVolume:
+          maxDLDataVolume:
             type: string
-					maxULDataVolume:
+          maxULDataVolume:
             type: string
     SliceProfileList:
       type: object
@@ -481,3 +481,4 @@ components:
        - $ref: '#/components/schemas/NetworkSlice'
        - $ref: '#/components/schemas/NetworkSliceSubnet'
        - $ref: '#/components/schemas/EP_Transport-Single'
+ 
