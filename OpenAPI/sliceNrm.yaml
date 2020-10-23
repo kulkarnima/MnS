@@ -367,9 +367,9 @@ components:
             type: string
           reliability:
             type: string
-          maxDLDataVolume:
+					maxDLDataVolume:
             type: string
-          maxULDataVolume:
+					maxULDataVolume:
             type: string
     SliceProfileList:
       type: object
