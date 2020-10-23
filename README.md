@@ -9,7 +9,7 @@ All rights reserved.
 
 Branch {+Rel-16+} validation status:
 
-[![pipeline status](https://forge.3gpp.org/rep/SA5/data-models/badges/master/pipeline.svg)](https://forge.3gpp.org/rep/SA5/data-models/commits/master)
+[![pipeline status](https://forge.3gpp.org/rep/SA5/data-models/badges/Rel-16/pipeline.svg)](https://forge.3gpp.org/rep/SA5/data-models/commits/master)
 
 ## Data models validation
 
