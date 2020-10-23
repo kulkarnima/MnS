@@ -161,6 +161,34 @@ components:
           $ref: '#/components/schemas/Float'
         maxThpt:
           $ref: '#/components/schemas/Float'
+    DLThptPerSliceSubnet:
+      type: object
+      properties:
+        guaThpt:
+          $ref: '#/components/schemas/Float'
+        maxThpt:
+          $ref: '#/components/schemas/Float'
+    DLThptPerUEPerSubnet:
+      type: object
+      properties:
+        guaThpt:
+          $ref: '#/components/schemas/Float'
+        maxThpt:
+          $ref: '#/components/schemas/Float'
+    ULThptPerSliceSubnet:
+      type: object
+      properties:
+        guaThpt:
+          $ref: '#/components/schemas/Float'
+        maxThpt:
+          $ref: '#/components/schemas/Float'
+    ULThptPerUEPerSubnet:
+      type: object
+      properties:
+        guaThpt:
+          $ref: '#/components/schemas/Float'
+        maxThpt:
+          $ref: '#/components/schemas/Float'
     MaxPktSize:
       type: object
       properties:
@@ -225,13 +253,13 @@ components:
         latency:
           type: integer
         dLThptPerSlice:
-          $ref: '#/components/schemas/DLThptPerSlice'
-        dLThptPerUE:
-          $ref: '#/components/schemas/DLThptPerUE'
-        uLThptPerSlice:
-          $ref: '#/components/schemas/ULThptPerSlice'
-        uLThptPerUE:
-          $ref: '#/components/schemas/ULThptPerUE'
+          $ref: '#/components/schemas/DLThptPerSliceSubnet'
+        dLThptPerUEPerSubnet:
+          $ref: '#/components/schemas/DLThptPerUEPerSubnet'
+        uLThptPerSliceSubnet:
+          $ref: '#/components/schemas/ULThptPerSliceSubnet'
+        uLThptPerUEPerSubnet:
+          $ref: '#/components/schemas/ULThptPerUEPerSubnet'
         maxNumberOfPDUSessions:
           type: integer
     RANSliceSubnetProfile:
@@ -250,9 +278,9 @@ components:
         activityFactor:
           type: integer
         dLThptPerUE:
-          $ref: '#/components/schemas/ULThptPerUE'
+          $ref: '#/components/schemas/ULThptPerUEPerSubnet'
         uLThptPerUE:
-          $ref: '#/components/schemas/ULThptPerUE'
+          $ref: '#/components/schemas/ULThptPerUEPerSubnet'
         uESpeed:
           type: integer
         reliability:
@@ -269,16 +297,16 @@ components:
         maxNumberofUEs:
           type: integer
         dLThptPerSlice:
-          $ref: '#/components/schemas/DLThptPerSlice'
+          $ref: '#/components/schemas/DLThptPerSliceSubnet'
         dLThptPerUE:
-          $ref: '#/components/schemas/DLThptPerUE'
+          $ref: '#/components/schemas/DLThptPerUEPerSubnet'
         uLThptPerSlice:
-          $ref: '#/components/schemas/ULThptPerSlice'
+          $ref: '#/components/schemas/ULThptPerSliceSubnet'
         uLThptPerUE:
-          $ref: '#/components/schemas/ULThptPerUE'
+          $ref: '#/components/schemas/ULThptPerUEPerSubnet'
         maxPktSize:
-          $ref: '#/components/schemas/MaxPktSize'
-        maxNumberofConns:
+          type: integer
+        maxNumberOfPDUSessions:
           type: integer
     ServiceProfileList:
       type: object
