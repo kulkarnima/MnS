@@ -221,65 +221,65 @@ components:
       type: object
       properties:
         maxNumberofUEs:
-          type: Integer
+          type: integer
         latency:
-          type: Integer
+          type: integer
         dLThptPerSlice:
-          type: '#/components/schemas/DLThptPerSlice'
+          $ref: '#/components/schemas/DLThptPerSlice'
         dLThptPerUE:
-          type: '#/components/schemas/DLThptPerUE'
+          $ref: '#/components/schemas/DLThptPerUE'
         uLThptPerSlice:
-          type: '#/components/schemas/ULThptPerSlice'
+          $ref: '#/components/schemas/ULThptPerSlice'
         uLThptPerUE:
-          type: '#/components/schemas/ULThptPerUE'
+          $ref: '#/components/schemas/ULThptPerUE'
         maxNumberOfPDUSessions:
-          type: Integer
+          type: integer
     RANSliceSubnetProfile:
       type: object
       properties:
         coverageAreaGeoPolygon:
-          type: String
+          type: string
         coverageAreaTAList:
-          type: Integer
+          type: integer
         MobilityLevel:
           $ref: '#/components/schemas/MobilityLevel'
         resourceSharingLevel:
           $ref: '#/components/schemas/SharingLevel'
         maxNumberofUEs:
-          type: Integer
+          type: integer
         activityFactor:
-          type: Float
+          type: integer
         dLThptPerUE:
           $ref: '#/components/schemas/ULThptPerUE'
         uLThptPerUE:
           $ref: '#/components/schemas/ULThptPerUE'
         uESpeed:
-          type: Integer
+          type: integer
         reliability:
-          type: String
+          type: string
         serviceType:
           $ref: '#/components/schemas/ServiceType'
     TopSliceSubnetProfile:
       type: object
       properties:
         coverageArea:
-          type: String
+          type: string
         latency:
-          type: Integer
+          type: integer
         maxNumberofUEs:
-          type: Integer
+          type: integer
         dLThptPerSlice:
-          type: '#/components/schemas/DLThptPerSlice'
+          $ref: '#/components/schemas/DLThptPerSlice'
         dLThptPerUE:
-          type: '#/components/schemas/DLThptPerUE'
+          $ref: '#/components/schemas/DLThptPerUE'
         uLThptPerSlice:
-          type: '#/components/schemas/ULThptPerSlice'
+          $ref: '#/components/schemas/ULThptPerSlice'
         uLThptPerUE:
-          type: '#/components/schemas/ULThptPerUE'
+          $ref: '#/components/schemas/ULThptPerUE'
         maxPktSize:
           $ref: '#/components/schemas/MaxPktSize'
         maxNumberofConns:
-          type: Integer
+          type: integer
     ServiceProfileList:
       type: object
       additionalProperties:
@@ -407,7 +407,7 @@ components:
                     nsInfo:
                       $ref: '#/components/schemas/NsInfo'
                     sliceProfileList:
-                      $ref: '#/components/schemas/sliceProfileList'
+                      $ref: '#/components/schemas/SliceProfileList'
             EPTransport:
               $ref: '#/components/schemas/EP_Transport-Multiple'
                       
