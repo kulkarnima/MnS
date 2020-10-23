@@ -189,7 +189,7 @@ components:
           $ref: '#/components/schemas/Float'
         maxThpt:
           $ref: '#/components/schemas/Float'
-    MaxPktSize:
+    	 MaxPktSize:
       type: object
       properties:
         servAttrCom:
@@ -388,6 +388,17 @@ components:
             $ref: '#/components/schemas/RANSliceSubnetProfile'
           TopSliceSubnetProfile:
             $ref: '#/components/schemas/TopSliceSubnetProfile'
+          maxNumberofUEs:
+            type: number
+          coverageAreaTAList:
+            $ref: '5gcNrm.yaml#/components/schemas/TACList'
+          latency:
+            type: number
+          uEMobilityLevel:
+            $ref: '#/components/schemas/MobilityLevel'
+          resourceSharingLevel:
+            $ref: '#/components/schemas/SharingLevel'
+
     IpAddress:
       oneOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
@@ -437,7 +448,7 @@ components:
                     sliceProfileList:
                       $ref: '#/components/schemas/SliceProfileList'
             EPTransport:
-              $ref: '#/components/schemas/EP_Transport-Multiple'
+             $ref: '#/components/schemas/EP_Transport-Multiple'
                       
     EP_Transport-Single:
       allOf:
@@ -467,6 +478,6 @@ components:
 
     resources-sliceNrm:
       oneOf:
-        - $ref: '#/components/schemas/NetworkSlice'
-        - $ref: '#/components/schemas/NetworkSliceSubnet'
-        - $ref: '#/components/schemas/EP_Transport-Single'
+       - $ref: '#/components/schemas/NetworkSlice'
+       - $ref: '#/components/schemas/NetworkSliceSubnet'
+       - $ref: '#/components/schemas/EP_Transport-Single'
