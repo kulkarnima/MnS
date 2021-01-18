@@ -30,6 +30,13 @@ components:
       enum:
         - SHARED
         - NON-SHARED
+    ServiceType:
+      type: string
+      enum:
+        - eMBB
+        - RLLC
+        - MIoT
+        - V2X
     PerfReqEmbb:
       type: object
       properties:
@@ -154,7 +161,35 @@ components:
           $ref: '#/components/schemas/Float'
         maxThpt:
           $ref: '#/components/schemas/Float'
-    MaxPktSize:
+    DLThptPerSliceSubnet:
+      type: object
+      properties:
+        guaThpt:
+          $ref: '#/components/schemas/Float'
+        maxThpt:
+          $ref: '#/components/schemas/Float'
+    DLThptPerUEPerSubnet:
+      type: object
+      properties:
+        guaThpt:
+          $ref: '#/components/schemas/Float'
+        maxThpt:
+          $ref: '#/components/schemas/Float'
+    ULThptPerSliceSubnet:
+      type: object
+      properties:
+        guaThpt:
+          $ref: '#/components/schemas/Float'
+        maxThpt:
+          $ref: '#/components/schemas/Float'
+    ULThptPerUEPerSubnet:
+      type: object
+      properties:
+        guaThpt:
+          $ref: '#/components/schemas/Float'
+        maxThpt:
+          $ref: '#/components/schemas/Float'
+    	 MaxPktSize:
       type: object
       properties:
         servAttrCom:
@@ -210,6 +245,69 @@ components:
           type: string
         nsName:
           type: string
+    CNSliceSubnetProfile:
+      type: object
+      properties:
+        maxNumberofUEs:
+          type: integer
+        latency:
+          type: integer
+        dLThptPerSlice:
+          $ref: '#/components/schemas/DLThptPerSliceSubnet'
+        dLThptPerUEPerSubnet:
+          $ref: '#/components/schemas/DLThptPerUEPerSubnet'
+        uLThptPerSliceSubnet:
+          $ref: '#/components/schemas/ULThptPerSliceSubnet'
+        uLThptPerUEPerSubnet:
+          $ref: '#/components/schemas/ULThptPerUEPerSubnet'
+        maxNumberOfPDUSessions:
+          type: integer
+    RANSliceSubnetProfile:
+      type: object
+      properties:
+        coverageAreaGeoPolygon:
+          type: string
+        coverageAreaTAList:
+          type: integer
+        MobilityLevel:
+          $ref: '#/components/schemas/MobilityLevel'
+        resourceSharingLevel:
+          $ref: '#/components/schemas/SharingLevel'
+        maxNumberofUEs:
+          type: integer
+        activityFactor:
+          type: integer
+        dLThptPerUE:
+          $ref: '#/components/schemas/ULThptPerUEPerSubnet'
+        uLThptPerUE:
+          $ref: '#/components/schemas/ULThptPerUEPerSubnet'
+        uESpeed:
+          type: integer
+        reliability:
+          type: string
+        serviceType:
+          $ref: '#/components/schemas/ServiceType'
+    TopSliceSubnetProfile:
+      type: object
+      properties:
+        coverageArea:
+          type: string
+        latency:
+          type: integer
+        maxNumberofUEs:
+          type: integer
+        dLThptPerSlice:
+          $ref: '#/components/schemas/DLThptPerSliceSubnet'
+        dLThptPerUE:
+          $ref: '#/components/schemas/DLThptPerUEPerSubnet'
+        uLThptPerSlice:
+          $ref: '#/components/schemas/ULThptPerSliceSubnet'
+        uLThptPerUE:
+          $ref: '#/components/schemas/ULThptPerUEPerSubnet'
+        maxPktSize:
+          type: integer
+        maxNumberOfPDUSessions:
+          type: integer
     ServiceProfileList:
       type: object
       additionalProperties:
@@ -284,6 +382,12 @@ components:
             $ref: 'nrNrm.yaml#/components/schemas/PlmnIdList'
           perfReq:
             $ref: '#/components/schemas/PerfReq'
+          CNSliceSubnetProfile:
+            $ref: '#/components/schemas/CNSliceSubnetProfile'
+          RANSliceSubnetProfile:
+            $ref: '#/components/schemas/RANSliceSubnetProfile'
+          TopSliceSubnetProfile:
+            $ref: '#/components/schemas/TopSliceSubnetProfile'
           maxNumberofUEs:
             type: number
           coverageAreaTAList:
@@ -344,7 +448,7 @@ components:
                     sliceProfileList:
                       $ref: '#/components/schemas/SliceProfileList'
             EPTransport:
-              $ref: '#/components/schemas/EP_Transport-Multiple'
+             $ref: '#/components/schemas/EP_Transport-Multiple'
                       
     EP_Transport-Single:
       allOf:
@@ -374,6 +478,6 @@ components:
 
     resources-sliceNrm:
       oneOf:
-        - $ref: '#/components/schemas/NetworkSlice'
-        - $ref: '#/components/schemas/NetworkSliceSubnet'
-        - $ref: '#/components/schemas/EP_Transport-Single'
+       - $ref: '#/components/schemas/NetworkSlice'
+       - $ref: '#/components/schemas/NetworkSliceSubnet'
+       - $ref: '#/components/schemas/EP_Transport-Single'
