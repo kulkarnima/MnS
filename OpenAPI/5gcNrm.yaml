@@ -306,15 +306,15 @@ components:
         fiveQIValue:
           type: integer
         maxbrUl:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/BitRateRm'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/BitRateRm'
         maxbrDl:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/BitRateRm'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/BitRateRm'
         gbrUl:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/BitRateRm'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/BitRateRm'
         gbrDl:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/BitRateRm'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/BitRateRm'
         arp:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/Arp'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/Arp'
         qosNotificationControl:
           type: boolean
         reflectiveQos:
@@ -324,11 +324,11 @@ components:
         sharingKeyUl:
           type: string
         maxPacketLossRateDl:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/PacketLossRateRm'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/PacketLossRateRm'
         maxPacketLossRateUl:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/PacketLossRateRm'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/PacketLossRateRm'
         extMaxDataBurstVol:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/ExtMaxDataBurstVolRm'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/ExtMaxDataBurstVolRm'
 
     QosDataList:
       type: array
@@ -339,15 +339,15 @@ components:
       type: object
       properties:
         steerModeValue:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SteerModeValue'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SteerModeValue'
         active:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/AccessType'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/AccessType'
         standby:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/AccessTypeRm'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/AccessTypeRm'
         threeGLoad:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/Uinteger'
         prioAcc:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/AccessType'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/AccessType'
 
     TrafficControlData:
       type: object
@@ -355,13 +355,13 @@ components:
         tcId:
           type: string
         flowStatus:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowStatus'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowStatus'
         redirectInfo:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RedirectInformation'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RedirectInformation'
         addRedirectInfo:
           type: array
           items:
-            $ref: '/rep/all/5G_APIs/raw/master/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RedirectInformation'
+            $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RedirectInformation'
           minItems: 1
         muteNotif:
           type: boolean
@@ -374,19 +374,19 @@ components:
         routeToLocs:
           type: array
           items:
-            $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/RouteToLocation'
+            $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/RouteToLocation'
         traffCorreInd:
           type: boolean
         upPathChgEvent:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/UpPathChgEvent'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/UpPathChgEvent'
         steerFun:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/SteeringFunctionality'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SteeringFunctionality'
         steerModeDl:
           $ref: '#/components/schemas/SteeringMode'
         steerModeUl:
           $ref: '#/components/schemas/SteeringMode'
         mulAccCtrl:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/MulticastAccessControl'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/MulticastAccessControl'
 
     TrafficControlDataList:
       type: array
@@ -402,17 +402,17 @@ components:
         flowInfoList:
           type: array
           items:
-            $ref: '/rep/all/5G_APIs/raw/master/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FlowInformation'
+            $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FlowInformation'
         applicationId:
           type: string
         appDescriptor:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ApplicationDescriptor'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ApplicationDescriptor'
         contentVersion:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ContentVersion'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ContentVersion'
         precedence:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/Uinteger'
         afSigProtocol:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AfSigProtocol'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AfSigProtocol'
         isAppRelocatable:
           type: boolean
         isUeAddrPreserved:
@@ -430,11 +430,12 @@ components:
           items:
             $ref: '#/components/schemas/TrafficControlDataList'
         conditionData:
-            $ref: '/rep/all/5G_APIs/raw/master/TS29512_Npcf_SMPolicyControl#/components/schemas/ConditionData'
+            $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ConditionData'
         tscaiInputDl:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer'
         tscaiInputUl:
-          $ref: '/rep/all/5G_APIs/raw/master/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer'
+          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer'
+
 
 #-------- Definition of concrete IOCs --------------------------------------------
 
@@ -519,7 +520,7 @@ components:
               $ref: '#/components/schemas/Configurable5QISet-Multiple'
             Dynamic5QISet:
               $ref: '#/components/schemas/Dynamic5QISet-Multiple'
-
+ 
     AmfFunction-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
@@ -632,9 +633,9 @@ components:
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
                     configurable5QISetRef:
-                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
                     dynamic5QISetRef:
-                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
 
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
@@ -735,9 +736,10 @@ components:
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
                     configurable5QISetRef:
-                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
                     dynamic5QISetRef:
-                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -1113,12 +1115,12 @@ components:
 
     EP_N2-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1127,12 +1129,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N3-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1143,12 +1145,12 @@ components:
                       $ref: 'genericNrm.yaml#/components/schemas/DnList'
     EP_N4-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1157,12 +1159,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N5-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1171,12 +1173,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N6-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1185,12 +1187,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N7-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1199,12 +1201,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N8-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1213,12 +1215,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N9-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1227,12 +1229,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N10-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1241,12 +1243,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N11-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1255,12 +1257,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N12-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1269,12 +1271,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N13-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1283,12 +1285,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N14-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1297,12 +1299,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N15-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1311,12 +1313,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N16-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1325,12 +1327,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N17-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1340,12 +1342,12 @@ components:
 
     EP_N20-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1355,12 +1357,12 @@ components:
 
     EP_N21-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1369,12 +1371,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N22-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1384,12 +1386,12 @@ components:
 
     EP_N26-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1398,12 +1400,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N27-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1414,12 +1416,12 @@ components:
 
     EP_N31-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1428,12 +1430,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N32-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     remotePlmnId:
@@ -1451,12 +1453,12 @@ components:
 
     EP_S5C-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1465,12 +1467,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_S5U-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1479,12 +1481,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_Rx-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1493,12 +1495,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_MAP_SMSC-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1507,12 +1509,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_NLS-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1521,12 +1523,12 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_NLG-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1536,7 +1538,7 @@ components:
 
     FiveQiDscpMappingSet-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -1550,7 +1552,7 @@ components:
 
     Configurable5QISet-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -1561,10 +1563,10 @@ components:
                       type: array
                       items:
                         $ref: '#/components/schemas/FiveQICharacteristics'  
-
+   
     Dynamic5QISet-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -1575,10 +1577,10 @@ components:
                       type: array
                       items:
                         $ref: '#/components/schemas/FiveQICharacteristics'                           
-
+                      
     GtpUPathQoSMonitoringControl-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -1615,7 +1617,7 @@ components:
 
     QFQoSMonitoringControl-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -1903,75 +1905,76 @@ components:
         $ref: '#/components/schemas/Dynamic5QISet-Single'
 
 
+
 #------------ Definitions in TS 28.541 for TS 28.532 -----------------------------
 
     resources-5gcNrm:
       oneOf:
-        - $ref: '#/components/schemas/SubNetwork-Single'
-        - $ref: '#/components/schemas/ManagedElement-Single'
-        - $ref: '#/components/schemas/AmfFunction-Single'
-        - $ref: '#/components/schemas/SmfFunction-Single'
-        - $ref: '#/components/schemas/UpfFunction-Single'
-        - $ref: '#/components/schemas/N3iwfFunction-Single'
-        - $ref: '#/components/schemas/PcfFunction-Single'
-        - $ref: '#/components/schemas/AusfFunction-Single'
-        - $ref: '#/components/schemas/UdmFunction-Single'
-        - $ref: '#/components/schemas/UdrFunction-Single'
-        - $ref: '#/components/schemas/UdsfFunction-Single'
-        - $ref: '#/components/schemas/NrfFunction-Single'
-        - $ref: '#/components/schemas/NssfFunction-Single'
-        - $ref: '#/components/schemas/SmsfFunction-Single'
-        - $ref: '#/components/schemas/LmfFunction-Single'
-        - $ref: '#/components/schemas/NgeirFunction-Single'
-        - $ref: '#/components/schemas/SeppFunction-Single'
-        - $ref: '#/components/schemas/NwdafFunction-Single'
-        - $ref: '#/components/schemas/ScpFunction-Single'
-        - $ref: '#/components/schemas/NefFunction-Single'
+       - $ref: '#/components/schemas/SubNetwork-Single'
+       - $ref: '#/components/schemas/ManagedElement-Single'
+       - $ref: '#/components/schemas/AmfFunction-Single'
+       - $ref: '#/components/schemas/SmfFunction-Single'
+       - $ref: '#/components/schemas/UpfFunction-Single'
+       - $ref: '#/components/schemas/N3iwfFunction-Single'
+       - $ref: '#/components/schemas/PcfFunction-Single'
+       - $ref: '#/components/schemas/AusfFunction-Single'
+       - $ref: '#/components/schemas/UdmFunction-Single'
+       - $ref: '#/components/schemas/UdrFunction-Single'
+       - $ref: '#/components/schemas/UdsfFunction-Single'
+       - $ref: '#/components/schemas/NrfFunction-Single'
+       - $ref: '#/components/schemas/NssfFunction-Single'
+       - $ref: '#/components/schemas/SmsfFunction-Single'
+       - $ref: '#/components/schemas/LmfFunction-Single'
+       - $ref: '#/components/schemas/NgeirFunction-Single'
+       - $ref: '#/components/schemas/SeppFunction-Single'
+       - $ref: '#/components/schemas/NwdafFunction-Single'
+       - $ref: '#/components/schemas/ScpFunction-Single'
+       - $ref: '#/components/schemas/NefFunction-Single'
 
-        - $ref: '#/components/schemas/ExternalAmfFunction-Single'
-        - $ref: '#/components/schemas/ExternalNrfFunction-Single'
-        - $ref: '#/components/schemas/ExternalNssfFunction-Single'
-        - $ref: '#/components/schemas/ExternalSeppFunction-Single'
+       - $ref: '#/components/schemas/ExternalAmfFunction-Single'
+       - $ref: '#/components/schemas/ExternalNrfFunction-Single'
+       - $ref: '#/components/schemas/ExternalNssfFunction-Single'
+       - $ref: '#/components/schemas/ExternalSeppFunction-Single'
 
-        - $ref: '#/components/schemas/AmfSet-Single'
-        - $ref: '#/components/schemas/AmfRegion-Single'
-        - $ref: '#/components/schemas/QFQoSMonitoringControl-Single'
-        - $ref: '#/components/schemas/GtpUPathQoSMonitoringControl-Single'
+       - $ref: '#/components/schemas/AmfSet-Single'
+       - $ref: '#/components/schemas/AmfRegion-Single'
+       - $ref: '#/components/schemas/QFQoSMonitoringControl-Single'
+       - $ref: '#/components/schemas/GtpUPathQoSMonitoringControl-Single'
 
-        - $ref: '#/components/schemas/EP_N2-Single'
-        - $ref: '#/components/schemas/EP_N3-Single'
-        - $ref: '#/components/schemas/EP_N4-Single'
-        - $ref: '#/components/schemas/EP_N5-Single'
-        - $ref: '#/components/schemas/EP_N6-Single'
-        - $ref: '#/components/schemas/EP_N7-Single'
-        - $ref: '#/components/schemas/EP_N8-Single'
-        - $ref: '#/components/schemas/EP_N9-Single'
-        - $ref: '#/components/schemas/EP_N10-Single'
-        - $ref: '#/components/schemas/EP_N11-Single'
-        - $ref: '#/components/schemas/EP_N12-Single'
-        - $ref: '#/components/schemas/EP_N13-Single'
-        - $ref: '#/components/schemas/EP_N14-Single'
-        - $ref: '#/components/schemas/EP_N15-Single'
-        - $ref: '#/components/schemas/EP_N16-Single'
-        - $ref: '#/components/schemas/EP_N17-Single'
+       - $ref: '#/components/schemas/EP_N2-Single'
+       - $ref: '#/components/schemas/EP_N3-Single'
+       - $ref: '#/components/schemas/EP_N4-Single'
+       - $ref: '#/components/schemas/EP_N5-Single'
+       - $ref: '#/components/schemas/EP_N6-Single'
+       - $ref: '#/components/schemas/EP_N7-Single'
+       - $ref: '#/components/schemas/EP_N8-Single'
+       - $ref: '#/components/schemas/EP_N9-Single'
+       - $ref: '#/components/schemas/EP_N10-Single'
+       - $ref: '#/components/schemas/EP_N11-Single'
+       - $ref: '#/components/schemas/EP_N12-Single'
+       - $ref: '#/components/schemas/EP_N13-Single'
+       - $ref: '#/components/schemas/EP_N14-Single'
+       - $ref: '#/components/schemas/EP_N15-Single'
+       - $ref: '#/components/schemas/EP_N16-Single'
+       - $ref: '#/components/schemas/EP_N17-Single'
 
-        - $ref: '#/components/schemas/EP_N20-Single'
-        - $ref: '#/components/schemas/EP_N21-Single'
-        - $ref: '#/components/schemas/EP_N22-Single'
+       - $ref: '#/components/schemas/EP_N20-Single'
+       - $ref: '#/components/schemas/EP_N21-Single'
+       - $ref: '#/components/schemas/EP_N22-Single'
 
-        - $ref: '#/components/schemas/EP_N26-Single'
-        - $ref: '#/components/schemas/EP_N27-Single'
+       - $ref: '#/components/schemas/EP_N26-Single'
+       - $ref: '#/components/schemas/EP_N27-Single'
 
-        - $ref: '#/components/schemas/EP_N31-Single'
-        - $ref: '#/components/schemas/EP_N31-Single'
+       - $ref: '#/components/schemas/EP_N31-Single'
+       - $ref: '#/components/schemas/EP_N31-Single'
 
-        - $ref: '#/components/schemas/EP_S5C-Single'
-        - $ref: '#/components/schemas/EP_S5U-Single'
-        - $ref: '#/components/schemas/EP_Rx-Single'
-        - $ref: '#/components/schemas/EP_MAP_SMSC-Single'
-        - $ref: '#/components/schemas/EP_NLS-Single'
-        - $ref: '#/components/schemas/EP_NLG-Single'
-        - $ref: '#/components/schemas/Configurable5QISet-Single'
-        - $ref: '#/components/schemas/FiveQiDscpMappingSet-Single'
-        - $ref: '#/components/schemas/PredefinedPccRuleSet-Single'
-        - $ref: '#/components/schemas/Dynamic5QISet-Single'
+       - $ref: '#/components/schemas/EP_S5C-Single'
+       - $ref: '#/components/schemas/EP_S5U-Single'
+       - $ref: '#/components/schemas/EP_Rx-Single'
+       - $ref: '#/components/schemas/EP_MAP_SMSC-Single'
+       - $ref: '#/components/schemas/EP_NLS-Single'
+       - $ref: '#/components/schemas/EP_NLG-Single'
+       - $ref: '#/components/schemas/Configurable5QISet-Single'
+       - $ref: '#/components/schemas/FiveQiDscpMappingSet-Single'
+       - $ref: '#/components/schemas/PredefinedPccRuleSet-Single'
+       - $ref: '#/components/schemas/Dynamic5QISet-Single'
