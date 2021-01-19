@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: TS 28.532 Streaming data reporting service
-  version: 16.5.0
+  version: 16.6.0
   description: OAS 3.0.1 specification for the Streaming data reporting service (Streaming MnS)
 servers:
   - url: '{MnSRoot}/StreamingDataReportingMnS/{version}'
@@ -322,8 +322,8 @@ components:
       description: DN of the measured object instance (see 3GPP TS 28.550)
       allOf:
         - $ref: '#/components/schemas/systemDN-Type'
-    measTypes-Type:
-      description: an ordered list of measurement type or KPI whose measurement values or KPI result values are to be reported by the Performance Data Stream Units (see Annex C of TS 28.550) via this stream
+    performanceMetrics-Type:
+      description: an ordered list of performance metric names (see clause 4.4.1 of 3GPP TS 28.622[11]) whose values are to be reported by the Performance Data Stream Units (see Annex C of TS 28.550 [42]) via this stream. Performance metrics include measurement and KPI
       type: array
       items:
         type: string
@@ -333,15 +333,13 @@ components:
       properties:
         measObjDn:
           $ref: '#/components/schemas/measObjDn-Type'
-        measTypes:
-          $ref: '#/components/schemas/measTypes-Type'
-        measurementReaderId:
-          $ref: '#/components/schemas/systemDN-Type'
+        performanceMetrics:
+          $ref: '#/components/schemas/performanceMetrics-Type'
         jobId:
           type: string
       required:
         - measObjDn
-        - measTypes
+        - performanceMetrics
     producerId-Type:
       description: DN of the streaming data reporting MnS producer.
       allOf:
