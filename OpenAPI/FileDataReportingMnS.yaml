@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: TS 28.532 File data reporting Service
-  version: 16.5.0
+  version: 16.6.0
   description: >-
     OAS 3.0.1 specification of the File data reporting Management Service © 2020,
     3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC). All
@@ -22,14 +22,14 @@ paths:
   /Files:
     get:
       summary: Read resources of information of available files
-      description: With HTTP GET, resources of information of available files are read. The resources to be read are identified with the path component (base resource) and the query component (managementDataType, beginTime and endTime) of the URI. The fields query component allows to select the resource properties to be returned.
+      description: With HTTP GET, resources of information of available files are read. The resources to be read are identified with the path component (base resource) and the query component (fileaType, beginTime and endTime) of the URI. The fields query component allows to select the resource properties to be returned.
       parameters:
-        - name: managementDataType
+        - name: fileType
           in: query
           description: This parameter identifies the type of management data that the file contains to select the resources from the collection resources identified with the path component of the URI.
           required: true
           schema:
-            $ref: '#/components/schemas/managementDataType-Type'
+            $ref: '#/components/schemas/fileType-Type'
         - name: beginTime
           in: query
           description: This parameter identifies the time stamp no later than which the file became available to select the resources from the collection resources identified with the path component of the URI.
@@ -190,6 +190,8 @@ components:
           type: string
         fileFormat:
           type: string
+        fileType:
+          $ref: '#/components/schemas/fileType-Type'
     error-ResponseType:
       type: object
       properties:
@@ -198,7 +200,7 @@ components:
           properties:
             errorInfo:
               type: string
-    managementDataType-Type:
+    fileType-Type:
       type: string
       enum:
         - PERFORMANCE
