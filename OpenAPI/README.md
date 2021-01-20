@@ -41,6 +41,10 @@ The links below will open the Swagger Editor/UI and auto-load the OpenAPI YAML f
 ([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/faultMnS.yaml))
 ([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/faultMnS.yaml))
 
+* Performance Monitoring MnS (28.532)
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/PerfMnS.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/PerfMnS.yaml))
+
 * Performance Measurement Job Control MnS (28.550)
 ([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/PerMeasJobCtlMnS.yaml))
 ([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/PerMeasJobCtlMnS.yaml))
