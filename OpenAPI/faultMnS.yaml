@@ -1,21 +1,21 @@
 openapi: 3.0.1
 info:
   title: Fault Supervision MnS
-  version: 16.5.0
+  version: 16.6.0
   description: >-
     OAS 3.0.1 definition of the Fault Supervision MnS
     © 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 externalDocs:
-  description: 3GPP TS 28.532 V16.5.0; Generic management services
+  description: 3GPP TS 28.532; Generic management services
   url: http://www.3gpp.org/ftp/Specs/archive/28_series/28.532/
 servers:
-  - url: '{MnSRoot}/FaultSupervisionMnS/{version}'
+  - url: '{MnSRoot}/FaultSupervisionMnS/{MnSversion}'
     variables:
       MnSRoot:
         description: See subclause 4.4.3 of TS 32.158
         default: http://example.com/3GPPManagement
-      version:
+      MnSversion:
         description: Version number of the OpenAPI definition
         default: XXX
 paths:
@@ -531,19 +531,17 @@ components:
         low:
           $ref: 'comDefs.yaml#/components/schemas/Float'
     ThresholdLevelInd:
-      type: object
-      required:
-        - up
-      properties:
-        up:
-          $ref: '#/components/schemas/ThresholdHysteresis'
-        low:
-          $ref: '#/components/schemas/ThresholdHysteresis'
+      oneOf:
+        - type: object
+          properties:
+            up:
+              $ref: '#/components/schemas/ThresholdHysteresis'
+        - type: object
+          properties:
+            down:
+              $ref: '#/components/schemas/ThresholdHysteresis'
     ThresholdInfo:
       type: object
-      required:
-        - observedMeasurement
-        - observedValue
       properties:
         observedMeasurement:
           type: string
@@ -551,15 +549,15 @@ components:
           oneOf:
             - type: integer
             - $ref: 'comDefs.yaml#/components/schemas/Float'
-        thresholdLevelInd:
+        thresholdLevel:
           $ref: '#/components/schemas/ThresholdLevelInd'
         armTime:
           $ref: 'comDefs.yaml#/components/schemas/DateTime'
+      required:
+        - observedMeasurement
+        - observedValue
     CorrelatedNotification:
       type: object
-      required:
-        - source
-        - notificationId
       properties:
         sourceObjectInstance:
           $ref: 'comDefs.yaml#/components/schemas/Dn'
@@ -567,6 +565,9 @@ components:
           type: array
           items:
             $ref: 'comDefs.yaml#/components/schemas/NotificationId'
+      required:
+        - source
+        - notificationId
     CorrelatedNotifications:
       type: array
       items:
@@ -649,7 +650,7 @@ components:
 
   #---- Definition of alarm notifications --------------------------------------------#
   
-    AlarmNotificationType:
+    AlarmNotificationTypes:
       type: string
       enum:
         - notifyNewAlarm
@@ -793,9 +794,6 @@ components:
           required:
             - alarmId
             - alarmType
-            - probableCause
-            - perceivedSeverity
-            - changedAlarmAttributes
           properties:
             alarmId:
               $ref: '#/components/schemas/AlarmId'
@@ -838,12 +836,9 @@ components:
           required:
             - alarmId
             - alarmType
-            - probableCause
-            - perceivedSeverity
             - serviceUser
             - serviceProvider
             - securityAlarmDetector
-            - changedAlarmAttributes
           properties:
             alarmId:
               $ref: '#/components/schemas/AlarmId'
@@ -1058,6 +1053,6 @@ components:
         consumerReference:
           $ref: 'comDefs.yaml#/components/schemas/Uri'
         timeTick:
-          $ref: 'comDefs.yaml#/components/schemas/Long'
+          type: integer
         filter:
           $ref: 'comDefs.yaml#/components/schemas/Filter'

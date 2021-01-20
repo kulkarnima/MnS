@@ -62,7 +62,14 @@ components:
           type: string
         transferIntervalTarget:
           type: string
-        survivalTime:
+        s      type: array
+      items:
+        type: string
+        enum:
+          - PERFORMANCE
+          - FUNCTION
+          - OPERATION
+urvivalTime:
           type: string
     PerfReqUrllcList:
       type: array
@@ -78,11 +85,7 @@ components:
         - CHARACTER
         - SCALABILITY
     Tagging:
-      type: string
-      enum:
-        - PERFORMANCE
-        - FUNCTION
-        - OPERATION
+
     Exposure:
       type: string
       enum:
@@ -203,11 +206,11 @@ components:
           type: string
         nsName:
           type: string
-    ServiceProfileList:
+    ServiceProfile:
       type: object
-      additionalProperties:
-        type: object
-        properties:
+      properties:
+          serviceProfileId: 
+            type: string
           snssaiList:
             $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
           plmnIdList:
@@ -260,11 +263,12 @@ components:
             type: string
           reliability:
             type: string
-    SliceProfileList:
+    SliceProfile:
       type: object
-      additionalProperties:
-        type: object
-        properties:
+      properties:
+          sliceProfileId:
+            type: string
+
           snssaiList:
             $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
           plmnIdList:
@@ -286,10 +290,37 @@ components:
       oneOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
         - $ref: 'genericNrm.yaml#/components/schemas/Ipv6Addr'
+    ServiceProfileList:
+       type: array
+       items:
+        $ref: '#/components/schemas/ServiceProfile'
+            
+    SliceProfileList:
+      type: array
+      items:
+        $ref: '#/components/schemas/SliceProfile'
 
 #------------ Definition of concrete IOCs ----------------------------------------
 
-    NetworkSlice:
+    SubNetwork-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-ncO'
+        - type: object
+          properties:
+            SubNetwork:
+              $ref: '#/components/schemas/SubNetwork-Multiple'
+            NetworkSlice:
+              $ref: '#/components/schemas/NetworkSlice-Multiple'
+            NetworkSliceSubnet:
+              $ref: '#/components/schemas/NetworkSliceSubnet-Multiple'
+
+    NetworkSlice-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
@@ -308,7 +339,7 @@ components:
                     serviceProfileList:
                       $ref: '#/components/schemas/ServiceProfileList'
 
-    NetworkSliceSubnet:
+    NetworkSliceSubnet-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
@@ -331,7 +362,7 @@ components:
                     sliceProfileList:
                       $ref: '#/components/schemas/SliceProfileList'
             EPTransport:
-              $ref: '#/components/schemas/EP_Transport-Multiple'
+             $ref: '#/components/schemas/EP_Transport-Multiple'
                       
     EP_Transport-Single:
       allOf:
@@ -352,6 +383,22 @@ components:
                 epApplicationRefs:
                   $ref: 'genericNrm.yaml#/components/schemas/DnList'
                       
+#-------- Definition of JSON arrays for name-contained IOCs ----------------------
+    SubNetwork-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/SubNetwork-Single'
+
+    NetworkSlice-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/NetworkSlice-Single'
+
+    NetworkSliceSubnet-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/NetworkSliceSubnet-Single'
+
     EP_Transport-Multiple:
       type: array
       items:
@@ -361,6 +408,7 @@ components:
 
     resources-sliceNrm:
       oneOf:
-        - $ref: '#/components/schemas/NetworkSlice'
-        - $ref: '#/components/schemas/NetworkSliceSubnet'
-        - $ref: '#/components/schemas/EP_Transport-Single'
+       - $ref: '#/components/schemas/SubNetwork-Single'
+       - $ref: '#/components/schemas/NetworkSlice-Single'
+       - $ref: '#/components/schemas/NetworkSliceSubnet-Single'
+       - $ref: '#/components/schemas/EP_Transport-Single'
