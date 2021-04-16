@@ -11,16 +11,30 @@ module _3gpp-nr-nrm-ep {
   import _3gpp-nr-nrm-gnbdufunction { prefix gnbdu3gpp; }
 
   organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
   description "Defines the YANG mapping of the NR related endpoint
     Information Object Classes (IOCs) that are part of the NR Network
     Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
-  revision 2020-03-02 { reference S5-201191"; }
-  revision 2019-06-17 {
-    description "Initial revision";
-  }
+  revision 2021-03-02 { reference CR-0434; }
+  revision 2021-01-16 { reference CR-0447; }
+  revision 2020-11-02 { reference CR-0409; }
+  revision 2020-03-02 { reference S5-201191; }
+  revision 2019-06-17 { reference "Initial revision"; }
     
+  feature EPClassesUnderGNBCUCPFunction {
+    description "Endpoint classes shall be contained under GNBCUCPFunction";
+  }
+
+  feature EPClassesUnderGNBCUUPFunction {
+    description "Endpoint classes shall be contained under GNBCUUPFunction";
+  }
+
+  feature EPClassesUnderGNBDUFunction {
+    description "Endpoint classes shall be contained under GNBDUFunction";
+  }
+
   grouping EP_E1Grp {
     description "Represents the EP_E1 IOC.";
     reference "3GPP TS 28.541, 3GPP TS 38.401";
@@ -35,7 +49,7 @@ module _3gpp-nr-nrm-ep {
 
   grouping EP_F1UGrp {
     description "Represents the EP_F1U IOC.";
-    reference "3GPP TS 28.541, 3GPP TS 38.470";	
+    reference "3GPP TS 28.541, 3GPP TS 38.470";
     uses eprp3gpp:EP_Common;
   }
 
@@ -82,6 +96,7 @@ module _3gpp-nr-nrm-ep {
   }
 
   augment "/me3gpp:ManagedElement/gnbcucp3gpp:GNBCUCPFunction" {
+    if-feature EPClassesUnderGNBCUCPFunction;
 
     list EP_E1 {
       description "Represents the local end point of the logical link,
@@ -143,6 +158,7 @@ module _3gpp-nr-nrm-ep {
   }
 
   augment "/me3gpp:ManagedElement/gnbcuup3gpp:GNBCUUPFunction" {
+    if-feature EPClassesUnderGNBCUUPFunction;
 
     list EP_E1 {
       description "Represents the local end point of the logical link,
@@ -168,7 +184,7 @@ module _3gpp-nr-nrm-ep {
 
     list EP_NgU {
       description "Represents the local end point of the NG user plane
-        (NG-U) interface between the gNB and the UPGW.";
+        (NG-U) interface between the gNB and UPF.";
       reference "3GPP TS 28.541, 3GPP TS 38.470";
       key id;
       uses top3gpp:Top_Grp;
@@ -213,6 +229,7 @@ module _3gpp-nr-nrm-ep {
   }
 
   augment "/me3gpp:ManagedElement/gnbdu3gpp:GNBDUFunction" {
+    if-feature EPClassesUnderGNBDUFunction;
 
     list EP_F1C {
       description "Represents the local end point of the control plane
@@ -228,7 +245,7 @@ module _3gpp-nr-nrm-ep {
     list EP_F1U {
       description "Represents the local end point of the user plane
         interface (F1-U) between the DU and CU or CU-UP.";
-      reference "3GPP TS 28.541, 3GPP TS 38.470";	
+      reference "3GPP TS 28.541, 3GPP TS 38.470";
       key id;
       uses top3gpp:Top_Grp;
       container attributes {    

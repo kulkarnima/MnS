@@ -8,7 +8,7 @@ module _3gpp-nr-nrm-gnbcuupfunction {
   import _3gpp-common-managed-element { prefix me3gpp; }
   import _3gpp-common-top { prefix top3gpp; }
   import _3gpp-nr-nrm-rrmpolicy { prefix nrrrmpolicy3gpp; }
-  import _3gpp-nr-nrm-common { prefix nrcommon3gpp; }
+  import _3gpp-5g-common-yang-types { prefix types5g3gpp; }
 
   organization "3GPP SA5";
   contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
@@ -16,6 +16,7 @@ module _3gpp-nr-nrm-gnbcuupfunction {
     Object Class (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2020-11-05 { reference CR-0411 ; }
   revision 2020-08-06 { reference "CR-0333"; }
   revision 2020-08-03 { reference "CR-0321"; }
   revision 2020-06-03 { reference "CR-0286"; }
@@ -23,15 +24,14 @@ module _3gpp-nr-nrm-gnbcuupfunction {
   revision 2020-03-12 { reference "SP-200233 S5-201547"; }
   revision 2020-02-14 { reference S5-20XXXX ; }
   revision 2019-10-28 { reference S5-193518 ; }
-  revision 2019-08-21 {
-    description "Initial revision";
-  }
+  revision 2019-08-21 { reference "Initial revision"; }
 
   grouping TAIGrp {
     description "Tracking Area Identity";
     
     list pLMNId {
       key "mcc mnc";
+      description "PLMN IDs for the Tracking area";
       uses types3gpp:PLMNId;
     }
     
@@ -39,12 +39,12 @@ module _3gpp-nr-nrm-gnbcuupfunction {
       type int64;
       description "Identity of the common Tracking Area Code for the PLMNs
         allowedValues:
-        a)	It is the TAC or Extended-TAC. 
-        b)	A cell can only broadcast one TAC or Extended-TAC. 
+        a) It is the TAC or Extended-TAC. 
+        b) A cell can only broadcast one TAC or Extended-TAC. 
           See TS 36.300, subclause 10.1.7 (PLMNID and TAC relation).
-        c) 	TAC is defined in subclause 19.4.2.3 of 3GPP TS 23.003 and 
+        c) TAC is defined in subclause 19.4.2.3 of 3GPP TS 23.003 and 
           Extended-TAC is defined in subclause 9.3.1.29 of 3GPP TS 38.473.
-        d)	For a 5G SA (Stand Alone), it has a non-null value.";
+        d) For a 5G SA (Stand Alone), it has a non-null value.";
     }
   }
   
@@ -127,28 +127,32 @@ module _3gpp-nr-nrm-gnbcuupfunction {
     }
             
     list pLMNInfoList {
-      description "The PLMNInfoList is a list of PLMNInfo data type. It defines which PLMNs that
-        can be served by the GNBCUUPFunction and which S-NSSAIs can be supported by the
-        GNBCUUPFunction for corresponding PLMN in case of network slicing feature is supported";
-      key "mcc mnc";
-      uses nrcommon3gpp:PLMNInfo;
-    }   		
+      description "The PLMNInfoList is a list of PLMNInfo data type. It 
+        defines which PLMNs that can be served by the GNBCUUPFunction and 
+        which S-NSSAIs can be supported by the GNBCUUPFunction for 
+        corresponding PLMN in case of network slicing feature is supported";
+      key "mcc mnc sd sst";
+      uses types5g3gpp:PLMNInfo;
+    }
     
     list mappingSetIDBackhaulAddressList {
       key idx;
       description "Specifies a list of mappingSetIDBackhaulAddress used to 
         retrieve the backhaul address of the victim set.
-        Must be present if Remote Interference Management function is supported.";
+        Must be present if Remote Interference Management function is 
+        supported.";
       uses MappingSetIDBackhaulAddressGrp;
     }
 
     leaf configurable5QISetRef {
       type types3gpp:DistinguishedName;
-      description "DN of the Configurable5QISet that the GNBCUUPFunction supports (is associated to).";
+      description "DN of the Configurable5QISet that the GNBCUUPFunction 
+        supports (is associated to).";
     }
     leaf dynamic5QISetRef {
       type types3gpp:DistinguishedName;
-      description "DN of the Dynamic5QISet that the GNBCUUPFunction supports (is associated to).";
+      description "DN of the Dynamic5QISet that the GNBCUUPFunction 
+        supports (is associated to).";
     }
   }
 

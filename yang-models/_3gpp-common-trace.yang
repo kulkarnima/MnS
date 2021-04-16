@@ -10,8 +10,8 @@ module _3gpp-common-trace {
   organization "3GPP SA5";
   contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";    
     
-  description " ";
-    
+  description "Trace handling";
+
   reference "3GPP TS 28.623
       Generic Network Resource Model (NRM)
       Integration Reference Point (IRP);
@@ -22,6 +22,8 @@ module _3gpp-common-trace {
       Integration Reference Point (IRP);
       Information Service (IS)";
 
+  revision 2021-01-25 { reference "CR-0122"; }  
+  revision 2020-11-16 { reference "CR-0117"; }
   revision 2020-08-06 { reference "CR-0102"; }  
   
   grouping TraceJobGrp {
@@ -456,21 +458,30 @@ module _3gpp-common-trace {
         reporting or file-based trace reporting";
       reference "3GPP TS 32.422 clause 5.11";
     }
-    
-    leaf tjTraceTarget {
-      type enumeration {
-        enum IMSI;
-        enum IMEI;
-        enum IMEISV;
-        enum PUBLIC_ID;
-        enum UTRAN_CELL;
-        enum E_UTRAN_CELL;
-        enum NG_RAN_CELL;
-        enum ENB;
-        enum RNC;
-        enum GNB;
+    list tjTraceTarget {
+      key "targetIdType targetIdValue";
+      max-elements 1;
+
+      leaf targetIdType {
+        type enumeration {
+          enum IMSI;
+          enum IMEI;
+          enum IMEISV;
+          enum PUBLIC_ID;
+          enum UTRAN_CELL;
+          enum E_UTRAN_CELL;
+          enum NG_RAN_CELL;
+          enum ENB;
+          enum RNC;
+          enum GNB;
+          enum SUPI;
+        }
       }
-      mandatory true;
+
+      leaf targetIdValue {
+        type string;
+      }
+      
       description "Specifies the target object of the Trace and MDT. The 
         attribute is applicable for both Trace and MDT. This attribute 
         includes the ID type of the target as an enumeration and the ID value.
@@ -494,22 +505,22 @@ module _3gpp-common-trace {
         The tjTraceTarget shall be IMSI if the Trace Session is activated to a 
         ManagedEntity playing a role of ServinGWFunction.
 
-        In case of signaling based MDT, the tjTraceTarget attribute shall be 
-        able to carry (IMSI or IMEI(SV)), the tjMDTAreaScope attribute shall be 
-        able to carry a list of (cell or EUtranCell or TA/LA/RA).
+        In case of signaling based Trace/MDT, the tjTraceTarget attribute shall be 
+        able to carry (IMSI or IMEI(SV)or SUPI), the tjMDTAreaScope attribute shall be 
+        able to carry a list of (cell or E-UtranCell or NRCellDU or TA/LA/RA).
 
         In case of management based Immediate MDT, the tjTraceTarget attribute 
         shall be null value, the tjMDTAreaScope attribute shall carry a list of 
-        (Utrancell or E-UtranCell).
+        (Utrancell or E-UtranCell or NRCellDU).
 
         In case of management based Logged MDT, the tjTraceTarget attribute 
-        shall carry an eNodeBs or a RNC. The Logged MDT should be initiated on 
-        the specified eNodeB/RNC in tjTraceTarget. The tjMDTAreaScope attribute 
-        shall carry a list of (Utrancell or E-UtranCell or TA/LA/RA).
+        shall carry an eBs or a RNC or gNBs. The Logged MDT should be initiated on 
+        the specified eNB or RNC or gNB in tjTraceTarget. The tjMDTAreaScope attribute 
+        shall carry a list of (Utrancell or E-UtranCell or NRCellDU or TA/LA/RA).
 
         In case of RLF reporting, or RCEF reporting,  the tjTraceTarget attribute 
         shall be null value, the tjMDTAreaScope attribute shall carry one or 
-        list of eNBs";  
+        list of eNBs/gNBs";  
       reference "3GPP TS 32.422";
     }
 
@@ -603,7 +614,20 @@ module _3gpp-common-trace {
         a null semantic";
       reference "Clause 5.10.21 of 3GPP TS 32.422";
     }
-    
+
+      leaf tjMDTCollectionPeriodRrmNR {
+        when './tjJobType = "IMMEDIATE_MDT_ONLY" or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+        type uint32 {
+          range "1024|2048|5120|10240|60000";
+        }
+        units milliseconds;
+        description "Specifies the collection period for collecting RRM configured 
+          measurement samples for M4, M5 in NR. The attribute is applicable only 
+          for Immediate MDT. In case this attribute is not used, it carries a 
+          null semantic.";
+        reference "Clause 5.10.30 of 3GPP TS 32.422";
+      }
+          
     leaf tjMDTEventListForTriggeredMeasurement {
       when './tjJobType = "LOGGED_MDT_ONLY"';
       type enumeration {
@@ -615,8 +639,8 @@ module _3gpp-common-trace {
         case of logged NR MDT.  Each trace session may configure at most one 
         event. The UE shall perform logging of measurements only upon certain 
         condition being fulfilled:
-        -	Out of coverage.
-        -	A2 event.";
+        - Out of coverage.
+        - A2 event.";
       reference "Clause 5.10.28 of 3GPP TS 32.422";
     }
     

@@ -5,20 +5,23 @@ module _3gpp-5gc-nrm-QFQoSMonitoringControl {
   prefix qFQMCtrl3gpp;
   
   import _3gpp-common-managed-element { prefix me3gpp; }
-  import _3gpp-common-yang-types { prefix types3gpp; }
   import _3gpp-5gc-nrm-smffunction { prefix smf3gpp; }
   import _3gpp-common-top { prefix top3gpp; }
-  
-  organization "3gpp SA5";  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
+  import _3gpp-5g-common-yang-types { prefix types5g3gpp; }
+
+  organization "3gpp SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
   description "This IOC represents the capabilities and properties for control 
-  	of QoS monitoring per QoS flow per UE for URLLC service defined 
-  	in 3GPP TS 23.501.";
+    of QoS monitoring per QoS flow per UE for URLLC service defined 
+    in 3GPP TS 23.501.";
   reference "3GPP TS 28.541";
 
+  revision 2020-11-05 { reference CR-0411 ; }
   revision 2020-08-03 { reference "CR-0321"; }
   revision 2020-04-10 { reference "S5-202101";   }
 
   grouping QFPacketDelayThresholdsTypeGrp {
+    description "Represents the QFPacketDelayThresholdsType";
     leaf thresholdDl {
       type uint32;
       units milliseconds;
@@ -51,11 +54,12 @@ module _3gpp-5gc-nrm-QFQoSMonitoringControl {
       }
      }
      
-    leaf-list qFMonitoredSNSSAIs {
+    list qFMonitoredSNSSAIs {
       description "The S-NSSAIs for which the QoS monitoring per QoS flow
        per UE is to be performed.";
       reference "3GPP TS 23.003";
-      type types3gpp:SNssai;
+      key "sd sst";
+      uses types5g3gpp:SNssai;
      }
      
     leaf-list qFMonitored5QIs {
@@ -110,9 +114,10 @@ module _3gpp-5gc-nrm-QFQoSMonitoringControl {
      }
      
     leaf qFMeasurementPeriod {
-      description "It specifies the period (in seconds) for reporting the packet delay for QoS monitoring per QoS flow per UE.";
+      description "It specifies the period (in seconds) for reporting the 
+        packet delay for QoS monitoring per QoS flow per UE.";
       type uint32;
-    }	
+    }
   }    
 
   augment "/me3gpp:ManagedElement/smf3gpp:SMFFunction" {

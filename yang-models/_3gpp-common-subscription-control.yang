@@ -4,10 +4,9 @@ module _3gpp-common-subscription-control {
   prefix "subscr3gpp";
     
   import _3gpp-common-top { prefix top3gpp; }
-  import _3gpp-common-subnetwork { prefix subnet3gpp; }
-  import _3gpp-common-managed-element { prefix me3gpp; }
 
   organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
     
   description "Defines IOCs for subscription and heartbeat control.";
   reference "3GPP TS 28.623
@@ -16,6 +15,7 @@ module _3gpp-common-subscription-control {
       Solution Set (SS) definitions
       3GPP TS 28.623";
   
+  revision 2021-01-16 { reference "CR-0120"; }  
   revision 2020-08-26 { reference "CR-0106"; }
   revision 2019-11-29 { reference "S5-197648 S5-197647 S5-197829 S5-197828"; }
 
@@ -90,11 +90,11 @@ module _3gpp-common-subscription-control {
   }
   
   grouping HeartbeatControlGrp {
-    description "Attributes of HeartbeatControl. Note the triggerHeartbeatNtf attribute
-     has no mapping in the present release.";
+   description "Attributes of HeartbeatControl. Note the triggerHeartbeatNtf
+     attribute has no mapping in the present release.";
     
     leaf heartbeatNtfPeriod {
-      type uint32 ;
+      type uint32;
       mandatory true;
       units seconds;
       description "Specifies the periodicity of heartbeat notification emission. 
@@ -103,7 +103,15 @@ module _3gpp-common-subscription-control {
     }
   }
   
-  grouping NtfSubscriptionControlWrapper {
+  grouping SubscriptionControlSubtree {
+    description "Contains notification subscription related classes. 
+      Should be used in all classes (or classes inheriting from) 
+      - SubNetwork
+      - ManagedElement
+      
+      If some YAM wants to augment these classes/list/groupings they must 
+      augment all user classes!";
+
     list NtfSubscriptionControl {
       description "A NtfSubscriptionControl instance represents the 
         notification subscription of a particular notification recipient.
@@ -138,57 +146,57 @@ module _3gpp-common-subscription-control {
         instance.
         Creation and deletion of NtfSubscriptionControl instances by MnS 
         consumers is optional; when not supported, the NtfSubscriptionControl 
-        instances may be created and deleted by the system or be pre-installed.";
+        instances may be created and deleted by the system or be
+        pre-installed.";
         
       key id;
-      uses top3gpp:Top_Grp;      
+      uses top3gpp:Top_Grp;
       container attributes {
         uses NtfSubscriptionControlGrp;
       }
       
       list HeartbeatControl {
-        min-elements 1;
-        max-elements 1;
-        description "MnS consumers (i.e. notification recipients) use heartbeat 
-          notifications to monitor the communication channels between them and 
-          data reporting MnS producers emitting notifications such as 
-          notifyNewAlarm and notifyFileReady. 
+        description "MnS consumers (i.e. notification recipients) use heartbeat
+          notifications to monitor the communication channels between them and
+          data reporting MnS producers emitting notifications such as
+          notifyNewAlarm and notifyFileReady.
 
-          A HeartbeatControl instance allows controlling the emission of 
-          heartbeat notifications by MnS producers. The recipients of heartbeat 
-          notifications are specified by the notificationRecipientAddress 
-          attribute of the NtfSubscriptionControl instance containing the 
+          A HeartbeatControl instance allows controlling the emission of
+          heartbeat notifications by MnS producers. The recipients of heartbeat
+          notifications are specified by the notificationRecipientAddress
+          attribute of the NtfSubscriptionControl instance containing the
           HeartbeatControl instance.
 
-          
-          Note that the MnS consumer managing the HeartbeatControl instance 
-          and the MnS consumer receiving the heartbeat notifications may not be 
+          Note that the MnS consumer managing the HeartbeatControl instance
+          and the MnS consumer receiving the heartbeat notifications may not be
           the same.
 
-          As a pre-condition for the emission of heartbeat notifications, a 
-          HeartbeatControl instance needs to be created. Creation of an instance 
-          with an initial non-zero value of the heartbeatNtfPeriod attribute 
-          triggers an immediate heartbeat notification emission. Creation of an 
-          instance with an initial zero value of the heartbeatPeriod attribute 
-          does not trigger an emission of a heartbeat notification. Deletion of 
+          As a pre-condition for the emission of heartbeat notifications, a
+          HeartbeatControl instance needs to be created. Creation of an instance
+          with an initial non-zero value of the heartbeatNtfPeriod attribute
+          triggers an immediate heartbeat notification emission. Creation of an
+          instance with an initial zero value of the heartbeatPeriod attribute
+          does not trigger an emission of a heartbeat notification. Deletion of
           an instance does not trigger an emission of a heartbeat notification.
 
-          Once the instance is created, heartbeat notifications are emitted with 
-          a periodicity defined by the value of the heartbeatNtfPeriod attribute. 
-          No heartbeat notifications are emitted if the value is equal to zero. 
-          Setting a zero value to a non zero value, or a non zero value to a 
-          different non zero value, triggers an immediate heartbeat notification, 
-          that is the base for the new heartbeat period. Setting a non zero value 
-          to a zero value stops emitting heartbeats immediately; no final 
-          heartbeat notification is sent.
+          Once the instance is created, heartbeat notifications are emitted with
+          a periodicity defined by the value of the heartbeatNtfPeriod
+          attribute. No heartbeat notifications are emitted if the value is
+          equal to zero. Setting a zero value to a non zero value, or a non zero
+          value to a different non zero value, triggers an immediate heartbeat
+          notification, that is the base for the new heartbeat period. Setting a
+          non zero value to a zero value stops emitting heartbeats immediately;
+          no final heartbeat notification is sent.
 
-          Creation and deletion of HeartbeatControl instances by MnS Consumers is 
-          optional; when not supported, the HeartbeatControl instances may be 
+          Creation and deletion of HeartbeatControl instances by MnS Consumers
+          is optional; when not supported, the HeartbeatControl instances may be
           created and deleted by the system or be pre-installed.
-          
-          Whether and when to emit heartbeat notifications is controlled by 
-          HeartbeatControl. Subscription for heartbeat is not supported via the 
+
+          Whether and when to emit heartbeat notifications is controlled by
+          HeartbeatControl. Subscription for heartbeat is not supported via the
           NtfSubscriptionControl.";
+
+        max-elements 1;
         key id;
         uses top3gpp:Top_Grp;
         
@@ -198,12 +206,4 @@ module _3gpp-common-subscription-control {
       }
     }
   } 
-  
-  augment /subnet3gpp:SubNetwork {
-    uses NtfSubscriptionControlWrapper;
-  }
-
-  augment /me3gpp:ManagedElement {
-    uses NtfSubscriptionControlWrapper;
-  }
 }

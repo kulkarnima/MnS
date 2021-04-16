@@ -7,10 +7,16 @@ module _3gpp-common-yang-types {
   import ietf-yang-types { prefix yang; }
 
   organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
   description "The model defines a YANG mapping of the top level 
     information classes used for management of 5G networks and 
     network slicing.";
   reference "3GPP TS 28.541";
+
+  revision 2020-11-06 {
+    description "Removed incorrect S-NSSAI definitions.";
+    reference "CR-0118";
+  }
 
   revision 2020-03-10 {
     description "Removed faulty when statements.";
@@ -28,7 +34,7 @@ module _3gpp-common-yang-types {
   }
 
   revision 2019-06-23 {
-    description "Initial version.";
+    reference  "Initial version.";
   }
 
   grouping ManagedNFProfile {
@@ -261,27 +267,6 @@ module _3gpp-common-yang-types {
         enum INACTIVE;              
         enum ACTIVE;              
      }
-  }
-
-  typedef SNssai {
-    type union {
-      type Sst;
-	 //optional support
-      type Sd;
-    }
-    description "Single Network Slice Selection Assistance Information.";
-    reference "TS 23.501 clause 5.15.2";
-  }
-  
-  typedef Sst {
-    type uint8;
-  }
-  
-  typedef Sd {
-     type string{
-      length 6;
-       pattern '[a-fA-F0-9]*';
-    }
   }
 
   typedef Nrpci {
