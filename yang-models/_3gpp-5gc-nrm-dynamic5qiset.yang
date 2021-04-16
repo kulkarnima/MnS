@@ -11,20 +11,24 @@ module _3gpp-5gc-nrm-dynamic5qiset {
   
   organization "3gpp SA5";
   contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
-  description "This IOC represents the dynamic 5QIs including their QoS characteristics.";
+  description "This IOC represents the dynamic 5QIs including their QoS 
+    characteristics.";
   reference "3GPP TS 28.541";
 
+  revision 2020-09-30 { reference "CR-0393"; }
   revision 2020-08-06 { reference "CR-0333"; }
 
   grouping Dynamic5QISetGrp {
     description "Represents the Dynamic5QISet IOC.";
     list dynamic5QIs {
       key "fiveQIValue";
+      description "Represents the Dynamic5QISet IOC.";
       uses Conf5QIs3gpp:FiveQICharacteristics;
     }
   }    
 
   grouping Dynamic5QISetSubtree {
+    description "Helps augmenting Dynamic5QISet into multiple places.";
     list Dynamic5QISet {
       description "Specifies the dynamic 5QIs including their QoS 
         characteristics, see 3GPP TS 23.501.";

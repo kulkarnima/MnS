@@ -5,8 +5,8 @@ module _3gpp-5gc-nrm-GtpUPathQoSMonitoringControl {
   prefix gtpUPathQMCtrl3gpp;
   
   import _3gpp-common-managed-element { prefix me3gpp; }
-  import _3gpp-common-yang-types { prefix types3gpp; }
-   import _3gpp-5gc-nrm-smffunction { prefix smf3gpp; }
+  import _3gpp-5g-common-yang-types { prefix types5g3gpp; }
+  import _3gpp-5gc-nrm-smffunction { prefix smf3gpp; }
   import _3gpp-common-top { prefix top3gpp; }
   
   organization "3gpp SA5";
@@ -15,10 +15,15 @@ module _3gpp-5gc-nrm-GtpUPathQoSMonitoringControl {
     of GTP-U path QoS monitoring defined in 3GPP TS 23.501.";
   reference "3GPP TS 28.541";
 
+  revision 2020-11-05 { reference CR-0412 ; }
+  revision 2020-09-30 { reference "CR-0393"; }
   revision 2020-08-03 { reference "CR-0321"; }
   revision 2020-04-10 { reference "S5-202103"; }
 
   grouping GtpUPathDelayThresholdsType {
+    description "Thresholds for reporting the packet delay for GTP-U path QoS 
+      monitoring ";
+    reference "3GPP TS 29.244";
     leaf n3AveragePacketDelayThreshold {
       mandatory true;
       type uint32;
@@ -57,11 +62,12 @@ module _3gpp-5gc-nrm-GtpUPathQoSMonitoringControl {
       }
      }
      
-    leaf-list gtpUPathMonitoredSNSSAIs {
+    list gtpUPathMonitoredSNSSAIs {
+      key "sd sst";
       description "The S-NSSAIs for which the the GTP-U path QoS monitoring is 
         to be performed.";
       reference "3GPP TS 23.003";
-      type types3gpp:SNssai;
+      uses types5g3gpp:SNssai;
      }
      
     leaf-list monitoredDSCPs {
@@ -116,7 +122,7 @@ module _3gpp-5gc-nrm-GtpUPathQoSMonitoringControl {
       description "It specifies the period (in seconds) for reporting the packet 
         delay for GTP-U path QoS monitoring.";
       type uint32;
-    }	
+    }
   }    
 
   augment "/me3gpp:ManagedElement/smf3gpp:SMFFunction" {

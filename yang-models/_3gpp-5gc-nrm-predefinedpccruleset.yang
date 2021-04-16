@@ -12,22 +12,28 @@ module _3gpp-5gc-nrm-predefinedpccruleset {
   
   organization "3gpp SA5";
   contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
-  description "This IOC represents the predefined PCC rules, which are configured to SMF and referenced by PCF.";
+  description "This IOC represents the predefined PCC rules, which are 
+    configured to SMF and referenced by PCF.";
   reference "3GPP TS 28.541";
 
+  revision 2020-09-30 { reference "CR-0393"; }
   revision 2020-08-21 { reference "CR-0330"; }
 
   grouping TscaiInputContainer {
-    description "It specifies the transports TSCAI input parameters for TSC traffic at the ingress interface of the DS-TT/UE for a PCC rule, see TS 29.512 [60]";
+    description "It specifies the transports TSCAI input parameters for TSC 
+      traffic at the ingress interface of the DS-TT/UE for a PCC rule.";
+    reference " 3GPP TS 29.512";
     leaf periodicity {
       type uint32;
-      mandatory false;
-      description "It identifies the time period between the start of two bursts in reference to the TSN GM, see TS 29.571 [61].";
+      description "It identifies the time period between the start of two bursts 
+        in reference to the TSN GM.";
+      reference "3GPP TS 29.571.";
     }
     leaf burstArrivalTime {
       type yang:date-and-time;
-      mandatory false;
-      description "It Indicates the arrival time (in date-time format) of the data burst in reference to the TSN GM, see TS 29.571 [61].";
+      description "It Indicates the arrival time (in date-time format) of the 
+        data burst in reference to the TSN GM.";
+      reference "3GPP,TS 29.571.";
     }
   }
 
@@ -40,21 +46,24 @@ module _3gpp-5gc-nrm-predefinedpccruleset {
     }
     leaf activationTime {
       type yang:date-and-time;
-      mandatory false;
-      description " It indicates the time (in date-time format) when the decision data shall be activated, see TS 29.512 [60] and TS 29.571 [61].";
+      description " It indicates the time (in date-time format) when the decision 
+        data shall be activated.";
+      reference "3GPP29.512 and TS 29.571.";
     }
     leaf deactivationTime {
       type yang:date-and-time;
-      mandatory false;
-      description "It indicates the time (in date-time format) when the decision data shall be deactivated, see TS 29.512 [60] and TS 29.571 [81].";
+      description "It indicates the time (in date-time format) when the decision 
+        data shall be deactivated.";
+      reference "3GPPTS 29.512 and TS 29.571.";
     }
     leaf accessType {
       type enumeration {
         enum 3GPP_ACCESS;
         enum NON_3GPP_ACCESS;
       }
-      mandatory false;
-      description "It provides the condition of access type of the UE when the session AMBR shall be enforced, see TS 29.512 [60].";
+      description "It provides the condition of access type of the UE when the 
+        session AMBR shall be enforced.";
+      reference "3GPPTS 29.512.";
     }
     leaf ratType {
       type enumeration {
@@ -74,13 +83,14 @@ module _3gpp-5gc-nrm-predefinedpccruleset {
         enum UTRA;
         enum GERA;
       }
-      mandatory false;
-      description "It provides the condition of RAT type of the UE when the session AMBR shall be enforced, see TS 29.512 [60] and TS 29.571 [61].";
+      description "It provides the condition of RAT type of the UE when the 
+        session AMBR shall be enforced.";
+      reference "3GPPTS 29.512 and TS 29.571.";
     }
   }
 
   grouping SteeringMode {
-    description "It specifies the traffic distribution rule, see TS 29.512 [60].";
+    description "It specifies the traffic distribution rule, see TS 29.512.";
     leaf steerModeValue {
       type enumeration {
         enum ACTIVE_STANDBY;
@@ -89,52 +99,54 @@ module _3gpp-5gc-nrm-predefinedpccruleset {
         enum PRIORITY_BASED;
       }
       mandatory true;
-      description "It indicates the value of the steering mode, see TS 29.512 [60].";
+      description "It indicates the value of the steering mode, see TS 29.512.";
     }
     leaf active {
       type enumeration {
         enum 3GPP_ACCESS;
         enum NON_3GPP_ACCESS;
       }
-      mandatory false;
-      description "It indicates the active access, see TS 29.571 [61].";
+      description "It indicates the active access, see TS 29.571.";
     }
     leaf standby {
       type enumeration {
         enum 3GPP_ACCESS;
         enum NON_3GPP_ACCESS;
       }
-      mandatory false;
-      description "It indicates the Standby access, see TS 29.571 [61].";
+      description "It indicates the Standby access, see TS 29.571.";
     }
     leaf threeGLoad {
       type uint8 {
         range 0..100;
       }
-      mandatory false;
-      description "It indicates the traffic load to steer to the 3GPP Access expressed in one percent.";
+      description "It indicates the traffic load to steer to the 3GPP Access 
+        expressed in one percent.";
     }
     leaf prioAcc {
       type enumeration {
         enum 3GPP_ACCESS;
         enum NON_3GPP_ACCESS;
       }
-      mandatory false;
-      description "It indicates the high priority access, see TS 29.571 [61].";
+      description "It indicates the high priority access.";
+        reference "3GPPTS 29.571";
     }
   }
 
   grouping UpPathChgEvent {
-    description "It specifies the information about the AF subscriptions of the UP path change, see TS 29.512 [60]";
+    description "It specifies the information about the AF subscriptions of the 
+      UP path change.";
+    reference "3GPPTS 29.512";
     leaf notificationUri {
       type string;
       mandatory true;
-      description "It provides notification address (Uri) of AF receiving the event notification.";
+      description "It provides notification address (Uri) of AF receiving the 
+        event notification.";
     }
     leaf notifCorreId {
       type string;
       mandatory true;
-      description "It is used to set the value of Notification Correlation ID in the notification sent by the SMF, see TS 29.512 [60].";
+      description "It is used to set the value of Notification Correlation ID in 
+        the notification sent by the SMF, see TS 29.512";
     }
     leaf dnaiChgType {
       type enumeration {
@@ -143,13 +155,13 @@ module _3gpp-5gc-nrm-predefinedpccruleset {
         enum LATE;
       }
       mandatory true;
-      description "It indicates the type of DNAI change, see TS 29.512 [60].";
+      description "It indicates the type of DNAI change, see TS 29.512";
     }
     leaf afAckInd {
       type boolean;
       default false;
-      mandatory false;
-      description "It identifies whether the AF acknowledgement of UP path event notification is expected.";
+      description "It identifies whether the AF acknowledgement of UP path 
+      event notification is expected.";
     }
   }
 
@@ -157,27 +169,30 @@ module _3gpp-5gc-nrm-predefinedpccruleset {
     description "It specifies the traffic routing information.";
     leaf ipv4Addr {
       type string;
-      mandatory false;
-      description "It defines the Ipv4 address of the tunnel end point in the data network, formatted in the dotted decimal notation.";
+      description "It defines the Ipv4 address of the tunnel end point in the 
+        data network, formatted in the dotted decimal notation.";
     }
     leaf ipv6Addr {
       type string;
-      mandatory false;
-      description "It defines the Ipv6 address of the tunnel end point in the data network.";
+      description "It defines the Ipv6 address of the tunnel end point in the 
+        data network.";
     }
     leaf portNumber {
       type uint32;
       mandatory true;
-      description " It defines the UDP port number of the tunnel end point in the data network, see TS 29.571 [61].";
+      description " It defines the UDP port number of the tunnel end point in 
+        the data network, see TS 29.571";
     }
   }
 
   grouping RouteToLocation {
-    description "It specifies a list of location which the traffic shall be routed to for the AF request.";
+    description "It specifies a list of location which the traffic shall be 
+      routed to for the AF request.";
     leaf dnai {
       type string;
       mandatory true;
-      description "It represents the DNAI (Data network access identifier), see 3GPP TS 23.501 [2].";
+      description "It represents the DNAI (Data network access identifier).";
+      reference "3GPP 3GPP TS 23.501";
     }
     container routeInfo{
       description "It provides the traffic routing information.";
@@ -185,13 +200,13 @@ module _3gpp-5gc-nrm-predefinedpccruleset {
     }
     leaf routeProfId {
       type string;
-      mandatory false;
       description "It identifies the routing profile.";
     }
   }
 
   grouping RedirectInformaton {
-    description "It specifies the redirect information for traffic control in the PCC rule.";
+    description "It specifies the redirect information for traffic control in 
+      the PCC rule.";
     leaf redirectEnabled {
       type boolean;
       mandatory true;
@@ -205,7 +220,8 @@ module _3gpp-5gc-nrm-predefinedpccruleset {
         enum SIP_URI;
       }
       mandatory true;
-      description "It indicates the type of redirect address, see TS 29.512 [60].";
+      description "It indicates the type of redirect address.";
+      reference "3GPPTS 29.512";
     }
     leaf redirectServerAddress {
       type string;
@@ -215,11 +231,13 @@ module _3gpp-5gc-nrm-predefinedpccruleset {
   }
 
   grouping TrafficControlDataInformation {
-    description "It specifies the traffic control data for a service flow of a PCC rule.";
+    description "It specifies the traffic control data for a service 
+      flow of a PCC rule.";
     leaf tcId {
       type string;
       mandatory true;
-      description "It univocally identifies the traffic control policy data within a PDU session.";
+      description "It univocally identifies the traffic control policy data 
+        within a PDU session.";
     }
     leaf flowStatus {
       type enumeration {
@@ -230,40 +248,49 @@ module _3gpp-5gc-nrm-predefinedpccruleset {
         enum REMOVED;
       }
       mandatory true;
-      description "It represents whether the service data flow(s) are enabled or disabled.";
+      description "It represents whether the service data flow(s) are enabled 
+        or disabled.";
     }
     container redirectInfo {
-      description "It contains the redirect information indicating whether the detected application traffic should be redirected to another controlled address.";
+      description "It contains the redirect information indicating whether the 
+        detected application traffic should be redirected to another controlled
+        address.";
       uses RedirectInformaton;
     }
     container addRedirectInfo {
-      description "It contains the additional redirect information indicating whether the detected application traffic should be redirected to another controlled address.";
+      description "It contains the additional redirect information indicating 
+        whether the detected application traffic should be redirected to another 
+        controlled address.";
       list redirectInfo {
-        description "The list of redirect information indicating whether the detected application traffic should be redirected to another controlled address.";
+        description "The list of redirect information indicating whether the 
+          detected application traffic should be redirected to another 
+          controlled address.";
         key "redirectServerAddress";
         uses RedirectInformaton;
       }
     }
     leaf muteNotif {
       type boolean;
-      mandatory false;
       default false;
-      description "It indicates whether applicat'on's start or stop notification is to be muted.";
+      description "It indicates whether applicat'on's start or stop notification 
+        is to be muted.";
     }
     leaf trafficSteeringPolIdDl {
       type string;
-      mandatory false;
-      description "It references to a pre-configured traffic steering policy for downlink traffic at the SMF, see TS 29.512 [60].";
+      description "It references to a pre-configured traffic steering policy for downlink traffic at the SMF, see TS 29.512";
     }
     leaf trafficSteeringPolIdUl {
       type string;
       mandatory false;
-      description "It references to a pre-configured traffic steering policy for uplink traffic at the SMF, see TS 29.512 [60].";
+      description "It references to a pre-configured traffic steering policy for 
+        uplink traffic at the SMF, see TS 29.512";
     }
     container routeToLocs {
-      description "It provides a list of location which the traffic shall be routed to for the AF request.";
+      description "It provides a list of location which the traffic shall be 
+       routed to for the AF request.";
       list routeToLoc {
-        description "The list of location which the traffic shall be routed to for the AF request.";
+        description "The list of location which the traffic shall be routed to 
+          for the AF request.";
         key "dnai";
         uses RouteToLocation;
       }
@@ -274,11 +301,12 @@ module _3gpp-5gc-nrm-predefinedpccruleset {
         enum MPTCP;
         enum ATSSS_LL;
       }
-      mandatory false;
-      description "It indicates the applicable traffic steering functionality, see TS 29.512 [60].";
+      description "It indicates the applicable traffic steering functionality.";
+      reference "3GPPTS 29.512";
     }
     container steerModeDl {
-      description "It provides the traffic distribution rule across 3GPP and Non-3GPP accesses to apply for downlink traffic.";
+      description "It provides the traffic distribution rule across 3GPP and 
+        Non-3GPP accesses to apply for downlink traffic.";
       uses SteeringMode;
     }
     container steerModeUl {
@@ -290,7 +318,6 @@ module _3gpp-5gc-nrm-predefinedpccruleset {
         enum ALLOWED;
         enum NOT_ALLOWED;
       }
-      mandatory false;
       description "It indicates whether the service data flow, corresponding to the service data flow template, is allowed or not allowed.";
     }
   }
@@ -338,67 +365,56 @@ module _3gpp-5gc-nrm-predefinedpccruleset {
     }
     leaf maxbrUl {
       type string;
-      mandatory false;
       description "It represents the maximum uplink bandwidth.";
     }
     leaf maxbrDl {
       type string;
-      mandatory false;
       description "It represents the maximum downlink bandwidth.";
     }
     leaf gbrUl {
       type string;
-      mandatory false;
       description "It represents the guaranteed uplink bandwidth.";
     }
     leaf gbrDl {
       type string;
-      mandatory false;
       description "It represents the guaranteed downlink bandwidth.";
     }
     uses ARP;
     leaf qosNotificationControl {
       type boolean;
       default false;
-      mandatory false;
       description "It indicates whether notifications are requested from 3GPP NG-RAN when the GFBR can no longer (or again) be guaranteed for a QoS Flow during the lifetime of the QoS Flow.";
     }
     leaf reflectiveQos {
       type boolean;
       default false;
-      mandatory false;
       description "Indicates whether the QoS information is reflective for the corresponding non-GBR service data flow";
     }
     leaf sharingKeyDl {
       type string;
-      mandatory false;
       description "It indicates, by containing the same value, what PCC rules may share resource in downlink direction.";
     }
     leaf sharingKeyUl {
       type string;
-      mandatory false;
       description "It indicates, by containing the same value, what PCC rules may share resource in uplink direction.";
     }
     leaf maxPacketLossRateDl {
       type uint16 {
         range 0..1000;
       }
-      mandatory false;
       description "It indicates the downlink maximum rate for lost packets that can be tolerated for the service data flow.";
     }
     leaf maxPacketLossRateUl {
       type uint16 {
         range 0..1000;
       }
-      mandatory false;
       description "It indicates the uplink maximum rate for lost packets that can be tolerated for the service data flow.";
     }
     leaf extMaxDataBurstVol {
       type uint32 {
         range 4096..2000000;
       }
-      mandatory false;
-      description "It denotes the largest amount of data that is required to be transferred within a period of 5G-AN PDB, see TS 29.512 [60].";
+      description "It denotes the largest amount of data that is required to be transferred within a period of 5G-AN PDB, see TS 29.512";
     }
   }
 
@@ -407,16 +423,18 @@ module _3gpp-5gc-nrm-predefinedpccruleset {
     leaf destMacAddr {
       type string;
       mandatory true;
-      description "It specifies the destination MAC address formatted in the hexadecimal notation according to clause 1.1 and clause 2.1 of IETF RFC 7042 [63].";
+      description "It specifies the destination MAC address formatted in the 
+        hexadecimal .";
+      reference "clause 1.1 and clause 2.1 of IETF RFC";
     }
     leaf ethType {
       type string;
       mandatory true;
-      description "A two-octet string that represents the Ethertype, as described in IEEE 802.3 [64] and IETF RFC 7042 [63] in hexadecimal representation.";
+      description "A two-octet string that represents the Ethertype.";
+      reference "IEEE 802.3 and IETF RFC 7042 in hexadecimal representation.";
     }
     leaf fDesc {
       type string;
-      mandatory false;
       description "It contains the flow description for the Uplink or Downlink IP flow. It shall be present when the ethtype is IP.";
     }
     leaf fDir {
@@ -430,20 +448,24 @@ module _3gpp-5gc-nrm-predefinedpccruleset {
     leaf sourceMacAddr {
       type string;
       mandatory true;
-      description "It specifies the source MAC address formatted in the hexadecimal notation according to clause 1.1 and clause 2.1 of IETF RFC 7042 [63].";
+      description "It specifies the source MAC address formatted in the 
+        hexadecimal notation.";
+      reference "clause 1.1 and clause 2.1 of IETF RFC 7042";
     }
     leaf-list vlanTags {
       type string;
-      description "It specifies the Customer-VLAN and/or Service-VLAN tags containing the VID, PCP/DEI fields as defined in IEEE 802.1Q [65] and IETF RFC 7042 [63]. The first/lower instance in the array stands for the Customer-VLAN tag and the second/higher instance in the array stands for the Service-VLAN tag.";
+      description "It specifies the Customer-VLAN and/or Service-VLAN tags 
+        containing the VID, PCP/DEI fields as defined in IEEE 802.1Q and 
+        IETF RFC 7042. The first/lower instance in the array stands for the 
+        Customer-VLAN tag and the second/higher instance in the array stands 
+        for the Service-VLAN tag.";
     }
     leaf srcMacAddrEnd {
       type string;
-      mandatory false;
       description "It specifies the source MAC address end. If this attribute is present, the sourceMacAddr attribute specifies the source MAC address start. E.g. srcMacAddrEnd with value 00-10-A4-23-3E-FE and sourceMacAddr with value 00-10-A4-23-3E-02 means all MAC addresses from 00-10-A4-23-3E-02 up to and including 00-10-A4-23-3E-FE.";
     }
     leaf destMacAddrEnd {
       type string;
-      mandatory false;
       description "It specifies the destination MAC address end. If this attribute is present, the destMacAddr attribute specifies the destination MAC address start.";
     }
   }
@@ -474,11 +496,11 @@ module _3gpp-5gc-nrm-predefinedpccruleset {
     leaf spi {
       type string;
       mandatory true;
-      description "It is the security parameter index of the IPSec packet, see IETF RFC 4301 [66]";
+      description "It is the security parameter index of the IPSec packet.";
+      reference "IETF RFC 4301";
     }
     leaf flowLabel {
       type string;
-      mandatory false;
       description "It specifies the Ipv6 flow label header field.";
     }
     leaf flowDirection {
@@ -494,7 +516,7 @@ module _3gpp-5gc-nrm-predefinedpccruleset {
   }
 
   grouping PccRule {
-    description "It specifies the PCC rule, see TS 29.512 [60].";
+    description "It specifies the PCC rule, see TS 29.512";
     leaf pccRuleId {
       type string;
       mandatory true;
@@ -511,44 +533,42 @@ module _3gpp-5gc-nrm-predefinedpccruleset {
     leaf applicationId {
       type string;
       default false;
-      mandatory false;
-      description "A reference to the application detection filter configured at the UPF.";
+      description "A reference to the application detection filter configured 
+        at the UPF.";
     }
     leaf appDescriptor {
       type string;
-      mandatory false;
       description "It is the ATSSS rule application descriptor.";
     }
     leaf contentVersion {
       type uint8;
-      mandatory false;
       description "Indicates the content version of the PCC rule.";
     }
     leaf precedence {
       type uint8 {
         range 0..255;
       }
-      mandatory false;
-      description "It indicates the order in which this PCC rule is applied relative to other PCC rules within the same PDU session.";
+      description "It indicates the order in which this PCC rule is applied 
+        relative to other PCC rules within the same PDU session.";
     }
     leaf afSigProtocol {
       type enumeration {
         enum NO_INFORMATION;
         enum SIP;
       }
-      mandatory false;
-      description "Indicates the protocol used for signalling between the UE and the AF, the default value is NO_INFORMATION.";
+      description "Indicates the protocol used for signalling between the UE 
+        and the AF, the default value is NO_INFORMATION.";
     }
     leaf isAppRelocatable {
       type boolean;
       default false;
       mandatory false;
-      description "It indicates the application relocation possibility, the default value is NO_INFORMATION.";
+      description "It indicates the application relocation possibility, the 
+        default value is NO_INFORMATION.";
     }
     leaf isUeAddrPreserved {
       type boolean;
       default false;
-      mandatory false;
       description "It Indicates whether UE IP address should be preserved.";
     }
     container qosData {
@@ -560,7 +580,8 @@ module _3gpp-5gc-nrm-predefinedpccruleset {
       }
     }
     container altQosParams {
-      description "It contains the QoS control policy data for the Alternative QoS parameter sets of the service data flow.";
+      description "It contains the QoS control policy data for the Alternative 
+        QoS parameter sets of the service data flow.";
       list qosDataInfo {
         description "The list of QoS control policy data.";
         key "qosId";

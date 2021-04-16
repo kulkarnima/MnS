@@ -98,7 +98,7 @@ module _3gpp-nr-nrm-nrsectorcarrier {
         instance.";
       reference "3GPP TS 23.622";
       mandatory true;
-      type types3gpp:DistinguishedName;       	
+      type types3gpp:DistinguishedName;      	
     }		
   }    
 

@@ -8,7 +8,7 @@ module _3gpp-nr-nrm-nrcellcu {
   import _3gpp-common-managed-element { prefix me3gpp; }
   import _3gpp-nr-nrm-gnbcucpfunction { prefix gnbcucp3gpp; }
   import _3gpp-common-top { prefix top3gpp; }
-  import _3gpp-nr-nrm-common { prefix nrcommon3gpp; }
+  import _3gpp-5g-common-yang-types { prefix types5g3gpp; }
 
   organization "3GPP SA5";
   contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
@@ -16,27 +16,32 @@ module _3gpp-nr-nrm-nrcellcu {
     Class (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2021-01-25 { reference CR-0454 ; }
+  revision 2020-11-25 { reference CR-0386 ; }
+  revision 2020-11-05 { reference CR-0412 ; }
+  revision 2020-10-02 { reference CR-0384 ; }
   revision 2020-05-08 { reference S5-203316 ; }
   revision 2020-02-14 { reference S5-20XXXX ; }
   revision 2019-10-28 { reference S5-193518 ; }
-  revision 2019-06-17 {
-    description "Initial revision";
+  revision 2019-06-17 { reference "Initial revision"; }
+
+  feature DPCIConfigurationFunction {
+    description "Class representing Distributed SON or Domain-Centralized SON
+ function of PCI configuration feature";
   }
 
   feature DESManagementFunction {
-    description "Classs representing Distributed SON or Domain-Centralized SON Energy Saving feature";
-  }
-
-  feature DRACHOptimizationFunction {
-    description "Classs representing D-SON function of RACH optimization feature";
+    description "Class representing Distributed SON or Domain-Centralized SON 
+      Energy Saving feature";
   }
 
   feature DMROFunction {
-    description "Classs representing D-SON function of MRO feature";
+    description "Class representing D-SON function of MRO feature";
   }
 
   feature CESManagementFunction {
-    description "Classs representing Cross Domain-Centralized SON Energy Saving feature";
+    description "Class representing Cross Domain-Centralized SON Energy Saving 
+      feature";
   }
 
   grouping NRCellCUGrp {
@@ -44,23 +49,24 @@ module _3gpp-nr-nrm-nrcellcu {
     reference "3GPP TS 28.541";
     uses mf3gpp:ManagedFunctionGrp;
 
-    leaf cellLocalId {        	
+    leaf cellLocalId {
       description "Identifies an NR cell of a gNB. Together with corresponding
         gNB ID it forms the NR Cell Identifier (NCI).";
       mandatory true;
-      type int32 { range "0..16383"; }      	
+      type int32 { range "0..16383"; }
     }
 
     list pLMNInfoList {
-      description "The PLMNInfoList is a list of PLMNInfo data type. It defines which PLMNs
-        that can be served by the NR cell, and which S-NSSAIs that can be supported by the
-        NR cell for corresponding PLMN in case of network slicing feature is supported.";
-      // Note: Whether the attribute pLMNId in the pLMNInfo can be writable depends on the implementation.
-      key "mcc mnc";
+      description "The PLMNInfoList is a list of PLMNInfo data type. It defines 
+        which PLMNs that can be served by the NR cell, and which S-NSSAIs that 
+        can be supported by the NR cell for corresponding PLMN in case of 
+        network slicing feature is supported.";
+      // Note: Whether the attribute pLMNId in the pLMNInfo can be writable 
+      // depends on the implementation.
+      key "mcc mnc sd sst";
       min-elements 1;
-      uses nrcommon3gpp:PLMNInfo;
+      uses types5g3gpp:PLMNInfo;
     }
-		
 
     leaf nRFrequencyRef {
       description "Reference to corresponding NRFrequency instance.";

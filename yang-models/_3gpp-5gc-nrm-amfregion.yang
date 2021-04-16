@@ -7,20 +7,27 @@ module _3gpp-5gc-nrm-amfregion {
   import _3gpp-common-subnetwork { prefix subnet3gpp; }
   import _3gpp-common-top { prefix top3gpp; }
   import _3gpp-common-managed-function { prefix mf3gpp; }
-  
-  description "This IOC represents the AMF Region which consists one or multiple AMF Sets.";
+  import _3gpp-5g-common-yang-types { prefix types5g3gpp; }
 
+  organization "3gpp SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
+  description "This IOC represents the AMF Region which consists one or
+    multiple AMF Sets.";
+
+  revision 2020-11-05 { reference CR-0412 ; }
   revision 2019-10-28 { reference S5-193518 ; }
   revision 2019-06-11 {
-    description "Ericsson refactoring.";
-  }
+ reference "Ericsson refactoring."; }
   
   grouping AMFRegionGrp {
+    description "Represents the AMFRegion IOC";
     uses mf3gpp:ManagedFunctionGrp;
     
     list pLMNIdList {
-      description "List of at most six entries of PLMN Identifiers, but at least one (the primary PLMN Id).
-                   The PLMN Identifier is composed of a Mobile Country Code (MCC) and a Mobile Network Code (MNC).";
+      description "List of at most six entries of PLMN Identifiers, but at 
+        least one (the primary PLMN Id).
+        The PLMN Identifier is composed of a Mobile Country Code (MCC) 
+        and a Mobile Network Code (MNC).";
 
       min-elements 1;
       max-elements 6;
@@ -37,14 +44,15 @@ module _3gpp-5gc-nrm-amfregion {
       type types3gpp:Tac;
     }
     
-    leaf-list sNSSAIList {
+    list sNSSAIList {
       description "List of S-NSSAIs the managed object is capable of supporting.
                    (Single Network Slice Selection Assistance Information)
                    An S-NSSAI has an SST (Slice/Service type) and an optional SD 
                   (Slice Differentiator) field.";
       //conditional support only if the network slicing feature is supported.
       reference "3GPP TS 23.003";
-      type types3gpp:SNssai;
+      key "sd sst";
+      uses types5g3gpp:SNssai;
     }
     
     leaf aMFRegionId {

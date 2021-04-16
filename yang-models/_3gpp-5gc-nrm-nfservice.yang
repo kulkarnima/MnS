@@ -7,18 +7,22 @@ module _3gpp-5gc-nrm-nfservice {
   import _3gpp-common-yang-types { prefix types3gpp; }
   import ietf-yang-types { prefix yang; }
   import ietf-inet-types { prefix inet; }
+  import _3gpp-5g-common-yang-types { prefix types5g3gpp; }
   
   organization "3gpp SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
   description "NF service class.";
   reference "3GPP TS 29.510";
   
-  revision 2019-06-17 {
-    description "initial revision";
-  }
+  revision 2021-01-25 { reference CR-0454 ; }
+  revision 2020-11-05 { reference CR-0412 ; }
+  revision 2019-06-17 { reference "initial revision"; }
   
   grouping NFServiceGrp {
+    description "Represents the NFService IOC";
     leaf serviceInstanceID {
-      description "Unique ID of the service instance within a given NF Instance.";
+      description 
+        "Unique ID of the service instance within a given NF Instance.";
       mandatory true;
       type string;
     }
@@ -30,7 +34,8 @@ module _3gpp-5gc-nrm-nfservice {
     }
     
     list versions { //check in review if key is ok (unique)
-      description "API versions supported by the NF Service and if available, the corresponding retirement date of the NF Service.";
+      description "API versions supported by the NF Service and if available, 
+        the corresponding retirement date of the NF Service.";
       min-elements 1;
       key "apiVersionInUri apiFullVersion";
       uses NFServiceVersion;
@@ -55,15 +60,16 @@ module _3gpp-5gc-nrm-nfservice {
     }
     
     leaf interPlmnFqdn {
-      description "If the NF service needs to be discoverable by other NFs in a different PLMN,
-                   then an FQDN that is used for inter PLMN routing.";
+      description "If the NF service needs to be discoverable by other NFs in a 
+        different PLMN, then an FQDN that is used for inter PLMN routing.";
       //optional support
       type inet:domain-name;
     }
     
     list ipEndPoints {
-      description "IP address(es) and port information of the Network Function (including IPv4 and/or IPv6 address)
-                   where the service is listening for incoming service requests.";
+      description "IP address(es) and port information of the Network Function 
+        (including IPv4 and/or IPv6 address)where the service is listening 
+        for incoming service requests.";
       //optional support
       
       key idx;
@@ -75,7 +81,8 @@ module _3gpp-5gc-nrm-nfservice {
     }
     
     leaf apiPrefix {
-      description "Optional path segment(s) used to construct the {apiRoot} variable of the different API URIs.";
+      description "Optional path segment(s) used to construct the {apiRoot} 
+        variable of the different API URIs.";
       //optional support
       type string;
     }
@@ -90,7 +97,8 @@ module _3gpp-5gc-nrm-nfservice {
     
     list allowedPlmns {
       description "PLMNs allowed to access the service instance.
-                   The absence of this attribute indicates that any PLMN is allowed to access the service instance.";
+        The absence of this attribute indicates that any PLMN is allowed to 
+        access the service instance.";
       
       min-elements 1;
       //optional support
@@ -100,7 +108,8 @@ module _3gpp-5gc-nrm-nfservice {
     
     leaf-list allowedNfTypes {
       description "Type of the NFs allowed to access the service instance.
-                   The absence of this attribute indicates that any NF type is allowed to access the service instance.";
+        The absence of this attribute indicates that any NF type is allowed 
+        to access the service instance.";
       
       min-elements 1;
       //optional support
@@ -114,29 +123,34 @@ module _3gpp-5gc-nrm-nfservice {
       type string;
     }
     
-    leaf-list allowedNssais {
+    list allowedNssais {
       description "S-NSSAI of the allowed slices to access the service instance.
-                   The absence of this attribute indicates that any slice is allowed to access the service instance.";
+        The absence of this attribute indicates that any slice is allowed to 
+        access the service instance.";
       min-elements 1;
       //optional support
-      type types3gpp:SNssai;
+      key "sd sst";
+      uses types5g3gpp:SNssai;
     }
     
     leaf priority {
-      description "Priority (relative to other services of the same type) in the range of 0-65535,
-                   to be used for NF Service selection; lower values indicate a higher priority.";
+      description "Priority (relative to other services of the same type) 
+        in the range of 0-65535, to be used for NF Service selection; lower 
+        values indicate a higher priority.";
       //optional support
       type uint16;
     }
     
     leaf capacity {
-      description "Static capacity information in the range of 0-65535, expressed as a weight relative to other services of the same type.";
+      description "Static capacity information in the range of 0-65535, 
+        expressed as a weight relative to other services of the same type.";
       //optional support
       type uint16;
     }
     
     leaf load {
-      description "Dynamic load information, ranged from 0 to 100, indicates the current load percentage of the NF Service.";
+      description "Dynamic load information, ranged from 0 to 100, indicates 
+        the current load percentage of the NF Service.";
       //optional support
       type types3gpp:Load;
     }
@@ -272,13 +286,15 @@ module _3gpp-5gc-nrm-nfservice {
   
   grouping ChfServiceInfo {
     leaf primaryChfServiceInstance {
-      description "Shall be present if the CHF service instance serves as a secondary CHF instance of another primary CHF service instance.";
+      description "Shall be present if the CHF service instance serves as a 
+        secondary CHF instance of another primary CHF service instance.";
       //conditional to support
       type string;
     }
     
     leaf secondaryChfServiceInstance {
-      description "Shall be present if the CHF service instance serves as a primary CHF instance of another secondary CHF service instance.";
+      description "Shall be present if the CHF service instance serves as a 
+        primary CHF instance of another secondary CHF service instance.";
       //conditional to support
       type string;
     }

@@ -6,6 +6,7 @@ module _3gpp-common-subnetwork {
   import _3gpp-common-yang-types { prefix types3gpp; }
   import _3gpp-common-top { prefix top3gpp; }
   import _3gpp-common-measurements { prefix meas3gpp; }
+  import _3gpp-common-subscription-control { prefix subscr3gpp; }
   import _3gpp-common-fm { prefix fm3gpp; }
   import _3gpp-common-trace { prefix trace3gpp; }
   import ietf-yang-schema-mount { prefix yangmnt; }
@@ -27,6 +28,7 @@ module _3gpp-common-subnetwork {
       3GPP TS 28.620 
       Umbrella Information Model (UIM)";
   
+  revision 2021-01-16 { reference "CR-0120"; }  
   revision 2020-08-06 { reference "CR-0102"; }  
   revision 2020-06-08 { reference "CR-0092"; }  
   revision 2020-05-08 {
@@ -44,21 +46,24 @@ module _3gpp-common-subnetwork {
   }
 
   revision 2019-06-17 {
-    description "Initial revision";
+    reference "Initial revision";
   }
 
   feature ExternalsUnderSubNetwork {
-
     description "Classes representing external entities like EUtranFrequency, 
       ExternalGNBCUCPFunction, ExternalENBFunction 
       are contained under a Subnetwork list/class.";
   }
   
   feature MeasurementsUnderSubNetwork {
-    description "The MeasurementSubtree shall be contained under SubNetwork
-      indicating the support of Measurements and/or KPIs";
+    description "The MeasurementSubtree shall be contained under SubNetwork";
   }
   
+  feature SubscriptionControlUnderSubNetwork {
+    description "The SubscriptionControlSubtree shall be contained under
+      SubNetwork";
+  }
+
   feature FmUnderSubNetwork {
     description "The FmSubtree shall be contained under SubNetwork";
   }
@@ -68,27 +73,36 @@ module _3gpp-common-subnetwork {
   }
   
   feature DESManagementFunction {
-    description "Classs representing Distributed SON or Domain-Centralized SON Energy Saving feature. The DESManagementFunction shall be contained under subnetwork.";
+    description "Class representing Distributed SON or Domain-Centralized SON
+      Energy Saving feature. The DESManagementFunction shall be contained under
+      SubNetwork.";
   }
  
   feature DMROFunction {
-    description "Classs representing D-SON function of MRO feature. The DMROFunction shall be contained under subnetwork.";
+    description "Class representing D-SON function of MRO feature. The
+      DMROFunction shall be contained under SubNetwork.";
   }
   
   feature DRACHOptimizationFunction {
-    description "Classs representing D-SON function of RACH optimization feature. The DRACHOptimizationFunction shall be contained under subnetwork.";
+    description "Class representing D-SON function of RACH optimization feature.
+      The DRACHOptimizationFunction shall be contained under SubNetwork.";
   }
   
   feature DPCIConfigurationFunction {
-    description "Classs representing Distributed SON or Domain-Centralized SON function of PCI configuration feature. The DPCIConfigurationFunction shall be contained under subnetwork.";
+    description "Class representing Distributed SON or Domain-Centralized SON
+      function of PCI configuration feature. The DPCIConfigurationFunction shall
+      be contained under SubNetwork.";
   }
   
   feature CPCIConfigurationFunction {
-    description "Classs representing Cross Domain-Centralized SON function of PCI configuration feature. The CPCIConfigurationFunction shall be contained under subnetwork.";
+    description "Class representing Cross Domain-Centralized SON function of PCI
+      configuration feature. The CPCIConfigurationFunction shall be contained
+      under SubNetwork.";
   }
   
   feature CESManagementFunction {
-    description "Classs representing Cross Domain-Centralized SON Energy Saving feature. The CESManagementFunction shall be contained under subnetwork.";
+    description "Class representing Cross Domain-Centralized SON Energy Saving
+      feature. The CESManagementFunction shall be contained under SubNetwork.";
   }
 
   grouping Domain_Grp {
@@ -175,15 +189,19 @@ module _3gpp-common-subnetwork {
     }
         
     uses meas3gpp:MeasurementSubtree {
-      if-feature MeasurementsUnderSubNetwork ;
+      if-feature MeasurementsUnderSubNetwork;
+    }
+
+    uses subscr3gpp:SubscriptionControlSubtree {
+      if-feature SubscriptionControlUnderSubNetwork;
     }
 
     uses fm3gpp:FmSubtree {
-      if-feature FmUnderSubNetwork ;
+      if-feature FmUnderSubNetwork;
     }
     
     uses trace3gpp:TraceSubtree {
-      if-feature TraceUnderSubNetwork ;
+      if-feature TraceUnderSubNetwork;
     }
 
     yangmnt:mount-point children-of-SubNetwork {
@@ -193,4 +211,4 @@ module _3gpp-common-subnetwork {
     
     // augment external parts here
   }
-}
+} 

@@ -9,14 +9,14 @@ module _3gpp-nr-nrm-bwp {
   import _3gpp-nr-nrm-gnbdufunction { prefix gnbdu3gpp; }
 
   organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
   description "Defines the YANG mapping of the BWP Information Object Class
     (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2020-11-17 { reference CR-0410 ; }
   revision 2019-10-28 { reference S5-193518 ; }
-  revision 2019-06-17 {
-    description "Initial revision";
-  }
+  revision 2019-06-17 { reference "Initial revision"; }
 
   typedef CyclicPrefix {
     type enumeration {
@@ -32,7 +32,6 @@ module _3gpp-nr-nrm-bwp {
       enum SUL;
     }
   }
-  		
   typedef IsInitialBwp {
     type enumeration {
       enum INITIAL;
@@ -63,12 +62,12 @@ module _3gpp-nr-nrm-bwp {
       description "Subcarrier spacing configuration for a BWP.";
       reference "3GPP TS 38.104";
       mandatory true;
-      type uint32 { range "5 | 30 | 60 | 120"; }
+      type uint32 { range "15 | 30 | 60 | 120"; }
       units kHz;
     }
 
     leaf cyclicPrefix {
-      description "Cyclic prefix, which may be normal or extended.";	    
+      description "Cyclic prefix, which may be normal or extended."; 
       reference "3GPP TS 38.211";
       mandatory true;
       type CyclicPrefix;

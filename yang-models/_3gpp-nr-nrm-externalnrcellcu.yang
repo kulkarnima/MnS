@@ -26,12 +26,12 @@ module _3gpp-nr-nrm-externalnrcellcu {
     reference "3GPP TS 28.541";
     uses mf3gpp:ManagedFunctionGrp;
         
-    leaf cellLocalId {        	
+    leaf cellLocalId {       	
       description "Identifies an NR cell of a gNB. Together with corresponding
         gNB ID it forms the NR Cell Identifier (NCI).";
       reference "NCI in 3GPP TS 38.300";
       mandatory true;
-      type int32 {range "0..16383"; }      	
+      type int32 {range "0..16383"; }     	
     }
 
     leaf nRPCI {

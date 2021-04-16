@@ -53,10 +53,10 @@ module _3gpp-nr-nrm-externaleutrancell {
       uses types3gpp:PLMNId;
     }
 
-    leaf cellLocalId {        	
+    leaf cellLocalId {       	
       description "Unambiguously identifies a cell within an eNodeB.";
       reference "NCI defined in 3GPP TS 38.300";
-      type int32 {range "0..255"; }      	
+      type int32 {range "0..255"; }     	
     }
 
     leaf eNBId {

@@ -53,6 +53,7 @@ module _3gpp-common-measurements {
       Integration Reference Point (IRP);
       Information Service (IS)";
 
+  revision 2020-11-06 { reference "CR-0118"; }
   revision 2020-09-04 { reference "CR-000107"; }  
   revision 2020-06-08 { reference "CR-0092"; }  
   revision 2020-05-31 { reference "CR-0084"; }
@@ -224,10 +225,9 @@ module _3gpp-common-measurements {
       description "Indicates whether the PerfMetricJob is working.";
     }    
 
-    leaf perfMetricJobGroupId {
+    leaf jobId {
       type string;
-      description "Identifies members of a PerfMetricJob group. For the 
-        stream based reporting method this reference shall be present.";
+      description "Id for a PerfMetricJob job.";
     }
 
     leaf-list performanceMetrics { 
@@ -257,15 +257,7 @@ module _3gpp-common-measurements {
       units seconds;
       mandatory true;
       description "Granularity period used to produce measurements. The value 
-        must be one of the supported granularity periods for the metric.
-        
-        For measurements of type counter this is the period at which samples 
-        of the internal counter value, that is incremented with every event 
-        occurance, are taken.
-        
-        For measurements of type gauge, this is period, over which the mean 
-        value of the measured variable is calculated. The mean value is 
-        then taken as sample.";
+        must be one of the supported granularity periods for the metric.";
     }
 
     leaf-list objectInstances {
@@ -306,7 +298,7 @@ module _3gpp-common-measurements {
           type uint32 {
             range 1..max;
           }
-          units minutes";
+          units minutes;
           must '(number(.)*"60") mod number(../granularityPeriod) = "0"' {
             error-message 
               "The time-period must be a multiple of the granularityPeriod.";          
@@ -416,10 +408,14 @@ module _3gpp-common-measurements {
         the operational state attribute to disabled. When production is resumed 
         the operational state is set again to enabled.
         
-        The perfMetricJobGroupId is a common reference across all members of a 
-        PerfMetricJob group. A group contains related PerfMetricJob instances.
+        The jobId attribute can be used to associate metrics from multiple
+		PerfMetricJob instances. The jobId can be included when reporting 
+		performance metrics to allow a MnS consumer to associate received
+		metrics for the same purpose.  For example, it is possible to configure
+		the same jobId value for multiple PerfMetricJob instances required to
+		produce the measurements for a specific KPI.
 
-        The attribute performanceMetrics defines the performance metrics to be 
+		The attribute performanceMetrics defines the performance metrics to be 
         produced and the attribute granularityPeriod defines the granularity 
         period to be applied. 
         

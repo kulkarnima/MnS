@@ -191,15 +191,15 @@ module _3gpp-nr-nrm-nrfreqrelation {
       units dB;
     }
 
-    leaf tReselectionNR {        	
+    leaf tReselectionNR {       	
       description "Cell reselection timer for NR.";
       reference "TreselectionRAT for NR in 3GPP TS 38.331";
       mandatory true;
       type int32 { range "0..7"; }
-      units s;      	
+      units s;     	
     }
 
-    leaf tReselectionNRSfHigh {        	
+    leaf tReselectionNRSfHigh {       	
       description "The attribute tReselectionNr (parameter TreselectionNR in
         3GPP TS 38.304) is multiplied with this scaling factor if the UE is
         in high mobility state.";
@@ -210,7 +210,7 @@ module _3gpp-nr-nrm-nrfreqrelation {
       units %;
     }
 
-    leaf tReselectionNRSfMedium {        	
+    leaf tReselectionNRSfMedium {       	
       description "The attribute tReselectionNr (parameter TreselectionNR in
         3GPP TS 38.304) multiplied with this scaling factor if the UE is in
         medium mobility state.";
@@ -221,7 +221,7 @@ module _3gpp-nr-nrm-nrfreqrelation {
       units %;
     }
 
-    leaf nRFrequencyRef {        	
+    leaf nRFrequencyRef {       	
       description "Reference to a corresponding NRFrequency instance.";
       mandatory true;
       type types3gpp:DistinguishedName;

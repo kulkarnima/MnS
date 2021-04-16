@@ -5,8 +5,8 @@ module _3gpp-nr-nrm-dpciconfigurationfunction {
 
   import _3gpp-common-subnetwork { prefix subnet3gpp; }
   import _3gpp-common-top { prefix top3gpp; }
-  import _3gpp-nr-nrm-nrcelldu { prefix nrcelldu3gpp; }
-  import _3gpp-nr-nrm-gnbdufunction { prefix gnbdu3gpp; }
+  import _3gpp-nr-nrm-nrcellcu { prefix nrcellcu3gpp; }
+  import _3gpp-nr-nrm-gnbcucpfunction { prefix gnbcucp3gpp; }
   import _3gpp-common-managed-element { prefix me3gpp; }
 
   organization "3GPP SA5";
@@ -15,6 +15,8 @@ module _3gpp-nr-nrm-dpciconfigurationfunction {
     (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2021-01-25 { reference CR-0454 ; }
+  revision 2020-11-25 { reference CR-0386 ; }
   revision 2020-05-08 { reference S5-203316; }
 
 
@@ -52,8 +54,8 @@ module _3gpp-nr-nrm-dpciconfigurationfunction {
   }
 
 
-  augment "/me3gpp:ManagedElement/gnbdu3gpp:GNBDUFunction/nrcelldu3gpp:NRCellDU" {
-    if-feature nrcelldu3gpp:DPCIConfigurationFunction;
+  augment "/me3gpp:ManagedElement/gnbcucp3gpp:GNBCUCPFunction/nrcellcu3gpp:NRCellCU" {
+    if-feature nrcellcu3gpp:DPCIConfigurationFunction;
     uses DPCIConfigurationFunctionGrp;
     }
   augment "/me3gpp:ManagedElement" {

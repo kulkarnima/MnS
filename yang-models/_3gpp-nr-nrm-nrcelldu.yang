@@ -9,7 +9,7 @@ module _3gpp-nr-nrm-nrcelldu {
   import _3gpp-common-top { prefix top3gpp; }
   import _3gpp-nr-nrm-gnbdufunction { prefix gnbdu3gpp; }
   import _3gpp-nr-nrm-rrmpolicy { prefix nrrrmpolicy3gpp; }
-  import _3gpp-nr-nrm-common { prefix nrcommon3gpp; }
+  import _3gpp-5g-common-yang-types { prefix types5g3gpp; }
 
 
   organization "3GPP SA5";
@@ -18,19 +18,23 @@ module _3gpp-nr-nrm-nrcelldu {
     Class (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2021-01-25 { reference CR-0454 ; }
+  revision 2020-11-25 { reference CR-0386 ; }
+  revision 2020-11-05 { reference CR-0412 ; }
+  revision 2020-10-02 { reference CR-0384 ; }
   revision 2020-05-08 { reference S5-203316 ; }
   revision 2020-02-14 { reference S5-20XXXX ; }
   revision 2019-10-28 { reference S5-193518 ; }
-  revision 2019-09-03 {
-    description "Initial revision";
-  }
+  revision 2019-09-03 { reference "Initial revision"; }
 
-  feature DPCIConfigurationFunction {
-    description "Classs representing Distributed SON or Domain-Centralized SON function of PCI configuration feature";
+  feature DRACHOptimizationFunction {
+    description "Class representing D-SON function of RACH optimization 
+      feature";
   }
   
   feature CPCIConfigurationFunction {
-    description "Classs representing Cross Domain-Centralized SON function of PCI configuration feature";
+    description "Class representing Cross Domain-Centralized SON function of 
+      PCI configuration feature";
   }
 
   grouping NRCellDUGrp {
@@ -74,15 +78,17 @@ module _3gpp-nr-nrm-nrcelldu {
     }
 
     list pLMNInfoList {
-      description "The PLMNInfoList is a list of PLMNInfo data type. It defines which PLMNs that
-        can be served by the NR cell, and which S-NSSAIs that can be supported by the NR cell for
-        corresponding PLMN in case of network slicing feature is supported. The plMNId of the first
-        entry of the list is the PLMNId used to construct the nCGI for the NR cell.";
-      key "mcc mnc";
+      description "The PLMNInfoList is a list of PLMNInfo data type. It 
+        defines which PLMNs that can be served by the NR cell, and which 
+        S-NSSAIs that can be supported by the NR cell for corresponding PLMN 
+        in case of network slicing feature is supported. The plMNId of the 
+        first entry of the list is the PLMNId used to construct the nCGI for 
+        the NR cell.";
+      key "mcc mnc sd sst";
       min-elements 1;
-      uses nrcommon3gpp:PLMNInfo;
+      ordered-by user;
+      uses types5g3gpp:PLMNInfo;
     }
-		
 
     leaf nRPCI {
       description "The Physical Cell Identity (PCI) of the NR cell.";
@@ -136,7 +142,6 @@ module _3gpp-nr-nrm-nrcelldu {
     leaf bSChannelBwSUL {
       description "Base station channel bandwidth for supplementary uplink.";
       reference "3GPP TS 38.104";
-      mandatory false;
       type int32;
       units MHz;
     }
@@ -191,19 +196,17 @@ module _3gpp-nr-nrm-nrcelldu {
     leaf-list nRSectorCarrierRef {
       description "Reference to corresponding NRSectorCarrier instance.";
       min-elements 1;
-      type types3gpp:DistinguishedName;    	       	
+      type types3gpp:DistinguishedName;
     }
 
     leaf-list bWPRef {
       description "Reference to corresponding BWP instance.";
-      min-elements 0;
-      type types3gpp:DistinguishedName;    	       	
+      type types3gpp:DistinguishedName;
     }
 
     leaf-list nRFrequencyRef {
       description "Reference to corresponding NRFrequency instance.";
-      min-elements 0;
-      type types3gpp:DistinguishedName;    	       	
+      type types3gpp:DistinguishedName;
     }
   }
 
