@@ -180,7 +180,7 @@ components:
             enum:
              - FILE_BASED_LOC_SET_BY_PRODUCER
              - FILE_BASED_LOC_SET_BY_CONSUMER
-             - STREAM_BASED	
+             - STREAM_BASED 
         monitorGranularityPeriods:
           type: array
           items:
@@ -634,7 +634,7 @@ components:
         - FILE-BASED
         - STREAMING
 
-	tjTraceTarget-Type:
+    tjTraceTarget-Type:
       type: object
       description: Trace target conveying both the type and value of the target ID. For additional details see 3GPP TS 32.422
       properties:
@@ -1212,7 +1212,7 @@ components:
           $ref: '#/components/schemas/tjMDTCollectionPeriodRrmLte-Type'
         tjMDTCollectionPeriodRrmUmts:
           $ref: '#/components/schemas/tjMDTCollectionPeriodRrmUmts-Type'
-		tjMDTCollectionPeriodRrmNR:
+        tjMDTCollectionPeriodRrmNR:
           $ref: '#/components/schemas/tjMDTCollectionPeriodRrmNR-Type'
         tjMDTEventListForTriggeredMeasurement:
           $ref: '#/components/schemas/tjMDTEventListForTriggeredMeasurement-Type'

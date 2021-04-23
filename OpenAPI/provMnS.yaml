@@ -167,7 +167,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'comDefs.yaml#/components/schemas/Error-Response'
+                        $ref: 'comDefs.yaml#/components/schemas/ErrorResponse'
     get:
       summary: Reads one or multiple resources
       description: >-
@@ -296,7 +296,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'comDefsy.yaml#/components/schemas/ErrorResponse'
+                $ref: 'comDefs.yaml#/components/schemas/ErrorResponse'
     delete:
       summary: Deletes one or multiple resources
       description: >-
@@ -363,7 +363,7 @@ components:
             $ref: 'comDefs.yaml#/components/schemas/NotificationId'
       required:
         - source
-        - notificatioIds
+        - notificationIds
     CmNotificationTypes:
       type: string
       enum:
@@ -486,7 +486,7 @@ components:
             attributeListValueChanges:
               $ref: 'comDefs.yaml#/components/schemas/AttributeValueChangeSet'
           required:
-            - attributeValueChange
+            - attributeListValueChanges
     NotifyMoiChanges:
       allOf:
         - $ref: 'comDefs.yaml#/components/schemas/NotificationHeader'

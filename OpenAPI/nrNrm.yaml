@@ -55,7 +55,7 @@ components:
       type: object
       properties:
         mcc:
-          $ref: 'genericNrm.yaml#/components/schemas/Mcc'
+          $ref: 'comDefs.yaml#/components/schemas/Mcc'
         mnc:
           $ref: '#/components/schemas/Mnc'
     PlmnIdList:
@@ -711,9 +711,9 @@ components:
                     plmnInfoList:
                       $ref: '#/components/schemas/PlmnInfoList'
                     configurable5QISetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     dynamic5QISetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -764,9 +764,9 @@ components:
                     tceMappingInfoList:
                       $ref: '#/components/schemas/TceMappingInfoList'
                     configurable5QISetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     dynamic5QISetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -806,7 +806,7 @@ components:
                     plmnInfoList:
                       $ref: '#/components/schemas/PlmnInfoList'
                     nRFrequencyRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -840,9 +840,9 @@ components:
                 - type: object
                   properties:
                     administrativeState:
-                      $ref: 'genericNrm.yaml#/components/schemas/AdministrativeState'
+                      $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
                     operationalState:
-                      $ref: 'genericNrm.yaml#/components/schemas/OperationalState'
+                      $ref: 'comDefs.yaml#/components/schemas/OperationalState'
                     cellLocalId:
                       type: integer
                     cellState:
@@ -882,17 +882,17 @@ components:
                     nrSectorCarrierRef:
                       type: array
                       items:
-                        $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                        $ref: 'comDefs.yaml#/components/schemas/Dn'
                     bwpRef:
                       type: array
                       items:
-                        $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                        $ref: 'comDefs.yaml#/components/schemas/Dn'
                     nRFrequencyRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     victimSetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     aggressorSetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -961,7 +961,7 @@ components:
                     bSChannelBwUL:
                       type: integer
                     sectorEquipmentFunctionRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -1070,9 +1070,9 @@ components:
                     cellIndividualOffset:
                       $ref: '#/components/schemas/CellIndividualOffset'
                     adjacentNRCellRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     nRFrequencyRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     isRemoveAllowed:
                       type: boolean
                     isHOAllowed:
@@ -1092,7 +1092,7 @@ components:
                 - type: object
                   properties:
                     adjacentEUtranCellRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
     NRFreqRelation-Single:
       allOf:
@@ -1156,7 +1156,7 @@ components:
                     tReselectionNRSfMedium:
                       $ref: '#/components/schemas/TReselectionNRSf'
                     nRFrequencyRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
     EUtranFreqRelation-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
@@ -1219,7 +1219,7 @@ components:
                     tReselectionNRSfMedium:
                       $ref: '#/components/schemas/TReselectionNRSf'
                     eUTranFrequencyRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
     DANRManagementFunction-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
@@ -1392,7 +1392,7 @@ components:
                 rimRSMonitoringOccasionStartingOffset:
                   type: integer
                 nRCellDURefs:
-                  $ref: 'genericNrm.yaml#/components/schemas/DnList'
+                  $ref: 'comDefs.yaml#/components/schemas/DnList'
 
     ExternalGnbDuFunction-Single:
       allOf:
@@ -1483,7 +1483,7 @@ components:
                     plmnIdList:
                       $ref: '#/components/schemas/PlmnIdList'
                     nRFrequencyRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
     ExternalENBFunction-Single:
       allOf:
@@ -1513,7 +1513,7 @@ components:
                 - type: object
                   properties:
                     EUtranFrequencyRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
     EP_XnC-Single:
@@ -1629,7 +1629,7 @@ components:
                     remoteAddress:
                       $ref: '#/components/schemas/RemoteAddress'
                     epTransportRefs:
-                      $ref: 'genericNrm.yaml#/components/schemas/DnList'
+                      $ref: 'comDefs.yaml#/components/schemas/DnList'
 
     EP_X2U-Single:
       allOf:
@@ -1865,3 +1865,4 @@ components:
         - $ref: '#/components/schemas/EP_NgU-Single'
         - $ref: '#/components/schemas/EP_X2U-Single'
         - $ref: '#/components/schemas/EP_S1U-Single'
+ 

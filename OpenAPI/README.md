@@ -45,14 +45,6 @@ The links below will open the Swagger Editor/UI and auto-load the OpenAPI YAML f
 ([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/PerfMnS.yaml))
 ([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/PerfMnS.yaml))
 
-* Performance Measurement Job Control MnS (28.550)
-([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/PerMeasJobCtlMnS.yaml))
-([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/PerMeasJobCtlMnS.yaml))
-
-* Performance Threshold Monitoring MnS (TS 28.532)
-([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/PerThresMonMnS.yaml))
-([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/PerThresMonMnS.yaml))
-
 * Heartbeat Notifications(TS 28.532)
 ([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/heartbeatNtf.yaml))
 ([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/heartbeatNtf.yaml))

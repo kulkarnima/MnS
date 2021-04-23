@@ -566,8 +566,8 @@ components:
           items:
             $ref: 'comDefs.yaml#/components/schemas/NotificationId'
       required:
-        - source
-        - notificationId
+        - sourceObjectInstance
+        - notificationIds
     CorrelatedNotifications:
       type: array
       items:

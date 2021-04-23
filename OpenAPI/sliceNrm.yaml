@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Slice NRM
-  version: 16.5.0
+  version: 16.8.0
   description: >-
     OAS 3.0.1 specification of the Slice NRM
     @ 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -26,6 +26,11 @@ components:
         - RESTRICTED MOBILITY
         - FULLY MOBILITY
     SharingLevel:
+      type: string
+      enum:
+        - SHARED
+        - NON-SHARED
+    NetworkSliceSharingIndicator:
       type: string
       enum:
         - SHARED
@@ -62,14 +67,7 @@ components:
           type: string
         transferIntervalTarget:
           type: string
-        s      type: array
-      items:
-        type: string
-        enum:
-          - PERFORMANCE
-          - FUNCTION
-          - OPERATION
-urvivalTime:
+        survivalTime:
           type: string
     PerfReqUrllcList:
       type: array
@@ -85,6 +83,14 @@ urvivalTime:
         - CHARACTER
         - SCALABILITY
     Tagging:
+      type: array
+      items:
+        type: string
+        enum:
+          - PERFORMANCE
+          - FUNCTION
+          - OPERATION
+
 
     Exposure:
       type: string
@@ -211,10 +217,8 @@ urvivalTime:
       properties:
           serviceProfileId: 
             type: string
-          snssaiList:
-            $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
-          plmnIdList:
-            $ref: 'nrNrm.yaml#/components/schemas/PlmnIdList'
+          plmnInfoList:
+            $ref: 'nrNrm.yaml#/components/schemas/PlmnInfoList'
           maxNumberofUEs:
             type: number
           latency:
@@ -223,8 +227,8 @@ urvivalTime:
             $ref: '#/components/schemas/MobilityLevel'
           sst:
             $ref: 'nrNrm.yaml#/components/schemas/Sst'
-          resourceSharingLevel:
-            $ref: '#/components/schemas/SharingLevel'
+          networkSliceSharingIndicator:
+            $ref: '#/components/schemas/NetworkSliceSharingIndicator'
           availability:
             type: number
           delayTolerance:
@@ -269,10 +273,8 @@ urvivalTime:
           sliceProfileId:
             type: string
 
-          snssaiList:
-            $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
-          plmnIdList:
-            $ref: 'nrNrm.yaml#/components/schemas/PlmnIdList'
+          plmnInfoList:
+            $ref: 'nrNrm.yaml#/components/schemas/PlmnInfoList'
           perfReq:
             $ref: '#/components/schemas/PerfReq'
           maxNumberofUEs:
@@ -319,6 +321,8 @@ urvivalTime:
               $ref: '#/components/schemas/NetworkSlice-Multiple'
             NetworkSliceSubnet:
               $ref: '#/components/schemas/NetworkSliceSubnet-Multiple'
+            EP_Transport:
+              $ref: '#/components/schemas/EP_Transport-Multiple'
 
     NetworkSlice-Single:
       allOf:
@@ -331,11 +335,11 @@ urvivalTime:
                 - type: object
                   properties:
                     networkSliceSubnetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     operationalState:
-                      $ref: 'genericNrm.yaml#/components/schemas/OperationalState'
+                      $ref: 'comDefs.yaml#/components/schemas/OperationalState'
                     administrativeState:
-                      $ref: 'genericNrm.yaml#/components/schemas/AdministrativeState'
+                      $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
                     serviceProfileList:
                       $ref: '#/components/schemas/ServiceProfileList'
 
@@ -350,20 +354,20 @@ urvivalTime:
                 - type: object
                   properties:
                     managedFunctionRefList:
-                      $ref: 'genericNrm.yaml#/components/schemas/DnList'
+                      $ref: 'comDefs.yaml#/components/schemas/DnList'
                     networkSliceSubnetRefList:
-                      $ref: 'genericNrm.yaml#/components/schemas/DnList'
+                      $ref: 'comDefs.yaml#/components/schemas/DnList'
                     operationalState:
-                      $ref: 'genericNrm.yaml#/components/schemas/OperationalState'
+                      $ref: 'comDefs.yaml#/components/schemas/OperationalState'
                     administrativeState:
-                      $ref: 'genericNrm.yaml#/components/schemas/AdministrativeState'
+                      $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
                     nsInfo:
                       $ref: '#/components/schemas/NsInfo'
                     sliceProfileList:
                       $ref: '#/components/schemas/SliceProfileList'
-            EPTransport:
-             $ref: '#/components/schemas/EP_Transport-Multiple'
-                      
+                    epTransportRefList:
+                      $ref: 'comDefs.yaml#/components/schemas/DnList'
+
     EP_Transport-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
@@ -381,7 +385,7 @@ urvivalTime:
                 qosProfile:
                   type: string 
                 epApplicationRefs:
-                  $ref: 'genericNrm.yaml#/components/schemas/DnList'
+                  $ref: 'comDefs.yaml#/components/schemas/DnList'
                       
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
     SubNetwork-Multiple:
