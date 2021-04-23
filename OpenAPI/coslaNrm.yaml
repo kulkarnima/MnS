@@ -113,8 +113,8 @@ components:
 
     ManagedEntity-Single:
       oneOf:
-        - $ref: 'sliceNrm.yaml#/components/schemas/NetworkSlice'
-        - $ref: 'sliceNrm.yaml#/components/schemas/NetworkSliceSubnet'
+        - $ref: 'sliceNrm.yaml#/components/schemas/NetworkSlice-Single'
+        - $ref: 'sliceNrm.yaml#/components/schemas/NetworkSliceSubnet-Single'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedElement-Attr'
           

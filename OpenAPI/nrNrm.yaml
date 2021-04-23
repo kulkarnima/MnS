@@ -172,7 +172,7 @@ components:
         timeDuration:
           type: integer
 
-    UeAccProbilityDistPerSSB:
+    UeAccProbilityDist:
       type: object
       properties:
         targetProbability:
@@ -180,7 +180,7 @@ components:
         numberofpreamblessent:
           type: integer
 
-    UeAccDelayProbilityDistPerSSB:
+    UeAccDelayProbilityDist:
       type: object
       properties:
         targetProbability:
@@ -421,11 +421,11 @@ components:
         rimRSSubcarrierSpacing:
           type: integer
         rIMRSBandwidth:
-          type: integer
+         type: integer
         nrofGlobalRIMRSFrequencyCandidates:
           type: integer
         rimRSCommonCarrierReferencePoint:
-          type: integer
+         type: integer
         rimRSStartingFrequencyOffsetIdList:
           type: array
           items:
@@ -435,13 +435,13 @@ components:
       type: object
       properties:
         nrofRIMRSSequenceCandidatesofRS1:
-          type: integer
+         type: integer
         rimRSScrambleIdListofRS1:
           type: array
           items:
             type: integer
         nrofRIMRSSequenceCandidatesofRS2:
-          type: integer
+         type: integer
         rimRSScrambleIdListofRS2:
           type: array
           items:
@@ -462,33 +462,33 @@ components:
         dlULSwitchingPeriod1:
           type: string
           enum:
-            - MS0P5
-            - MS0P625
-            - MS1
-            - MS1P25
-            - MS2
-            - MS2P5
-            - MS3
-            - MS4
-            - MS5
-            - MS10
-            - MS20
+           - MS0P5
+           - MS0P625
+           - MS1
+           - MS1P25
+           - MS2
+           - MS2P5
+           - MS3
+           - MS4
+           - MS5
+           - MS10
+           - MS20
         symbolOffsetOfReferencePoint1:
-          type: integer
+           type: integer
         dlULSwitchingPeriod2:
           type: string
           enum:
-            - MS0P5
-            - MS0P625
-            - MS1
-            - MS1P25
-            - MS2
-            - MS2P5
-            - MS3
-            - MS4
-            - MS5
-            - MS10
-            - MS20
+           - MS0P5
+           - MS0P625
+           - MS1
+           - MS1P25
+           - MS2
+           - MS2P5
+           - MS3
+           - MS4
+           - MS5
+           - MS10
+           - MS20
         symbolOffsetOfReferencePoint2:
           type: integer
         totalnrofSetIdofRS1:
@@ -542,7 +542,7 @@ components:
             - ENABLE
             - DISABLE          
         reportInterval:
-          type: integer
+           type: integer
         nrofRIMRSReportInfo:
           type: integer
         maxPropagationDelay:
@@ -566,6 +566,7 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/TceMappingInfo'
+
 
 #-------- Definition of abstract IOCs --------------------------------------------
 
@@ -623,12 +624,12 @@ components:
 
     ManagedElement-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
-              $ref: 'genericNRM.yaml#/components/schemas/ManagedElement-Attr'
-        - $ref: 'genericNRM.yaml#/components/schemas/ManagedElement-ncO'
+              $ref: 'genericNrm.yaml#/components/schemas/ManagedElement-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedElement-ncO'
         - type: object
           properties:
             GnbDuFunction:
@@ -656,12 +657,12 @@ components:
 
     GnbDuFunction-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
                     gnbDuId:
@@ -674,7 +675,7 @@ components:
                       $ref: '#/components/schemas/GnbIdLength'
                     rimRSReportConf:
                       $ref: '#/components/schemas/RimRSReportConf'
-        - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-ncO'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
             RRMPolicyRatio:
@@ -689,14 +690,16 @@ components:
               $ref: '#/components/schemas/EP_F1C-Single'
             EP_F1U:
               $ref: '#/components/schemas/EP_F1U-Multiple'
+            DRACHOptimizationFunction:
+              $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
     GnbCuUpFunction-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
                     gnbId:
@@ -708,10 +711,10 @@ components:
                     plmnInfoList:
                       $ref: '#/components/schemas/PlmnInfoList'
                     configurable5QISetRef:
-                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
                     dynamic5QISetRef:
-                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
-        - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-ncO'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
             RRMPolicyRatio:
@@ -730,12 +733,12 @@ components:
               $ref: '#/components/schemas/EP_S1U-Multiple'
     GnbCuCpFunction-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
                     gnbId:
@@ -754,19 +757,17 @@ components:
                       $ref: '#/components/schemas/GGnbIdList'
                     xnWhiteList:
                       $ref: '#/components/schemas/GGnbIdList'
-                    xnHOBlackList:
-                      $ref: '#/components/schemas/GGnbIdList'
-                    x2HOBlackList:
+                    x2XnHOBlackList:
                       $ref: '#/components/schemas/GEnbIdList'
                     mappingSetIDBackhaulAddress:
                       $ref: '#/components/schemas/MappingSetIDBackhaulAddress'
                     tceMappingInfoList:
                       $ref: '#/components/schemas/TceMappingInfoList'
                     configurable5QISetRef:
-                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
                     dynamic5QISetRef:
-                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
-        - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-ncO'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
             RRMPolicyRatio:
@@ -787,19 +788,17 @@ components:
               $ref: '#/components/schemas/DANRManagementFunction-Single'
             DESManagementFunction:
               $ref: '#/components/schemas/DESManagementFunction-Single'
-            DRACHOptimizationFunction:
-              $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
             DMROFunction:
               $ref: '#/components/schemas/DMROFunction-Single'
 
     NrCellCu-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
                     cellLocalId:
@@ -807,8 +806,8 @@ components:
                     plmnInfoList:
                       $ref: '#/components/schemas/PlmnInfoList'
                     nRFrequencyRef:
-                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
-        - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-ncO'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
             RRMPolicyRatio:
@@ -823,27 +822,27 @@ components:
               $ref: '#/components/schemas/EUtranFreqRelation-Multiple'
             DESManagementFunction:
               $ref: '#/components/schemas/DESManagementFunction-Single'
-            DRACHOptimizationFunction:
-              $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
             DMROFunction:
               $ref: '#/components/schemas/DMROFunction-Single'
             CESManagementFunction:
               $ref: '#/components/schemas/CESManagementFunction-Single'
+            DPCIConfigurationFunction:
+              $ref: '#/components/schemas/DPCIConfigurationFunction-Single'
 
     NrCellDu-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
                     administrativeState:
-                      $ref: 'genericNRM.yaml#/components/schemas/AdministrativeState'
+                      $ref: 'genericNrm.yaml#/components/schemas/AdministrativeState'
                     operationalState:
-                      $ref: 'genericNRM.yaml#/components/schemas/OperationalState'
+                      $ref: 'genericNrm.yaml#/components/schemas/OperationalState'
                     cellLocalId:
                       type: integer
                     cellState:
@@ -883,30 +882,30 @@ components:
                     nrSectorCarrierRef:
                       type: array
                       items:
-                        $ref: 'genericNRM.yaml#/components/schemas/Dn'
+                        $ref: 'genericNrm.yaml#/components/schemas/Dn'
                     bwpRef:
                       type: array
                       items:
-                        $ref: 'genericNRM.yaml#/components/schemas/Dn'
+                        $ref: 'genericNrm.yaml#/components/schemas/Dn'
                     nRFrequencyRef:
-                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
                     victimSetRef:
-                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
                     aggressorSetRef:
-                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
-        - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-ncO'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
             RRMPolicyRatio:
               $ref: '#/components/schemas/RRMPolicyRatio-Multiple'
-            DPCIConfigurationFunction:
-              $ref: '#/components/schemas/DPCIConfigurationFunction-Single'
             CPCIConfigurationFunction:
               $ref: '#/components/schemas/CPCIConfigurationFunction-Single'
+            DRACHOptimizationFunction:
+              $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
 
     NRFrequency-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -924,7 +923,7 @@ components:
                     maximum: 256
     EUtranFrequency-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -941,12 +940,12 @@ components:
 
     NrSectorCarrier-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
                     txDirection:
@@ -962,20 +961,20 @@ components:
                     bSChannelBwUL:
                       type: integer
                     sectorEquipmentFunctionRef:
-                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
-        - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-ncO'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
             CommonBeamformingFunction:
               $ref: '#/components/schemas/CommonBeamformingFunction-Single'
     Bwp-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
                     bwpContext:
@@ -990,10 +989,10 @@ components:
                       type: integer
                     numberOfRBs:
                       type: integer
-        - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-ncO'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
     CommonBeamformingFunction-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -1012,7 +1011,7 @@ components:
               $ref: '#/components/schemas/Beam-Multiple'
     Beam-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -1043,7 +1042,7 @@ components:
                       maximum: 1800
     RRMPolicyRatio-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -1060,7 +1059,7 @@ components:
 
     NRCellRelation-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -1071,9 +1070,9 @@ components:
                     cellIndividualOffset:
                       $ref: '#/components/schemas/CellIndividualOffset'
                     adjacentNRCellRef:
-                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
                     nRFrequencyRef:
-                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
                     isRemoveAllowed:
                       type: boolean
                     isHOAllowed:
@@ -1086,20 +1085,20 @@ components:
                       type: boolean
     EUtranCellRelation-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
                     adjacentEUtranCellRef:
-                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
-        - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-ncO'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
     NRFreqRelation-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -1159,10 +1158,10 @@ components:
                     tReselectionNRSfMedium:
                       $ref: '#/components/schemas/TReselectionNRSf'
                     nRFrequencyRef:
-                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
     EUtranFreqRelation-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -1222,10 +1221,10 @@ components:
                     tReselectionNRSfMedium:
                       $ref: '#/components/schemas/TReselectionNRSf'
                     eUTranFrequencyRef:
-                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
     DANRManagementFunction-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -1238,7 +1237,7 @@ components:
 
     DESManagementFunction-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -1263,17 +1262,17 @@ components:
                     isProbingCapable:
                       type: string
                       enum:
-                        - yes
-                        - no
+                         - yes
+                         - no
                     energySavingState:
                       type: string
                       enum:
-                        - isNotEnergySaving
-                        - isEnergySaving
+                         - isNotEnergySaving
+                         - isEnergySaving
 
     DRACHOptimizationFunction-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -1281,15 +1280,15 @@ components:
                   properties:
                     drachOptimizationControl:
                       type: boolean
-                    ueAccProbilityDistPerSSB:
-                      $ref: "#/components/schemas/UeAccProbilityDistPerSSB"
-                    ueAccDelayProbilityDistPerSSB:
-                      $ref: "#/components/schemas/UeAccDelayProbilityDistPerSSB"
-        - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-ncO'
+                    ueAccProbilityDist:
+                      $ref: "#/components/schemas/UeAccProbilityDist"
+                    ueAccDelayProbilityDist:
+                      $ref: "#/components/schemas/UeAccDelayProbilityDist"
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
     DMROFunction-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes: 
@@ -1306,7 +1305,7 @@ components:
 
     DPCIConfigurationFunction-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -1319,7 +1318,7 @@ components:
 
     CPCIConfigurationFunction-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -1332,7 +1331,7 @@ components:
 
     CESManagementFunction-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -1343,17 +1342,17 @@ components:
                     energySavingControl:
                       type: string
                       enum:
-                        - toBeEnergySaving
-                        - toBeNotEnergySaving
+                         - toBeEnergySaving
+                         - toBeNotEnergySaving
                     energySavingState:
                       type: string
                       enum:
-                        - isNotEnergySaving
-                        - isEnergySaving
+                         - isNotEnergySaving
+                         - isEnergySaving
 
     RimRSGlobal-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -1370,7 +1369,7 @@ components:
 
     RimRSSet-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
@@ -1395,23 +1394,23 @@ components:
                 rimRSMonitoringOccasionStartingOffset:
                   type: integer
                 nRCellDURefs:
-                  $ref: 'genericNRM.yaml#/components/schemas/DnList'
+                  $ref: 'genericNrm.yaml#/components/schemas/DnList'
 
     ExternalGnbDuFunction-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
                     gnbId:
                       $ref: '#/components/schemas/GnbId'
                     gnbIdLength:
                       $ref: '#/components/schemas/GnbIdLength'
-        - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-ncO'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
             EP_F1C:
@@ -1420,19 +1419,19 @@ components:
               $ref: '#/components/schemas/EP_F1U-Multiple'
     ExternalGnbCuUpFunction-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
                     gnbId:
                       $ref: '#/components/schemas/GnbId'
                     gnbIdLength:
                       $ref: '#/components/schemas/GnbIdLength'
-        - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-ncO'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
             EP_E1:
@@ -1443,13 +1442,13 @@ components:
               $ref: '#/components/schemas/EP_XnU-Multiple'
     ExternalGnbCuCpFunction-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
                 - $ref: >-
-                    genericNRM.yaml#/components/schemas/ManagedFunction-Attr
+                    genericNrm.yaml#/components/schemas/ManagedFunction-Attr
                 - type: object
                   properties:
                     gnbId:
@@ -1458,7 +1457,7 @@ components:
                       $ref: '#/components/schemas/GnbIdLength'
                     plmnId:
                       $ref: '#/components/schemas/PlmnId'
-        - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-ncO'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
             ExternalNrCellCu:
@@ -1471,12 +1470,12 @@ components:
               $ref: '#/components/schemas/EP_F1C-Multiple'
     ExternalNrCellCu-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
                     cellLocalId:
@@ -1486,47 +1485,47 @@ components:
                     plmnIdList:
                       $ref: '#/components/schemas/PlmnIdList'
                     nRFrequencyRef:
-                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
-        - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-ncO'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
     ExternalENBFunction-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
                     eNBId:
                       type: integer
-        - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-ncO'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
             ExternalEUTranCell:
               $ref: '#/components/schemas/ExternalEUTranCell-Multiple'
     ExternalEUTranCell-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
                     EUtranFrequencyRef:
-                      $ref: 'genericNRM.yaml#/components/schemas/Dn'
-        - $ref: 'genericNRM.yaml#/components/schemas/ManagedFunction-ncO'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
     EP_XnC-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1535,12 +1534,12 @@ components:
                       $ref: '#/components/schemas/RemoteAddress'
     EP_E1-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1549,12 +1548,12 @@ components:
                       $ref: '#/components/schemas/RemoteAddress'
     EP_F1C-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1563,12 +1562,12 @@ components:
                       $ref: '#/components/schemas/RemoteAddress'
     EP_NgC-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1577,12 +1576,12 @@ components:
                       $ref: '#/components/schemas/RemoteAddress'
     EP_X2C-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1591,12 +1590,12 @@ components:
                       $ref: '#/components/schemas/RemoteAddress'
     EP_XnU-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1605,12 +1604,12 @@ components:
                       $ref: '#/components/schemas/RemoteAddress'
     EP_F1U-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1619,12 +1618,12 @@ components:
                       $ref: '#/components/schemas/RemoteAddress'
     EP_NgU-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1633,14 +1632,15 @@ components:
                       $ref: '#/components/schemas/RemoteAddress'
                     epTransportRefs:
                       $ref: 'genericNrm.yaml#/components/schemas/DnList'
+
     EP_X2U-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1649,12 +1649,12 @@ components:
                       $ref: '#/components/schemas/RemoteAddress'
     EP_S1U-Single:
       allOf:
-        - $ref: 'genericNRM.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNRM.yaml#/components/schemas/EP_RP-Attr'
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
                 - type: object
                   properties:
                     localAddress:
@@ -1846,7 +1846,7 @@ components:
         - $ref: '#/components/schemas/DPCIConfigurationFunction-Single'
         - $ref: '#/components/schemas/CPCIConfigurationFunction-Single'
         - $ref: '#/components/schemas/CESManagementFunction-Single'
-
+     
         - $ref: '#/components/schemas/RimRSGlobal-Single'
         - $ref: '#/components/schemas/RimRSSet-Single'
         

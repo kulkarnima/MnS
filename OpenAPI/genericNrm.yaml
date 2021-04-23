@@ -1331,8 +1331,8 @@ components:
     ManagedFunction-ncO:
       type: object
       properties:
-        MeasurementControl:
-          $ref: '#/components/schemas/MeasurementControl-Multiple'
+        PerfMetricJob:
+          $ref: '#/components/schemas/PerfMetricJob-Multiple'
         ThresholdMonitor:
           $ref: '#/components/schemas/ThresholdMonitor-Multiple'
         ThresholdMonitoringCapability:
@@ -1552,7 +1552,7 @@ components:
     PerfMetricJob-Multiple:
       type: array
       items:
-        $ref: '#/components/schemas/MetricProdJob-Single'
+        $ref: '#/components/schemas/PerfMetricJob-Single'
     ThresholdMonitor-Multiple:
       type: array
       items:
