@@ -13,6 +13,7 @@ module _3gpp-nr-nrm-gnbdufunction {
     Object Class (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2021-04-30 { reference CR-0489 ; }
   revision 2020-10-02 { reference CR-0383 ; }
   revision 2020-03-12 { reference "SP-200233 S5-201547" ; }
   revision 2020-02-14 { reference S5-20XXXX ; }
@@ -34,7 +35,6 @@ feature";
 
     leaf gNBId {
       type int64 { range "0..4294967295"; }
-      config false;
       mandatory true;
       description "Identifies a gNB within a PLMN. The gNB Identifier (gNB ID)
         is part of the NR Cell Identifier (NCI) of the gNB cells.";
