@@ -17,6 +17,7 @@ module _3gpp-nr-nrm-ep {
     Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2021-04-30 { reference CR-0489; }
   revision 2021-03-02 { reference CR-0434; }
   revision 2021-01-16 { reference CR-0447; }
   revision 2020-11-02 { reference CR-0409; }
@@ -111,7 +112,7 @@ module _3gpp-nr-nrm-ep {
 
     list EP_F1C {
       description "Represents the local end point of the control plane
-        interface (F1-C) between the DU and CU or CU-CP.";
+        interface (F1-C) between the gNB-DU and gNB-CU or gNB-CU-CP.";
       reference "3GPP TS 28.541, 3GPP TS 38.470";
       key id;
       uses top3gpp:Top_Grp;
@@ -122,7 +123,7 @@ module _3gpp-nr-nrm-ep {
 
     list EP_NgC {
       description "Represents the local end point of the control plane
-        interface (NG-C) between the gNB and NG-Core entity.";
+        interface (NG-C) between the gNB and AMF.";
       reference "3GPP TS 28.541, 3GPP TS 38.470";
       key id;
       uses top3gpp:Top_Grp;
@@ -173,7 +174,7 @@ module _3gpp-nr-nrm-ep {
 
     list EP_F1U {
       description "Represents the local end point of the user plane
-        interface (F1-U) between the DU and CU or CU-UP.";
+        interface (F1-U) between the gNB-DU and gNB-CU or gNB-CU-UP.";
       reference "3GPP TS 28.541, 3GPP TS 38.470";
       key id;
       uses top3gpp:Top_Grp;
