@@ -26,12 +26,12 @@ module _3gpp-nr-nrm-nrcellcu {
   revision 2019-06-17 { reference "Initial revision"; }
 
   feature DPCIConfigurationFunction {
-    description "Class representing Distributed SON or Domain-Centralized SON
+    description "Class representing Distributed SON 
  function of PCI configuration feature";
   }
 
   feature DESManagementFunction {
-    description "Class representing Distributed SON or Domain-Centralized SON 
+    description "Class representing Distributed SON  
       Energy Saving feature";
   }
 
@@ -40,7 +40,7 @@ module _3gpp-nr-nrm-nrcellcu {
   }
 
   feature CESManagementFunction {
-    description "Class representing Cross Domain-Centralized SON Energy Saving 
+    description "Class representing Centralized SON Energy Saving 
       feature";
   }
 
