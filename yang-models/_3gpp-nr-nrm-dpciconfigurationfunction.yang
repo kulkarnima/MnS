@@ -28,7 +28,7 @@ module _3gpp-nr-nrm-dpciconfigurationfunction {
 
     list nRPciList {
       key NRPci;
-      description "This holds a list of physical cell identities that can be assigned to the NR cells. This attribute shall be supported if D-SON PCI configuration or domain Centralized SON PCI configuration function is supported.";
+      description "This holds a list of physical cell identities that can be assigned to the NR cells. This attribute shall be supported if D-SON PCI configuration function is supported.";
 	  leaf NRPci {type int32;}
       container attributes {
          uses NRPciListGrp;
@@ -37,7 +37,7 @@ module _3gpp-nr-nrm-dpciconfigurationfunction {
 
 
     leaf dPciConfigurationControl {
-        description " This attribute determines whether the Distributed SON or Domain-Centralized SON PCI configuration Function is enabled or disabled.";
+        description " This attribute determines whether the Distributed SON PCI configuration Function is enabled or disabled.";
         type boolean;
     }
 
