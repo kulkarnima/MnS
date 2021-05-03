@@ -28,7 +28,7 @@ module _3gpp-nr-nrm-gnbcucpfunction {
   }
 
   feature DESManagementFunction {
-    description "Classs representing Distributed SON or Domain-Centralized SON Energy Saving feature";
+    description "Classs representing Distributed SON Energy Saving feature";
   }
 
   feature DANRManagementFunction {
