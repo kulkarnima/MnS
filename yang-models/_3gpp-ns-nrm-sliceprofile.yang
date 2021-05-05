@@ -4,7 +4,6 @@ submodule _3gpp-ns-nrm-sliceprofile {
 
   import _3gpp-common-yang-types { prefix types3gpp; }
   import _3gpp-5g-common-yang-types { prefix types5g3gpp; }
-  import _3gpp-ns-nrm-perfreq { prefix perf3gpp; }
 
   organization "3GPP SA5";
   contact 
@@ -60,24 +59,6 @@ submodule _3gpp-ns-nrm-sliceprofile {
       key "mcc mnc";
       ordered-by user;
       uses types3gpp:PLMNId;
-    }
-    
-    //Stage2 issue: The perfReq object does not have any proper definition 
-    //              in 28.541 chapter 6.
-    //Stage2 issue: The text that exists on the perfReq mentions an sST
-    //              element. There is no sST element in SliceProfile which
-    //              references perfReq, nor in perfReq itself. There are
-    //              potentially several in the sNSSAIList. Should we take the
-    //              union of those to control whivh perfReq elements are 
-    //              relevant? For now, making all perfReq elements available
-    //              in all slice profiles.
-    list perfReq {
-      description "The performance requirements for the NSI in terms of the 
-        scenarios defined in the 3GPP TS 22.261, such as experienced data 
-        rate, area traffic capacity (density) information of UE density.";
-      key idx; //this list uses a grouping/choice and has no obvious key
-      leaf idx { type uint32; }
-      uses perf3gpp:PerfReqGrp;
     }
     
     leaf maxNumberofUEs {
