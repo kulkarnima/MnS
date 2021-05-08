@@ -4,7 +4,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
 
   import _3gpp-common-yang-types { prefix types3gpp; }
   import _3gpp-5g-common-yang-types { prefix types5g3gpp; }
-  import _3gpp-ns-nrm-networkslice { prefix ns3gpp; }
+  //import _3gpp-ns-nrm-networkslice { prefix ns3gpp; }
   
   organization "3GPP SA5";
   contact 
@@ -62,7 +62,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
         description "Synthetic index for the element.";
         type uint32;
       }
-      uses ns3gpp:DLThptGrp;
+      uses DLThptGrp;
     }
     list dLThptPerUE {
       description "This attribute defines data rate supported by the
@@ -73,7 +73,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
         description "Synthetic index for the element.";
         type uint32;
       }
-      uses ns3gpp:DLThptGrp;
+      uses DLThptGrp;
     }
     list uLThptPerSliceSubnet {
       description "This attribute defines achievable data rate of the
@@ -225,15 +225,6 @@ submodule _3gpp-ns-nrm-sliceprofile {
       type decimal64 {
         fraction-digits 1;
       }
-    }
-    leaf uESpeed {
-      //Stage2 issue: This is modeled as writable/config true in 28.542, 
-      //              but that does not appear to match the description
-      description "An attribute specifies the maximum speed (in km/hour) 
-        supported by the network slice at which a defined QoS can be 
-        achieved";
-      type uint32;
-      units km/h;
     }
     leaf-list coverageAreaTAList {
       description "A list of TrackingAreas where the NSI can be selected.";
