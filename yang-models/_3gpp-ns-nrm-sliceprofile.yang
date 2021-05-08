@@ -402,6 +402,28 @@ submodule _3gpp-ns-nrm-sliceprofile {
       //optional support
       type types3gpp:ResourceSharingLevel;
     }
+    list CNSliceSubnetProfile {
+      description " This represents the requirements for the top slice associated with the 
+	  network slice. ";
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+	  uses TopSliceSubnetProfileGrp;
+    }
+    list RANSliceSubnetProfile {
+      description " This represents the requirements for the top slice associated with the 
+	  network slice. ";
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+	  uses TopSliceSubnetProfileGrp;
+    }
     list TopSliceSubnetProfile {
       description " This represents the requirements for the top slice associated with the 
 	  network slice. ";
@@ -413,6 +435,5 @@ submodule _3gpp-ns-nrm-sliceprofile {
       }
 	  uses TopSliceSubnetProfileGrp;
     }
-    
   }
 }
