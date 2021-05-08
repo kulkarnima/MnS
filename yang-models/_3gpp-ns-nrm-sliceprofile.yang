@@ -85,7 +85,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
         description "Synthetic index for the element.";
         type uint32;
       }
-      uses ns3gpp:DLThptGrp;
+      uses DLThptGrp;
     }
     list uLThptPerUE {
       description "This attribute defines data rate supported by the
