@@ -85,7 +85,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
         description "Synthetic index for the element.";
         type uint32;
       }
-      uses ns3gpp:ULThptGrp;
+      uses ns3gpp:DLThptGrp;
     }
     list uLThptPerUE {
       description "This attribute defines data rate supported by the
@@ -96,7 +96,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
         description "Synthetic index for the element.";
         type uint32;
       }
-      uses ns3gpp:ULThptGrp;
+      uses ns3gpp:DLThptGrp;
     }
     list maxPktSize {
       config false;
@@ -303,7 +303,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
         //Stage2 issue: Defined differently in 28.541 chapter 6, but XML 
         //              uses DeterminCommAvailability
         config false;
-        type DeterminCommAvailability;
+        type DeterministicCommAvailability;
       }
       leaf periodicityList {
         //Stage2 issue: Not defined in 28.541 chapter 6. XML and YAML 
@@ -420,7 +420,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
         description "Synthetic index for the element.";
         type uint32;
       }
-	  uses TopSliceSubnetGrp;
+	  uses TopSliceSubnetProfileGrp;
     }
     
   }
