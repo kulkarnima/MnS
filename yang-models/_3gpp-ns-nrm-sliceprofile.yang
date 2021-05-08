@@ -62,7 +62,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
         description "Synthetic index for the element.";
         type uint32;
       }
-      uses DLThptGrp;
+      uses ns3gpp:DLThptGrp;
     }
     list dLThptPerUE {
       description "This attribute defines data rate supported by the
@@ -73,7 +73,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
         description "Synthetic index for the element.";
         type uint32;
       }
-      uses DLThptGrp;
+      uses ns3gpp:DLThptGrp;
     }
     list uLThptPerSliceSubnet {
       description "This attribute defines achievable data rate of the
@@ -85,7 +85,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
         description "Synthetic index for the element.";
         type uint32;
       }
-      uses DLThptGrp;
+      uses ns3gpp:DLThptGrp;
     }
     list uLThptPerUE {
       description "This attribute defines data rate supported by the
