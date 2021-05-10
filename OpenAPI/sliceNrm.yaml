@@ -331,7 +331,6 @@ components:
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-Attr'
                 - type: object
                   properties:
                     networkSliceSubnetRef:
@@ -350,7 +349,6 @@ components:
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-Attr'
                 - type: object
                   properties:
                     managedFunctionRefList:
