@@ -214,6 +214,57 @@ components:
             - BASE_SUBTREE
         scopeLevel:
           type: integer
+    AreaScope:
+      oneOf:
+      - type: array
+        items:
+          $ref: 'comDefs.yaml#/components/schemas/EutraCellId'
+      - type: array
+        items:
+          $ref: 'comDefs.yaml#/components/schemas/NrCellId'
+      - type: array
+        items:
+          $ref: 'comDefs.yaml#/components/schemas/Tac'
+      - type: array
+        items:
+          $ref: '#/components/schemas/Tai'
+    Tai:
+      type: object
+      properties:
+        mcc:
+          $ref: 'comDefs.yaml#/components/schemas/Mcc'
+        mnc:
+          $ref: 'comDefs.yaml#/components/schemas/Mnc'
+        tac:
+          $ref: 'comDefs.yaml#/components/schemas/Tac'
+    AreaConfig:
+      type: object
+      properties:
+        freqInfo:
+          $ref: '#/components/schemas/FreqInfo'
+        pciList:
+          type: array
+          items:
+            type: integer
+    FreqInfo:
+      description: specifies the carrier frequency and bands used in a cell.
+      type: object
+      properties:
+        arfcn:
+          type: integer
+        freqBands:
+          type: array
+          items: 
+            type: integer
+    MbsfnArea:
+      type: object
+      properties:
+        mbsfnAreaId:
+          type: integer
+          minimum: 1
+        earfcn:
+          type: integer
+          minimum: 1
 
 #-------- Definition of types used in Trace control NRM fragment------------------
                 
@@ -590,17 +641,6 @@ components:
         - mcc
         - mnc
 
-    tjStreamingTraceConsumerURI-Type:
-      type: string
-      description: The URI of the Trace Reporting MnS consumer (see 3GPP TS 28.532) to which the Trace records shall be sent. See 3GPP TS 32.422 clause 5.9 for additional details.
-      format: uri
-
-    tjTraceCollectionEntityAddress-Type:
-      description: The IP address to which the Trace records shall be transferred. See 3GPP TS 32.422 clause 5.9 for additional details.
-      oneOf:
-        - $ref: '#/components/schemas/Ipv4Addr'
-        - $ref: '#/components/schemas/Ipv6Addr'
-
     tjTraceDepth-Type:
       description: Specifies how detailed information should be recorded in the Network Element. The Trace Depth is a paremeter for Trace Session level, i.e., the Trace Depth is the same for all of the NEs to be traced in the same Trace Session. See 3GPP TS 32.422 clause 5.3 for additional details.
       type: string
@@ -621,7 +661,7 @@ components:
         mnc:
           $ref: 'comDefs.yaml#/components/schemas/Mnc'
         traceId:
-          type: integer
+          type: string
       required:
         - mcc
         - mnc
@@ -690,22 +730,6 @@ components:
         - NO_IDENTITY
         - TAC_OF_IMEI
     
-    tjMDTAreaConfigurationForNeighCell-Type:
-      description: Used for logged NR MDT and defines the area for which UE is requested to perform measurement logging for neighbour cells which have list of frequencies. For additional details see 3GPP TS 32.422 clause 5.10.26.
-      type: array
-      items:
-        type: object
-        properties:
-          frequency:
-            type: string
-          cell:
-            type: string
-      
-    tjMDTAreaScope-Type:
-      description: defines the area in terms or Cells or Tracking Area/Routing Area/Location Area where the MDT data collection shall take place. For additional details see 3GPP TS 32.422 clause 5.10.2.
-      allOf:
-        - $ref: 'comDefs.yaml#/components/schemas/DnList'
-        
     tjMDTCollectionPeriodRrmLte-Type:
       description: See details in 3GPP TS 32.422 clause 5.10.20.
       type: string
@@ -725,6 +749,21 @@ components:
         - 28000ms
         - 32000ms
         - 64000ms
+
+    tjMDTCollectionPeriodM6Lte-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.32.
+      type: string
+      enum:
+        - 1024ms
+        - 2048ms
+        - 5120ms
+        - 10240ms
+
+    tjMDTCollectionPeriodM7Lte-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.33.
+      type: integer
+      minimum: 1
+      maximum: 60
 
     tjMDTCollectionPeriodRrmUmts-Type:
       description: See details in 3GPP TS 32.422 clause 5.10.21.
@@ -748,6 +787,31 @@ components:
         - 5120ms
         - 10240ms
         - 60000ms
+
+    tjMDTCollectionPeriodM6NR-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.34.
+      type: string
+      enum:
+        - 120ms
+        - 240ms
+        - 480ms
+        - 640ms
+        - 1024ms
+        - 2048ms
+        - 5120ms
+        - 10240ms
+        - 20480ms
+        - 40960ms
+        - 1min
+        - 6min
+        - 12min
+        - 30min
+
+    tjMDTCollectionPeriodM7NR-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.35.
+      type: integer
+      minimum: 1
+      maximum: 60
 
     tjMDTEventListForTriggeredMeasurement-Type:
       description: See details in 3GPP TS 32.422 clause 5.10.28.
@@ -859,22 +923,6 @@ components:
         - 30.72s
         - 40.96s
         - 61.44s
-
-    tjMDTMBSFNAreaList-Type:
-      description: See details in 3GPP TS 32.422 clause 5.10.25.
-      type: array
-      items:
-        type: object
-        properties:
-          mbsfnAreaId:
-            type: integer
-            minimum: 1
-          earfcn:
-            type: integer
-            minimum: 1
-        required:
-          - mbsfnAreaId
-          - earfcn
 
     tjMDTMeasurementPeriodLTE-Type:
       description: See details in 3GPP TS 32.422 clause 5.10.23.
@@ -1033,8 +1081,8 @@ components:
             - mnc
         tceAddress:
           oneOf:
-            - $ref: '#/components/schemas/tjTraceCollectionEntityAddress-Type'
-            - $ref: '#/components/schemas/tjStreamingTraceConsumerURI-Type'
+            - $ref: 'comDefs.yaml#/components/schemas/IpAddress'
+            - $ref: 'comDefs.yaml#/components/schemas/Uri'
       required:
         - tceID
         - tcePLMN
@@ -1188,14 +1236,16 @@ components:
           $ref: '#/components/schemas/tjListOfNeTypes-Type'
         tjPLMNTarget:
           $ref: '#/components/schemas/tjPLMNTaget-Type'
-        tjTraceConsumer:
-          oneOf:
-            - $ref: '#/components/schemas/tjStreamingTraceConsumerURI-Type'
-            - $ref: '#/components/schemas/tjTraceCollectionEntityAddress-Type'
+        tjStreamingTraceConsumerURI:
+          $ref: 'comDefs.yaml#/components/schemas/Uri'
+        tjTraceCollectionEntityAddress:
+          $ref: 'comDefs.yaml#/components/schemas/IpAddress'
         tjTraceDepth:
           $ref: '#/components/schemas/tjTraceDepth-Type'
         tjTraceReference:
           $ref: '#/components/schemas/tjTraceReference-Type'
+        tjTraceRecordSessionReference:
+          type: string
         tjTraceReportingFormat:
           $ref: '#/components/schemas/tjTraceReportingFormat-Type'
         tjTraceTarget:
@@ -1207,13 +1257,23 @@ components:
         tjMDTAreaConfigurationForNeighCell:
           $ref: '#/components/schemas/tjMDTAreaConfigurationForNeighCell-Type'
         tjMDTAreaScope:
-          $ref: '#/components/schemas/tjMDTAreaScope-Type'
+          type: array
+          items:
+            $ref: '#/components/schemas/AreaScope'
         tjMDTCollectionPeriodRrmLte:
           $ref: '#/components/schemas/tjMDTCollectionPeriodRrmLte-Type'
+        tjMDTCollectionPeriodM6Lte:
+          $ref: '#/components/schemas/tjMDTCollectionPeriodM6Lte-Type'
+        tjMDTCollectionPeriodM7Lte:
+          $ref: '#/components/schemas/tjMDTCollectionPeriodM7Lte-Type'
         tjMDTCollectionPeriodRrmUmts:
           $ref: '#/components/schemas/tjMDTCollectionPeriodRrmUmts-Type'
         tjMDTCollectionPeriodRrmNR:
           $ref: '#/components/schemas/tjMDTCollectionPeriodRrmNR-Type'
+        tjMDTCollectionPeriodM6NR:
+          $ref: '#/components/schemas/tjMDTCollectionPeriodM6NR-Type'
+        tjMDTCollectionPeriodM7NR:
+          $ref: '#/components/schemas/tjMDTCollectionPeriodM7NR-Type'
         tjMDTEventListForTriggeredMeasurement:
           $ref: '#/components/schemas/tjMDTEventListForTriggeredMeasurement-Type'
         tjMDTEventThreshold:
@@ -1225,7 +1285,9 @@ components:
         tjMDTLoggingInterval:
           $ref: '#/components/schemas/tjMDTLoggingInterval-Type'
         tjMDTMBSFNAreaList:
-          $ref: '#/components/schemas/tjMDTMBSFNAreaList-Type'
+          type: array
+          items:
+            $ref: '#/components/schemas/MbsfnArea'
         tjMDTMeasurementPeriodLTE:
           $ref: '#/components/schemas/tjMDTMeasurementPeriodLTE-Type'
         tjMDTMeasurementPeriodUMTS:
@@ -1248,12 +1310,6 @@ components:
           $ref: '#/components/schemas/tjMDTSensorInformation-Type'
         tjMDTTraceCollectionEntityID:
           $ref: '#/components/schemas/tjMDTTraceCollectionEntityID-Type'
-      required:
-        - tjJobType
-        - tjTraceReference
-        - tjTraceConsumer
-        - tjTraceReportingFormat
-        - tjTraceTarget
 
     ManagedFunction-ncO:
       type: object
