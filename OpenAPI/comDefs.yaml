@@ -55,8 +55,6 @@ components:
 
     Fqdn:
       type: string
-    Uri:
-      type: string
 
     Ipv4Addr:
       type: string
