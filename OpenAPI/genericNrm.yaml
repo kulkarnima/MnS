@@ -218,13 +218,13 @@ components:
       oneOf:
       - type: array
         items:
-          $ref: 'comDefs.yaml#/components/schemas/EutraCellId'
+          $ref: '#/components/schemas/EutraCellId'
       - type: array
         items:
-          $ref: 'comDefs.yaml#/components/schemas/NrCellId'
+          $ref: '#/components/schemas/NrCellId'
       - type: array
         items:
-          $ref: 'comDefs.yaml#/components/schemas/Tac'
+          $ref: '#/components/schemas/Tac'
       - type: array
         items:
           $ref: '#/components/schemas/Tai'
@@ -236,7 +236,7 @@ components:
         mnc:
           $ref: 'comDefs.yaml#/components/schemas/Mnc'
         tac:
-          $ref: 'comDefs.yaml#/components/schemas/Tac'
+          $ref: '#/components/schemas/Tac'
     AreaConfig:
       type: object
       properties:
@@ -265,6 +265,20 @@ components:
         earfcn:
           type: integer
           minimum: 1
+    Tac:
+      type: string
+      pattern: '(^[A-Fa-f0-9]{4}$)|(^[A-Fa-f0-9]{6}$)'
+    EutraCellId:
+      type: string
+      pattern: '^[A-Fa-f0-9]{7}$'
+    NrCellId:
+      type: string
+      pattern: '^[A-Fa-f0-9]{9}$'
+    IpAddr:
+      oneOf:
+        - $ref: '#/components/schemas/Ipv4Addr'
+        - $ref: '#/components/schemas/Ipv6Addr'
+
 
 #-------- Definition of types used in Trace control NRM fragment------------------
                 
@@ -1081,7 +1095,7 @@ components:
             - mnc
         tceAddress:
           oneOf:
-            - $ref: 'comDefs.yaml#/components/schemas/IpAddr'
+            - $ref: '#/components/schemas/IpAddr'
             - $ref: 'comDefs.yaml#/components/schemas/Uri'
       required:
         - tceID
@@ -1239,7 +1253,7 @@ components:
         tjStreamingTraceConsumerURI:
           $ref: 'comDefs.yaml#/components/schemas/Uri'
         tjTraceCollectionEntityAddress:
-          $ref: 'comDefs.yaml#/components/schemas/IpAddr'
+          $ref: '#/components/schemas/IpAddr'
         tjTraceDepth:
           $ref: '#/components/schemas/tjTraceDepth-Type'
         tjTraceReference:
