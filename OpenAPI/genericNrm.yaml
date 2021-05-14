@@ -1081,7 +1081,7 @@ components:
             - mnc
         tceAddress:
           oneOf:
-            - $ref: 'comDefs.yaml#/components/schemas/IpAddress'
+            - $ref: 'comDefs.yaml#/components/schemas/IpAddr'
             - $ref: 'comDefs.yaml#/components/schemas/Uri'
       required:
         - tceID
@@ -1239,7 +1239,7 @@ components:
         tjStreamingTraceConsumerURI:
           $ref: 'comDefs.yaml#/components/schemas/Uri'
         tjTraceCollectionEntityAddress:
-          $ref: 'comDefs.yaml#/components/schemas/IpAddress'
+          $ref: 'comDefs.yaml#/components/schemas/IpAddr'
         tjTraceDepth:
           $ref: '#/components/schemas/tjTraceDepth-Type'
         tjTraceReference:
