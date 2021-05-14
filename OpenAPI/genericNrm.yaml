@@ -1255,7 +1255,7 @@ components:
         tjMDTAnonymizationOfData:
           $ref: '#/components/schemas/tjMDTAnonymizationOfData-Type'
         tjMDTAreaConfigurationForNeighCell:
-          $ref: '#/components/schemas/tjMDTAreaConfigurationForNeighCell-Type'
+          $ref: '#/components/schemas/AreaConfig'
         tjMDTAreaScope:
           type: array
           items:
