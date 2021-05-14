@@ -43,7 +43,7 @@ components:
       required:
         - mcc
         - mnc
-        Tac:
+    Tac:
       type: string
       pattern: '(^[A-Fa-f0-9]{4}$)|(^[A-Fa-f0-9]{6}$)'
     EutraCellId:
