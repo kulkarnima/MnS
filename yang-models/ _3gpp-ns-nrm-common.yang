@@ -1,6 +1,6 @@
-module _3gpp-5gc-ns-nrm-common {
+module _3gpp-ns-nrm-common {
   yang-version 1.1;
-  namespace urn:3gpp:sa5:_3gpp-5gc-ns-nrm-common;
+  namespace urn:3gpp:sa5:_3gpp-ns-nrm-common;
   prefix ns3cmn;
 
   import _3gpp-common-subnetwork { prefix subnet3gpp; }
