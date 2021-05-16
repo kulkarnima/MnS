@@ -8,6 +8,7 @@ module _3gpp-ns-nrm-networkslicesubnet {
   import _3gpp-common-subnetwork { prefix subnet3gpp; }
   import _3gpp-common-measurements { prefix meas3gpp; }
   import _3gpp-common-top { prefix top3gpp; }
+  import _3gpp-ns-nrm-common { prefix ns3cmn; }
 
   include _3gpp-ns-nrm-sliceprofile;
   
