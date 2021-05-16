@@ -21,7 +21,7 @@ module _3gpp-ns-nrm-common {
     description "Introduction of Common Data types";
     reference "CR-0485";
   }
-  grouping DLThptGrp {
+  grouping XLThptGrp {
     list servAttrCom {
       description "This list represents the common properties of service 
         requirement related attributes.";
