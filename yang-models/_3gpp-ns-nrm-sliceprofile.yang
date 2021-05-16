@@ -4,7 +4,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
 
   import _3gpp-common-yang-types { prefix types3gpp; }
   import _3gpp-5g-common-yang-types { prefix types5g3gpp; }
-  import _3gpp-ns-nrm-networkslice { prefix ns3gpp; }
+  // import _3gpp-ns-nrm-networkslice { prefix ns3gpp; }
   import _3gpp-ns-nrm-common { prefix ns3cmn; }
   
   organization "3GPP SA5";
@@ -62,7 +62,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
         description "Synthetic index for the element.";
         type uint32;
       }
-      uses ns3gpp:DLThptGrp;
+      uses ns3cmn:XLThptGrp;
     }
     list dLThptPerUE {
       description "This attribute defines data rate supported by the
@@ -119,7 +119,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ns3gpp:ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf maxSize {
         //Stage2 issue: Not defined in 28.541, guessing integer bytes
@@ -148,7 +148,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ns3gpp:ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf nOofPDUSessions {
         //Stage2 issue: Not defined in 28.541, guessing integer
@@ -178,7 +178,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ns3gpp:ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf support {
         description "An attribute specifies whether or not the network 
@@ -208,7 +208,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ns3gpp:ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf density {
         type uint32;
@@ -288,7 +288,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ns3gpp:ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf availability {
         //Stage2 issue: Defined differently in 28.541 chapter 6, but XML 
