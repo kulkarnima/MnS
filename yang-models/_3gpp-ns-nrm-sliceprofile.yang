@@ -5,6 +5,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
   import _3gpp-common-yang-types { prefix types3gpp; }
   import _3gpp-5g-common-yang-types { prefix types5g3gpp; }
   import _3gpp-ns-nrm-networkslice { prefix ns3gpp; }
+  import _3gpp-ns-nrm-common { prefix ns3cmn; }
   
   organization "3GPP SA5";
   contact 
@@ -72,7 +73,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
         description "Synthetic index for the element.";
         type uint32;
       }
-      uses ns3gpp:DLThptGrp;
+      uses ns3cmn:XLThptGrp;
     }
     list uLThptPerSliceSubnet {
       description "This attribute defines achievable data rate of the
@@ -84,7 +85,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
         description "Synthetic index for the element.";
         type uint32;
       }
-      uses ns3gpp:DLThptGrp;
+      uses ns3cmn:XLThptGrp;
     }
     list uLThptPerUE {
       description "This attribute defines data rate supported by the
@@ -95,7 +96,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
         description "Synthetic index for the element.";
         type uint32;
       }
-      uses ns3gpp:DLThptGrp;
+      uses ns3cmn:XLThptGrp;
     }
     list maxPktSize {
       config false;
