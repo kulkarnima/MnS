@@ -38,14 +38,6 @@ submodule _3gpp-ns-nrm-serviceprofile {
       range 0..100;
     }
   }
-
-
-  typedef Support-enum {
-    type enumeration {
-      enum NOT_SUPPORTED;
-      enum SUPPORTED;
-    }
-  }
   typedef V2XMode-enum {
     type enumeration {
       enum NOT_SUPPORTED;
