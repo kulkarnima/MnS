@@ -279,7 +279,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
         description "Synthetic index for the element.";
         type uint32;
       }
-      uses DLThptGrp;
+      uses ns3cmn:XLThptGrp;
     }
     list dLThptPerUE {
       description "This attribute defines data rate supported by the network 
@@ -290,7 +290,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
         description "Synthetic index for the element.";
         type uint32;
       }
-      uses DLThptGrp;
+      uses ns3cmn:XLThptGrp;
     }
     list uLThptPerSlic {
       key idx;
@@ -302,7 +302,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
       description "This attribute defines achievable data rate of the 
         network slice in uplink that is available ubiquitously across 
         the coverage area of the slice";
-      uses DLThptGrp;
+      uses ns3cmn:XLThptGrp;
     }
     list uLThptPerUE {
       key idx;
@@ -313,7 +313,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
       }
       description "This attribute defines data rate supported by the 
         network slice per UE";
-      uses DLThptGrp;
+      uses ns3cmn:XLThptGrp;
     }
     list maxPktSize {
       config false;
