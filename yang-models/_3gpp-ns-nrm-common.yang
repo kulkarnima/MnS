@@ -6,7 +6,6 @@ module _3gpp-ns-nrm-common {
   import _3gpp-common-subnetwork { prefix subnet3gpp; }
   import _3gpp-common-yang-types { prefix types3gpp; }
   import _3gpp-common-top { prefix top3gpp; }
-  import _3gpp-ns-nrm-networkslice { prefix ns3gpp; }
 
   organization "3GPP SA5";
   contact 
@@ -18,7 +17,7 @@ module _3gpp-ns-nrm-common {
     Information model definitions for network slice NRM (chapter 6)
     ";
 
-  revision 2021-05-16 {
+  revision 2021-05-17 {
     description "Introduction of Common Data types";
     reference "CR-0485";
   }
@@ -35,7 +34,7 @@ module _3gpp-ns-nrm-common {
         description "Synthetic index for the element.";
         type uint32;
       }
-      uses ns3gpp:ServAttrComGrp;
+      uses ServAttrComGrp;
     }
     leaf guaThpt {
       description "This attribute describes the guaranteed data rate.";
@@ -48,22 +47,41 @@ module _3gpp-ns-nrm-common {
       units kbits/s;
     }
   }
+    typedef Tagging-enum {
+    type enumeration {
+      enum performance;
+      enum function;
+      enum operation;
+    }
+  }
+  typedef Exposure-enum {
+    type enumeration {
+      enum API;
+      enum KPI;
+    }
+  }
+  typedef Support-enum {
+    type enumeration {
+      enum NOT_SUPPORTED;
+      enum SUPPORTED;
+    }
+  }
   grouping ServAttrComGrp {
     leaf category {
       description "This attribute specifies the category of a service 
         requirement/attribute of GST";
-      type ns3gpp:Category-enum;
+      type Category-enum;
     }
     leaf-list tagging {
       description "This attribute specifies the tagging of a service 
         requirement/attribute of GST in character category";
       when "../category = 'character'";
-      type ns3gpp:Tagging-enum;
+      type Tagging-enum;
     }
     leaf exposure {
       description "This attribute specifies exposure mode of a service 
         requirement/attribute of GST";
-      type ns3gpp:Exposure-enum;
+      type Exposure-enum;
     }
 
     
