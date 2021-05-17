@@ -365,7 +365,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses cmn:ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf nOofPDUSessions {
         //Stage2 issue: Not defined in 28.541, guessing integer
@@ -477,7 +477,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses cmn:ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf density {
         type uint32;
