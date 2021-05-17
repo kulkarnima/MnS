@@ -63,6 +63,12 @@ submodule _3gpp-ns-nrm-serviceprofile {
       enum SUPPORTED;
     }
   }
+  typedef V2XMode-enum {
+    type enumeration {
+      enum NOT_SUPPORTED;
+      enum SUPPORTED_BY_NR;
+    }
+  }
 
   grouping ServiceProfileGrp {
 
