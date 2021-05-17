@@ -75,49 +75,6 @@ components:
         - TWO
         - THREE
         - FOUR
-
-    PerfReqEmbb:
-      type: object
-      properties:
-        expDataRateDL:
-          type: number
-        expDataRateUL:
-          type: number
-        areaTrafficCapDL:
-          type: number
-        areaTrafficCapUL:
-          type: number
-        userDensity:
-          type: number
-        activityFactor:
-          type: number
-    PerfReqEmbbList:
-      type: array
-      items:
-        $ref: '#/components/schemas/PerfReqEmbb'
-    PerfReqUrllc:
-      type: object
-      properties:
-        cSAvailabilityTarget:
-          type: number
-        cSReliabilityMeanTime:
-          type: string
-        expDataRate:
-          type: number
-        msgSizeByte:
-          type: string
-        transferIntervalTarget:
-          type: string
-        survivalTime:
-          type: string
-    PerfReqUrllcList:
-      type: array
-      items:
-        $ref: '#/components/schemas/PerfReqUrllc'
-    PerfReq:
-      oneOf:
-        - $ref: '#/components/schemas/PerfReqEmbbList'
-        - $ref: '#/components/schemas/PerfReqUrllcList'
     Category:
       type: string
       enum:
@@ -166,7 +123,7 @@ components:
           $ref: '#/components/schemas/Support'
         periodicityList:
           type: string
-    DLThptPerSlice:
+    XLThpt:
       type: object
       properties:
         servAttrCom:
@@ -175,7 +132,7 @@ components:
           $ref: '#/components/schemas/Float'
         maxThpt:
           $ref: '#/components/schemas/Float'
-    DLThptPerUE:
+    DLThpt:
       type: object
       properties:
         servAttrCom:
@@ -184,16 +141,7 @@ components:
           $ref: '#/components/schemas/Float'
         maxThpt:
           $ref: '#/components/schemas/Float'
-    ULThptPerSlice:
-      type: object
-      properties:
-        servAttrCom:
-          $ref: '#/components/schemas/ServAttrCom'
-        guaThpt:
-          $ref: '#/components/schemas/Float'
-        maxThpt:
-          $ref: '#/components/schemas/Float'
-    ULThptPerUE:
+    ULThpt:
       type: object
       properties:
         servAttrCom:
@@ -209,21 +157,7 @@ components:
           $ref: '#/components/schemas/Float'
         maxThpt:
           $ref: '#/components/schemas/Float'
-    DLThptPerUEPerSubnet:
-      type: object
-      properties:
-        guaThpt:
-          $ref: '#/components/schemas/Float'
-        maxThpt:
-          $ref: '#/components/schemas/Float'
     ULThptPerSliceSubnet:
-      type: object
-      properties:
-        guaThpt:
-          $ref: '#/components/schemas/Float'
-        maxThpt:
-          $ref: '#/components/schemas/Float'
-    ULThptPerUEPerSubnet:
       type: object
       properties:
         guaThpt:
@@ -314,13 +248,13 @@ components:
         latency:
           type: integer
         dLThptPerSliceSubnet:
-          $ref: '#/components/schemas/DLThptPerSliceSubnet'
-        dLThptPerUEPerSubnet:
-          $ref: '#/components/schemas/DLThptPerUEPerSubnet'
+          $ref: '#/components/schemas/XLThpt'
+        dLThptPerUE:
+          $ref: '#/components/schemas/XLThpt'
         uLThptPerSliceSubnet:
-          $ref: '#/components/schemas/ULThptPerSliceSubnet'
-        uLThptPerUEPerSubnet:
-          $ref: '#/components/schemas/ULThptPerUEPerSubnet'
+          $ref: '#/components/schemas/XLThpt'
+        uLThptPerUE:
+          $ref: '#/components/schemas/XLThpt'
         maxNumberOfPDUSessions:
           type: integer
         maxPktSize:
@@ -329,6 +263,8 @@ components:
           $ref: '#/components/schemas/DelayTolerance'
         sliceSimultaneousUse:
           $ref: '#/components/schemas/SliceSimultaneousUse'
+        deterministicComm:
+          $ref: '#/components/schemas/DeterministicComm'
     RANSliceSubnetProfile:
       type: object
       properties:
@@ -343,9 +279,9 @@ components:
         activityFactor:
           type: integer
         dLThptPerUEPerSubnet:
-          $ref: '#/components/schemas/ULThptPerUEPerSubnet'
+          $ref: '#/components/schemas/XLThpt'
         uLThptPerUEPerSubnet:
-          $ref: '#/components/schemas/ULThptPerUEPerSubnet'
+          $ref: '#/components/schemas/XLThpt'
         uESpeed:
           type: integer
         reliability:
@@ -358,6 +294,7 @@ components:
           $ref: '#/components/schemas/DelayTolerance'
         sliceSimultaneousUse:
           $ref: '#/components/schemas/SliceSimultaneousUse'
+          
     TopSliceSubnetProfile:
       type: object
       properties:
@@ -368,13 +305,13 @@ components:
         maxNumberofUEs:
           type: integer
         dLThptPerSliceSubnet:
-          $ref: '#/components/schemas/DLThptPerSliceSubnet'
-        dLThptPerUEPerSubnet:
-          $ref: '#/components/schemas/DLThptPerUEPerSubnet'
+          $ref: '#/components/schemas/XLThpt'
+        dLThptPerUE:
+          $ref: '#/components/schemas/XLThpt'
         uLThptPerSliceSubnet:
-          $ref: '#/components/schemas/ULThptPerSliceSubnet'
-        uLThptPerUEPerSubnet:
-          $ref: '#/components/schemas/ULThptPerUEPerSubnet'
+          $ref: '#/components/schemas/XLThpt'
+        uLThptPerUE:
+          $ref: '#/components/schemas/XLThpt'
         maxPktSize:
           type: integer
         delayTolerance:
@@ -405,13 +342,13 @@ components:
           deterministicComm:
             $ref: '#/components/schemas/DeterministicComm'
           dLThptPerSlice:
-            $ref: '#/components/schemas/DLThptPerSlice'
+            $ref: '#/components/schemas/XLThpt'
           dLThptPerUE:
-            $ref: '#/components/schemas/DLThptPerUE'
+            $ref: '#/components/schemas/XLThpt'
           uLThptPerSlice:
-            $ref: '#/components/schemas/ULThptPerSlice'
+            $ref: '#/components/schemas/XLThpt'
           uLThptPerUE:
-            $ref: '#/components/schemas/ULThptPerUE'
+            $ref: '#/components/schemas/XLThpt'
           maxPktSize:
             $ref: '#/components/schemas/MaxPktSize'
           maxNumberofPDUSessions:
@@ -456,8 +393,6 @@ components:
             type: string
           plmnInfoList:
             $ref: 'nrNrm.yaml#/components/schemas/PlmnInfoList'
-          perfReq:
-            $ref: '#/components/schemas/PerfReq'
           cNSliceSubnetProfile:
             $ref: '#/components/schemas/CNSliceSubnetProfile'
           rANSliceSubnetProfile:
