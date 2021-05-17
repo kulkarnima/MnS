@@ -491,7 +491,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
       leaf support {
         description "An attribute specifies whether NB-IoT is supported 
           in the RAN in the network slice";
-        type Support-enum;
+        type ns3cmn:Support-enum;
       }
     }
   }
