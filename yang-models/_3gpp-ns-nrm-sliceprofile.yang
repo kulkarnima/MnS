@@ -184,7 +184,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
         description "An attribute specifies whether or not the network 
           slice supports service delivery flexibility, especially for the 
           vertical services that are not chasing a high system performance.";
-        type ns3gpp:Support-enum;
+        type ns3cmn:Support-enum;
       }
     }
     list termDensity {
