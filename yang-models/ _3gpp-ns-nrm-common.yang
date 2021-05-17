@@ -35,7 +35,7 @@ module _3gpp-ns-nrm-common {
         description "Synthetic index for the element.";
         type uint32;
       }
-      uses ServAttrComGrp;
+      uses ns3gpp:ServAttrComGrp;
     }
     leaf guaThpt {
       description "This attribute describes the guaranteed data rate.";
@@ -52,18 +52,18 @@ module _3gpp-ns-nrm-common {
     leaf category {
       description "This attribute specifies the category of a service 
         requirement/attribute of GST";
-      type Category-enum;
+      type ns3gpp:Category-enum;
     }
     leaf-list tagging {
       description "This attribute specifies the tagging of a service 
         requirement/attribute of GST in character category";
       when "../category = 'character'";
-      type Tagging-enum;
+      type ns3gpp:Tagging-enum;
     }
     leaf exposure {
       description "This attribute specifies exposure mode of a service 
         requirement/attribute of GST";
-      type Exposure-enum;
+      type ns3gpp:Exposure-enum;
     }
 
     
