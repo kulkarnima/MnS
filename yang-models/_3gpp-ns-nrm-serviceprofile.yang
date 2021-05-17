@@ -4,6 +4,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
 
   import _3gpp-common-yang-types { prefix types3gpp; }
   import _3gpp-5g-common-yang-types { prefix types5g3gpp; }
+  import _3gpp-ns-nrm-common { prefix ns3cmn; }
 
   organization "3GPP SA5";
   contact 
@@ -96,7 +97,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
         description "Synthetic index for the element.";
         type uint32;
       }
-      uses ServAttrComGrp;
+      uses ns3cmn:ServAttrComGrp;
     }
     leaf guaThpt {
       description "This attribute describes the guaranteed data rate.";
@@ -221,7 +222,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf support {
         description "An attribute specifies whether or not the network 
@@ -254,7 +255,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf availability {
         //Stage2 issue: Defined differently in 28.541 chapter 6, but XML 
@@ -335,7 +336,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf maxSize {
         //Stage2 issue: Not defined in 28.541, guessing integer bytes
@@ -364,7 +365,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ServAttrComGrp;
+        uses cmn:ServAttrComGrp;
       }
       leaf nOofPDUSessions {
         //Stage2 issue: Not defined in 28.541, guessing integer
@@ -449,7 +450,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf v2XMode {
         type V2XMode-enum;
@@ -476,7 +477,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ServAttrComGrp;
+        uses cmn:ServAttrComGrp;
       }
       leaf density {
         type uint32;
@@ -557,7 +558,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf support {
         description "An attribute specifies whether NB-IoT is supported 
