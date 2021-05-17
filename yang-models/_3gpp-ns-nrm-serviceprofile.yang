@@ -38,25 +38,8 @@ submodule _3gpp-ns-nrm-serviceprofile {
       range 0..100;
     }
   }
-  typedef Category-enum {
-    type enumeration {
-      enum character;
-      enum scalability;
-    }
-  }
-  typedef Tagging-enum {
-    type enumeration {
-      enum performance;
-      enum function;
-      enum operation;
-    }
-  }
-  typedef Exposure-enum {
-    type enumeration {
-      enum API;
-      enum KPI;
-    }
-  }
+
+
   typedef Support-enum {
     type enumeration {
       enum NOT_SUPPORTED;
@@ -181,7 +164,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
         description "An attribute specifies whether or not the network 
           slice supports service delivery flexibility, especially for the 
           vertical services that are not chasing a high system performance.";
-        type Support-enum;
+        type ns3cmn:Support-enum;
       }
     }
     list deterministicComm {
@@ -379,7 +362,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
         uses ns3cmn:ServAttrComGrp;
       }
       leaf support {
-        type Support-enum;
+        type ns3cmn:Support-enum;
       }
     }
     list v2XCommModels {
