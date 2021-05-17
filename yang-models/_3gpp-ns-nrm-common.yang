@@ -60,6 +60,12 @@ module _3gpp-ns-nrm-common {
       enum KPI;
     }
   }
+  typedef Category-enum {
+    type enumeration {
+      enum character;
+      enum scalability;
+    }
+  }
   typedef Support-enum {
     type enumeration {
       enum NOT_SUPPORTED;
@@ -83,7 +89,8 @@ module _3gpp-ns-nrm-common {
         requirement/attribute of GST";
       type Exposure-enum;
     }
-
-    
   }
+  typedef DeterminCommAvailability {
+    type Support-enum;
+  } 
 }
