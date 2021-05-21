@@ -148,7 +148,7 @@ components:
         - $ref: 'provMnS.yaml#/components/schemas/CmNotificationTypes'
         - $ref: 'perfMnS.yaml#/components/schemas/PerfNotificationTypes'
         - $ref: 'heartbeatNtf.yaml#/components/schemas/HeartbeatNotificationTypes'
-        - $ref: 'fileDataReportingMnS.yaml#/components/schemas/FileNotificationTypes'
+        #- $ref: 'fileDataReportingMnS.yaml#/components/schemas/FileNotificationTypes'
     NotificationHeader:
       type: object
       properties:
