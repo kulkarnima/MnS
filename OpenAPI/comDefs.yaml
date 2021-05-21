@@ -1,10 +1,10 @@
 openapi: 3.0.1
 info:
   title: Common Type Definitions
-  version: 16.6.0
+  version: 16.8.0
   description: >-
     OAS 3.0.1 specification of common type definitions in the Generic NRM
-    © 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    © 2021, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 externalDocs:
   description: 3GPP TS 28.623; Generic NRM; Common type definitions
@@ -18,7 +18,17 @@ components:
       format: float
     DateTime:
       type: string
-      format: date-Time
+      format: date-time
+    Latitude:
+      type: number
+      format: float
+      minimum: -90
+      maximum: 90
+    Longitude:
+      type: number
+      format: float
+      minimum: -180
+      maximum: 180
 
     Dn:
       type: string
@@ -33,6 +43,9 @@ components:
     Mnc:
       type: string
       pattern: '^[0-9]{2,3}$'
+    Nid:
+      type: string
+      pattern: '^[A-Fa-f0-9]{11}$'
     PlmnId:
       type: object
       properties:
@@ -40,15 +53,18 @@ components:
           $ref: '#/components/schemas/Mcc'
         mnc:
           $ref: '#/components/schemas/Mnc'
-      required:
-        - mcc
-        - mnc
+    Tac:
+      type: string
+      pattern: '(^[A-Fa-f0-9]{4}$)|(^[A-Fa-f0-9]{6}$)'
+    EutraCellId:
+      type: string
+      pattern: '^[A-Fa-f0-9]{7}$'
+    NrCellId:
+      type: string
+      pattern: '^[A-Fa-f0-9]{9}$'
 
     Fqdn:
       type: string
-    Uri:
-      type: string
-
     Ipv4Addr:
       type: string
       pattern: '^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$'
@@ -65,6 +81,23 @@ components:
         - pattern: '^((:|(0?|([1-9a-f][0-9a-f]{0,3}))):)((0?|([1-9a-f][0-9a-f]{0,3})):){0,6}(:|(0?|([1-9a-f][0-9a-f]{0,3})))(\/(([0-9])|([0-9]{2})|(1[0-1][0-9])|(12[0-8])))$'
         - pattern: '^((([^:]+:){7}([^:]+))|((([^:]+:)*[^:]+)?::(([^:]+:)*[^:]+)?))(\/.+)$'
       example: '2001:db8:abcd:12::0/64'
+    IpAddr:
+      oneOf:
+        - $ref: '#/components/schemas/Ipv4Addr'
+        - $ref: '#/components/schemas/Ipv6Addr'
+    HostAddr:
+      #  This definition will be deprecated, when all occurances of HostAddr
+      #  are replaced by Host.
+      oneOf:
+        - $ref: '#/components/schemas/Ipv4Addr'
+        - $ref: '#/components/schemas/Ipv6Addr'
+        - $ref: '#/components/schemas/Fqdn'
+    Host:
+      oneOf:
+        - $ref: '#/components/schemas/IpAddr'
+        - $ref: '#/components/schemas/Fqdn'
+    Uri:
+      type: string
 
     AdministrativeState:
       type: string
@@ -101,6 +134,8 @@ components:
         maxItems: 2
 
     Filter:
+      description: >-
+        The filter format shall be compliant to XPath 1.0.
       type: string
     SystemDN:
       type: string
@@ -113,12 +148,7 @@ components:
         - $ref: 'provMnS.yaml#/components/schemas/CmNotificationTypes'
         - $ref: 'perfMnS.yaml#/components/schemas/PerfNotificationTypes'
         - $ref: 'heartbeatNtf.yaml#/components/schemas/HeartbeatNotificationTypes'
-        # The enum below will be replaced by a reference once notification
-        # types are defined in "FileDataReportingMnS.yaml"
-        - type: string
-          enum:
-            - notifyFileReady
-            - notifyFilePreparationError
+        - $ref: 'fileDataReportingMnS.yaml#/components/schemas/FileNotificationTypes'
     NotificationHeader:
       type: object
       properties:
