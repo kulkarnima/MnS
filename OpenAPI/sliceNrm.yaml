@@ -132,24 +132,6 @@ components:
           $ref: '#/components/schemas/Float'
         maxThpt:
           $ref: '#/components/schemas/Float'
-    DLThpt:
-      type: object
-      properties:
-        servAttrCom:
-          $ref: '#/components/schemas/ServAttrCom'
-        guaThpt:
-          $ref: '#/components/schemas/Float'
-        maxThpt:
-          $ref: '#/components/schemas/Float'
-    ULThpt:
-      type: object
-      properties:
-        servAttrCom:
-          $ref: '#/components/schemas/ServAttrCom'
-        guaThpt:
-          $ref: '#/components/schemas/Float'
-        maxThpt:
-          $ref: '#/components/schemas/Float'
     DLThptPerSliceSubnet:
       type: object
       properties:
@@ -240,6 +222,7 @@ components:
           type: string
         nsName:
           type: string
+
     CNSliceSubnetProfile:
       type: object
       properties:
@@ -265,6 +248,7 @@ components:
           $ref: '#/components/schemas/SliceSimultaneousUse'
         deterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
+
     RANSliceSubnetProfile:
       type: object
       properties:
@@ -302,6 +286,7 @@ components:
           $ref: '#/components/schemas/TermDensity'
         transferIntervalTarget:
           type: string
+
     TopSliceSubnetProfile:
       type: object
       properties:
@@ -347,6 +332,7 @@ components:
           type: string
         transferIntervalTarget:
           type: string
+
     ServiceProfile:
       type: object
       properties:
