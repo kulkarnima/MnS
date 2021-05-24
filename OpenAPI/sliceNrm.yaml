@@ -53,13 +53,11 @@ components:
       enum:
         - SHARED
         - NON-SHARED
-
     NetworkSliceSharingIndicator:
       type: string
       enum:
         - SHARED
         - NON-SHARED
-
     ServiceType:
       type: string
       enum:
@@ -222,7 +220,6 @@ components:
           type: string
         nsName:
           type: string
-
     CNSliceSubnetProfile:
       type: object
       properties:
@@ -248,7 +245,6 @@ components:
           $ref: '#/components/schemas/SliceSimultaneousUse'
         deterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
-
     RANSliceSubnetProfile:
       type: object
       properties:
@@ -286,7 +282,6 @@ components:
           $ref: '#/components/schemas/TermDensity'
         transferIntervalTarget:
           type: string
-
     TopSliceSubnetProfile:
       type: object
       properties:
@@ -332,7 +327,6 @@ components:
           type: string
         transferIntervalTarget:
           type: string
-
     ServiceProfile:
       type: object
       properties:
@@ -400,7 +394,6 @@ components:
             type: string
           sliceSimultaneousUse:
             $ref: '#/components/schemas/SliceSimultaneousUse'
-
     SliceProfile:
       type: object
       properties:
@@ -414,17 +407,14 @@ components:
             $ref: '#/components/schemas/RANSliceSubnetProfile'
           topSliceSubnetProfile:
             $ref: '#/components/schemas/TopSliceSubnetProfile'
-
     IpAddress:
       oneOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
         - $ref: 'genericNrm.yaml#/components/schemas/Ipv6Addr'
-
     ServiceProfileList:
        type: array
        items:
         $ref: '#/components/schemas/ServiceProfile'
-            
     SliceProfileList:
       type: array
       items:
