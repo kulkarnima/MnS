@@ -294,7 +294,7 @@ components:
           $ref: '#/components/schemas/DelayTolerance'
         sliceSimultaneousUse:
           $ref: '#/components/schemas/SliceSimultaneousUse'
-                deterministicComm:
+        deterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
         survivalTime:
           type: string
