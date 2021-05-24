@@ -320,6 +320,34 @@ components:
           $ref: '#/components/schemas/XLThpt'
         uLThptPerUE:
           $ref: '#/components/schemas/XLThpt'
+        maxPktSize:
+          type: integer
+        delayTolerance:
+          $ref: '#/components/schemas/DelayTolerance'
+        sliceSimultaneousUse:
+          $ref: '#/components/schemas/SliceSimultaneousUse'
+        termDensity:
+          $ref: '#/components/schemas/TermDensity'
+        activityFactor:
+          type: integer
+		coverageAreaTAList:
+          type: integer
+		uEMobilityLevel:
+          $ref: '#/components/schemas/MobilityLevel'
+        resourceSharingLevel:
+          $ref: '#/components/schemas/SharingLevel'
+        uESpeed:
+          type: integer
+        reliability:
+          type: string
+        serviceType:
+          $ref: '#/components/schemas/ServiceType'
+        deterministicComm:
+          $ref: '#/components/schemas/DeterministicComm'
+        survivalTime:
+          type: string
+        transferIntervalTarget:
+          type: string
     ServiceProfile:
       type: object
       properties:
