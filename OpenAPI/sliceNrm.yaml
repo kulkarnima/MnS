@@ -300,9 +300,25 @@ components:
           type: string
         termDensity:
           $ref: '#/components/schemas/TermDensity'
+        activityFactor:
+          type: integer
+		coverageAreaTAList:
+          type: integer
+		uEMobilityLevel:
+          $ref: '#/components/schemas/MobilityLevel'
+        resourceSharingLevel:
+          $ref: '#/components/schemas/SharingLevel'
+        uESpeed:
+          type: integer
+        reliability:
+          type: string
+        serviceType:
+          $ref: '#/components/schemas/ServiceType'
+        deterministicComm:
+          $ref: '#/components/schemas/DeterministicComm'
         transferIntervalTarget:
           type: string
-  
+
     TopSliceSubnetProfile:
       type: object
       properties:
