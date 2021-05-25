@@ -279,9 +279,9 @@ components:
         activityFactor:
           type: integer
         dLThptPerUEPerSubnet:
-          $ref: '#/components/schemas/UXDLThptPerUEPerSubnet'
+          $ref: '#/components/schemas/XLThpt'
         uLThptPerUEPerSubnet:
-          $ref: '#/components/schemas/XULThptPerUEPerSubnet'
+          $ref: '#/components/schemas/XLThpt'
         uESpeed:
           type: integer
         reliability:
@@ -294,15 +294,7 @@ components:
           $ref: '#/components/schemas/DelayTolerance'
         sliceSimultaneousUse:
           $ref: '#/components/schemas/SliceSimultaneousUse'
-        deterministicComm:
-          $ref: '#/components/schemas/DeterministicComm'
-        survivalTime:
-          type: string
-        termDensity:
-          $ref: '#/components/schemas/TermDensity'
-        transferIntervalTarget:
-          type: string
-
+          
     TopSliceSubnetProfile:
       type: object
       properties:
@@ -326,28 +318,6 @@ components:
           $ref: '#/components/schemas/DelayTolerance'
         sliceSimultaneousUse:
           $ref: '#/components/schemas/SliceSimultaneousUse'
-        termDensity:
-          $ref: '#/components/schemas/TermDensity'
-        activityFactor:
-          type: integer
-        coverageAreaTAList:
-          type: integer
-        uEMobilityLevel:
-          $ref: '#/components/schemas/MobilityLevel'
-        resourceSharingLevel:
-          $ref: '#/components/schemas/SharingLevel'
-        uESpeed:
-          type: integer
-        reliability:
-          type: string
-        serviceType:
-          $ref: '#/components/schemas/ServiceType'
-        deterministicComm:
-          $ref: '#/components/schemas/DeterministicComm'
-        survivalTime:
-          type: string
-        transferIntervalTarget:
-          type: string
     ServiceProfile:
       type: object
       properties:
