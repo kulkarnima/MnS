@@ -35,6 +35,11 @@ submodule _3gpp-ns-nrm-sliceprofile {
       3GPP TS 28.541 V15.X.XX";
   }
   grouping TopSliceSubnetProfileGrp {
+    leaf-list coverageArea {
+       min-elements 1;
+       description "A list of TrackingAreas where the NSI can be selected.";
+       type types3gpp:Tac;
+    }
     leaf latency {
       description "The packet transmission latency (milliseconds) through 
         the RAN, CN, and TN part of 5G network, used to evaluate 
