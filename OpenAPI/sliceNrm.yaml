@@ -323,6 +323,13 @@ components:
           $ref: '#/components/schemas/DelayTolerance'
         sliceSimultaneousUse:
           $ref: '#/components/schemas/SliceSimultaneousUse'
+        termDensity:
+          $ref: '#/components/schemas/TermDensity'
+        activityFactor:
+          type: integer
+        coverageAreaTAList:
+          type: integer
+
     ServiceProfile:
       type: object
       properties:
