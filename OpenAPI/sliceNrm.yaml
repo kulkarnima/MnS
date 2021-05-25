@@ -257,6 +257,10 @@ components:
           $ref: '#/components/schemas/XLThpt'
         maxNumberOfPDUSessions:
           type: integer
+        coverageAreaTAList:
+          type: integer
+        resourceSharingLevel:
+          $ref: '#/components/schemas/SharingLevel'
         maxPktSize:
           type: integer
         delayTolerance:
@@ -270,7 +274,7 @@ components:
       properties:
         coverageAreaTAList:
           type: integer
-        MobilityLevel:
+        uEMobilityLevel:
           $ref: '#/components/schemas/MobilityLevel'
         resourceSharingLevel:
           $ref: '#/components/schemas/SharingLevel'
@@ -329,6 +333,10 @@ components:
           type: integer
         coverageAreaTAList:
           type: integer
+        resourceSharingLevel:
+          $ref: '#/components/schemas/SharingLevel'
+        uEMobilityLevel:
+          $ref: '#/components/schemas/MobilityLevel'
 
     ServiceProfile:
       type: object
