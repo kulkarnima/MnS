@@ -323,10 +323,12 @@ components:
           $ref: '#/components/schemas/XLThpt'
         maxPktSize:
           type: integer
-        delayTolerance:
-          $ref: '#/components/schemas/DelayTolerance'
+        maxNumberOfPDUSessions:
+          type: integer
         sliceSimultaneousUse:
           $ref: '#/components/schemas/SliceSimultaneousUse'
+        delayTolerance:
+          $ref: '#/components/schemas/DelayTolerance'
         termDensity:
           $ref: '#/components/schemas/TermDensity'
         activityFactor:
@@ -337,6 +339,16 @@ components:
           $ref: '#/components/schemas/SharingLevel'
         uEMobilityLevel:
           $ref: '#/components/schemas/MobilityLevel'
+        uESpeed:
+          type: integer
+        reliability:
+          type: string
+        serviceType:
+          $ref: '#/components/schemas/ServiceType'
+        deterministicComm:
+          $ref: '#/components/schemas/DeterministicComm'
+        survivalTime:
+          type: string
 
     ServiceProfile:
       type: object
