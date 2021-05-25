@@ -529,11 +529,6 @@ submodule _3gpp-ns-nrm-sliceprofile {
   }
 
   grouping RANSliceSubnetProfileGrp {
-    leaf-list coverageArea {
-       min-elements 1;
-       description "A list of TrackingAreas where the NSI can be selected.";
-       type types3gpp:Tac;
-    }
     leaf latency {
       description "The packet transmission latency (milliseconds) through 
         the RAN, CN, and TN part of 5G network, used to evaluate 
@@ -551,33 +546,9 @@ submodule _3gpp-ns-nrm-sliceprofile {
       mandatory true;
       type uint64;
     }
-    list dLThptPerSliceSubnet {
-      description "This attribute defines achievable data rate of the
-        network slice subnet in downlink that is available ubiquitously
-        across the coverage area of the slice";
-      key idx;
-      max-elements 1;
-      leaf idx {
-        description "Synthetic index for the element.";
-        type uint32;
-      }
-      uses ns3cmn:XLThptGrp;
-    }
     list dLThptPerUE {
       description "This attribute defines data rate supported by the
         network slice per UE, refer NG.116.";
-      key idx;
-      max-elements 1;
-      leaf idx {
-        description "Synthetic index for the element.";
-        type uint32;
-      }
-      uses ns3cmn:XLThptGrp;
-    }
-    list uLThptPerSliceSubnet {
-      description "This attribute defines achievable data rate of the
-        network slice subnet in uplink that is available ubiquitously
-        across the coverage area of the slice";
       key idx;
       max-elements 1;
       leaf idx {
@@ -624,34 +595,6 @@ submodule _3gpp-ns-nrm-sliceprofile {
         //Stage2 issue: Not defined in 28.541, guessing integer bytes
         type uint32;
         units bytes;
-      }
-    }
-    list maxNumberofPDUSessions {
-      description "Represents the maximum number of 
-        concurrent PDU sessions supported by the network slice";
-      config false;
-      key idx;
-      max-elements 1;
-      leaf idx {
-        description "Synthetic index for the element.";
-        type uint32;
-      }
-      list servAttrCom {
-        description "This list represents the common properties of service 
-          requirement related attributes.";
-        reference "GSMA NG.116 corresponding to Attribute categories, 
-          tagging and exposure";
-        key idx;
-        max-elements 1;
-        leaf idx {
-          description "Synthetic index for the element.";
-          type uint32;
-        }
-        uses ns3cmn:ServAttrComGrp;
-      }
-      leaf nOofPDUSessions {
-        //Stage2 issue: Not defined in 28.541, guessing integer
-        type uint32;
       }
     }
     list delayTolerance {
@@ -809,7 +752,6 @@ submodule _3gpp-ns-nrm-sliceprofile {
       type string;
     }
   }
-
 
   grouping SliceProfileGrp {
     leaf sliceProfileId {
