@@ -278,9 +278,9 @@ components:
           type: integer
         activityFactor:
           type: integer
-        dLThptPerUEPerSubnet:
+        dLThptPerUE:
           $ref: '#/components/schemas/XLThpt'
-        uLThptPerUEPerSubnet:
+        uLThptPerUE:
           $ref: '#/components/schemas/XLThpt'
         uESpeed:
           type: integer
@@ -294,7 +294,12 @@ components:
           $ref: '#/components/schemas/DelayTolerance'
         sliceSimultaneousUse:
           $ref: '#/components/schemas/SliceSimultaneousUse'
-          
+        deterministicComm:
+          $ref: '#/components/schemas/DeterministicComm'
+        survivalTime:
+          type: string
+        termDensity:
+          $ref: '#/components/schemas/TermDensity'
     TopSliceSubnetProfile:
       type: object
       properties:
