@@ -298,12 +298,12 @@ components:
           $ref: '#/components/schemas/DelayTolerance'
         sliceSimultaneousUse:
           $ref: '#/components/schemas/SliceSimultaneousUse'
-        deterministicComm:
-          $ref: '#/components/schemas/DeterministicComm'
-        survivalTime:
-          type: string
         termDensity:
           $ref: '#/components/schemas/TermDensity'
+        survivalTime:
+          type: string
+        deterministicComm:
+          $ref: '#/components/schemas/DeterministicComm'
     TopSliceSubnetProfile:
       type: object
       properties:
