@@ -34,6 +34,23 @@ submodule _3gpp-ns-nrm-sliceprofile {
     reference "Based on
       3GPP TS 28.541 V15.X.XX";
   }
+  typedef SliceSimultaneousUse-enum {
+    type enumeration {
+      enum ZERO;
+      enum ONE;
+      enum TWO;
+      enum THREE;
+      enum FOUR;
+    }
+  }
+  typedef ServiceType-enum {
+    type enumeration {
+      enum eMBB;
+      enum URLLC;
+      enum MIoT;
+      enum V2X;
+    }
+  }
   grouping TopSliceSubnetProfileGrp {
     leaf-list coverageArea {
        min-elements 1;
@@ -160,6 +177,12 @@ submodule _3gpp-ns-nrm-sliceprofile {
         type uint32;
       }
     }
+    leaf sliceSimultaneousUse {
+      description "This attribute describes whether a network slice
+      can be simultaneously used by a device together with other 
+      network slices and if so, with which other classes of network slices.";
+      type SliceSimultaneousUse-enum;
+    }    
     list delayTolerance {
       description "An attribute specifies the properties of service delivery 
         flexibility, especially for the vertical services that are not 
@@ -268,6 +291,11 @@ submodule _3gpp-ns-nrm-sliceprofile {
         divided by the total number of sent network layer packets.";
       reference "TS 22.261, TS 22.104";
       type string;
+    }
+    leaf serviceType {
+      description "An attribute specifies the standardized network slice type. 
+	  allowedValues: eMBB, URLLC, MIoT, V2X.";
+      type ServiceType-enum;
     }
     list deterministicComm {
       //Stage2 issue: deterministicComm is not defined in 28.541 chapter 6, 
@@ -442,6 +470,12 @@ submodule _3gpp-ns-nrm-sliceprofile {
         type uint32;
       }
     }
+    leaf sliceSimultaneousUse {
+      description "This attribute describes whether a network slice
+      can be simultaneously used by a device together with other 
+      network slices and if so, with which other classes of network slices.";
+      type SliceSimultaneousUse-enum;
+    }  
     list delayTolerance {
       description "An attribute specifies the properties of service delivery 
         flexibility, especially for the vertical services that are not 
@@ -629,6 +663,12 @@ submodule _3gpp-ns-nrm-sliceprofile {
         type ns3cmn:Support-enum;
       }
     }
+    leaf sliceSimultaneousUse {
+      description "This attribute describes whether a network slice
+      can be simultaneously used by a device together with other 
+      network slices and if so, with which other classes of network slices.";
+      type SliceSimultaneousUse-enum;
+    }  
     list termDensity {
       description "An attribute specifies the overall user density over 
         the coverage area of the network slice";
@@ -705,6 +745,11 @@ submodule _3gpp-ns-nrm-sliceprofile {
         divided by the total number of sent network layer packets.";
       reference "TS 22.261, TS 22.104";
       type string;
+    }
+    leaf serviceType {
+      description "An attribute specifies the standardized network slice type. 
+	  allowedValues: eMBB, URLLC, MIoT, V2X.";
+      type ServiceType-enum;
     }
     list deterministicComm {
       //Stage2 issue: deterministicComm is not defined in 28.541 chapter 6, 
