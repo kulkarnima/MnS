@@ -80,7 +80,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
       type Exposure-enum;
     }
   }
-  typedef DeterminCommAvailability {
+  typedef DeterministicCommAvailability {
     type Support-enum;
   }  
   grouping DLThptGrp {
@@ -232,7 +232,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
     }
     list deterministicComm {
       //Stage2 issue: deterministicComm is not defined in 28.541 chapter 6, 
-      //              but I guess determinComm is meant
+      //              but I guess deterministicComm is meant
       description "This list represents the properties of the deterministic 
         communication for periodic user traffic. Periodic traffic refers to the 
         type of traffic with periodic transmissions.";
@@ -258,9 +258,9 @@ submodule _3gpp-ns-nrm-serviceprofile {
       }
       leaf availability {
         //Stage2 issue: Defined differently in 28.541 chapter 6, but XML 
-        //              uses DeterminCommAvailability
+        //              uses DeterministicCommAvailability
         config false;
-        type DeterminCommAvailability;
+        type DeterministicCommAvailability;
       }
       leaf periodicityList {
         //Stage2 issue: Not defined in 28.541 chapter 6. XML and YAML 
@@ -291,7 +291,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
       }
       uses DLThptGrp;
     }
-    list uLThptPerSlic {
+    list uLThptPerSlice {
       key idx;
       max-elements 1;
       leaf idx {
