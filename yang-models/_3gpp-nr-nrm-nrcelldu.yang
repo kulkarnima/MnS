@@ -33,7 +33,7 @@ module _3gpp-nr-nrm-nrcelldu {
   }
   
   feature CPCIConfigurationFunction {
-    description "Class representing Cross Domain-Centralized SON function of 
+    description "Class representing Centralized SON function of 
       PCI configuration feature";
   }
 
