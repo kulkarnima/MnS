@@ -642,6 +642,12 @@ components:
           - GNB_CU_CP
           - GNB_CU_UP
           - GNB_DU
+          - AMF
+          - PCF
+          - SMF
+          - UPF
+          - AUSF
+          - SMSF
 
     tjPLMNTaget-Type:
       type: object
@@ -731,6 +737,12 @@ components:
             - SMF
             - PCF
             - UPF
+            - AUSF
+            - NEF
+            - NRF
+            - NSSF
+            - SMSF
+            - UDM
         EventBitmap:
           type: integer
       required:
@@ -748,21 +760,16 @@ components:
       description: See details in 3GPP TS 32.422 clause 5.10.20.
       type: string
       enum:
-        - 250ms
-        - 500ms
+        - 100ms
         - 1000ms
-        - 2000ms
-        - 3000ms
-        - 4000ms
-        - 6000ms
-        - 8000ms
-        - 12000ms
-        - 16000ms
-        - 20000ms
-        - 24000ms
-        - 28000ms
-        - 32000ms
-        - 64000ms
+        - 1024ms
+        - 1280ms
+        - 2048ms
+        - 2560ms
+        - 5120ms
+        - 10000ms
+        - 10240ms
+        - 60000ms
 
     tjMDTCollectionPeriodM6Lte-Type:
       description: See details in 3GPP TS 32.422 clause 5.10.32.
@@ -783,20 +790,27 @@ components:
       description: See details in 3GPP TS 32.422 clause 5.10.21.
       type: string
       enum:
-        - 1024ms
-        - 1280ms
-        - 2048ms
-        - 2560ms
-        - 5120ms
-        - 10240ms
-        - 1min
+        - 250ms
+        - 500ms
+        - 1000ms
+        - 2000ms
+        - 3000ms
+        - 4000ms
+        - 6000ms
+        - 8000ms
+        - 12000ms
+        - 16000ms
+        - 20000ms
+        - 24000ms
+        - 28000ms
+        - 32000ms
+        - 64000ms
     
     tjMDTCollectionPeriodRrmNR-Type:
       description: See details in 3GPP TS 32.422 clause 5.10.30.
       type: string
       enum:
         - 1024ms
-        - 1280ms
         - 2048ms
         - 5120ms
         - 10240ms
@@ -839,13 +853,21 @@ components:
       type: object
       properties:
         EventThresholdRSRP:
-          type: integer
-          minimum: 0
-          maximum: 97
+          oneOf:
+          - type: integer
+            minimum: 0
+            maximum: 97
+          - type: integer
+            minimum: 0
+            maximum: 127
         EventThresholdRSRQ:      
-          type: integer
-          minimum: 0
-          maximum: 34
+          oneOf:
+          - type: integer
+            minimum: 0
+            maximum: 34
+          - type: integer
+            minimum: 0
+            maximum: 127
         EventThreshold1F:
           type: object
           properties:
@@ -911,6 +933,7 @@ components:
               - M5
               - M6
               - M7
+              - M1_EVENT_TRIGGERED
               - M8
               - M9
 
@@ -927,16 +950,50 @@ components:
     
     tjMDTLoggingInterval-Type:
       description: See details in 3GPP TS 32.422 clause 5.10.8.
-      type: string
-      enum:
-        - 1.28s
-        - 2.56s
-        - 5.12s
-        - 10.24s
-        - 20.48s
-        - 30.72s
-        - 40.96s
-        - 61.44s
+      type: object
+      properties:
+        UMTS:
+          type: array
+          items:
+            type: string
+            enum:
+              - 1.28s
+              - 2.56s
+              - 5.12s
+              - 10.24s
+              - 20.48s
+              - 30.72s
+              - 40.96s
+              - 61.44s
+        LTE:
+          type: array
+          items:
+            type: string
+            enum:
+              - 1.28s
+              - 2.56s
+              - 5.12s
+              - 10.24s
+              - 20.48s
+              - 30.72s
+              - 40.96s
+              - 61.44s
+        NR:
+          type: array
+          items:
+            type: string
+            enum:
+              - 0.32s
+              - 0.64s
+              - 1.28s
+              - 2.56s
+              - 5.12s
+              - 10.24s
+              - 20.48s
+              - 30.72s
+              - 40.96s
+              - 61.44s
+              - INFINITY
 
     tjMDTMeasurementPeriodLTE-Type:
       description: See details in 3GPP TS 32.422 clause 5.10.23.
@@ -1020,45 +1077,73 @@ components:
         type: string
         enum:
           - PERIODICAL
-          - A2_FOR_LTE
+          - A2_FOR_LTE_NR
           - 1F_FOR_UMTS
           - 1I_FOR_UMTS_MCPS_TDD
-          - A2_TRIGGERED_PERIODIC_FOR_LTE
-          - ALL_CONFIGURED_RRM_FOR_LTE
+          - A2_TRIGGERED_PERIODIC_FOR_LTE_NR
+          - ALL_CONFIGURED_RRM_FOR_LTE_NR
           - ALL_CONFIGURED_RRM_FOR_UMTS
 
     tjMDTReportInterval-Type:
       description: See details in 3GPP TS 32.422 clause 5.10.5.
-      type: string
-      enum:
-        - 250ms
-        - 500ms
-        - 1000ms
-        - 2000ms
-        - 3000ms
-        - 4000ms
-        - 6000ms
-        - 8000ms
-        - 12000ms
-        - 16000ms
-        - 20000ms
-        - 24000ms
-        - 28000ms
-        - 32000ms
-        - 64000ms
-        - 120ms
-        - 240ms
-        - 480ms
-        - 640ms
-        - 1024ms
-        - 2048ms
-        - 5120ms
-        - 10240ms
-        - 60000ms
-        - 360000ms
-        - 720000ms
-        - 1800000ms
-        - 3600000ms
+      type: object
+      properties:
+        UMTS:
+          type: array
+          items:
+            type: string
+            enum:
+              - 250ms
+              - 500ms
+              - 1000ms
+              - 2000ms
+              - 3000ms
+              - 4000ms
+              - 6000ms
+              - 8000ms
+              - 12000ms
+              - 16000ms
+              - 20000ms
+              - 24000ms
+              - 28000ms
+              - 32000ms
+              - 64000ms
+        LTE:
+          type: array
+          items:
+            type: string
+            enum:
+              - 120ms
+              - 240ms
+              - 480ms
+              - 640ms
+              - 1024ms
+              - 2048ms
+              - 5120ms
+              - 10240ms
+              - 60000ms
+              - 360000ms
+              - 720000ms
+              - 1800000ms
+              - 3600000ms
+        NR:
+          type: array
+          items:
+            type: string
+            enum:
+              - 120ms
+              - 240ms
+              - 480ms
+              - 640ms
+              - 1024ms
+              - 2048ms
+              - 5120ms
+              - 10240ms
+              - 60000ms
+              - 360000ms
+              - 720000ms
+              - 1800000ms
+              - 3600000ms
 
     tjMDTReportType-Type:
       description: Report type for logged NR MDT. See details in 3GPP TS 32.422 clause 5.10.27.
