@@ -4,6 +4,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
 
   import _3gpp-common-yang-types { prefix types3gpp; }
   import _3gpp-5g-common-yang-types { prefix types5g3gpp; }
+  import _3gpp-ns-nrm-common { prefix ns3cmn; }
 
   organization "3GPP SA5";
   contact 
@@ -14,6 +15,10 @@ submodule _3gpp-ns-nrm-serviceprofile {
     5G Network Resource Model (NRM);
     Information model definitions for network slice NRM (chapter 6)
     ";
+
+  revision 2020-06-02 {
+    reference "CR-0485, CR-0508";
+  }
 
   revision 2020-02-19 {
     description "Introduction of YANG definitions for network slice NRM";
@@ -37,78 +42,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
       range 0..100;
     }
   }
-  typedef Category-enum {
-    type enumeration {
-      enum character;
-      enum scalability;
-    }
-  }
-  typedef Tagging-enum {
-    type enumeration {
-      enum performance;
-      enum function;
-      enum operation;
-    }
-  }
-  typedef Exposure-enum {
-    type enumeration {
-      enum API;
-      enum KPI;
-    }
-  }
-  typedef Support-enum {
-    type enumeration {
-      enum NOT_SUPPORTED;
-      enum SUPPORTED;
-    }
-  }
-  grouping ServAttrComGrp {
-    leaf category {
-      description "This attribute specifies the category of a service 
-        requirement/attribute of GST";
-      type Category-enum;
-    }
-    leaf-list tagging {
-      description "This attribute specifies the tagging of a service 
-        requirement/attribute of GST in character category";
-      when "../category = 'character'";
-      type Tagging-enum;
-    }
-    leaf exposure {
-      description "This attribute specifies exposure mode of a service 
-        requirement/attribute of GST";
-      type Exposure-enum;
-    }
-  }
-  typedef DeterministicCommAvailability {
-    type Support-enum;
-  }  
-  grouping DLThptGrp {
-    list servAttrCom {
-      description "This list represents the common properties of service 
-        requirement related attributes.";
-      reference "GSMA NG.116 corresponding to Attribute categories, 
-        tagging and exposure";
-      config false;
-      key idx;
-      max-elements 1;
-      leaf idx {
-        description "Synthetic index for the element.";
-        type uint32;
-      }
-      uses ServAttrComGrp;
-    }
-    leaf guaThpt {
-      description "This attribute describes the guaranteed data rate.";
-      type uint64;
-      units kbits/s;
-    }
-    leaf maxThpt {
-      description "This attribute describes the maximum data rate.";
-      type uint64;
-      units kbits/s;
-    }
-  }
+
   typedef V2XMode-enum {
     type enumeration {
       enum NOT_SUPPORTED;
@@ -221,13 +155,13 @@ submodule _3gpp-ns-nrm-serviceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf support {
         description "An attribute specifies whether or not the network 
           slice supports service delivery flexibility, especially for the 
           vertical services that are not chasing a high system performance.";
-        type Support-enum;
+        type ns3cmn:Support-enum;
       }
     }
     list deterministicComm {
@@ -254,13 +188,13 @@ submodule _3gpp-ns-nrm-serviceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf availability {
         //Stage2 issue: Defined differently in 28.541 chapter 6, but XML 
         //              uses DeterministicCommAvailability
         config false;
-        type DeterministicCommAvailability;
+        type ns3cmn:DeterminCommAvailability;
       }
       leaf periodicityList {
         //Stage2 issue: Not defined in 28.541 chapter 6. XML and YAML 
@@ -278,7 +212,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
         description "Synthetic index for the element.";
         type uint32;
       }
-      uses DLThptGrp;
+      uses ns3cmn:XLThptGrp;
     }
     list dLThptPerUE {
       description "This attribute defines data rate supported by the network 
@@ -289,7 +223,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
         description "Synthetic index for the element.";
         type uint32;
       }
-      uses DLThptGrp;
+      uses ns3cmn:XLThptGrp;
     }
     list uLThptPerSlice {
       key idx;
@@ -301,7 +235,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
       description "This attribute defines achievable data rate of the 
         network slice in uplink that is available ubiquitously across 
         the coverage area of the slice";
-      uses DLThptGrp;
+      uses ns3cmn:XLThptGrp;
     }
     list uLThptPerUE {
       key idx;
@@ -312,7 +246,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
       }
       description "This attribute defines data rate supported by the 
         network slice per UE";
-      uses DLThptGrp;
+      uses ns3cmn:XLThptGrp;
     }
     list maxPktSize {
       config false;
@@ -335,7 +269,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf maxSize {
         //Stage2 issue: Not defined in 28.541, guessing integer bytes
@@ -364,7 +298,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf nOofPDUSessions {
         //Stage2 issue: Not defined in 28.541, guessing integer
@@ -391,7 +325,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf kPIList {
         //Stage2 issue: Data format not specified, low interoperability
@@ -403,7 +337,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
     list userMgmtOpen {
       description "An attribute specifies whether or not the network slice 
         supports the capability for the NSC to manage their users or groups 
-        of users’ network services and corresponding requirements.";
+        of users' network services and corresponding requirements.";
       config false;
       key idx;
       max-elements 1;
@@ -422,10 +356,10 @@ submodule _3gpp-ns-nrm-serviceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf support {
-        type Support-enum;
+        type ns3cmn:Support-enum;
       }
     }
     list v2XCommModels {
@@ -449,7 +383,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf v2XMode {
         type V2XMode-enum;
@@ -476,7 +410,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf density {
         type uint32;
@@ -557,12 +491,12 @@ submodule _3gpp-ns-nrm-serviceprofile {
           description "Synthetic index for the element.";
           type uint32;
         }
-        uses ServAttrComGrp;
+        uses ns3cmn:ServAttrComGrp;
       }
       leaf support {
         description "An attribute specifies whether NB-IoT is supported 
           in the RAN in the network slice";
-        type Support-enum;
+        type ns3cmn:Support-enum;
       }
     }
   }
