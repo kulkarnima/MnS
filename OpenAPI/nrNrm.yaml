@@ -1337,6 +1337,20 @@ components:
                   properties:
                     cesSwitch:
                       type: boolean
+                    intraRatEsActivationOriginalCellLoadParameters:
+                      $ref: "#/components/schemas/IntraRatEsActivationOriginalCellLoadParameters"
+                    intraRatEsActivationCandidateCellsLoadParameters:
+                      $ref: "#/components/schemas/IntraRatEsActivationCandidateCellsLoadParameters"
+                    intraRatEsDeactivationCandidateCellsLoadParameters:
+                      $ref: "#/components/schemas/IntraRatEsDeactivationCandidateCellsLoadParameters"
+                    esNotAllowedTimePeriod:
+                      $ref: "#/components/schemas/EsNotAllowedTimePeriod"
+                    interRatEsActivationOriginalCellParameters:
+                      $ref: "#/components/schemas/IntraRatEsActivationOriginalCellLoadParameters"
+                    interRatEsActivationCandidateCellParameters:
+                      $ref: "#/components/schemas/IntraRatEsActivationOriginalCellLoadParameters"
+                    interRatEsDeactivationCandidateCellParameters:
+                      $ref: "#/components/schemas/IntraRatEsActivationOriginalCellLoadParameters"
                     energySavingControl:
                       type: string
                       enum:
