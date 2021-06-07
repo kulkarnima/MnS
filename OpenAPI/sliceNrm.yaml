@@ -290,8 +290,8 @@ components:
 
     IpAddress:
       oneOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
-        - $ref: 'genericNrm.yaml#/components/schemas/Ipv6Addr'
+        - $ref: 'comDefs.yaml#/components/schemas/Ipv4Addr'
+        - $ref: 'comDefs.yaml#/components/schemas/Ipv6Addr'
     ServiceProfileList:
        type: array
        items:

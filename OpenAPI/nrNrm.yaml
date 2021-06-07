@@ -272,9 +272,9 @@ components:
       type: object
       properties:
         ipv4Address:
-          $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
+          $ref: 'comDefs.yaml#/components/schemas/Ipv4Addr'
         ipv6Address:
-          $ref: 'genericNrm.yaml#/components/schemas/Ipv6Addr'
+          $ref: 'comDefs.yaml#/components/schemas/Ipv6Addr'
         vlanId:
           type: integer
           minimum: 0
@@ -292,9 +292,9 @@ components:
       type: object
       properties:
         ipv4Address:
-          $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
+          $ref: 'comDefs.yaml#/components/schemas/Ipv4Addr'
         ipv6Address:
-          $ref: 'genericNrm.yaml#/components/schemas/Ipv6Addr'
+          $ref: 'comDefs.yaml#/components/schemas/Ipv6Addr'
 
     CellIndividualOffset:
       type: object
@@ -556,8 +556,8 @@ components:
       properties:
         TceIPAddress:
           oneOf:
-            - $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
-            - $ref: 'genericNrm.yaml#/components/schemas/Ipv6Addr'
+            - $ref: 'comDefs.yaml#/components/schemas/Ipv4Addr'
+            - $ref: 'comDefs.yaml#/components/schemas/Ipv6Addr'
         TceID:
           type: integer
         PlmnTarget:
