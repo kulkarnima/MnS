@@ -31,16 +31,6 @@ components:
           type: string
         autoScalable:
           type: boolean
-    Latitude:
-      type: number
-      format: float
-      minimum: -90
-      maximum: 90
-    Longitude:
-      type: number
-      format: float
-      minimum: -180
-      maximum: 180
     PeeParameter:
       type: object
       properties:
@@ -49,9 +39,9 @@ components:
         siteDescription:
           type: string
         siteLatitude:
-          $ref: '#/components/schemas/Latitude'
+          $ref: 'comDefs.yaml#/components/schemas/Latitude'
         siteLongitude:
-          $ref: '#/components/schemas/Longitude'
+          $ref: 'comDefs.yaml#/components/schemas/Longitude'
         equipmentType:
           type: string
         environmentType:
@@ -110,8 +100,6 @@ components:
         - AF
         - UDSF
         - DN
-    Fqdn:
-      type: string
     OperationSemantics:
       type: string
       enum:
@@ -121,7 +109,7 @@ components:
       type: object
       properties:
         host:
-          $ref: '#/components/schemas/HostAddr'
+          $ref: 'comDefs.yaml#/components/schemas/HostAddr'
         port:
           type: integer
     NFServiceType:
@@ -134,27 +122,6 @@ components:
         - Nsmf_PDUSession
         - Nsmf_EventExposure
         - Others
-    HostAddr:
-      oneOf:
-        - $ref: '#/components/schemas/Ipv4Addr'
-        - $ref: '#/components/schemas/Ipv6Addr'
-        - $ref: '#/components/schemas/Fqdn'
-    Ipv4Addr:
-      type: string
-      pattern: '^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$'
-      example: '198.51.100.1'
-    Ipv6Addr:
-      type: string
-      allOf:
-        - pattern: '^((:|(0?|([1-9a-f][0-9a-f]{0,3}))):)((0?|([1-9a-f][0-9a-f]{0,3})):){0,6}(:|(0?|([1-9a-f][0-9a-f]{0,3})))$'
-        - pattern: '^((([^:]+:){7}([^:]+))|((([^:]+:)*[^:]+)?::(([^:]+:)*[^:]+)?))$'
-      example: '2001:db8:85a3::8a2e:370:7334'
-    Ipv6Prefix:
-      type: string
-      allOf:
-        - pattern: '^((:|(0?|([1-9a-f][0-9a-f]{0,3}))):)((0?|([1-9a-f][0-9a-f]{0,3})):){0,6}(:|(0?|([1-9a-f][0-9a-f]{0,3})))(\/(([0-9])|([0-9]{2})|(1[0-1][0-9])|(12[0-8])))$'
-        - pattern: '^((([^:]+:){7}([^:]+))|((([^:]+:)*[^:]+)?::(([^:]+:)*[^:]+)?))(\/.+)$'
-      example: '2001:db8:abcd:12::0/64'
     TransportProtocol:
       anyOf:
         - type: string
