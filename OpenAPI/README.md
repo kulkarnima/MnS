@@ -54,8 +54,8 @@ The links below will open the Swagger Editor/UI and auto-load the OpenAPI YAML f
 ([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/streamingDataMnS.yaml))
 
 * File Data Reporting MnS (TS 28.532)
-([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/FileDataReportMnS.yaml))
-([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/FileDataReportMnS.yaml))
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/fileDataReportingMnS.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/fileDataReportingMnS.yaml))
 
 ## Tools
 
