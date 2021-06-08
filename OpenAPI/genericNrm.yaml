@@ -7,7 +7,7 @@ info:
     © 2021, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 externalDocs:
-  description: 3GPP TS 28.623 V16.7.0; Generic NRM
+  description: 3GPP TS 28.623; Generic NRM
   url: http://www.3gpp.org/ftp/Specs/archive/28_series/28.623/
 paths: {}
 components:
