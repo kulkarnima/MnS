@@ -243,8 +243,8 @@ components:
       pattern: '^[A-Fa-f0-9]{9}$'
     IpAddr:
       oneOf:
-        - $ref: '#/components/schemas/Ipv4Addr'
-        - $ref: '#/components/schemas/Ipv6Addr'
+        - $ref: 'comDefs.yaml#/components/schemas/Ipv4Addr'
+        - $ref: 'comDefs.yaml#/components/schemas/Ipv6Addr'
 
 
 #-------- Definition of types used in Trace control NRM fragment------------------
