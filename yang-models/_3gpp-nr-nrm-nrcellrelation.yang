@@ -15,6 +15,7 @@ module _3gpp-nr-nrm-nrcellrelation {
     Object Class (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2021-01-25 { reference CR-0454 ; }
   revision 2020-06-03 { reference S5-202333 ; }
   revision 2020-04-23 { reference CR0281 ; }
   revision 2019-10-28 { reference S5-193518 ; }
@@ -35,11 +36,11 @@ module _3gpp-nr-nrm-nrcellrelation {
     description "Represents the NRCellRelation IOC.";
     reference "3GPP TS 28.541";
 
-    leaf nRTCI {        	
+    leaf nRTCI {       	
       description "Target NR Cell Identifier. It consists of NR Cell
         Identifier (NCI) and Physical Cell Identifier of the target NR cell
         (nRPCI).";
-      type uint64;     	
+      type uint64;    	
     }
 
     container cellIndividualOffset {
@@ -86,13 +87,13 @@ module _3gpp-nr-nrm-nrcellrelation {
       }
     }
 
-    leaf nRFreqRelationRef {        	
+    leaf nRFreqRelationRef {       	
       description "Reference to a corresponding NRFreqRelation instance.";
       mandatory true;
       type types3gpp:DistinguishedName;
     }
 
-    leaf adjacentNRCellRef {        	
+    leaf adjacentNRCellRef {       	
       description "Reference to an adjacent NR cell (NRCellCU or
         ExternalNRCellCU).";
       mandatory true;
@@ -110,7 +111,6 @@ module _3gpp-nr-nrm-nrcellrelation {
       default true;
       description "True if handovers are allowed over this relation.";
     }
-  }
 
     leaf isESCoveredBy {
       description "Indicates whether the adjacent cell
@@ -124,6 +124,7 @@ module _3gpp-nr-nrm-nrcellrelation {
         changed to energy saving state.";
       type EnergySavingCoverage;
     }
+  }
 
   augment /me3gpp:ManagedElement/gnbcucp3gpp:GNBCUCPFunction/nrcellcu3gpp:NRCellCU {
 
