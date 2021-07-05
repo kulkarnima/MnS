@@ -4,8 +4,9 @@ submodule _3gpp-ns-nrm-sliceprofile {
 
   import _3gpp-common-yang-types { prefix types3gpp; }
   import _3gpp-5g-common-yang-types { prefix types5g3gpp; }
-  import _3gpp-ns-nrm-perfreq { prefix perf3gpp; }
-
+  // import _3gpp-ns-nrm-networkslice { prefix ns3gpp; }
+  import _3gpp-ns-nrm-common { prefix ns3cmn; }
+  
   organization "3GPP SA5";
   contact 
     "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
@@ -18,6 +19,11 @@ submodule _3gpp-ns-nrm-sliceprofile {
     Information model definitions for network slice NRM (chapter 6)
     ";
 
+  revision 2021-05-05 {
+    description "replace perfReq with 3 new datatypes xxxSliceSubnetProfile";
+    reference "CR-0485";
+  }
+
   revision 2020-02-19 {
     description "Introduction of YANG definitions for network slice NRM";
     reference "CR-0458";
@@ -28,7 +34,770 @@ submodule _3gpp-ns-nrm-sliceprofile {
     reference "Based on
       3GPP TS 28.541 V15.X.XX";
   }
-  
+  typedef SliceSimultaneousUse-enum {
+    type enumeration {
+      enum ZERO;
+      enum ONE;
+      enum TWO;
+      enum THREE;
+      enum FOUR;
+    }
+  }
+  typedef ServiceType-enum {
+    type enumeration {
+      enum eMBB;
+      enum URLLC;
+      enum MIoT;
+      enum V2X;
+    }
+  }
+  grouping TopSliceSubnetProfileGrp {
+    leaf-list coverageArea {
+       min-elements 1;
+       description "A list of TrackingAreas where the NSI can be selected.";
+       type types3gpp:Tac;
+    }
+    leaf latency {
+      description "The packet transmission latency (milliseconds) through 
+        the RAN, CN, and TN part of 5G network, used to evaluate 
+        utilization performance of the end-to-end network slice instance.";
+      reference "3GPP TS 28.554 clause 6.3.1";
+      //optional support
+      mandatory true;
+      type uint16;
+      units milliseconds;
+    }
+    leaf maxNumberofUEs {
+      description "Specifies the maximum number of UEs may simultaneously 
+        access the network slice instance.";
+      //optional support
+      mandatory true;
+      type uint64;
+    }
+    list dLThptPerSliceSubnet {
+      description "This attribute defines achievable data rate of the
+        network slice subnet in downlink that is available ubiquitously
+        across the coverage area of the slice";
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      uses ns3cmn:XLThptGrp;
+    }
+    list dLThptPerUE {
+      description "This attribute defines data rate supported by the
+        network slice per UE, refer NG.116.";
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      uses ns3cmn:XLThptGrp;
+    }
+    list uLThptPerSliceSubnet {
+      description "This attribute defines achievable data rate of the
+        network slice subnet in uplink that is available ubiquitously
+        across the coverage area of the slice";
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      uses ns3cmn:XLThptGrp;
+    }
+    list uLThptPerUE {
+      description "This attribute defines data rate supported by the
+        network slice per UE, refer NG.116";
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      uses ns3cmn:XLThptGrp;
+    }
+    list maxPktSize {
+      config false;
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      description "This parameter specifies the maximum packet size 
+        supported by the network slice";
+      list servAttrCom {
+        description "This list represents the common properties of service 
+          requirement related attributes.";
+        reference "GSMA NG.116 corresponding to Attribute categories, 
+          tagging and exposure";
+        key idx;
+        max-elements 1;
+        leaf idx {
+          description "Synthetic index for the element.";
+          type uint32;
+        }
+        uses ns3cmn:ServAttrComGrp;
+      }
+      leaf maxSize {
+        //Stage2 issue: Not defined in 28.541, guessing integer bytes
+        type uint32;
+        units bytes;
+      }
+    }
+    list maxNumberofPDUSessions {
+      description "Represents the maximum number of 
+        concurrent PDU sessions supported by the network slice";
+      config false;
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      list servAttrCom {
+        description "This list represents the common properties of service 
+          requirement related attributes.";
+        reference "GSMA NG.116 corresponding to Attribute categories, 
+          tagging and exposure";
+        key idx;
+        max-elements 1;
+        leaf idx {
+          description "Synthetic index for the element.";
+          type uint32;
+        }
+        uses ns3cmn:ServAttrComGrp;
+      }
+      leaf nOofPDUSessions {
+        //Stage2 issue: Not defined in 28.541, guessing integer
+        type uint32;
+      }
+    }
+    leaf sliceSimultaneousUse {
+      description "This attribute describes whether a network slice
+      can be simultaneously used by a device together with other 
+      network slices and if so, with which other classes of network slices.";
+      type SliceSimultaneousUse-enum;
+    }    
+    list delayTolerance {
+      description "An attribute specifies the properties of service delivery 
+        flexibility, especially for the vertical services that are not 
+        chasing a high system performance.";
+      reference "TS 22.104 clause 4.3";
+      config false;
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      list servAttrCom {
+        description "This list represents the common properties of service 
+          requirement related attributes.";
+        reference "GSMA NG.116 corresponding to Attribute categories, 
+          tagging and exposure";
+        key idx;
+        max-elements 1;
+        leaf idx {
+          description "Synthetic index for the element.";
+          type uint32;
+        }
+        uses ns3cmn:ServAttrComGrp;
+      }
+      leaf support {
+        description "An attribute specifies whether or not the network 
+          slice supports service delivery flexibility, especially for the 
+          vertical services that are not chasing a high system performance.";
+        type ns3cmn:Support-enum;
+      }
+    }
+    list termDensity {
+      description "An attribute specifies the overall user density over 
+        the coverage area of the network slice";
+      config false;
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      list servAttrCom {
+        description "This list represents the common properties of service 
+          requirement related attributes.";
+        reference "GSMA NG.116 corresponding to Attribute categories, 
+          tagging and exposure";
+        key idx;
+        max-elements 1;
+        leaf idx {
+          description "Synthetic index for the element.";
+          type uint32;
+        }
+        uses ns3cmn:ServAttrComGrp;
+      }
+      leaf density {
+        type uint32;
+        units users/km2;
+      }        
+    }
+    leaf activityFactor {
+      //Stage2 issue: This is modeled as writable/config true in 28.542, 
+      //              but that does not appear to match the description
+      description "An attribute specifies the percentage value of the 
+        amount of simultaneous active UEs to the total number of UEs where 
+        active means the UEs are exchanging data with the network";
+      reference "TS 22.261 Table 7.1-1";
+      type decimal64 {
+        fraction-digits 1;
+      }
+    }
+    leaf-list coverageAreaTAList {
+      description "A list of TrackingAreas where the NSI can be selected.";
+      //optional support
+      min-elements 1;
+      type types3gpp:Tac;
+    }
+    leaf uEMobilityLevel {
+      description "The mobility level of UE accessing the network slice 
+        instance.";
+      //optional support
+      type types3gpp:UeMobilityLevel;
+    }
+    
+    leaf resourceSharingLevel {
+      description "Specifies whether the resources to be allocated to the 
+        network slice subnet instance may be shared with another network 
+        slice subnet instance(s).";
+      //optional support
+      type types3gpp:ResourceSharingLevel;
+    }
+    leaf uESpeed {
+      //Stage2 issue: This is modeled as writable/config true in 28.542, 
+      //              but that does not appear to match the description
+      description "An attribute specifies the maximum speed (in km/hour) 
+        supported by the network slice at which a defined QoS can be 
+        achieved";
+      type uint32;
+      units km/h;
+    }
+    leaf reliability {
+      description "An attribute specifies in the context of network layer 
+        packet transmissions, percentage value of the amount of sent 
+        network layer packets successfully delivered to a given system 
+        entity within the time constraint required by the targeted service, 
+        divided by the total number of sent network layer packets.";
+      reference "TS 22.261, TS 22.104";
+      type string;
+    }
+    leaf serviceType {
+      description "An attribute specifies the standardized network slice type. 
+	  allowedValues: eMBB, URLLC, MIoT, V2X.";
+      type ServiceType-enum;
+    }
+    list deterministicComm {
+      //Stage2 issue: deterministicComm is not defined in 28.541 chapter 6, 
+      //              but I guess determinComm is meant
+      description "This list represents the properties of the deterministic 
+        communication for periodic user traffic. Periodic traffic refers to the 
+        type of traffic with periodic transmissions.";
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      list servAttrCom {
+        description "This list represents the common properties of service 
+          requirement related attributes.";
+        reference "GSMA NG.116 corresponding to Attribute categories, 
+          tagging and exposure";
+        config false;
+        key idx;
+        max-elements 1;
+        leaf idx {
+          description "Synthetic index for the element.";
+          type uint32;
+        }
+        uses ns3cmn:ServAttrComGrp;
+      }
+      leaf availability {
+        //Stage2 issue: Defined differently in 28.541 chapter 6, but XML 
+        //              uses DeterminCommAvailability
+        config false;
+        type ns3cmn:DeterminCommAvailability;
+      }
+      leaf periodicityList {
+        //Stage2 issue: Not defined in 28.541 chapter 6. XML and YAML 
+        //              says "string".
+        type string;
+      }
+    }
+    leaf survivalTime {
+      description "An attribute specifies the time that an application 
+        consuming a communication service may continue without an 
+        anticipated message.";
+      reference "TS 22.104 clause 5";
+      type string;
+    }
+  }
+    
+  grouping CNSliceSubnetProfileGrp {
+    leaf-list coverageArea {
+       min-elements 1;
+       description "A list of TrackingAreas where the NSI can be selected.";
+       type types3gpp:Tac;
+    }
+    leaf latency {
+      description "The packet transmission latency (milliseconds) through 
+        the RAN, CN, and TN part of 5G network, used to evaluate 
+        utilization performance of the end-to-end network slice instance.";
+      reference "3GPP TS 28.554 clause 6.3.1";
+      //optional support
+      mandatory true;
+      type uint16;
+      units milliseconds;
+    }
+    leaf maxNumberofUEs {
+      description "Specifies the maximum number of UEs may simultaneously 
+        access the network slice instance.";
+      //optional support
+      mandatory true;
+      type uint64;
+    }
+    list dLThptPerSliceSubnet {
+      description "This attribute defines achievable data rate of the
+        network slice subnet in downlink that is available ubiquitously
+        across the coverage area of the slice";
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      uses ns3cmn:XLThptGrp;
+    }
+    list dLThptPerUE {
+      description "This attribute defines data rate supported by the
+        network slice per UE, refer NG.116.";
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      uses ns3cmn:XLThptGrp;
+    }
+    list uLThptPerSliceSubnet {
+      description "This attribute defines achievable data rate of the
+        network slice subnet in uplink that is available ubiquitously
+        across the coverage area of the slice";
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      uses ns3cmn:XLThptGrp;
+    }
+    list uLThptPerUE {
+      description "This attribute defines data rate supported by the
+        network slice per UE, refer NG.116";
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      uses ns3cmn:XLThptGrp;
+    }
+    list maxPktSize {
+      config false;
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      description "This parameter specifies the maximum packet size 
+        supported by the network slice";
+      list servAttrCom {
+        description "This list represents the common properties of service 
+          requirement related attributes.";
+        reference "GSMA NG.116 corresponding to Attribute categories, 
+          tagging and exposure";
+        key idx;
+        max-elements 1;
+        leaf idx {
+          description "Synthetic index for the element.";
+          type uint32;
+        }
+        uses ns3cmn:ServAttrComGrp;
+      }
+      leaf maxSize {
+        //Stage2 issue: Not defined in 28.541, guessing integer bytes
+        type uint32;
+        units bytes;
+      }
+    }
+    list maxNumberofPDUSessions {
+      description "Represents the maximum number of 
+        concurrent PDU sessions supported by the network slice";
+      config false;
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      list servAttrCom {
+        description "This list represents the common properties of service 
+          requirement related attributes.";
+        reference "GSMA NG.116 corresponding to Attribute categories, 
+          tagging and exposure";
+        key idx;
+        max-elements 1;
+        leaf idx {
+          description "Synthetic index for the element.";
+          type uint32;
+        }
+        uses ns3cmn:ServAttrComGrp;
+      }
+      leaf nOofPDUSessions {
+        //Stage2 issue: Not defined in 28.541, guessing integer
+        type uint32;
+      }
+    }
+    leaf sliceSimultaneousUse {
+      description "This attribute describes whether a network slice
+      can be simultaneously used by a device together with other 
+      network slices and if so, with which other classes of network slices.";
+      type SliceSimultaneousUse-enum;
+    }  
+    list delayTolerance {
+      description "An attribute specifies the properties of service delivery 
+        flexibility, especially for the vertical services that are not 
+        chasing a high system performance.";
+      reference "TS 22.104 clause 4.3";
+      config false;
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      list servAttrCom {
+        description "This list represents the common properties of service 
+          requirement related attributes.";
+        reference "GSMA NG.116 corresponding to Attribute categories, 
+          tagging and exposure";
+        key idx;
+        max-elements 1;
+        leaf idx {
+          description "Synthetic index for the element.";
+          type uint32;
+        }
+        uses ns3cmn:ServAttrComGrp;
+      }
+      leaf support {
+        description "An attribute specifies whether or not the network 
+          slice supports service delivery flexibility, especially for the 
+          vertical services that are not chasing a high system performance.";
+        type ns3cmn:Support-enum;
+      }
+    }
+    leaf-list coverageAreaTAList {
+      description "A list of TrackingAreas where the NSI can be selected.";
+      //optional support
+      min-elements 1;
+      type types3gpp:Tac;
+    }
+    leaf resourceSharingLevel {
+      description "Specifies whether the resources to be allocated to the 
+        network slice subnet instance may be shared with another network 
+        slice subnet instance(s).";
+      //optional support
+      type types3gpp:ResourceSharingLevel;
+    }
+
+    list deterministicComm {
+      //Stage2 issue: deterministicComm is not defined in 28.541 chapter 6, 
+      //              but I guess determinComm is meant
+      description "This list represents the properties of the deterministic 
+        communication for periodic user traffic. Periodic traffic refers to the 
+        type of traffic with periodic transmissions.";
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      list servAttrCom {
+        description "This list represents the common properties of service 
+          requirement related attributes.";
+        reference "GSMA NG.116 corresponding to Attribute categories, 
+          tagging and exposure";
+        config false;
+        key idx;
+        max-elements 1;
+        leaf idx {
+          description "Synthetic index for the element.";
+          type uint32;
+        }
+        uses ns3cmn:ServAttrComGrp;
+      }
+      leaf availability {
+        //Stage2 issue: Defined differently in 28.541 chapter 6, but XML 
+        //              uses DeterminCommAvailability
+        config false;
+        type ns3cmn:DeterminCommAvailability;
+      }
+      leaf periodicityList {
+        //Stage2 issue: Not defined in 28.541 chapter 6. XML and YAML 
+        //              says "string".
+        type string;
+      }
+    }
+  }
+
+  grouping RANSliceSubnetProfileGrp {
+    leaf latency {
+      description "The packet transmission latency (milliseconds) through 
+        the RAN, CN, and TN part of 5G network, used to evaluate 
+        utilization performance of the end-to-end network slice instance.";
+      reference "3GPP TS 28.554 clause 6.3.1";
+      //optional support
+      mandatory true;
+      type uint16;
+      units milliseconds;
+    }
+    leaf maxNumberofUEs {
+      description "Specifies the maximum number of UEs may simultaneously 
+        access the network slice instance.";
+      //optional support
+      mandatory true;
+      type uint64;
+    }
+    list dLThptPerUE {
+      description "This attribute defines data rate supported by the
+        network slice per UE, refer NG.116.";
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      uses ns3cmn:XLThptGrp;
+    }
+    list uLThptPerUE {
+      description "This attribute defines data rate supported by the
+        network slice per UE, refer NG.116";
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      uses ns3cmn:XLThptGrp;
+    }
+    list maxPktSize {
+      config false;
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      description "This parameter specifies the maximum packet size 
+        supported by the network slice";
+      list servAttrCom {
+        description "This list represents the common properties of service 
+          requirement related attributes.";
+        reference "GSMA NG.116 corresponding to Attribute categories, 
+          tagging and exposure";
+        key idx;
+        max-elements 1;
+        leaf idx {
+          description "Synthetic index for the element.";
+          type uint32;
+        }
+        uses ns3cmn:ServAttrComGrp;
+      }
+      leaf maxSize {
+        //Stage2 issue: Not defined in 28.541, guessing integer bytes
+        type uint32;
+        units bytes;
+      }
+    }
+    list delayTolerance {
+      description "An attribute specifies the properties of service delivery 
+        flexibility, especially for the vertical services that are not 
+        chasing a high system performance.";
+      reference "TS 22.104 clause 4.3";
+      config false;
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      list servAttrCom {
+        description "This list represents the common properties of service 
+          requirement related attributes.";
+        reference "GSMA NG.116 corresponding to Attribute categories, 
+          tagging and exposure";
+        key idx;
+        max-elements 1;
+        leaf idx {
+          description "Synthetic index for the element.";
+          type uint32;
+        }
+        uses ns3cmn:ServAttrComGrp;
+      }
+      leaf support {
+        description "An attribute specifies whether or not the network 
+          slice supports service delivery flexibility, especially for the 
+          vertical services that are not chasing a high system performance.";
+        type ns3cmn:Support-enum;
+      }
+    }
+    leaf sliceSimultaneousUse {
+      description "This attribute describes whether a network slice
+      can be simultaneously used by a device together with other 
+      network slices and if so, with which other classes of network slices.";
+      type SliceSimultaneousUse-enum;
+    }  
+    list termDensity {
+      description "An attribute specifies the overall user density over 
+        the coverage area of the network slice";
+      config false;
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      list servAttrCom {
+        description "This list represents the common properties of service 
+          requirement related attributes.";
+        reference "GSMA NG.116 corresponding to Attribute categories, 
+          tagging and exposure";
+        key idx;
+        max-elements 1;
+        leaf idx {
+          description "Synthetic index for the element.";
+          type uint32;
+        }
+        uses ns3cmn:ServAttrComGrp;
+      }
+      leaf density {
+        type uint32;
+        units users/km2;
+      }        
+    }
+    leaf activityFactor {
+      //Stage2 issue: This is modeled as writable/config true in 28.542, 
+      //              but that does not appear to match the description
+      description "An attribute specifies the percentage value of the 
+        amount of simultaneous active UEs to the total number of UEs where 
+        active means the UEs are exchanging data with the network";
+      reference "TS 22.261 Table 7.1-1";
+      type decimal64 {
+        fraction-digits 1;
+      }
+    }
+    leaf-list coverageAreaTAList {
+      description "A list of TrackingAreas where the NSI can be selected.";
+      //optional support
+      min-elements 1;
+      type types3gpp:Tac;
+    }
+    leaf uEMobilityLevel {
+      description "The mobility level of UE accessing the network slice 
+        instance.";
+      //optional support
+      type types3gpp:UeMobilityLevel;
+    }
+    
+    leaf resourceSharingLevel {
+      description "Specifies whether the resources to be allocated to the 
+        network slice subnet instance may be shared with another network 
+        slice subnet instance(s).";
+      //optional support
+      type types3gpp:ResourceSharingLevel;
+    }
+    leaf uESpeed {
+      //Stage2 issue: This is modeled as writable/config true in 28.542, 
+      //              but that does not appear to match the description
+      description "An attribute specifies the maximum speed (in km/hour) 
+        supported by the network slice at which a defined QoS can be 
+        achieved";
+      type uint32;
+      units km/h;
+    }
+    leaf reliability {
+      description "An attribute specifies in the context of network layer 
+        packet transmissions, percentage value of the amount of sent 
+        network layer packets successfully delivered to a given system 
+        entity within the time constraint required by the targeted service, 
+        divided by the total number of sent network layer packets.";
+      reference "TS 22.261, TS 22.104";
+      type string;
+    }
+    leaf serviceType {
+      description "An attribute specifies the standardized network slice type. 
+	  allowedValues: eMBB, URLLC, MIoT, V2X.";
+      type ServiceType-enum;
+    }
+    list deterministicComm {
+      //Stage2 issue: deterministicComm is not defined in 28.541 chapter 6, 
+      //              but I guess determinComm is meant
+      description "This list represents the properties of the deterministic 
+        communication for periodic user traffic. Periodic traffic refers to the 
+        type of traffic with periodic transmissions.";
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      list servAttrCom {
+        description "This list represents the common properties of service 
+          requirement related attributes.";
+        reference "GSMA NG.116 corresponding to Attribute categories, 
+          tagging and exposure";
+        config false;
+        key idx;
+        max-elements 1;
+        leaf idx {
+          description "Synthetic index for the element.";
+          type uint32;
+        }
+        uses ns3cmn:ServAttrComGrp;
+      }
+      leaf availability {
+        //Stage2 issue: Defined differently in 28.541 chapter 6, but XML 
+        //              uses DeterminCommAvailability
+        config false;
+        type ns3cmn:DeterminCommAvailability;
+      }
+      leaf periodicityList {
+        //Stage2 issue: Not defined in 28.541 chapter 6. XML and YAML 
+        //              says "string".
+        type string;
+      }
+    }
+    leaf survivalTime {
+      description "An attribute specifies the time that an application 
+        consuming a communication service may continue without an 
+        anticipated message.";
+      reference "TS 22.104 clause 5";
+      type string;
+    }
+  }
+
   grouping SliceProfileGrp {
     leaf sliceProfileId {
       description "A unique identifier of the property of network slice 
@@ -60,24 +829,6 @@ submodule _3gpp-ns-nrm-sliceprofile {
       key "mcc mnc";
       ordered-by user;
       uses types3gpp:PLMNId;
-    }
-    
-    //Stage2 issue: The perfReq object does not have any proper definition 
-    //              in 28.541 chapter 6.
-    //Stage2 issue: The text that exists on the perfReq mentions an sST
-    //              element. There is no sST element in SliceProfile which
-    //              references perfReq, nor in perfReq itself. There are
-    //              potentially several in the sNSSAIList. Should we take the
-    //              union of those to control whivh perfReq elements are 
-    //              relevant? For now, making all perfReq elements available
-    //              in all slice profiles.
-    list perfReq {
-      description "The performance requirements for the NSI in terms of the 
-        scenarios defined in the 3GPP TS 22.261, such as experienced data 
-        rate, area traffic capacity (density) information of UE density.";
-      key idx; //this list uses a grouping/choice and has no obvious key
-      leaf idx { type uint32; }
-      uses perf3gpp:PerfReqGrp;
     }
     
     leaf maxNumberofUEs {
@@ -115,10 +866,43 @@ submodule _3gpp-ns-nrm-sliceprofile {
     
     leaf resourceSharingLevel {
       description "Specifies whether the resources to be allocated to the 
-        network slice subnet instance may be shared with another network 
+        network slice subnet  instance may be shared with another network 
         slice subnet instance(s).";
       //optional support
       type types3gpp:ResourceSharingLevel;
+    }
+    list CNSliceSubnetProfile {
+      description " This represents the requirements for the top slice associated with the 
+	  network slice. ";
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+	  uses TopSliceSubnetProfileGrp;
+    }
+    list RANSliceSubnetProfile {
+      description " This represents the requirements for the top slice associated with the 
+	  network slice. ";
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+	  uses TopSliceSubnetProfileGrp;
+    }
+    list TopSliceSubnetProfile {
+      description " This represents the requirements for the top slice associated with the 
+	  network slice. ";
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+	  uses TopSliceSubnetProfileGrp;
     }
   }
 }

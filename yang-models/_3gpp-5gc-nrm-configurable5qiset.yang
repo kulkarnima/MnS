@@ -37,7 +37,13 @@ module _3gpp-5gc-nrm-configurable5qiset {
     }
   }
 
-  grouping FiveQICharacteristics {
+  grouping FiveQICharacteristicsGrp {
+    description "Represents the FiveQICharacteristics IOC.";
+    reference "3GPP TS 28.541";
+  }
+ 
+  list configurableFiveQIs {
+    key fiveQIValue;
     leaf fiveQIValue {
       type uint32 {
         range 0..255 ;
@@ -92,15 +98,30 @@ module _3gpp-5gc-nrm-configurable5qiset {
       }
       units byte;
     }
-  }
+}
+
+  grouping FiveQiCharacteristicsSubtree {
+    description "Represents the FiveQICharacterics IOC.";
+    list FiveQICharacteristics {
+      key id;
+        uses top3gpp:Top_Grp;
+          container attributes {
+            uses FiveQICharacteristicsGrp;
+        }
+    }  
+}
 
   grouping Configurable5QISetGrp {
     description "Represents the Configurable5QISet IOC.";
     list configurable5QIs {
-      key "fiveQIValue";
-      uses FiveQICharacteristics;
-    }
-  }    
+      key id;
+      uses top3gpp:Top_Grp;
+      container attributes {
+        uses FiveQICharacteristicsGrp;
+      }
+    }  
+}    
+
 
   grouping Configurable5QISetSubtree {
     list Configurable5QISet {
@@ -112,7 +133,7 @@ module _3gpp-5gc-nrm-configurable5qiset {
       container attributes {
         uses Configurable5QISetGrp;
       }
-    }  
+    }
   }
   
   augment "/subnet3gpp:SubNetwork" {

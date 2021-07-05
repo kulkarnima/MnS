@@ -21,9 +21,11 @@ module _3gpp-5gc-nrm-dynamic5qiset {
   grouping Dynamic5QISetGrp {
     description "Represents the Dynamic5QISet IOC.";
     list dynamic5QIs {
-      key "fiveQIValue";
-      description "Represents the Dynamic5QISet IOC.";
-      uses Conf5QIs3gpp:FiveQICharacteristics;
+    key id;
+    uses top3gpp:Top_Grp;
+    container attributes {
+      uses Conf5QIs3gpp:FiveQICharacteristicsGrp;
+      }
     }
   }    
 
