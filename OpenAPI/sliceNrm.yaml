@@ -1,13 +1,13 @@
 openapi: 3.0.1
 info:
   title: Slice NRM
-  version: 16.8.0
+  version: 16.9.0
   description: >-
     OAS 3.0.1 specification of the Slice NRM
     @ 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 externalDocs:
-  description: 3GPP TS 28.541 V16.4.0; 5G NRM, Slice NRM
+  description: 3GPP TS 28.541; 5G NRM, Slice NRM
   url: http://www.3gpp.org/ftp/Specs/archive/28_series/28.541/
 paths: {}
 components:
@@ -290,8 +290,8 @@ components:
 
     IpAddress:
       oneOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
-        - $ref: 'genericNrm.yaml#/components/schemas/Ipv6Addr'
+        - $ref: 'comDefs.yaml#/components/schemas/Ipv4Addr'
+        - $ref: 'comDefs.yaml#/components/schemas/Ipv6Addr'
     ServiceProfileList:
        type: array
        items:
@@ -331,7 +331,6 @@ components:
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-Attr'
                 - type: object
                   properties:
                     networkSliceSubnetRef:
@@ -350,7 +349,6 @@ components:
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-Attr'
                 - type: object
                   properties:
                     managedFunctionRefList:
