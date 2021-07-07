@@ -1,13 +1,13 @@
 openapi: 3.0.1
 info:
   title: 3GPP 5GC NRM
-  version: 16.6.0
+  version: 17.3.0
   description: >-
     OAS 3.0.1 specification of the 5GC NRM
     © 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 externalDocs:
-  description: 3GPP TS 28.541 V16.6.0; 5G NRM, 5GC NRM
+  description: 3GPP TS 28.541; 5G NRM, 5GC NRM
   url: http://www.3gpp.org/ftp/Specs/archive/28_series/28.541/
 paths: {}
 components:
@@ -243,6 +243,20 @@ components:
             type: integer
         dscp:
           type: integer
+    NetworkSliceInfo:
+      type: object
+      properties:
+        sNSSAI:
+          $ref: 'nrNrm.yaml#/components/schemas/Snssai'
+        cNSIId:
+          $ref: '#/components/schemas/CNSIId'
+        networkSliceRef:
+          $ref: 'genericNrm.yaml#/components/schemas/DnList'
+    NetworkSliceInfoList:
+      type: array
+      items:
+        $ref: '#/components/schemas/NetworkSliceInfo'
+
 
     PacketErrorRate:
       type: object
@@ -436,6 +450,39 @@ components:
         tscaiInputUl:
           $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer'
 
+    SnssaiInfo:
+      type: object
+      properties:
+        plmnInfo:
+          $ref: 'nrNrm.yaml#/components/schemas/PlmnInfo'
+        administrativeState:
+          $ref: 'genericNrm.yaml#/components/schemas/AdministrativeState'
+
+    NsacfInfoSnssai:
+      type: object
+      properties:
+        SnssaiInfo:
+          $ref: '#/components/schemas/SnssaiInfo'
+        isSubjectToNsac:
+          type: boolean
+        maxNumberofUEs:
+          type: integer
+        eACMode:
+          type: string
+          enum:
+            - INACTIVE
+            - ACTIVE
+        activeEacThreshhold:
+          type: integer
+        deactiveEacThreshhold:
+          type: integer
+        numberofUEs:
+          type: integer
+        uEIdList:
+          type: array
+          items:
+            type: string
+         
 
 #-------- Definition of concrete IOCs --------------------------------------------
 
@@ -1018,6 +1065,9 @@ components:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
+                    networkSliceInfoList:
+                      $ref: '#/components/schemas/NetworkSliceInfoList'
+                      
     ScpFunction-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
@@ -1056,6 +1106,28 @@ components:
                     isCAPIFSup:
                       type: boolean
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+
+    NsacfFunction-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
+                - type: object
+                  properties:
+                    managedNFProfile:
+                      $ref: '#/components/schemas/ManagedNFProfile'
+                    nsacfInfoSnssai:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/NsacfInfoSnssai'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+        - type: object
+          properties:
+            EP_N60:
+              $ref: '#/components/schemas/EP_N60-Multiple'
 
     ExternalAmfFunction-Single:
       allOf:
@@ -1536,6 +1608,21 @@ components:
                     remoteAddress:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
 
+    EP_N60-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'nrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
+
     FiveQiDscpMappingSet-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
@@ -1749,6 +1836,11 @@ components:
       items:
         $ref: '#/components/schemas/NefFunction-Single'
 
+    NsacfFunction-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/NsacfFunction-Single'
+
     ExternalAmfFunction-Multiple:
       type: array
       items:
@@ -1895,6 +1987,11 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/EP_NLG-Single'
+    EP_N60-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N60-Single'
+
     Configurable5QISet-Multiple:
       type: array
       items:
@@ -1930,6 +2027,7 @@ components:
        - $ref: '#/components/schemas/NwdafFunction-Single'
        - $ref: '#/components/schemas/ScpFunction-Single'
        - $ref: '#/components/schemas/NefFunction-Single'
+       - $ref: '#/components/schemas/NsacfFunction-Single'
 
        - $ref: '#/components/schemas/ExternalAmfFunction-Single'
        - $ref: '#/components/schemas/ExternalNrfFunction-Single'
@@ -1967,6 +2065,7 @@ components:
 
        - $ref: '#/components/schemas/EP_N31-Single'
        - $ref: '#/components/schemas/EP_N31-Single'
+       - $ref: '#/components/schemas/EP_N60-Single'
 
        - $ref: '#/components/schemas/EP_S5C-Single'
        - $ref: '#/components/schemas/EP_S5U-Single'
