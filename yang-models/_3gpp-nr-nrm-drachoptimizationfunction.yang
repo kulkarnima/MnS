@@ -16,7 +16,7 @@ module _3gpp-nr-nrm-drachoptimizationfunction {
     Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
-  revision 2021-06-30 { reference S5-214aaa; }
+  revision 2021-08-04 { reference S5-214052/CR-0517; }
   revision 2021-01-25 { reference CR-0454 ; }
   revision 2020-10-02 { reference "CR-0384, CR-0382" ; }
   revision 2020-05-08 { reference S5-203316; }

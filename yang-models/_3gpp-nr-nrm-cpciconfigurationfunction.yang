@@ -15,7 +15,7 @@ module _3gpp-nr-nrm-cpciconfigurationfunction {
     Class(IOC) that is part of the NR Network Resource Model.";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
-  revision 2021-08-04 { reference S5-214aaa; }
+  revision 2021-08-04 { reference S5-214052/CR-0517; }
   revision 2020-05-08 { reference S5-203316; }
 
   grouping CPCIConfigurationFunctionGrp {
