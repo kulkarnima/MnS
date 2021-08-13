@@ -346,8 +346,6 @@ components:
     TopSliceSubnetProfile:
       type: object
       properties:
-        coverageArea:
-          type: string
         latency:
           type: integer
         maxNumberofUEs:
