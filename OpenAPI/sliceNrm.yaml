@@ -160,6 +160,13 @@ components:
           $ref: '#/components/schemas/ServAttrCom'
         support:
           $ref: '#/components/schemas/Support'
+    RadioSpectrum:
+      type: object
+      properties:
+        servAttrCom:
+          $ref: '#/components/schemas/ServAttrCom'
+        nROperatingBands:
+          type: string
     Synchronicity:
       type: object
       properties:
@@ -310,6 +317,8 @@ components:
           $ref: '#/components/schemas/ServiceType'
         maxPktSize:
           type: integer
+        nROperatingBands:
+          type: string
         delayTolerance:
           $ref: '#/components/schemas/DelayTolerance'
         positioning:
@@ -347,6 +356,8 @@ components:
           type: integer
         maxNumberOfPDUSessions:
           type: integer
+        nROperatingBands:
+          type: string
         sliceSimultaneousUse:
           $ref: '#/components/schemas/SliceSimultaneousUse'
         energyEfficiency:
@@ -417,6 +428,8 @@ components:
             $ref: '#/components/schemas/KPIMonitoring'
           nBIoT:
             $ref: '#/components/schemas/NBIoT'
+          radioSpectrum:
+            $ref: '#/components/schemas/RadioSpectrum'
           synchronicity:
             $ref: '#/components/schemas/Synchronicity'
           positioning:
