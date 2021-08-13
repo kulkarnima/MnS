@@ -147,7 +147,7 @@ module _3gpp-ns-nrm-networkslicesubnet {
         TopSliceSubnetProfile, RANSliceSubnetProfile or CNSliceSubnetProfile.  
         Members of the list may contain TopSliceSubnetProfile datatype 
         only when this attribute (sliceProfileList) belongs to 
-        a NetworkSliceSubnet not contained by another NetworkSliceSubnet";
+        a NetworkSliceSubnet that is directly referenced by a NetworkSlice";
       key sliceProfileId;
       uses SliceProfileGrp;
     }
