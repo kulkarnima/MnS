@@ -867,7 +867,7 @@ components:
                     plmnInfoList:
                       $ref: '#/components/schemas/PlmnInfoList'
                     npnIdentityList:
-                      $ref: '#/components/schemas/NpnIdentiyList'
+                      $ref: '#/components/schemas/NpnIdentityList'
                     nrPci:
                       $ref: '#/components/schemas/NrPci'
                     nrTac:
