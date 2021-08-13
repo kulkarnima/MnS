@@ -50,14 +50,14 @@ module _3gpp-nr-nrm-rrmpolicy {
     leaf resourceType {
       description "The resourceType attribute defines type of resource (PRB, 
         RRC connected users, DRB usage etc.) that is subject to policy. 
-       Valid values are 'PRB', 'PRB-UL', 'PRB-DL', 'RRC' or 'DRB'";
+       Valid values are 'PRB', 'PRB_UL', 'PRB_DL', 'RRC' or 'DRB'";
       mandatory true;
       type enumeration {
-        enum prb;
-        enum prbUl;
-		enum prbDl;
-        enum rrc;
-		enum drb;
+        enum PRB;
+        enum PRB_UL;
+        enum PRB_DL;
+        enum RRC;
+        enum DRB;
       }
     }
 
