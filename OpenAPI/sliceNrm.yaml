@@ -278,7 +278,9 @@ components:
           type: integer
         resourceSharingLevel:
           $ref: '#/components/schemas/SharingLevel'
-        maxPktSize:
+        dLMaxPktSize:
+          type: integer
+        uLMaxPktSize:
           type: integer
         delayTolerance:
           $ref: '#/components/schemas/DelayTolerance'
@@ -290,7 +292,9 @@ components:
           type: string
         energyEfficiency:
           type: integer 
-        deterministicComm:
+        dLDeterministicComm:
+          $ref: '#/components/schemas/DeterministicComm'
+        uLDeterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
     RANSliceSubnetProfile:
       type: object
@@ -315,7 +319,9 @@ components:
           type: string
         serviceType:
           $ref: '#/components/schemas/ServiceType'
-        maxPktSize:
+        dLMaxPktSize:
+          type: integer
+        uLMaxPktSize:
           type: integer
         nROperatingBands:
           type: string
@@ -333,7 +339,9 @@ components:
           type: string
         synchronicity:
           $ref: '#/components/schemas/SynchronicityRANSubnet'
-        deterministicComm:
+        dLDeterministicComm:
+          $ref: '#/components/schemas/DeterministicComm'
+        uLDeterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
     TopSliceSubnetProfile:
       type: object
@@ -352,7 +360,9 @@ components:
           $ref: '#/components/schemas/XLThpt'
         uLThptPerUE:
           $ref: '#/components/schemas/XLThpt'
-        maxPktSize:
+        dLMaxPktSize:
+          type: integer
+        uLMaxPktSize:
           type: integer
         maxNumberOfPDUSessions:
           type: integer
@@ -384,7 +394,9 @@ components:
           type: string
         serviceType:
           $ref: '#/components/schemas/ServiceType'
-        deterministicComm:
+        dLDeterministicComm:
+          $ref: '#/components/schemas/DeterministicComm'
+        uLDeterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
         survivalTime:
           type: string
@@ -410,7 +422,9 @@ components:
             type: number
           delayTolerance:
             $ref: '#/components/schemas/DelayTolerance'
-          deterministicComm:
+          dLDeterministicComm:
+            $ref: '#/components/schemas/DeterministicComm'
+          uLDeterministicComm:
             $ref: '#/components/schemas/DeterministicComm'
           dLThptPerSlice:
             $ref: '#/components/schemas/XLThpt'
@@ -420,7 +434,9 @@ components:
             $ref: '#/components/schemas/XLThpt'
           uLThptPerUE:
             $ref: '#/components/schemas/XLThpt'
-          maxPktSize:
+          dLMaxPktSize:
+            $ref: '#/components/schemas/MaxPktSize'
+          uLMaxPktSize:
             $ref: '#/components/schemas/MaxPktSize'
           maxNumberofPDUSessions:
             $ref: '#/components/schemas/MaxNumberofPDUSessions'
