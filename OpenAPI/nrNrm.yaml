@@ -73,6 +73,23 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/PlmnInfo'
+    cagId:
+      type: string
+    nid:
+      type: string
+    NpnIdentity:
+      type: object
+      properties:
+        plmnId":
+          $ref: '#/components/schemas/PlmnId'
+        cagidList:
+          $ref: '#/components/schemas/cagId'
+        nidList:
+          $ref: '#/components/schemas/nid'
+    NpnIdentityList:
+      type: array
+      items:
+        $ref: '#/components/schemas/NpnIdentity'
     GGnbId:
         type: string
         pattern: '^[0-9]{3}[0-9]{2,3}-(22|23|24|25|26|27|28|29|30|31|32)-[0-9]{1,10}'
@@ -849,6 +866,8 @@ components:
                       $ref: '#/components/schemas/CellState'
                     plmnInfoList:
                       $ref: '#/components/schemas/PlmnInfoList'
+                    npnIdentityList:
+                      $ref: '#/components/schemas/NpnIdentiyList'
                     nrPci:
                       $ref: '#/components/schemas/NrPci'
                     nrTac:
