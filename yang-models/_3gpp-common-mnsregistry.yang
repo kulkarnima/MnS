@@ -1,7 +1,7 @@
 module _3gpp-common-mnsregistry {
   yang-version 1.1;
   namespace "urn:3gpp:sa5:_3gpp-common-mnsregistry";
-  prefix "mnsregistry3gpp";
+  prefix "mnsregist3gpp";
 
   import _3gpp-common-subnetwork { prefix subnet3gpp; }
   import _3gpp-common-top { prefix top3gpp; }
