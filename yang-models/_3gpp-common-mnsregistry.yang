@@ -33,7 +33,7 @@ module _3gpp-common-nrm-mnsregistry {
         uses MNSDataGrp;
       }
     }
-  }
+    
   grouping MNSDataGrp {
     description " This datatype represents an available Management Service (MnS
     and provides the data required to support its discovery.";
@@ -49,24 +49,25 @@ module _3gpp-common-nrm-mnsregistry {
       allowedValues: PROVISIONING, FAULT_SUPERVISION, PERFORMANCE_ASSURANCE.";
       mandatory true;
       type enumeration {
-         enum provisioning;
-         enum faultSupervision; 
-         enum performanceAssurance;
+         enum PROVISIONING;
+         enum FAULT_SUPERVISION; 
+         enum PERFORMANCE_ASSURANCE;
       }
     }
     leaf mnsVersion {
-      description " Version of management service.";
+      description "Version of management service.";
       mandatory true;
       type string;
     }    
     leaf componentTypeAAddress {
-      description " Addressing information for Management Service operations.";
+      description "Addressing information for Management Service operations.";
       mandatory true;
       type string;
     }    
     leaf componentTypeBAddress {
-      description " Addressing information for Management Service information models.";
+      description "Addressing information for Management Service information models.";
       mandatory true;
       type string;
     }
+   }
 }
