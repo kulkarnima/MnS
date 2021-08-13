@@ -1,4 +1,4 @@
-module _3gpp-common-nrm-mnsregistry {
+module _3gpp-common-mnsregistry {
   yang-version 1.1;
   namespace "urn:3gpp:sa5:_3gpp-nr-nrm-mnsregistry";
   prefix "nrmnsregistry3gpp";
@@ -39,7 +39,6 @@ module _3gpp-common-nrm-mnsregistry {
     description " This datatype represents an available Management Service (MnS
     and provides the data required to support its discovery.";
     reference "3GPP TS 28.541";
-    key id;
     leaf mnsLabel {
       description "Human-readable name of management service.";
       mandatory true;
