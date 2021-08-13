@@ -65,7 +65,8 @@ module _3gpp-common-mnsregistry {
       type string;
     }    
     leaf componentTypeBAddress {
-      description "Addressing information for Management Service information models.";
+      description "Addressing information for Management Service information
+       models.";
       mandatory true;
       type string;
     }
