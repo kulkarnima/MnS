@@ -33,6 +33,7 @@ module _3gpp-common-nrm-mnsregistry {
         uses MNSDataGrp;
       }
     }
+  }
     
   grouping MNSDataGrp {
     description " This datatype represents an available Management Service (MnS
