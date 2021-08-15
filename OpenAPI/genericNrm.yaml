@@ -965,7 +965,7 @@ components:
     tjMDTLoggingEventThreshold-Type:
       description: See details in 3GPP TS 32.422 clause 5.10.X.
       type: object
-        properties:
+      properties:
             RSRP:
               type: integer
               minimum: 0
