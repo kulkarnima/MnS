@@ -962,6 +962,46 @@ components:
               - 61.44s
               - INFINITY
 
+    tjMDTLoggingEventThreshold-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.X.
+      type: object
+        properties:
+            RSRP:
+              type: integer
+              minimum: 0
+              maximum: 127
+            RSRQ:
+              type: integer
+              minimum: 0
+              maximum: 127
+    
+    tjMDTLoggingHysteresis-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.Y.
+      type: integer
+      minimum: 0
+      maximum: 30
+    
+    tjMDTLoggingTimeToTrigger-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.Z.
+      type: string
+      enum:
+        - 0ms
+        - 40ms
+        - 64ms
+        - 80ms
+        - 100ms
+        - 128ms
+        - 160ms
+        - 256ms
+        - 320ms
+        - 480ms
+        - 512ms
+        - 640ms
+        - 1024ms
+        - 1280ms
+        - 2560ms
+        - 5120ms
+
     tjMDTMeasurementPeriodLTE-Type:
       description: See details in 3GPP TS 32.422 clause 5.10.23.
       type: string
@@ -1001,6 +1041,12 @@ components:
         - CPICH_EcNo
         - CPICH_RSCP
         - PathLoss
+
+    tjMDTM4ThresholdUmts-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.A.
+      type: integer
+      minimum: 0
+      maximum: 31
 
     tjMDTPLMList-Type:
       description: See details in 3GPP TS 32.422 clause 5.10.24.
@@ -1354,6 +1400,12 @@ components:
           $ref: '#/components/schemas/tjMDTLoggingDuration-Type'
         tjMDTLoggingInterval:
           $ref: '#/components/schemas/tjMDTLoggingInterval-Type'
+        tjMDTLoggingEventThreshold:
+          $ref: '#/components/schemas/tjMDTLoggingEventThreshold-Type'
+        tjMDTLoggingHysteresis:
+          $ref: '#/components/schemas/tjMDTLoggingHysteresis-Type'
+        tjMDTLoggingTimeToTrigger:
+          $ref: '#/components/schemas/tjMDTLoggingTimeToTrigger-Type'
         tjMDTMBSFNAreaList:
           type: array
           items:
@@ -1364,6 +1416,8 @@ components:
           $ref: '#/components/schemas/tjMDTMeasurementPeriodUMTS-Type'
         tjMDTMeasurementQuantity:
           $ref: '#/components/schemas/tjMDTMeasurementQuantity-Type'
+        tjMDTM4ThresholdUmts:
+          $ref: '#/components/schemas/tjMDTM4ThresholdUmts-Type'
         tjMDTPLMList:
           $ref: '#/components/schemas/tjMDTPLMList-Type'
         tjMDTPositioningMethod:
