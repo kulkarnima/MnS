@@ -306,7 +306,7 @@ components:
 
     SubNetwork-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -326,7 +326,7 @@ components:
 
     NetworkSlice-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -343,7 +343,7 @@ components:
                       $ref: '#/components/schemas/ServiceProfileList'
     NetworkSliceSubnet-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -368,7 +368,7 @@ components:
                       type: integer
     EP_Transport-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
