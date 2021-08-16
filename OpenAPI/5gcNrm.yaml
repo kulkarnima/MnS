@@ -1082,8 +1082,6 @@ components:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     capabilityList:
                       $ref: '#/components/schemas/CapabilityList'
-                    isINEF:
-                      type: boolean
                     isCAPIFSup:
                       type: boolean
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
