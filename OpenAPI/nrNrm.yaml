@@ -887,6 +887,20 @@ components:
                       type: array
                       items:
                         $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                    rimRSMonitoringStartTime:
+                      type: string
+                    rimRSMonitoringStopTime:
+                      type: string
+                    rimRSMonitoringWindowDuration:
+                      type: integer
+                    rimRSMonitoringWindowStartingOffset:
+                      type: integer
+                    rimRSMonitoringWindowPeriodicity:
+                      type: integer
+                    rimRSMonitoringOccasionInterval:
+                      type: integer
+                    rimRSMonitoringOccasionStartingOffset:
+                      type: integer
                     nRFrequencyRef:
                       $ref: 'genericNrm.yaml#/components/schemas/Dn'
                     victimSetRef:
@@ -1393,20 +1407,6 @@ components:
                   $ref: '#/components/schemas/RSSetId'
                 setType:
                   $ref: '#/components/schemas/RSSetType'
-                rimRSMonitoringStartTime:
-                  type: string
-                rimRSMonitoringStopTime:
-                  type: string
-                rimRSMonitoringWindowDuration:
-                  type: integer
-                rimRSMonitoringWindowStartingOffset:
-                  type: integer
-                rimRSMonitoringWindowPeriodicity:
-                  type: integer
-                rimRSMonitoringOccasionInterval:
-                  type: integer
-                rimRSMonitoringOccasionStartingOffset:
-                  type: integer
                 nRCellDURefs:
                   $ref: 'genericNrm.yaml#/components/schemas/DnList'
 
