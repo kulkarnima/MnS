@@ -469,7 +469,7 @@ components:
 
     SubNetwork-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -499,7 +499,7 @@ components:
 
     ManagedElement-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -551,7 +551,7 @@ components:
  
     AmfFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -604,7 +604,7 @@ components:
               $ref: '#/components/schemas/EP_NLG-Multiple'
     AmfSet-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -622,7 +622,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
     AmfRegion-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -640,7 +640,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
     SmfFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -691,7 +691,7 @@ components:
 
     UpfFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -724,7 +724,7 @@ components:
               $ref: '#/components/schemas/EP_S5U-Multiple'
     N3iwfFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -745,7 +745,7 @@ components:
               $ref: '#/components/schemas/EP_N4-Multiple'
     PcfFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -786,7 +786,7 @@ components:
 
     AusfFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -813,7 +813,7 @@ components:
               $ref: '#/components/schemas/EP_N13-Multiple'
     UdmFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -842,7 +842,7 @@ components:
               $ref: '#/components/schemas/EP_N13-Multiple'
     UdrFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -860,7 +860,7 @@ components:
                       $ref: '#/components/schemas/ManagedNFProfile'
     UdsfFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -878,7 +878,7 @@ components:
                       $ref: '#/components/schemas/ManagedNFProfile'
     NrfFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -903,7 +903,7 @@ components:
               $ref: '#/components/schemas/EP_N27-Multiple'
     NssfFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -932,7 +932,7 @@ components:
               $ref: '#/components/schemas/EP_N31-Multiple'
     SmsfFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -959,7 +959,7 @@ components:
               $ref: '#/components/schemas/EP_MAP_SMSC-Multiple'
     LmfFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -980,7 +980,7 @@ components:
               $ref: '#/components/schemas/EP_NLS-Multiple'
     NgeirFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1005,7 +1005,7 @@ components:
               $ref: '#/components/schemas/EP_N17-Multiple'
     SeppFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1028,7 +1028,7 @@ components:
               $ref: '#/components/schemas/EP_N32-Multiple'
     NwdafFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1051,7 +1051,7 @@ components:
                       
     ScpFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1066,7 +1066,7 @@ components:
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
     NefFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1088,7 +1088,7 @@ components:
 
     NsacfFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1110,7 +1110,7 @@ components:
 
     ExternalAmfFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1124,7 +1124,7 @@ components:
                       $ref: '#/components/schemas/AmfIdentifier'
     ExternalNrfFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1136,7 +1136,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/PlmnIdList'
     ExternalNssfFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1148,7 +1148,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/PlmnIdList'
     ExternalSeppFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1166,7 +1166,7 @@ components:
 
     EP_N2-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1180,7 +1180,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N3-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1196,7 +1196,7 @@ components:
                       $ref: 'genericNrm.yaml#/components/schemas/DnList'
     EP_N4-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1210,7 +1210,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N5-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1224,7 +1224,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N6-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1238,7 +1238,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N7-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1252,7 +1252,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N8-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1266,7 +1266,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N9-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1280,7 +1280,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N10-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1294,7 +1294,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N11-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1308,7 +1308,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N12-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1322,7 +1322,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N13-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1336,7 +1336,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N14-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1350,7 +1350,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N15-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1364,7 +1364,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N16-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1378,7 +1378,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N17-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1393,7 +1393,7 @@ components:
 
     EP_N20-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1408,7 +1408,7 @@ components:
 
     EP_N21-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1422,7 +1422,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N22-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1437,7 +1437,7 @@ components:
 
     EP_N26-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1451,7 +1451,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N27-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1467,7 +1467,7 @@ components:
 
     EP_N31-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1481,7 +1481,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_N32-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1504,7 +1504,7 @@ components:
 
     EP_S5C-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1518,7 +1518,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_S5U-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1532,7 +1532,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_Rx-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1546,7 +1546,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_MAP_SMSC-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1560,7 +1560,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_NLS-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1574,7 +1574,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_NLG-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1589,7 +1589,7 @@ components:
 
     EP_N60-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1604,7 +1604,7 @@ components:
 
     FiveQiDscpMappingSet-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1644,7 +1644,7 @@ components:
         $ref: '#/components/schemas/FiveQICharacteristics-Single' 
     Configurable5QISet-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1658,7 +1658,7 @@ components:
    
     Dynamic5QISet-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1672,7 +1672,7 @@ components:
                       
     GtpUPathQoSMonitoringControl-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1709,7 +1709,7 @@ components:
 
     QFQoSMonitoringControl-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1746,7 +1746,7 @@ components:
 
     PredefinedPccRuleSet-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
