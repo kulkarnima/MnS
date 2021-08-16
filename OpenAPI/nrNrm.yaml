@@ -1630,6 +1630,9 @@ components:
                       $ref: '#/components/schemas/LocalAddress'
                     remoteAddress:
                       $ref: '#/components/schemas/RemoteAddress'
+                    epTransportRefs:
+                      $ref: 'genericNrm.yaml#/components/schemas/DnList'
+
     EP_NgU-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
