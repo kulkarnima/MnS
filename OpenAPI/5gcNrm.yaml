@@ -1085,7 +1085,10 @@ components:
                     isCAPIFSup:
                       type: boolean
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
-
+        - type: object
+          properties:
+            EP_N33:
+              $ref: '#/components/schemas/EP_N33-Multiple'
     NsacfFunction-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -1529,7 +1532,20 @@ components:
                       type: string
                     withIPX:
                       type: boolean
-
+    EP_N33-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'nrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_S5C-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -2037,7 +2053,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/EP_N32-Single'
-
+    EP_N33-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N33-Single'
     EP_S5C-Multiple:
       type: array
       items:
@@ -2150,7 +2169,8 @@ components:
        - $ref: '#/components/schemas/EP_N27-Single'
 
        - $ref: '#/components/schemas/EP_N31-Single'
-       - $ref: '#/components/schemas/EP_N31-Single'
+       - $ref: '#/components/schemas/EP_N32-Single'
+       - $ref: '#/components/schemas/EP_N33-Single'       
        - $ref: '#/components/schemas/EP_N60-Single'
 
        - $ref: '#/components/schemas/EP_S5C-Single'
