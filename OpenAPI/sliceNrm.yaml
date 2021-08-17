@@ -341,7 +341,6 @@ components:
                       $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
                     serviceProfileList:
                       $ref: '#/components/schemas/ServiceProfileList'
-
     NetworkSliceSubnet-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
@@ -365,7 +364,18 @@ components:
                       $ref: '#/components/schemas/SliceProfileList'
                     epTransportRefList:
                       $ref: 'comDefs.yaml#/components/schemas/DnList'
-
+                    priorityLabel:
+                      type: integer
+                    PerfMetricJob:
+                      $ref: 'genericNrm.yaml#/components/schemas/PerfMetricJob-Multiple'
+                    ThresholdMonitor:
+                      $ref: 'genericNrm.yaml#/components/schemas/ThresholdMonitor-Multiple'
+                    NtfSubscriptionControl:
+                      $ref: 'genericNrm.yaml#/components/schemas/NtfSubscriptionControl-Multiple'
+                    TraceJob:
+                      $ref: 'genericNrm.yaml#/components/schemas/TraceJob-Multiple'
+                    AlarmList:
+                      $ref: 'genericNrm.yaml#/components/schemas/AlarmList-Single'
     EP_Transport-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
