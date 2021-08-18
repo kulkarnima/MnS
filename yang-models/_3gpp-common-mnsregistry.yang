@@ -12,7 +12,7 @@ module _3gpp-common-mnsregistry {
     Class (IOC) that is part of the Generic Network Resource Model (NRM).";
   reference "3GPP TS 28.623 Generic Network Resource Model (NRM)";
 
-  revision 2021-08-10 { reference "Initial revision"; }
+  revision 2021-08-10 { reference "Initial revision, S5-214388"; }
 
   grouping MNSRegistryGrp {
     description "Represents the MNSRegistry IOC.";
@@ -20,25 +20,22 @@ module _3gpp-common-mnsregistry {
     uses top3gpp:Top_Grp;
   
     list mnsList {
-      key "mnsType";
-      key "mnsVersion";
+      key "mnsType mnsVersion";
       description "List of MnS Data.";
-      uses top3gpp:Top_Grp;
       uses MNSDataGrp;
     }
   }
     
   grouping MNSDataGrp {
     description " This datatype represents an available Management Service (MnS
-    and provides the data required to support its discovery.";
+      and provides the data required to support its discovery.";
     leaf mnsLabel {
       description "Human-readable name of management service.";
       mandatory true;
       type string;
     }
     leaf mnsType {
-      description "Type of management service.
-      allowedValues: PROVISIONING, FAULT_SUPERVISION, PERFORMANCE_ASSURANCE.";
+      description "Type of management service.";
       type enumeration {
          enum PROVISIONING;
          enum FAULT_SUPERVISION; 
@@ -47,7 +44,6 @@ module _3gpp-common-mnsregistry {
     }
     leaf mnsVersion {
       description "Version of management service.";
-      ;
       type string;
     }    
     leaf componentTypeAAddress {
@@ -63,6 +59,13 @@ module _3gpp-common-mnsregistry {
     }
    }
    augment "/subnet3gpp:SubNetwork" {
-    uses MNSRegistryGrp;
-   }
+    list MNSRegistry {
+      key id;   
+      uses top3gpp:Top_Grp;      
+      container attributes {
+        uses MNSRegistryGrp ;
+      }  
+    }
+  }
+   
  }
