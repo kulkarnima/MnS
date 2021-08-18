@@ -9,14 +9,10 @@ module _3gpp-common-mnsregistry {
   organization "3GPP SA5";
   contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
   description "Defines the YANG mapping of the MNSRegistry Information Object
-    Class (IOC) that is part of the NR Network Resource Model (NRM).";
-  reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
+    Class (IOC) that is part of the Generic Network Resource Model (NRM).";
+  reference "3GPP TS 28.623 Generic Network Resource Model (NRM)";
 
   revision 2021-08-10 { reference "Initial revision"; }
-
-  feature MNSRegistry {
-    description "Class representing MsS Discovery Service Resgistry.";
-  }
 
   grouping MNSRegistryGrp {
     description "Represents the MNSRegistry IOC.";
@@ -24,20 +20,17 @@ module _3gpp-common-mnsregistry {
     uses top3gpp:Top_Grp;
   
     list mnsList {
+      key "mnsType";
+      key "mnsVersion";
       description "List of MnS Data.";
-      reference "3GPP TS 28.541";
-      key id;
       uses top3gpp:Top_Grp;
-      container attributes {
-        uses MNSDataGrp;
-      }
+      uses MNSDataGrp;
     }
   }
     
   grouping MNSDataGrp {
     description " This datatype represents an available Management Service (MnS
     and provides the data required to support its discovery.";
-    reference "3GPP TS 28.541";
     leaf mnsLabel {
       description "Human-readable name of management service.";
       mandatory true;
@@ -46,7 +39,6 @@ module _3gpp-common-mnsregistry {
     leaf mnsType {
       description "Type of management service.
       allowedValues: PROVISIONING, FAULT_SUPERVISION, PERFORMANCE_ASSURANCE.";
-      mandatory true;
       type enumeration {
          enum PROVISIONING;
          enum FAULT_SUPERVISION; 
@@ -55,7 +47,7 @@ module _3gpp-common-mnsregistry {
     }
     leaf mnsVersion {
       description "Version of management service.";
-      mandatory true;
+      ;
       type string;
     }    
     leaf componentTypeAAddress {
