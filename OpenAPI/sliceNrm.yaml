@@ -374,8 +374,6 @@ components:
                       $ref: 'genericNrm.yaml#/components/schemas/NtfSubscriptionControl-Multiple'
                     TraceJob:
                       $ref: 'genericNrm.yaml#/components/schemas/TraceJob-Multiple'
-                    AlarmList:
-                      $ref: 'genericNrm.yaml#/components/schemas/AlarmList-Single'
     EP_Transport-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
