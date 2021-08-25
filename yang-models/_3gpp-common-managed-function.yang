@@ -281,7 +281,6 @@ module _3gpp-common-managed-function {
     }
     
     leaf priorityLabel {
-      mandatory true;
       type uint32;
     }
     uses meas3gpp:SupportedPerfMetricGroupGrp;
