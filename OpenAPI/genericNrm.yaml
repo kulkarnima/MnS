@@ -1208,8 +1208,8 @@ components:
           $ref: '#/components/schemas/AlarmList-Single'
         MnsRegistry:
           type: array
-            items:
-              $ref: '#/components/schemas/MnsRegistry'
+          items:
+            $ref: '#/components/schemas/MnsRegistry'
     ManagedElement-ncO:
       type: object
       properties:
