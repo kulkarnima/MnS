@@ -18,22 +18,13 @@ module _3gpp-common-mnsregistry {
     description "Represents the MNSRegistry IOC.";
     reference "3GPP TS 28.541";
     uses top3gpp:Top_Grp;
-  
-    list mnsList {
-      key "mnsType mnsVersion";
-      description "List of MnS Data.";
-      uses MNSDataGrp;
-    }
-  }
     
-  grouping MNSDataGrp {
-    description " This datatype represents an available Management Service (MnS
-      and provides the data required to support its discovery.";
     leaf mnsLabel {
       description "Human-readable name of management service.";
       mandatory true;
       type string;
     }
+    
     leaf mnsType {
       description "Type of management service.";
       type enumeration {
@@ -42,23 +33,20 @@ module _3gpp-common-mnsregistry {
          enum PERFORMANCE_ASSURANCE;
       }
     }
+    
     leaf mnsVersion {
       description "Version of management service.";
       type string;
     }    
-    leaf componentTypeAAddress {
+    
+    leaf mnsAddress {
       description "Addressing information for Management Service operations.";
       mandatory true;
       type string;
     }    
-    leaf componentTypeBAddress {
-      description "Addressing information for Management Service information
-       models.";
-      mandatory true;
-      type string;
     }
-   }
-   augment "/subnet3gpp:SubNetwork" {
+    
+    augment "/subnet3gpp:SubNetwork" {
     list MNSRegistry {
       description "Represents the MNSRegistry IOC.";
       key id;   
