@@ -53,7 +53,7 @@ module _3gpp-common-measurements {
       Integration Reference Point (IRP);
       Information Service (IS)";
 
-  revision 2021-07-22 { reference "CR-xxxx"; }
+  revision 2021-07-22 { reference "CR-0137"; }
   revision 2020-11-06 { reference "CR-0118"; }
   revision 2020-09-04 { reference "CR-000107"; }
   revision 2020-06-08 { reference "CR-0092"; }
