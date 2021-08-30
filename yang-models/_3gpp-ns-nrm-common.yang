@@ -17,7 +17,7 @@ module _3gpp-ns-nrm-common {
     Information model definitions for network slice NRM (chapter 6)
     ";
 
-  revision 2021-07-16 { reference CR-xxxx ; } 
+  revision 2021-07-16 { reference CR-0566 ; } 
   revision 2021-05-17 {
     description "Introduction of Common Data types";
     reference "CR-0485";

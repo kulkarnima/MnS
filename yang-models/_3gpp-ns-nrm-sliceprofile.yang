@@ -19,7 +19,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
     Information model definitions for network slice NRM (chapter 6)
     ";
 
-  revision 2021-07-16 { reference CR-xxxx ; } 
+  revision 2021-07-16 { reference CR-0566 ; } 
   revision 2021-05-05 {
     description "replace perfReq with 3 new datatypes xxxSliceSubnetProfile";
     reference "CR-0485";
