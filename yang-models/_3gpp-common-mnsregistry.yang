@@ -44,7 +44,15 @@ module _3gpp-common-mnsregistry {
       mandatory true;
       type string;
     }    
+    
+    leaf mnsScope {
+      description "This indicates the URI of the supported NRM fragment.";
+      mandatory true;
+      type string;
+    }    
+    
     }
+    
     
     augment "/subnet3gpp:SubNetwork" {
     list MNSRegistry {
