@@ -179,6 +179,7 @@ module _3gpp-common-managed-element {
           
     leaf priorityLabel {
       type uint32;
+      mandatory true;
     }      
   }
 
