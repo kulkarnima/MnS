@@ -550,6 +550,8 @@ components:
                       $ref: '#/components/schemas/SliceProfileList'
                     epTransportRefList:
                       $ref: 'genericNrm.yaml#/components/schemas/DnList'
+                    priorityLabel:
+                      type: integer
 
     EP_Transport-Single:
       allOf:
