@@ -465,6 +465,18 @@ components:
       oneOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
         - $ref: 'genericNrm.yaml#/components/schemas/Ipv6Addr'
+    
+    LogicInterfaceInfo:
+      type: object
+      properties:
+         logicalInterfceType:
+           type: string
+           enum: 
+            - VLAN
+            - MPLS
+            - Segment
+         logicalInterfceId:
+           type: string
 
     ServiceProfileList:
        type: array
@@ -549,8 +561,8 @@ components:
               properties:
                 ipAddress:
                   $ref: '#/components/schemas/IpAddress'
-                logicInterfaceId:
-                  type: string 
+                logicInterfaceInfo:
+                  $ref: '#/components/schemas/LogicInterfaceInfo'
                 nextHopInfo:
                   type: string 
                 qosProfile:
