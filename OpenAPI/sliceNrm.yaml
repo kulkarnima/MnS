@@ -296,6 +296,8 @@ components:
           $ref: '#/components/schemas/DeterministicComm'
         uLDeterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
+        survivalTime:
+          type: string
     RANSliceSubnetProfile:
       type: object
       properties:
