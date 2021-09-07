@@ -1571,7 +1571,7 @@ components:
                 scope:
                   $ref: '#/components/schemas/Scope'
                 notificationFilter:
-                  type: string
+                  $ref: 'comDefs.yaml#/components/schemas/Filter'                
             HeartbeatControl:
               $ref: '#/components/schemas/HeartbeatControl-Single'
     HeartbeatControl-Single:
@@ -1584,6 +1584,7 @@ components:
               properties:
                 heartbeatNtfPeriod:
                   type: integer
+                  minimum: 0
                 triggerHeartbeatNtf:
                   type: boolean
     TraceJob-Single:
