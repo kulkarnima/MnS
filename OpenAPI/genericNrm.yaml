@@ -1180,15 +1180,29 @@ components:
       properties:
         id:
           type: string
+          nullable: true
+        objectClass:
+          type: string
+        objectInstance:
+          $ref: 'comDefs.yaml#/components/schemas/Dn'
         VsDataContainer:
           $ref: '#/components/schemas/VsDataContainer-Multiple'
+      required:
+        - id
     Top:
       type: object
       properties:
         id:
           type: string
+          nullable: true
+        objectClass:
+          type: string
+        objectInstance:
+          $ref: 'comDefs.yaml#/components/schemas/Dn'
         VsDataContainer:
           $ref: '#/components/schemas/VsDataContainer-Multiple'
+      required:
+        - id
 
 #-------- Definition of IOCs with new name-containments defined in other TS ------
 
