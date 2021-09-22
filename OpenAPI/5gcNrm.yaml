@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: 3GPP 5GC NRM
-  version: 17.3.0
+  version: 17.4.0
   description: >-
     OAS 3.0.1 specification of the 5GC NRM
     © 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
