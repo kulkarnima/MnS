@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Generic NRM
-  version: 16.8.0
+  version: 16.9.0
   description: >-
     OAS 3.0.1 definition of the Generic NRM
     © 2021, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
