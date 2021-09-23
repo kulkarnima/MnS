@@ -20,6 +20,10 @@ module _3gpp-ns-nrm-networkslice {
     Information model definitions for network slice NRM (chapter 6)
     ";
 
+  revision 2020-06-02 {
+    reference "CR-0485, CR-0508";
+  }
+
   revision 2020-02-19 {
     description "Introduction of YANG definitions for network slice NRM";
     reference "CR-0458";

@@ -23,6 +23,11 @@ module _3gpp-ns-nrm-networkslicesubnet {
     Information model definitions for network slice NRM (chapter 6)
     ";
 
+  revision 2021-05-05 {
+    description "replace perfReq with 3 new datatypes xxxSliceSubnetProfile";
+    reference "CR-0485";
+  }
+
   revision 2020-02-19 {
     description "Introduction of YANG definitions for network slice NRM";
     reference "CR-0458";
