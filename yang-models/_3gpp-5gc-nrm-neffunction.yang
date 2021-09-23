@@ -43,10 +43,6 @@ module _3gpp-5gc-nrm-neffunction {
       reference "3GPP TS 23.003";
       type string;
     }
-
-    leaf isINEF {
-      type boolean;
-    }
     
     leaf isCAPIFSup {
       type boolean;
