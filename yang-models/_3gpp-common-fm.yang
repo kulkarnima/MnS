@@ -115,7 +115,7 @@ module _3gpp-common-fm {
       }
 
       leaf notificationId {
-        type string;
+        type int32;
         config false ;
         mandatory true;
       }
