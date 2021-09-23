@@ -147,7 +147,12 @@ module _3gpp-ns-nrm-networkslicesubnet {
 
     list sliceProfileList {
       description "List of SliceProfiles supported by the network slice 
-        subnet instance";
+        subnet instance. All members of the list, instances of SliceProfile, 
+        shall contain the same datatype representing slice profile requirements: 
+        TopSliceSubnetProfile, RANSliceSubnetProfile or CNSliceSubnetProfile.  
+        Members of the list may contain TopSliceSubnetProfile datatype 
+        only when this attribute (sliceProfileList) belongs to 
+        a NetworkSliceSubnet that is directly referenced by a NetworkSlice";
       key sliceProfileId;
       uses SliceProfileGrp;
     }

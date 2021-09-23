@@ -265,26 +265,7 @@ components:
           type: integer
         exponent:
           type: integer
-    FiveQICharacteristics:
-      type: object
-      properties:
-        fiveQIValue:
-          type: integer
-        resourceType:
-          type: string
-          enum:
-            - GBR
-            - NonGBR
-        priorityLevel:
-          type: integer
-        packetDelayBudget:
-          type: integer
-        packetErrorRate:
-          $ref: '#/components/schemas/PacketErrorRate'
-        averagingWindow:
-          type: integer
-        maximumDataBurstVolume:
-          type: integer
+
 
 
     GtpUPathDelayThresholdsType:
@@ -1101,8 +1082,6 @@ components:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     capabilityList:
                       $ref: '#/components/schemas/CapabilityList'
-                    isINEF:
-                      type: boolean
                     isCAPIFSup:
                       type: boolean
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
@@ -1637,6 +1616,32 @@ components:
                       items:
                         $ref: '#/components/schemas/FiveQiDscpMapping'
 
+    FiveQICharacteristics-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - type: object
+          properties:
+            fiveQIValue:
+              type: integer
+            resourceType:
+              type: string
+              enum:
+                - GBR
+                - NonGBR
+            priorityLevel:
+              type: integer
+            packetDelayBudget:
+              type: integer
+            packetErrorRate:
+              $ref: '#/components/schemas/PacketErrorRate'
+            averagingWindow:
+              type: integer
+            maximumDataBurstVolume:
+              type: integer
+    FiveQICharacteristics-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/FiveQICharacteristics-Single' 
     Configurable5QISet-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
@@ -1649,7 +1654,7 @@ components:
                     configurable5QIs:
                       type: array
                       items:
-                        $ref: '#/components/schemas/FiveQICharacteristics'  
+                        $ref: '#/components/schemas/FiveQICharacteristics-Multiple'  
    
     Dynamic5QISet-Single:
       allOf:
@@ -1663,7 +1668,7 @@ components:
                     dynamic5QIs:
                       type: array
                       items:
-                        $ref: '#/components/schemas/FiveQICharacteristics'                           
+                        $ref: '#/components/schemas/FiveQICharacteristics-Multiple'                           
                       
     GtpUPathQoSMonitoringControl-Single:
       allOf:
