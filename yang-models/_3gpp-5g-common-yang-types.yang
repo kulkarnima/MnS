@@ -1,8 +1,9 @@
 module _3gpp-5g-common-yang-types {
   yang-version 1.1;
   namespace "urn:3gpp:sa5:_3gpp-5g-common-yang-types";
-  prefix "types5g3gpp";
-
+  prefix "type5g3gpp";
+  
+  
   import _3gpp-common-yang-types { prefix types3gpp; }
 
   organization "3GPP SA5";
@@ -11,6 +12,7 @@ module _3gpp-5g-common-yang-types {
     network slicing.";
   reference "3GPP TS 28.541";
 
+  revision 2021-08-04 { reference S5-214052/CR-0517; }
   revision 2020-11-05 { reference CR-0411 ; }
   revision 2019-10-20 { reference "Initial version."; }
  
@@ -71,7 +73,8 @@ module _3gpp-5g-common-yang-types {
 
       enum INDIRECT_COMMUNICATION_WITH_DEDICATED_DISCOVERY {
         value 3;
-        description "Communication to NF service discovered by NRF through SCP as a proxy.";
+        description "Communication to NF service discovered by NRF through SCP 
+          as a proxy.";
       }
 
     }
@@ -99,6 +102,47 @@ module _3gpp-5g-common-yang-types {
     leaf policy {
       type string;
     }  
+  }
+
+  typedef EnergySavingLoadThresholdT {
+    type uint32 {
+      range 0..10000;
+    }
+    units 1/10000;
+  }
+
+  typedef EnergySavingTimeDurationT {
+    type uint32 {
+      range 0..900;
+    }
+    units seconds;
+  }
+
+  typedef PhysCellID {
+    type uint32 { 
+      range "0..1007"; 
+    }
+    reference "clause 7.4.2 of TS 38.211";
+  }
+
+  typedef UTC24TimeOfDayT {
+    description "Time of day in HH:MM or H:MM 24-hour format per UTC 
+      time zone.";
+    type string {
+      pattern "(([01]?[0-9])|(2[0-3])):([0-5][0-9])";
+    }
+  }
+
+  typedef DayOfWeekT {
+    type enumeration {
+      enum Monday;
+      enum Tuesday;
+      enum Wednesday;
+      enum Thursday;
+      enum Friday;
+      enum Saturday;
+      enum Sunday;
+    }
   }
 
 }

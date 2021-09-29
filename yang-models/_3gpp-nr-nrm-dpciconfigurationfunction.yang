@@ -1,68 +1,75 @@
 module _3gpp-nr-nrm-dpciconfigurationfunction {
   yang-version 1.1;
   namespace "urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction";
-  prefix "dpciconfigurationfunction3gpp";
+  prefix "dpcicf3gpp";
 
   import _3gpp-common-subnetwork { prefix subnet3gpp; }
   import _3gpp-common-top { prefix top3gpp; }
   import _3gpp-nr-nrm-nrcellcu { prefix nrcellcu3gpp; }
   import _3gpp-nr-nrm-gnbcucpfunction { prefix gnbcucp3gpp; }
   import _3gpp-common-managed-element { prefix me3gpp; }
+  import _3gpp-5g-common-yang-types { prefix type5g3gpp; }
 
   organization "3GPP SA5";
   contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
-  description "Defines the YANG mapping of the DPCIConfigurationFunction Information Object Class
-    (IOC) that is part of the NR Network Resource Model (NRM).";
+  description "Defines the YANG mapping of the DPCIConfigurationFunction 
+    Information Object Class (IOC) that is part of the NR Network Resource
+    Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2021-08-04 { reference S5-214052/CR-0517; }
   revision 2020-11-25 { reference CR-0385 ; }
   revision 2020-05-08 { reference S5-203316; }
 
-
   grouping DPCIConfigurationFunctionGrp {
     description "Represents the DPCICONFIGURATIONFunction IOC.";
-    reference "3GPP TS 28.541";
-    uses top3gpp:Top_Grp;
-
 
     list nRPciList {
+      description "This holds a list of physical cell identities that can be
+        assigned to the NR cells. This attribute shall be supported if D-SON 
+        PCI configuration function is supported.";
       key NRPci;
-      description "This holds a list of physical cell identities that can be assigned to the NR cells. This attribute shall be supported if D-SON PCI configuration function is supported.";
-	  leaf NRPci {type int32;}
-      container attributes {
-         uses NRPciListGrp;
-     }
+      leaf NRPci { 
+        type type5g3gpp:PhysCellID; 
+      }
     }
-
 
     leaf dPciConfigurationControl {
-        description " This attribute determines whether the Distributed SON PCI configuration Function is enabled or disabled.";
-        type boolean;
-    }
-
-  }
-
-  grouping NRPciListGrp {
-    description "Represents the NR PCI list for the PCI configuration function.";
-
-    leaf NRPci {
-        description "This attribute determines the NR PCI.";
-        type int32 { range "0..1007"; }
-        units "1";
+      description "This attribute determines whether the Distributed SON PCI
+        configuration Function is enabled or disabled.";
+      type boolean;
     }
   }
 
+  grouping DPCIConfigurationFunctionSubtree {
+    list DPCIConfigurationFunction {
+      description "This IOC contains attributes to support the Distributed SON 
+        function of PCI configuration. 
 
-  augment "/me3gpp:ManagedElement/gnbcucp3gpp:GNBCUCPFunction/nrcellcu3gpp:NRCellCU" {
+        In the case where multiple DPCIConfiguration MOIs exist at different 
+        levels of the containment tree, the DPCIConfiguration MOI at the lower 
+        level overrides the DPCIConfiguration MOIs at higher level(s) of the 
+        same containment tree.";
+      reference "clause 7.1.3 in TS 28.313";
+      key id;   
+      uses top3gpp:Top_Grp;
+      container attributes {
+        uses DPCIConfigurationFunctionGrp;
+      }      
+    }
+  }
+
+  augment "/me3gpp:ManagedElement/gnbcucp3gpp:GNBCUCPFunction/"+
+      "nrcellcu3gpp:NRCellCU" {
     if-feature nrcellcu3gpp:DPCIConfigurationFunction;
-    uses DPCIConfigurationFunctionGrp;
-    }
-  augment "/me3gpp:ManagedElement" {
+    uses DPCIConfigurationFunctionSubtree;
+  }
+  augment /me3gpp:ManagedElement {
     if-feature me3gpp:DPCIConfigurationFunction;
-    uses DPCIConfigurationFunctionGrp;
-    }
-  augment "/subnet3gpp:SubNetwork" {
+    uses DPCIConfigurationFunctionSubtree;
+  }
+  augment /subnet3gpp:SubNetwork {
     if-feature subnet3gpp:DPCIConfigurationFunction;
-    uses DPCIConfigurationFunctionGrp;
-    }
+    uses DPCIConfigurationFunctionSubtree;
+  }
 }
