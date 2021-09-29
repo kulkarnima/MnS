@@ -211,4 +211,4 @@ module _3gpp-common-subnetwork {
     
     // augment external parts here
   }
-} 
+}

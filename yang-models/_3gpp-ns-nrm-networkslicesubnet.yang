@@ -23,6 +23,11 @@ module _3gpp-ns-nrm-networkslicesubnet {
     Information model definitions for network slice NRM (chapter 6)
     ";
 
+  revision 2021-05-05 {
+    description "replace perfReq with 3 new datatypes xxxSliceSubnetProfile";
+    reference "CR-0485";
+  }
+
   revision 2020-02-19 {
     description "Introduction of YANG definitions for network slice NRM";
     reference "CR-0458";
@@ -142,7 +147,12 @@ module _3gpp-ns-nrm-networkslicesubnet {
 
     list sliceProfileList {
       description "List of SliceProfiles supported by the network slice 
-        subnet instance";
+        subnet instance. All members of the list, instances of SliceProfile, 
+        shall contain the same datatype representing slice profile requirements: 
+        TopSliceSubnetProfile, RANSliceSubnetProfile or CNSliceSubnetProfile.  
+        Members of the list may contain TopSliceSubnetProfile datatype 
+        only when this attribute (sliceProfileList) belongs to 
+        a NetworkSliceSubnet that is directly referenced by a NetworkSlice";
       key sliceProfileId;
       uses SliceProfileGrp;
     }

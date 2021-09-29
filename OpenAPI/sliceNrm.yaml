@@ -465,6 +465,18 @@ components:
       oneOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
         - $ref: 'genericNrm.yaml#/components/schemas/Ipv6Addr'
+    
+    LogicInterfaceInfo:
+      type: object
+      properties:
+         logicalInterfceType:
+           type: string
+           enum: 
+            - VLAN
+            - MPLS
+            - Segment
+         logicalInterfceId:
+           type: string
 
     ServiceProfileList:
        type: array
@@ -538,6 +550,8 @@ components:
                       $ref: '#/components/schemas/SliceProfileList'
                     epTransportRefList:
                       $ref: 'genericNrm.yaml#/components/schemas/DnList'
+                    priorityLabel:
+                      type: integer
 
     EP_Transport-Single:
       allOf:
@@ -549,8 +563,8 @@ components:
               properties:
                 ipAddress:
                   $ref: '#/components/schemas/IpAddress'
-                logicInterfaceId:
-                  type: string 
+                logicInterfaceInfo:
+                  $ref: '#/components/schemas/LogicInterfaceInfo'
                 nextHopInfo:
                   type: string 
                 qosProfile:

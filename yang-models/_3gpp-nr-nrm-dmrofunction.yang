@@ -1,7 +1,7 @@
 module _3gpp-nr-nrm-dmrofunction {
   yang-version 1.1;
   namespace "urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction";
-  prefix "dmrofunction3gpp";
+  prefix "dmrof3gpp";
 
   import _3gpp-common-subnetwork { prefix subnet3gpp; }
   import _3gpp-common-top { prefix top3gpp; }
@@ -9,62 +9,85 @@ module _3gpp-nr-nrm-dmrofunction {
   import _3gpp-common-managed-element { prefix me3gpp; }
   import _3gpp-nr-nrm-nrcellcu { prefix nrcellcu3gpp; }
 
-
   organization "3GPP SA5";
   contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
-  description "Defines the YANG mapping of the DMROFunction Information Object Class
-    (IOC) that is part of the NR Network Resource Model (NRM).";
+  description "Defines the YANG mapping of the DMROFunction 
+    Information Object Class (IOC) that is part of the NR Network Resource 
+    Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2021-08-05 { reference S5-214053/CR-0518; }
   revision 2020-05-08 { reference S5-203316; }
-
 
   grouping DMROFunctionGrp {
     description "Represents the DMROFunction IOC.";
-    reference "3GPP TS 28.541";
-    uses top3gpp:Top_Grp;
 
     leaf maximumDeviationHoTrigger {
-        description "This parameter defines the maximum allowed absolute deviation of the Handover Trigger, from the default point of operation.";
-        type int32 { range "-20..20"; }
-        units "0.5";
+      description "This parameter defines the maximum allowed absolute 
+        deviation of the Handover Trigger, from the default point of 
+        operation. Range -20 to 20 in .5 dB steps. ";
+      type string { 
+        pattern '-?((20)|(1?[0-9]))\.[05]'; 
+        // -20.0, -19.5, -19.0, ..., -0.5, 0.0, 0.5, 1.0, ... 19.5, 20.0
+      }
+      units dB;
     }
-
     leaf minimumTimeBetweenHoTriggerChange {
-        description "This parameter defines the minimum allowed time interval between two Handover Trigger change performed by MRO. This is used to control the stability and convergence of the algorithm.";
-        type int32 { range "0..604800"; }
-        units "1";
+      description "This parameter defines the minimum allowed time interval
+        between two Handover Trigger change performed by MRO. This is used to 
+        control the stability and convergence of the algorithm.";
+      type uint32 { 
+        range 0..604800; // <= 1 week
+      }
+      units seconds;
     }
-
     leaf tstoreUEcntxt {
-        description "The timer used for detection of too early HO, too late HO and HO to wrong cell.";
-        type int32 { range "0..1023"; }
-        units "100";
+      description "The timer used for detection of too early HO, too late HO 
+        and HO to wrong cell.";
+      type uint32 { 
+        range 0..1023;
+      }
+      units "100 milliseconds";
     }
-
-
     leaf dmroControl {
-        description " This attribute determines whether the MRO function is enabled or disabled.";
-        type boolean;
+      description "This attribute determines whether the MRO function is 
+        enabled or disabled.";
+      type boolean;
     }
-
   }
 
+  grouping DMROFunctionSubtree {
+    list DMROFunction {
+      description "This IOC contains attributes to support the D-SON function 
+        of MRO.
 
-  augment "/me3gpp:ManagedElement/gnbcucp3gpp:GNBCUCPFunction/nrcellcu3gpp:NRCellCU" {
+        In the case where multiple DMRO MOIs exist at different levels of the 
+        containment tree, the DMRO MOI at the lower level overrides the DMRO 
+        MOIs at higher level(s) of the same containment tree.";
+      reference "clause 7.1.2 in TS 28.313";
+      key id;   
+      uses top3gpp:Top_Grp;
+      container attributes {
+        uses DMROFunctionGrp;
+      }      
+    }
+  }
+
+  augment "/me3gpp:ManagedElement/gnbcucp3gpp:GNBCUCPFunction/"+
+      "nrcellcu3gpp:NRCellCU" {
     if-feature nrcellcu3gpp:DMROFunction;
-    uses DMROFunctionGrp;
-    }
-  augment "/me3gpp:ManagedElement/gnbcucp3gpp:GNBCUCPFunction" {
+    uses DMROFunctionSubtree;
+  }
+  augment /me3gpp:ManagedElement/gnbcucp3gpp:GNBCUCPFunction {
     if-feature gnbcucp3gpp:DMROFunction;
-    uses DMROFunctionGrp;
-    }
-  augment "/me3gpp:ManagedElement" {
+    uses DMROFunctionSubtree;
+  }
+  augment /me3gpp:ManagedElement {
     if-feature me3gpp:DMROFunction;
-    uses DMROFunctionGrp;
-    }
-  augment "/subnet3gpp:SubNetwork" {
+    uses DMROFunctionSubtree;
+  }
+  augment /subnet3gpp:SubNetwork {
     if-feature subnet3gpp:DMROFunction;
-    uses DMROFunctionGrp;
-    }
+    uses DMROFunctionSubtree;
+  }
 }
