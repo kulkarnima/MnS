@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Generic NRM
-  version: 16.8.0
+  version: 16.9.0
   description: >-
     OAS 3.0.1 definition of the Generic NRM
     © 2021, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -616,7 +616,7 @@ components:
           - AUSF
           - SMSF
 
-    tjPLMNTaget-Type:
+    tjPLMNTarget-Type:
       type: object
       description: The PLMN for which sessions shall be selected in the Trace Session in case of management based activation when several PLMNs are supported in the RAN (this means that shared cells and not shared cells are allowed for the specified PLMN. Note that the PLMN Target might differ from the PLMN specified in the Trace Reference, as that specifies the PLMN that is containing the management system requesting the Trace Session from the NE. See 3GPP TS 32.422 clause 5.9b for additional details.
       properties:
@@ -757,6 +757,7 @@ components:
       description: See details in 3GPP TS 32.422 clause 5.10.21.
       type: string
       enum:
+        - 100ms
         - 250ms
         - 500ms
         - 1000ms
@@ -764,14 +765,6 @@ components:
         - 3000ms
         - 4000ms
         - 6000ms
-        - 8000ms
-        - 12000ms
-        - 16000ms
-        - 20000ms
-        - 24000ms
-        - 28000ms
-        - 32000ms
-        - 64000ms
     
     tjMDTCollectionPeriodRrmNR-Type:
       description: See details in 3GPP TS 32.422 clause 5.10.30.
@@ -962,14 +955,52 @@ components:
               - 61.44s
               - INFINITY
 
+    tjMDTLoggingEventThreshold-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.X.
+      type: object
+      properties:
+            RSRP:
+              type: integer
+              minimum: 0
+              maximum: 127
+            RSRQ:
+              type: integer
+              minimum: 0
+              maximum: 127
+    
+    tjMDTLoggingHysteresis-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.Y.
+      type: integer
+      minimum: 0
+      maximum: 30
+    
+    tjMDTLoggingTimeToTrigger-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.Z.
+      type: string
+      enum:
+        - 0ms
+        - 40ms
+        - 64ms
+        - 80ms
+        - 100ms
+        - 128ms
+        - 160ms
+        - 256ms
+        - 320ms
+        - 480ms
+        - 512ms
+        - 640ms
+        - 1024ms
+        - 1280ms
+        - 2560ms
+        - 5120ms
+
     tjMDTMeasurementPeriodLTE-Type:
       description: See details in 3GPP TS 32.422 clause 5.10.23.
       type: string
       enum:
         - 1024ms
-        - 1280ms
         - 2048ms
-        - 2560ms
         - 5120ms
         - 10240ms
         - 1min
@@ -978,8 +1009,6 @@ components:
       description: See details in 3GPP TS 32.422 clause 5.10.22.
       type: string
       enum:
-        - 250ms
-        - 500ms
         - 1000ms
         - 2000ms
         - 3000ms
@@ -1002,7 +1031,13 @@ components:
         - CPICH_RSCP
         - PathLoss
 
-    tjMDTPLMList-Type:
+    tjMDTM4ThresholdUmts-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.A.
+      type: integer
+      minimum: 0
+      maximum: 31
+
+    tjMDTPLMNList-Type:
       description: See details in 3GPP TS 32.422 clause 5.10.24.
       type: array
       items:
@@ -1110,7 +1145,6 @@ components:
               - 360000ms
               - 720000ms
               - 1800000ms
-              - 3600000ms
 
     tjMDTReportType-Type:
       description: Report type for logged NR MDT. See details in 3GPP TS 32.422 clause 5.10.27.
@@ -1130,29 +1164,8 @@ components:
           - UE_ORIENTATION
 
     tjMDTTraceCollectionEntityID-Type:
-      description: See details in 3GPP TS 32.422 clause 5.10.11. Only tceID value may be sent over the air to the UE being configured for Logged MDT.
-      type: object
-      properties:
-        tceID:
-          type: integer
-        tcePLMN:
-          type: object
-          properties:
-            mcc:
-              $ref: 'comDefs.yaml#/components/schemas/Mcc'
-            mnc:
-              $ref: 'comDefs.yaml#/components/schemas/Mnc'
-          required:
-            - mcc
-            - mnc
-        tceAddress:
-          oneOf:
-            - $ref: '#/components/schemas/IpAddr'
-            - $ref: 'comDefs.yaml#/components/schemas/Uri'
-      required:
-        - tceID
-        - tcePLMN
-        - tceAddress
+      description: See details in 3GPP TS 32.422 clause 5.10.11. Only TCE Id value may be sent over the air to the UE being configured for Logged MDT.
+      type: integer
 
 
 #-------- end of Definition of types used in Trace control NRM fragment ----------
@@ -1167,15 +1180,29 @@ components:
       properties:
         id:
           type: string
+          nullable: true
+        objectClass:
+          type: string
+        objectInstance:
+          $ref: 'comDefs.yaml#/components/schemas/Dn'
         VsDataContainer:
           $ref: '#/components/schemas/VsDataContainer-Multiple'
+      required:
+        - id
     Top:
       type: object
       properties:
         id:
           type: string
+          nullable: true
+        objectClass:
+          type: string
+        objectInstance:
+          $ref: 'comDefs.yaml#/components/schemas/Dn'
         VsDataContainer:
           $ref: '#/components/schemas/VsDataContainer-Multiple'
+      required:
+        - id
 
 #-------- Definition of IOCs with new name-containments defined in other TS ------
 
@@ -1305,7 +1332,7 @@ components:
         tjListOfNeTypes:
           $ref: '#/components/schemas/tjListOfNeTypes-Type'
         tjPLMNTarget:
-          $ref: '#/components/schemas/tjPLMNTaget-Type'
+          $ref: '#/components/schemas/tjPLMNTarget-Type'
         tjStreamingTraceConsumerURI:
           $ref: 'comDefs.yaml#/components/schemas/Uri'
         tjTraceCollectionEntityAddress:
@@ -1354,6 +1381,12 @@ components:
           $ref: '#/components/schemas/tjMDTLoggingDuration-Type'
         tjMDTLoggingInterval:
           $ref: '#/components/schemas/tjMDTLoggingInterval-Type'
+        tjMDTLoggingEventThreshold:
+          $ref: '#/components/schemas/tjMDTLoggingEventThreshold-Type'
+        tjMDTLoggingHysteresis:
+          $ref: '#/components/schemas/tjMDTLoggingHysteresis-Type'
+        tjMDTLoggingTimeToTrigger:
+          $ref: '#/components/schemas/tjMDTLoggingTimeToTrigger-Type'
         tjMDTMBSFNAreaList:
           type: array
           items:
@@ -1364,8 +1397,10 @@ components:
           $ref: '#/components/schemas/tjMDTMeasurementPeriodUMTS-Type'
         tjMDTMeasurementQuantity:
           $ref: '#/components/schemas/tjMDTMeasurementQuantity-Type'
-        tjMDTPLMList:
-          $ref: '#/components/schemas/tjMDTPLMList-Type'
+        tjMDTM4ThresholdUmts:
+          $ref: '#/components/schemas/tjMDTM4ThresholdUmts-Type'
+        tjMDTPLMNList:
+          $ref: '#/components/schemas/tjMDTPLMNList-Type'
         tjMDTPositioningMethod:
           $ref: '#/components/schemas/tjMDTPositioningMethod-Type'
         tjMDTReportAmount:
@@ -1550,7 +1585,7 @@ components:
                 scope:
                   $ref: '#/components/schemas/Scope'
                 notificationFilter:
-                  type: string
+                  $ref: 'comDefs.yaml#/components/schemas/Filter'                
             HeartbeatControl:
               $ref: '#/components/schemas/HeartbeatControl-Single'
     HeartbeatControl-Single:
@@ -1563,6 +1598,7 @@ components:
               properties:
                 heartbeatNtfPeriod:
                   type: integer
+                  minimum: 0
                 triggerHeartbeatNtf:
                   type: boolean
     TraceJob-Single:

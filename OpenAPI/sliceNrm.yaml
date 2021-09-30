@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Slice NRM
-  version: 16.9.0
+  version: 16.10.0
   description: >-
     OAS 3.0.1 specification of the Slice NRM
     @ 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -306,7 +306,7 @@ components:
 
     SubNetwork-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -326,7 +326,7 @@ components:
 
     NetworkSlice-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -341,10 +341,9 @@ components:
                       $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
                     serviceProfileList:
                       $ref: '#/components/schemas/ServiceProfileList'
-
     NetworkSliceSubnet-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -365,10 +364,11 @@ components:
                       $ref: '#/components/schemas/SliceProfileList'
                     epTransportRefList:
                       $ref: 'comDefs.yaml#/components/schemas/DnList'
-
+                    priorityLabel:
+                      type: integer
     EP_Transport-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
