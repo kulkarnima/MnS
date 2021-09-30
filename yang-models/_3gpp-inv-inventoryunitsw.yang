@@ -1,0 +1,144 @@
+module _3gpp-inv-inventoryunitsw {
+  yang-version 1.1;
+  namespace "urn:3gpp:sa5:_3gpp-inv-inventoryunitsw";
+  prefix invsw3gpp;
+
+  import ietf-yang-types { prefix yang; }
+  import _3gpp-common-yang-types { prefix types3gpp; }
+  import _3gpp-common-top { prefix top3gpp; }
+  import _3gpp-common-managed-element { prefix me3gpp; }
+
+  organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
+
+  description "This model defines a YANG mapping of the software inventory data 
+    IOC for Alternative 2 of the IM NRM, TS 28.632.";
+  reference "3GPP TS 28.632
+     Inventory Management (IM)
+     Network Resource Model (NRM)
+     Integration Reference Point (IRP);
+     Information Service (IS)";
+
+  revision 2021-10-01 { reference "Initial revision"; }
+
+  grouping InventoryUnitSwGrp {
+    description "Represents the InventoryUnitSw IOC.";
+    leaf swId {
+      description "Unique identifier of a SW unit.";
+      type string;
+      config false;
+    }
+    leaf swName {
+      description "Software release name used.";
+      type string;
+      config false;
+    }
+    leaf swVersion {
+      description "Version identifier of the software unit.";
+      type string;
+      config false;
+    }
+    leaf vendorName {
+      description "Name of inventory unit vendor (or vendors may provide 
+        manufacturer name)";
+      type string;
+      config false;
+    }
+    leaf salesUniqueId {
+      description "Unique identifier used by vendor (used e.g. for ordering a 
+        new unit).";
+      type string;
+      config false;
+    }
+    leaf classification {
+      description "Name of installed SW (e.g. SW release, SW build, SW 
+        patches).";
+      type string;
+      config false;
+    }
+    leaf swStatus {
+      description "Status of the SW unit (e.g. installed, archived).";
+      type string;
+      config false;
+    }
+    leaf swInstallationTime {
+      description "Date and time when the software installation process ended 
+        and the software was installed.";
+      type yang:date-and-time;
+      config false;
+    }
+    leaf swActivationTime {
+      description "Date and time when the software was activated.";
+      type yang:date-and-time;
+      config false;
+    }
+    leaf additionalInformation {
+      description "Supplementary information about inventory data (if any).";
+      type string;
+      config false;
+    }
+    
+    leaf mFunction {
+      description "DN of related ManagedFunction.";
+      type types3gpp:DistinguishedName;
+      config false;
+    }
+    leaf-list lICList {
+      description "Set of DNs of related InventoryUnitLic IOCs.";
+      type types3gpp:DistinguishedName;
+      config false;
+    }
+    leaf-list nEList {
+      description "Set of DNs of related InventoryUnitNE IOCs.";
+      type types3gpp:DistinguishedName;
+      config false;
+    }
+    leaf-list hWList {
+      description "Set of DNs of related InventoryUnitHw IOCs.";
+      type types3gpp:DistinguishedName;
+      config false;
+    }
+  }
+  
+  augment "/me3gpp:ManagedElement" {
+    description "Extends ManagedElement to contain software inventory 
+      objects.";
+    list InventoryUnitSw {
+      uses top3gpp:Top_Grp;
+      key "id";
+      description "Represents the software components.";
+      container attributes {
+        description "Attributes for the InventoryUnitSw SupportIOC.";
+        uses InventoryUnitSwGrp;
+
+        // Data nodes that follow provide recursive containment
+        leaf-list parents {
+          type leafref {
+            path "../../../InventoryUnitSw/id";
+          }
+          description
+            "Reference to all containing InventoryUnitSw instances in
+             strict order from the root down to the immediate
+             parent (i.e. the full path from the top level InventoryUnitSw and 
+             downward).
+             If InventoryUnitSw instances form a containment hierarchy this is
+             modeled using references between the child InventoryUnitSws
+             and the parent InventoryUnitSw.
+             This reference MUST NOT be present for the top level
+             InventoryUnitSw and MUST be present for all InventoryUnitSws below 
+             it.";
+        }
+        leaf-list containedChildren {
+          type leafref {
+            path "../../../InventoryUnitSw/id";
+          }
+          description
+            "Reference to all directly contained InventoryUnitSw instances.
+             If InventoryUnitSw instances form a containment hierarchy
+             this is modeled using references between the child
+             InventoryUnitSws and the parent InventoryUnitSw.";
+        }
+      }
+    }
+  }
+}

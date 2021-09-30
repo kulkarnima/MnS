@@ -1,0 +1,139 @@
+module _3gpp-inv-inventoryunitne {
+  yang-version 1.1;
+  namespace "urn:3gpp:sa5:_3gpp-inv-inventoryunitne";
+  prefix invne3gpp;
+
+  import _3gpp-common-yang-types { prefix types3gpp; }
+  import _3gpp-common-top { prefix top3gpp; }
+  import _3gpp-common-managed-element { prefix me3gpp; }
+
+  organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
+
+  description "This model defines a YANG mapping of the NE inventory data 
+    IOC for Alternative 2 of the IM NRM, TS 28.632.";
+  reference "3GPP TS 28.632
+     Inventory Management (IM)
+     Network Resource Model (NRM)
+     Integration Reference Point (IRP);
+     Information Service (IS)";
+
+  revision 2021-10-01 { reference "Initial revision"; }
+
+  grouping InventoryUnitNEGrp {
+    description "Represents the InventoryUnitNE IOC.";
+    leaf neId {
+      description "Vendor defined unique identifier of a logical or physical 
+        network element unit.";
+      type string;
+      config false;
+    }
+    leaf customerIdentifier {
+      description "Unique identification of a vendor's customer.";
+      type string;
+      config false;
+    }
+    leaf productName {
+      description "NE name classifying a vendor's product family or function.";
+      type string;
+      config false;
+    }
+    leaf vendorName {
+      description "Name of inventory unit vendor (or vendors may provide 
+        manufacturer name)";
+      type string;
+      config false;
+    }
+    leaf productType {
+      description "Identifier of the e.g. platform, in case the product can be 
+        based on different HW/SW platforms (not used for logical NEs).";
+      type string;
+      config false;
+    }
+    leaf salesUniqueId {
+      description "Unique identifier used by vendor (used e.g. for ordering a 
+        new unit).";
+      type string;
+      config false;
+    }
+    leaf operatorUniqueName {
+      description "Unique NE identifier used by operator.";
+      type string;
+      config false;
+    }
+    leaf siteId {
+      description "NE site in customer network.";
+      type string;
+      config false;
+    }
+    leaf additionalInformation {
+      description "Supplementary information about inventory data (if any).";
+      type string;
+      config false;
+    }
+    
+    leaf mFunction {
+      description "DN of related ManagedFunction.";
+      type types3gpp:DistinguishedName;
+      config false;
+    }
+    leaf-list lICList {
+      description "Set of DNs of related InventoryUnitLic IOCs.";
+      type types3gpp:DistinguishedName;
+      config false;
+    }
+    leaf-list hWList {
+      description "Set of DNs of related InventoryUnitHw IOCs.";
+      type types3gpp:DistinguishedName;
+      config false;
+    }
+    leaf-list sWList {
+      description "Set of DNs of related InventoryUnitSw IOCs.";
+      type types3gpp:DistinguishedName;
+      config false;
+    }
+  }
+
+  augment "/me3gpp:ManagedElement" {
+    description "Extends ManagedElement to contain NE inventory 
+      objects.";
+    list InventoryUnitNE {
+      uses top3gpp:Top_Grp;
+      key "id";
+      description "Represents the logical and physical structure of the NE 
+        (Network Element).";
+      container attributes {
+        description "Attributes for the InventoryUnitNE SupportIOC.";
+        uses InventoryUnitNEGrp;
+        
+        // Data nodes that follow provide recursive containment
+        leaf-list parents {
+          type leafref {
+            path "../../../InventoryUnitNE/id";
+          }
+          description
+            "Reference to all containing InventoryUnitNE instances in
+             strict order from the root down to the immediate
+             parent (i.e. the full path from the top level InventoryUnitNE 
+             and downward).
+             If InventoryUnitNE instances form a containment hierarchy this is
+             modeled using references between the child InventoryUnitNEs
+             and the parent InventoryUnitNE.
+             This reference MUST NOT be present for the top level
+             InventoryUnitNE and MUST be present for all InventoryUnitNEs below 
+             it.";
+        }
+        leaf-list containedChildren {
+          type leafref {
+            path "../../../InventoryUnitNE/id";
+          }
+          description
+            "Reference to all directly contained InventoryUnitNE instances.
+             If InventoryUnitNE instances form a containment hierarchy
+             this is modeled using references between the child
+             InventoryUnitNEs and the parent InventoryUnitNE.";
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,141 @@
+module _3gpp-inv-inventoryunitlic {
+  yang-version 1.1;
+  namespace "urn:3gpp:sa5:_3gpp-inv-inventoryunitlic";
+  prefix invlic3gpp;
+
+  import ietf-yang-types { prefix yang; }
+  import _3gpp-common-yang-types { prefix types3gpp; }
+  import _3gpp-common-top { prefix top3gpp; }
+  import _3gpp-common-managed-element { prefix me3gpp; }
+
+  organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
+
+  description "This model defines a YANG mapping of the license inventory data 
+    IOC for Alternative 2 of the IM NRM, TS 28.632.";
+  reference "3GPP TS 28.632
+     Inventory Management (IM)
+     Network Resource Model (NRM)
+     Integration Reference Point (IRP);
+     Information Service (IS)";
+
+  revision 2021-10-01 { reference "Initial revision"; }
+
+  grouping InventoryUnitLicGrp {
+    description "Represents the InventoryUnitLic IOC.";
+    leaf licId {
+      description "Unique identifier of a license (e.g. name, code).";
+      type string;
+      config false;
+    }
+    leaf licType {
+      description "Describing type of current license (e.g. capacity, 
+        particular feature, number of subscribers).";
+      type string;
+      config false;
+    }
+    leaf vendorName {
+      description "Name of inventory unit vendor (or vendors may provide 
+        manufacturer name).";
+      type string;
+      config false;
+    }
+    leaf validity {
+      description "License validity which may include one of the elements 
+        duration, end (expiration date) or forever.";
+      type string;
+      config false;
+    }
+    leaf key {
+      description "License activation key according to the used licensing 
+        system.";
+      type string;
+      config false;
+    }
+    leaf licStatus {
+      description "License status - applicable only for managed licenses (e.g. 
+        scheduled, valid, expired, invalid, capacity violated).";
+      type string;
+      config false;
+    }
+    leaf licActivationTime {
+      description "Date and time when the license was activated.";
+      type yang:date-and-time;
+      config false;
+    }
+    leaf salesUniqueId {
+      description "Unique identifier used by vendor (used e.g. for ordering a 
+        new unit).";
+      type string;
+      config false;
+    }
+    leaf additionalInformation {
+      description "Supplementary information about inventory data (if any).";
+      type string;
+      config false;
+    }
+    
+    leaf mFunction {
+      description "DN of related ManagedFunction.";
+      type types3gpp:DistinguishedName;
+      config false;
+    }
+    leaf-list sWList {
+      description "Set of DNs of related InventoryUnitSw IOCs.";
+      type types3gpp:DistinguishedName;
+      config false;
+    }
+    leaf-list nEList {
+      description "Set of DNs of related InventoryUnitNE IOCs.";
+      type types3gpp:DistinguishedName;
+      config false;
+    }
+    leaf-list hWList {
+      description "Set of DNs of related InventoryUnitHw IOCs.";
+      type types3gpp:DistinguishedName;
+      config false;
+    }
+  }
+  
+  augment "/me3gpp:ManagedElement" {
+    description "Extends ManagedElement to contain software inventory 
+      objects.";
+    list InventoryUnitLic {
+      uses top3gpp:Top_Grp;
+      key "id";
+      description "Represents the InventoryUnitLic SupportIOC.";
+      container attributes {
+        description "Attributes for the InventoryUnitLic SupportIOC.";
+        uses InventoryUnitLicGrp;
+
+        // Data nodes that follow provide recursive containment
+        leaf-list parents {
+          type leafref {
+            path "../../../InventoryUnitLic/id";
+          }
+          description
+            "Reference to all containing InventoryUnitLic instances in
+             strict order from the root down to the immediate
+             parent (i.e. the full path from the top level InventoryUnitLic and 
+             downward).
+             If InventoryUnitLic instances form a containment hierarchy this is
+             modeled using references between the child InventoryUnitLics
+             and the parent InventoryUnitLic.
+             This reference MUST NOT be present for the top level
+             InventoryUnitLic and MUST be present for all InventoryUnitLics 
+             below it.";
+        }
+        leaf-list containedChildren {
+          type leafref {
+            path "../../../InventoryUnitLic/id";
+          }
+          description
+            "Reference to all directly contained InventoryUnitLic instances.
+             If InventoryUnitLic instances form a containment hierarchy
+             this is modeled using references between the child
+             InventoryUnitLics and the parent InventoryUnitLic.";
+        }
+      }
+    }
+  }
+}
