@@ -12,13 +12,19 @@ module _3gpp-inv-inventoryunitne {
 
   description "This model defines a YANG mapping of the NE inventory data 
     IOC for Alternative 2 of the IM NRM, TS 28.632.";
-  reference "3GPP TS 28.632
+  reference "3GPP TS 28.633
+     Inventory Management (IM)
+     Network Resource Model (NRM)
+     Integration Reference Point (IRP);
+     Solution Set (SS) definitions
+  
+     3GPP TS 28.632
      Inventory Management (IM)
      Network Resource Model (NRM)
      Integration Reference Point (IRP);
      Information Service (IS)";
 
-  revision 2021-10-01 { reference "Initial revision"; }
+  revision 2021-10-01 { reference CR-0009 ; }
 
   grouping InventoryUnitNEGrp {
     description "Represents the InventoryUnitNE IOC.";
@@ -95,15 +101,12 @@ module _3gpp-inv-inventoryunitne {
   }
 
   augment "/me3gpp:ManagedElement" {
-    description "Extends ManagedElement to contain NE inventory 
-      objects.";
     list InventoryUnitNE {
       uses top3gpp:Top_Grp;
-      key "id";
+      key id;
       description "Represents the logical and physical structure of the NE 
         (Network Element).";
       container attributes {
-        description "Attributes for the InventoryUnitNE SupportIOC.";
         uses InventoryUnitNEGrp;
         
         // Data nodes that follow provide recursive containment
