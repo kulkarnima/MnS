@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Slice NRM
-  version: 17.3.0
+  version: 17.4.0
   description: >-
     OAS 3.0.1 specification of the Slice NRM
     @ 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -160,6 +160,13 @@ components:
           $ref: '#/components/schemas/ServAttrCom'
         support:
           $ref: '#/components/schemas/Support'
+    RadioSpectrum:
+      type: object
+      properties:
+        servAttrCom:
+          $ref: '#/components/schemas/ServAttrCom'
+        nROperatingBands:
+          type: string
     Synchronicity:
       type: object
       properties:
@@ -271,7 +278,9 @@ components:
           type: integer
         resourceSharingLevel:
           $ref: '#/components/schemas/SharingLevel'
-        maxPktSize:
+        dLMaxPktSize:
+          type: integer
+        uLMaxPktSize:
           type: integer
         delayTolerance:
           $ref: '#/components/schemas/DelayTolerance'
@@ -283,8 +292,12 @@ components:
           type: string
         energyEfficiency:
           type: integer 
-        deterministicComm:
+        dLDeterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
+        uLDeterministicComm:
+          $ref: '#/components/schemas/DeterministicComm'
+        survivalTime:
+          type: string
     RANSliceSubnetProfile:
       type: object
       properties:
@@ -308,8 +321,12 @@ components:
           type: string
         serviceType:
           $ref: '#/components/schemas/ServiceType'
-        maxPktSize:
+        dLMaxPktSize:
           type: integer
+        uLMaxPktSize:
+          type: integer
+        nROperatingBands:
+          type: string
         delayTolerance:
           $ref: '#/components/schemas/DelayTolerance'
         positioning:
@@ -324,13 +341,13 @@ components:
           type: string
         synchronicity:
           $ref: '#/components/schemas/SynchronicityRANSubnet'
-        deterministicComm:
+        dLDeterministicComm:
+          $ref: '#/components/schemas/DeterministicComm'
+        uLDeterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
     TopSliceSubnetProfile:
       type: object
       properties:
-        coverageArea:
-          type: string
         latency:
           type: integer
         maxNumberofUEs:
@@ -343,10 +360,14 @@ components:
           $ref: '#/components/schemas/XLThpt'
         uLThptPerUE:
           $ref: '#/components/schemas/XLThpt'
-        maxPktSize:
+        dLMaxPktSize:
+          type: integer
+        uLMaxPktSize:
           type: integer
         maxNumberOfPDUSessions:
           type: integer
+        nROperatingBands:
+          type: string
         sliceSimultaneousUse:
           $ref: '#/components/schemas/SliceSimultaneousUse'
         energyEfficiency:
@@ -373,7 +394,9 @@ components:
           type: string
         serviceType:
           $ref: '#/components/schemas/ServiceType'
-        deterministicComm:
+        dLDeterministicComm:
+          $ref: '#/components/schemas/DeterministicComm'
+        uLDeterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
         survivalTime:
           type: string
@@ -399,7 +422,9 @@ components:
             type: number
           delayTolerance:
             $ref: '#/components/schemas/DelayTolerance'
-          deterministicComm:
+          dLDeterministicComm:
+            $ref: '#/components/schemas/DeterministicComm'
+          uLDeterministicComm:
             $ref: '#/components/schemas/DeterministicComm'
           dLThptPerSlice:
             $ref: '#/components/schemas/XLThpt'
@@ -409,7 +434,9 @@ components:
             $ref: '#/components/schemas/XLThpt'
           uLThptPerUE:
             $ref: '#/components/schemas/XLThpt'
-          maxPktSize:
+          dLMaxPktSize:
+            $ref: '#/components/schemas/MaxPktSize'
+          uLMaxPktSize:
             $ref: '#/components/schemas/MaxPktSize'
           maxNumberofPDUSessions:
             $ref: '#/components/schemas/MaxNumberofPDUSessions'
@@ -417,6 +444,8 @@ components:
             $ref: '#/components/schemas/KPIMonitoring'
           nBIoT:
             $ref: '#/components/schemas/NBIoT'
+          radioSpectrum:
+            $ref: '#/components/schemas/RadioSpectrum'
           synchronicity:
             $ref: '#/components/schemas/Synchronicity'
           positioning:
@@ -491,7 +520,7 @@ components:
 #------------ Definition of concrete IOCs ----------------------------------------
     SubNetwork-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -511,7 +540,7 @@ components:
 
     NetworkSlice-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -529,7 +558,7 @@ components:
 
     NetworkSliceSubnet-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -555,7 +584,7 @@ components:
 
     EP_Transport-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
