@@ -1210,6 +1210,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MnsRegistry'
+        MnsRegistry:
+          type: array
+          items:
+            $ref: '#/components/schemas/MnsRegistry'
     ManagedElement-ncO:
       type: object
       properties:
@@ -1353,6 +1357,11 @@ components:
           type: string
         mnsType:
           type: string
+          enum:
+            - ProvMnS
+            - FaultSupervisionMnS
+            - StreamingDataReportingMnS
+            - FileDataReportingMnS
         mnsVersion:
           type: string
         mnsAddress:
