@@ -1210,10 +1210,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MnsRegistry'
-        MnsRegistry:
-          type: array
-          items:
-            $ref: '#/components/schemas/MnsRegistry'
     ManagedElement-ncO:
       type: object
       properties:
