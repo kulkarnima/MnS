@@ -616,6 +616,20 @@ module _3gpp-common-trace {
       reference "Clause 5.10.20 of 3GPP TS 32.422";
     }
 
+    leaf tjMDTCollectionPeriodM6Lte {
+      when './tjJobType = "IMMEDIATE_MDT_ONLY"' 
+        +  ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+      type uint32 {
+        range "1024|2048|5120|10240";
+      }
+      units milliseconds;
+      description "Specifies the collection period for the Packet Delay 
+        measurement (M6) for MDT taken by the eNB. The attribute is applicable 
+        only for Immediate MDT. In case this attribute is not used, 
+        it carries a null semantic.";
+      reference "Clause 5.10.32 of  TS 32.422 ";
+    }
+    
     leaf tjMDTCollectionPeriodRrmUmts {
       when './tjJobType = "IMMEDIATE_MDT_ONLY"'
         +  ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
