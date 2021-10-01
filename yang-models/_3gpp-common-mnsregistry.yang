@@ -28,9 +28,10 @@ module _3gpp-common-mnsregistry {
     leaf mnsType {
       description "Type of management service.";
       type enumeration {
-         enum PROVISIONING;
-         enum FAULT_SUPERVISION; 
-         enum PERFORMANCE_ASSURANCE;
+         enum ProvMnS;
+         enum FaultSupervisionMnS;
+         enum StreamingDataReportingMnS;
+         enum FileDataReportingMnS;
       }
     }
     
