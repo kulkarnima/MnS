@@ -64,9 +64,9 @@ module _3gpp-inv-tmainventoryunit {
       description "Beamwidth for each operating band in band order (deg), 
         beginning with lowest band. The lowest band is transmitted within the 
         first 16-bit value. Not supported in this release.";
+        // If the leaf-list is present it MUST have exactly four entries.
       reference "Data field defined in Table B.3 of 3GPP TS 37.466";
       type uint16;
-      min-elements 4;
       max-elements 4;
     }
     leaf-list tmaGainForEachOpBandInBandOrder {
@@ -74,9 +74,9 @@ module _3gpp-inv-tmainventoryunit {
         in gain value times 10, beginning with the lowest band. The lowest band 
         is transmitted within the first 8-bit value. Not supported in this 
         release.";
+        // If the leaf-list is present it MUST have exactly four entries.
       reference "Data field defined in Table B.3 of 3GPP TS 37.466";
       type uint8;
-      min-elements 4;
       max-elements 4;
     }
     leaf tmaInstallationDate {
