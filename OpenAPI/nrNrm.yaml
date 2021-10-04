@@ -592,6 +592,12 @@ components:
       properties:
         resourceType:
           type: string
+            enum:
+            - PRB
+            - PRB_UL
+            - PRB_DL
+            - RRC
+            - DRB      
         rRMPolicyMemberList:
           $ref: '#/components/schemas/RrmPolicyMemberList'
 
