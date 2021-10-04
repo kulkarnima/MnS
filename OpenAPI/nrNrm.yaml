@@ -583,7 +583,14 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/TceMappingInfo'
-
+    ResourceType:
+      type: string
+      enum:
+        - PRB
+        - PRB_UL
+        - PRB_DL
+        - RRC
+        - DRB    
 
 #-------- Definition of abstract IOCs --------------------------------------------
 
@@ -591,13 +598,7 @@ components:
       type: object
       properties:
         resourceType:
-          type: string
-            enum:
-            - PRB
-            - PRB_UL
-            - PRB_DL
-            - RRC
-            - DRB      
+          $ref: '#/components/schemas/ResourceType'        
         rRMPolicyMemberList:
           $ref: '#/components/schemas/RrmPolicyMemberList'
 
