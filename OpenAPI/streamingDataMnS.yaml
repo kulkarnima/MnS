@@ -1,17 +1,17 @@
 openapi: 3.0.1
 info:
   title: TS 28.532 Streaming data reporting service
-  version: 16.6.0
+  version: 16.10.0
   description: OAS 3.0.1 specification for the Streaming data reporting service (Streaming MnS)
 servers:
-  - url: '{MnSRoot}/StreamingDataReportingMnS/{version}'
+  - url: '{MnSRoot}/StreamingDataReportingMnS/{MnSVersion}'
     variables:
       MnSRoot:
-        description: See subclause 4.4 of TS 32.158.
+        description: See clause 4.4.3 of TS 32.158.
         default: https://example.com/3GPPManagement
-      version:
-        description: Indicates the current version of the specification
-        default: 16.5.0
+      MnSVersion:
+        description: See clause 4.4.3 of TS 32.158.
+        default: ''
 paths:
   '/connections':
     post:
