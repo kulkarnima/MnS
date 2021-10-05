@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: File Data Reporting MnS
-  version: 16.8.0
+  version: 16.10.0
   description: >-
     OAS 3.0.1 definition of the File Data Reporting MnS
     © 2021, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -13,7 +13,7 @@ servers:
   - url: '{MnSRoot}/fileDataReportingMnS/{MnSVersion}'
     variables:
       MnSRoot:
-        description: See clause 4.4.2 of TS 32.158
+        description: See clause 4.4.3 of TS 32.158
         default: http://example.com/3GPPManagement
       MnSVersion:
         description: Version number of the OpenAPI definition
