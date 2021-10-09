@@ -289,7 +289,9 @@ components:
       properties:
         maxNumberofUEs:
           type: integer
-        latency:
+        dLLatency:
+          type: integer
+        uLLatency:
           type: integer
         dLThptPerSliceSubnet:
           $ref: '#/components/schemas/XLThpt'
@@ -333,6 +335,10 @@ components:
       type: object
       properties:
         coverageAreaTAList:
+          type: integer
+        dLLatency:
+          type: integer
+        uLLatency:
           type: integer
         uEMobilityLevel:
           $ref: '#/components/schemas/MobilityLevel'
@@ -379,7 +385,9 @@ components:
     TopSliceSubnetProfile:
       type: object
       properties:
-        latency:
+        dLLatency:
+          type: integer
+        uLLatency:
           type: integer
         maxNumberofUEs:
           type: integer
@@ -441,7 +449,9 @@ components:
             $ref: 'nrNrm.yaml#/components/schemas/PlmnInfoList'
           maxNumberofUEs:
             type: number
-          latency:
+          dLLatency:
+            type: number
+          uLLatency:
             type: number
           uEMobilityLevel:
             $ref: '#/components/schemas/MobilityLevel'
