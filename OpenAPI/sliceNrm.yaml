@@ -582,11 +582,11 @@ components:
                     priorityLabel:
                       type: integer
                     networkSliceSubnetType:
-                      type: integer
+                      type: string
                       enum:
-                        - TopSliceSubnet
-                        - RANSliceSubnet
-                        - CNSliceSubnet
+                        - TOP_SLICESUBNET
+                        - RAN_SLICESUBNET
+                        - CN_SLICESUBNET
 
     EP_Transport-Single:
       allOf:
