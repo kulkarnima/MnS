@@ -656,7 +656,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
                     aMFRegionRef:
                       $ref: 'genericNrm.yaml#/components/schemas/Dn'
-                    aMFSetMemberListRef:
+                    aMFSetMemberList:
                       $ref: 'genericNrm.yaml#/components/schemas/DnList'
     AmfRegion-Single:
       allOf:
