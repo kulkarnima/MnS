@@ -541,7 +541,7 @@ components:
                       $ref: '#/components/schemas/WeightFactor'
                     snssaiList:
                       $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
-                    amfSet:
+                    amfSetRef:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
@@ -596,7 +596,7 @@ components:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'
                     aMFSetMemberList:
                       $ref: 'comDefs.yaml#/components/schemas/DnList'
-                    aMFRegion:
+                    aMFRegionRef:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'
                     aMFSetMemberList:
                       $ref: 'comDefs.yaml#/components/schemas/DnList'
@@ -619,11 +619,8 @@ components:
                       $ref: '#/components/schemas/AmfRegionId'
                     snssaiList:
                       $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
-                    aMFSet:
+                    aMFSetListRef:
                       $ref: 'comDefs.yaml#/components/schemas/DnList'
-                    aMFSet:
-                      $ref: 'comDefs.yaml#/components/schemas/DnList'
-
     SmfFunction-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
