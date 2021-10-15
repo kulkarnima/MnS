@@ -592,15 +592,10 @@ components:
                       $ref: '#/components/schemas/AmfSetId'
                     snssaiList:
                       $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
-                    aMFRegion:
-                      $ref: 'comDefs.yaml#/components/schemas/Dn'
-                    aMFSetMemberList:
-                      $ref: 'comDefs.yaml#/components/schemas/DnList'
                     aMFRegionRef:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'
                     aMFSetMemberList:
                       $ref: 'comDefs.yaml#/components/schemas/DnList'
-
     AmfRegion-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
