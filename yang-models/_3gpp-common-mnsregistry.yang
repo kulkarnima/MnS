@@ -56,6 +56,7 @@ module _3gpp-common-mnsregistry {
       uses MNSInfoGroup;
       }
     }
+  }
     
   grouping MNSRegistry {
     description "Represents the MNSRegistry IOC.";
