@@ -45,15 +45,6 @@ module _3gpp-common-mnsregistry {
     }    
   }
   
-  grouping MNSInfo {
-    description "Represents the MNSInfo IOC.";
-    reference "3GPP TS 28.622";
-    uses top3gpp:Top_Grp;
-    container attributes {
-      uses MNSInfoGrp;
-    }
-  }
-  
 
     augment "mnsregist3gpp:MNSRegistry" {
     list MNSInfo {
@@ -64,6 +55,7 @@ module _3gpp-common-mnsregistry {
         uses MNSInfoGrp;
       }
     }  
+    }
 
   grouping MNSRegistryGrp {
     description "Represents the MNSRegistry IOC.";
