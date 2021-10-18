@@ -42,7 +42,6 @@ module _3gpp-common-mnsregistry {
       mandatory true;
       type string;
     }    
-  
   }
   
     augment "mnsregist3gpp:MNSRegistry" {
@@ -54,6 +53,7 @@ module _3gpp-common-mnsregistry {
         uses MNSInfoGrp;
       }
     }  
+    }
 
   grouping MNSRegistryGrp {
     description "Represents the MNSRegistry IOC.";
