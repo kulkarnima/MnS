@@ -630,6 +630,19 @@ module _3gpp-common-trace {
       reference "Clause 5.10.32 of  TS 32.422 ";
     }
     
+    leaf tjMDTCollectionPeriodM7Lte {
+      when './tjJobType = "IMMEDIATE_MDT_ONLY"' 
+        +  ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+      type uint16 {
+        range 1..60 ;
+      }
+      description "It specifies the collection period for the Data Volume (M6) 
+        and Throughput measurements (M7) for UMTS MDT taken by RNC. The 
+        attribute is applicable only for Immediate MDT. In case this attribute 
+        is not used, it carries a null semantic.";
+      reference "Clause 5.10.22 of  TS 32.422 .";
+    }
+    
     leaf tjMDTCollectionPeriodRrmUmts {
       when './tjJobType = "IMMEDIATE_MDT_ONLY"'
         +  ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
@@ -645,20 +658,59 @@ module _3gpp-common-trace {
       reference "Clause 5.10.21 of 3GPP TS 32.422";
     }
 
-      leaf tjMDTCollectionPeriodRrmNR {
-        when './tjJobType = "IMMEDIATE_MDT_ONLY"'
-          + ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
-        type uint32 {
-          range "1024|2048|5120|10240|60000";
-        }
-        units milliseconds;
-        description "Specifies the collection period for collecting RRM 
-          configured measurement samples for M4, M5 in NR. The attribute is 
-          applicable only for Immediate MDT. In case this attribute is not 
-          used, it carries a null semantic.";
-        reference "Clause 5.10.30 of 3GPP TS 32.422";
+    leaf tjMDTCollectionPeriodRrmNR {
+      when './tjJobType = "IMMEDIATE_MDT_ONLY"'
+        + ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+      type uint32 {
+        range "1024|2048|5120|10240|60000";
       }
+      units milliseconds;
+      description "Specifies the collection period for collecting RRM 
+        configured measurement samples for M4, M5 in NR. The attribute is 
+        applicable only for Immediate MDT. In case this attribute is not 
+        used, it carries a null semantic.";
+      reference "Clause 5.10.30 of 3GPP TS 32.422";
+    }
 
+    leaf tjMDTCollectionPeriodM6NR {
+      when './tjJobType = "IMMEDIATE_MDT_ONLY"'
+        + ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+      type enumeration {
+        enum 120ms;
+        enum 240ms;
+        enum 480ms;
+        enum 640ms;
+        enum 1024ms;
+        enum 2048ms;
+        enum 5120ms;
+        enum 10240ms;
+        enum 20480ms;
+        enum 40960ms;
+        enum 1min;
+        enum 6min;
+        enum 12min;
+        enum 30min;
+      }
+      description "It specifies the collection period for the Packet Delay 
+        measurement (M6) for NR MDT taken by the gNB. The attribute is 
+        applicable only for Immediate MDT. In case this attribute is not used, 
+        it carries a null semantic.";
+      reference "clause 5.10.34 of  TS 32.422";
+    }
+    
+    leaf tjMDTCollectionPeriodM7NR {
+      when './tjJobType = "IMMEDIATE_MDT_ONLY"'
+        + ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+      type uint32 {
+        range "1..60";
+      }
+      description "It specifies the collection period for the Packet Loss Rate 
+        measurement (M7) for NR MDT taken by the gNB. The attribute is 
+        applicable only for Immediate MDT. In case this attribute is not used, 
+        it carries a null semantic.";    
+      reference "clause 5.10.35 of  TS 32.422";
+    }
+    
     leaf tjMDTEventListForTriggeredMeasurement {
       when './tjJobType = "LOGGED_MDT_ONLY"';
       type enumeration {
@@ -723,6 +775,46 @@ module _3gpp-common-trace {
       reference "5.10.8 of 3GPP TS 32.422";
     }
 
+    leaf tjMDTLoggingEventThreshold {
+      when './tjJobType = "LOGGED_MDT_ONLY" or ./tjJobType = "LOGGED_MBSFN_MDT"';
+      type uint32 {
+        range "0..127";
+      }
+      description "It specifies the threshold which should trigger 
+        the reporting in case of event based reporting of logged NR MDT. 
+        The attribute is applicable only for Logged MDT and when tjMDTReportType 
+        is configured for event triggered reporting and when 
+        tjMDTEventListForTriggeredMeasurement is configured for L1 event. 
+        In case this attribute is not used, it carries a null semantic.";
+      reference "clause 5.10.36 of TS 32.422";
+    }
+    
+    leaf tjMDTLoggedHysteresis {
+      when './tjJobType = "LOGGED_MDT_ONLY" or ./tjJobType = "LOGGED_MBSFN_MDT"';
+      type uint32 {
+        range "0..30";
+      }
+      description "It specifies the hysteresis used within the entry and leave 
+        condition of the L1 event based reporting of logged NR MDT. 
+        The attribute is applicable only for Logged MDT, when tjMDTReportType 
+        is configured for event triggered reporting and when 
+        tjMDTEventListForTriggeredMeasurement is configured for L1 event. 
+        In case this attribute is not used, it carries a null semantic.";
+      reference "clause 5.10.37 of TS 32.422";
+    }
+    
+    leaf tjMDTLoggedTimeToTrigger {
+      when './tjJobType = "LOGGED_MDT_ONLY" or ./tjJobType = "LOGGED_MBSFN_MDT"';
+      type int32 ;
+      description "It specifies the threshold which should trigger 
+        the reporting in case of event based reporting of logged NR MDT. 
+        The attribute is applicable only for Logged MDT, when tjMDTReportType 
+        is configured for event triggered reporting and when 
+        tjMDTEventListForTriggeredMeasurement is configured for L1 event. 
+        In case this attribute is not used, it carries a null semantic.";
+      reference "clauses 5.10.38 of TS 32.422";
+    }
+    
     leaf-list tjMDTMBSFNAreaList {
       when './tjJobType = "LOGGED_MBSFN_MDT"';
       type string;
@@ -776,6 +868,19 @@ module _3gpp-common-trace {
       reference "Clause 5.10.15 of 3GPP TS 32.422";
     }
 
+    leaf tjMDTM4ThresholdUmts {
+      when './tjJobType = "IMMEDIATE_MDT_ONLY"' 
+        +  ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+      type uint16 {
+        range 0..31 ;
+      }        
+      description "It specifies the threshold which should trigger 
+        the reporting in case of event-triggered periodic reporting for M4 
+        (UE power headroom measurement) in UMTS. In case this attribute is 
+        not used, it carries a null semantic.";
+        reference "3GPP TS 32.422 clause 5.10.A";
+    }
+    
     list tjMDTPLMList {
       when './tjJobType = "LOGGED_MDT_ONLY"';
       key "mcc mnc";
@@ -932,36 +1037,36 @@ module _3gpp-common-trace {
         activation method is management based.
 
         For the different job types the attributes are differentiated as follows:
-        -	In case of TRACE_ONLY additionally the following attributes shall be 
+        - In case of TRACE_ONLY additionally the following attributes shall be 
         available: tjListOfNeTypes, tjTraceDepth, tjTraceTarget and 
         tjTriggeringEvent.
 
         For this case the optional attribute tjListOfInterfaces allows to 
         specify the interfaces to be recorded.
 
-        -	In case of IMMEDIATE_MDT_ONLY additionally the following attributes 
+        - In case of IMMEDIATE_MDT_ONLY additionally the following attributes 
         shall be available:
-          -	tjTraceTarget
-          -	tjMDTAnonymizationOfData, 
-          -	tjMDTListOfMeasurements, 
-          -	tjMDTCollectionPeriodRrmUmts (conditional for M3, M4 and M5 in UMTS),
-          -	tjMDTMeasurementPeriodUMTS (conditional for M6 and M7 in UMTS),
-          -	tjMDTCollectionPeriodRrmLte (conditional for M2 and M3 in LTE), 
-          -	tjMDTMeasurementPeriodLTE (conditional for M4 and M5 in LTE),
-          -	tjMDTCollectionPeriodM6Lte (conditional for M6 in LTE), 
-          -	tjMDTCollectionPeriodM7Lte (conditional for M7 in LTE),
-          -	tjMDTCollectionPeriodRrmNR (conditional for M4 and M5 in NR), 
-          -	tjMDTCollectionPeriodM6NR (conditional for M6 in NR), 
-          -	tjMDTCollectionPeriodM7NR (conditional for M7 in NR), 
-          -	tjMDTReportInterval (conditional for M1 in LTE or NR and M1/M2 in 
+          - tjTraceTarget
+          - tjMDTAnonymizationOfData, 
+          - tjMDTListOfMeasurements, 
+          - tjMDTCollectionPeriodRrmUmts (conditional for M3, M4 and M5 in UMTS),
+          - tjMDTMeasurementPeriodUMTS (conditional for M6 and M7 in UMTS),
+          - tjMDTCollectionPeriodRrmLte (conditional for M2 and M3 in LTE), 
+          - tjMDTMeasurementPeriodLTE (conditional for M4 and M5 in LTE),
+          - tjMDTCollectionPeriodM6Lte (conditional for M6 in LTE), 
+          - tjMDTCollectionPeriodM7Lte (conditional for M7 in LTE),
+          - tjMDTCollectionPeriodRrmNR (conditional for M4 and M5 in NR), 
+          - tjMDTCollectionPeriodM6NR (conditional for M6 in NR), 
+          - tjMDTCollectionPeriodM7NR (conditional for M7 in NR), 
+          - tjMDTReportInterval (conditional for M1 in LTE or NR and M1/M2 in 
             UMTS), 
-          -	tjMDTReportAmount (conditional for M1 in LTE or NR and M1/M2 in 
+          - tjMDTReportAmount (conditional for M1 in LTE or NR and M1/M2 in 
             UMTS), 
-          -	tjMDTReportingTrigger (conditional for M1 in LTE or NR and M1/M2 in 
+          - tjMDTReportingTrigger (conditional for M1 in LTE or NR and M1/M2 in 
             UMTS), 
-          -	tjMDTEventThreshold (conditional for A2 event reporting or A2 event 
+          - tjMDTEventThreshold (conditional for A2 event reporting or A2 event 
             triggered periodic reporting), 
-          -	tjMDTMeasurementQuantity (conditional for 1F event reporting). 
+          - tjMDTMeasurementQuantity (conditional for 1F event reporting). 
 
         For this case the optional attribute tjMDTAreaScope allows to specify 
         the area in terms of cells or Tracking Area/Routing Area/Location area 
@@ -970,10 +1075,10 @@ module _3gpp-common-trace {
         specify the positioning methods to use or the sensor information to 
         include.
 
-        -	In case of IMMEDIATE_MDT_AND_TRACE both additional attributes of 
+        - In case of IMMEDIATE_MDT_AND_TRACE both additional attributes of 
         TRACE_ONLY and IMMEDIATE_MDT_ONLY shall apply.
 
-        -	In case of LOGGED_MDT_ONLY additionally the following attributes 
+        - In case of LOGGED_MDT_ONLY additionally the following attributes 
         shall be available: tjTraceTarget, tjMDTAnonymizationOfData, 
         tjMDTTraceCollectionEntityID, tjMDTLoggingInterval, 
         tjMDTLoggingDuration, tjMDTReportType, 
@@ -990,12 +1095,12 @@ module _3gpp-common-trace {
         tjMDTSensorInformation allows to specify the sensor information to 
         include.
 
-        -	In case of RLF_REPORT_ONLY and RCEF_REPORT_ONLY additionally the 
+        - In case of RLF_REPORT_ONLY and RCEF_REPORT_ONLY additionally the 
         attribute tjTraceTarget shall be available, the optional attribute 
         tjMDTAreaScope allows to specify the eNB or list of eNBs or gNB or 
         list of gNBs where the reports should be collected.
 
-        -	In case of LOGGED_MBSFN_MDT additionally the following attributes 
+        - In case of LOGGED_MBSFN_MDT additionally the following attributes 
         shall be available: tjMDTAnonymizationOfData, tjMDTLoggingInterval, 
         tjMDTLoggingDuration, tjMDTMBSFNAreaList.
         
