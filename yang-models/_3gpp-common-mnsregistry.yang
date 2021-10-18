@@ -69,8 +69,6 @@ module _3gpp-common-mnsregistry {
   augment "/subnet3gpp:SubNetwork" {
     description "Represents the MNS Registry IOC.";
     reference "3GPP TS 28.622";
-    key id;
-    uses top3gpp:Top_Grp;
     uses MNSRegistryGrp;
     }
 
