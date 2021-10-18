@@ -55,11 +55,21 @@ module _3gpp-common-mnsregistry {
     }
   }
 
-  grouping MNSRegistry {
+  grouping MNSRegistryGrp {
     description "Represents the MNSRegistry IOC.";
     reference "3GPP TS 28.622";
     uses top3gpp:Top_Grp;
   }
+  
+  grouping MNSRegistry {
+    description "Represents the MNSRegistry IOC.";
+    reference "3GPP TS 28.622";
+    uses top3gpp:Top_Grp;
+    container attributes {
+      uses MNSRegistryGrp;
+    }
+  }
+  
   
   augment "/mnsregist3gpp:MNSRegistry" {
     description "Represents the MNSRegistry IOC.";
