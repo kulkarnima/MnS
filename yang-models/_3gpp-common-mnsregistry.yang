@@ -76,8 +76,4 @@ module _3gpp-common-mnsregistry {
     uses MNSRegistryGrp;
   }
   
-  augment "/mnsregist3gpp:MNSRegistryGrp" {
-    uses MNSInfoGrp;
-   }
-  
 }
