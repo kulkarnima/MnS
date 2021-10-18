@@ -71,11 +71,11 @@ module _3gpp-common-mnsregistry {
   
   
   augment "/subnet3gpp:SubNetwork" {
-    uses MNSRegistryGrp;
+    uses MNSRegistry;
   }
   
   augment "/mnsregist3gpp:MNSRegistry" {
-      uses MNSInfoGrp;
+      uses MNSInfo;
   }
   
 }
