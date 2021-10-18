@@ -64,8 +64,11 @@ module _3gpp-common-mnsregistry {
       uses MNSInfoGrp;
     }
   }  
+  }
+  
   augment "/subnet3gpp:SubNetwork" {
     description "Represents the MNSRegistry IOC.";
     uses top3gpp:Top_Grp;
   }
+ 
 }
