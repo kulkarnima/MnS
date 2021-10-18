@@ -73,7 +73,7 @@ module _3gpp-common-mnsregistry {
       key "mnsType mnsVersion mnsAddress";
     }
   }
-  
+  }
   
   augment "/subnet3gpp:SubNetwork" {
     uses MNSRegistry;
