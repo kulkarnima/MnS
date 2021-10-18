@@ -29,7 +29,6 @@ module _3gpp-common-mnsregistry {
          enum StreamingDataReportingMnS;
          enum FileDataReportingMnS;
       }
-    }
     
     leaf mnsVersion {
       description "Version of management service.";
@@ -44,11 +43,23 @@ module _3gpp-common-mnsregistry {
   
   }
   
+  augment "/subnet3gpp:SubNetwork" {
+  list MNSInfo {
+    description "Represents the MNSInfo IOC.";
+    key id;   
+    uses top3gpp:Top_Grp;      
+    container attributes {
+      uses MNSInfoGrp;
+    }
+  }
+
   grouping MNSRegistryGrp {
     description "Represents the MNSRegistry IOC.";
     reference "3GPP TS 28.541";
     uses top3gpp:Top_Grp;
-    uses MNSInfoGrp;
+    container attributes {
+       uses MNSInfoGrp;
+    };
     }
     
     augment "/subnet3gpp:SubNetwork" {
@@ -59,6 +70,7 @@ module _3gpp-common-mnsregistry {
       container attributes {
         uses MNSRegistryGrp;
       }
+    }
     }
  }
 }
