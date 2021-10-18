@@ -13,6 +13,7 @@ module _3gpp-common-mnsregistry {
   reference "3GPP TS 28.623 Generic Network Resource Model (NRM)";
 
   revision 2021-08-29 { reference "Initial revision, S5-214388"; }
+  revision 2021-10-18 { reference "Update, S5-215263"; }
 
   grouping MNSInfoGrp {
     description "Represents the MNSInfo IOC.";
