@@ -65,13 +65,13 @@ module _3gpp-common-mnsregistry {
   }
   
   grouping MNSRegistry {
-    list MNSInfoGrp {
+    list MNSRegistry {
     description "Represents the MNSRegistry IOC.";
     reference "3GPP TS 28.622";
     uses top3gpp:Top_Grp;
     key "mnsType mnsVersion mnsAddress";
     container attributes {
-      uses MNSRegistryGrp;
+      uses MNSInfo;
     }
   }
   }
