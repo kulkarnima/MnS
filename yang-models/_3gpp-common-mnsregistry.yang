@@ -53,7 +53,6 @@ module _3gpp-common-mnsregistry {
        uses MNSInfoGrp;
     }
   }
-  }
   
   augment "/mnsregist3gpp:MNSRegistry" {
   list MNSInfo {
