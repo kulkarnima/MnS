@@ -463,7 +463,27 @@ components:
           type: array
           items:
             type: string
-         
+     
+    NRTACRange:
+      type: object
+      properties:
+        nRTACstart:
+          type: string
+        nRTACend:
+          type: string
+        nRTACpattern:
+          type: string
+
+    TaiRange:
+      type: object
+      properties:
+        plmnId:
+          $ref: 'nrNrm.yaml#/components/schemas/PlmnIdList'
+        nRTACRangelist:
+          type: array
+          items:
+            $ref: '#/components/schemas/NRTACRange'
+    
 
 #-------- Definition of concrete IOCs --------------------------------------------
 
@@ -1084,6 +1104,17 @@ components:
                       $ref: '#/components/schemas/CapabilityList'
                     isCAPIFSup:
                       type: boolean
+                    taiList:
+                      type: array
+                      items:
+                        $ref: 'nrNrm.yaml#/components/schemas/Tai'
+                    taiRangeList:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/TaiRange'
+                    dnai:
+                      type: string
+
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
