@@ -44,18 +44,6 @@ module _3gpp-common-mnsregistry {
       type string;
     }    
   }
-  
-
-    augment "mnsregist3gpp:MNSRegistry" {
-    list MNSInfo {
-      description "Represents the MNSInfo IOC.";
-      key id;   
-      uses top3gpp:Top_Grp;      
-      container attributes {
-        uses MNSInfoGrp;
-      }
-    }  
-    }
 
   grouping MNSRegistryGrp {
     description "Represents the MNSRegistry IOC.";
@@ -72,18 +60,26 @@ module _3gpp-common-mnsregistry {
     container attributes {
       uses MNSInfoGrp;
     }
+  }
+    
+  augment "mnsregist3gpp:MNSRegistry" {
+  list MNSInfo {
+    description "Represents the MNSInfo IOC.";
+    key id;   
+    uses top3gpp:Top_Grp;      
+    container attributes {
+      uses MNSInfoGrp;
     }
-  }
-  }
+  }  
   
-    augment "/subnet3gpp:SubNetwork" {
-    list MNSRegistry {
-      description "Represents the MNSRegistry IOC.";
-      key id;   
-      uses top3gpp:Top_Grp;      
-      container attributes {
-        uses MNSRegistryGrp;
-      }
-    }
-    }
+  augment "/subnet3gpp:SubNetwork" {
+    description "Represents the MNSRegistry IOC.";
+    key id;   
+    uses top3gpp:Top_Grp;      
+    container attributes {
+      uses MNSRegistryGrp;
+  }
  }
+ 
+ 
+}
