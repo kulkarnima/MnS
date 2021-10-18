@@ -14,11 +14,7 @@ module _3gpp-common-mnsregistry {
 
   revision 2021-08-29 { reference "Initial revision, S5-214388"; }
 
-  grouping MNSRegistryGrp {
-    description "Represents the MNSRegistry IOC.";
-    reference "3GPP TS 28.541";
-    uses top3gpp:Top_Grp;
-    
+  grouping MNSInfoGrp {
     leaf mnsLabel {
       description "Human-readable name of management service.";
       mandatory true;
@@ -45,6 +41,14 @@ module _3gpp-common-mnsregistry {
       mandatory true;
       type string;
     }    
+  
+  }
+  
+  grouping MNSRegistryGrp {
+    description "Represents the MNSRegistry IOC.";
+    reference "3GPP TS 28.541";
+    uses top3gpp:Top_Grp;
+    uses MNSInfoGrp;
     }
     
     augment "/subnet3gpp:SubNetwork" {
