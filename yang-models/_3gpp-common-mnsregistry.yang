@@ -54,7 +54,7 @@ module _3gpp-common-mnsregistry {
     }
   }
     
-  augment "mnsregist3gpp:MNSRegistry" {
+  augment "/mnsregist3gpp:MNSRegistry" {
   list MNSInfo {
     description "Represents the MNSInfo IOC.";
     key id;   
@@ -67,10 +67,6 @@ module _3gpp-common-mnsregistry {
   
   augment "/subnet3gpp:SubNetwork" {
     description "Represents the MNSRegistry IOC.";
-    key id;   
-    uses top3gpp:Top_Grp;      
-    container attributes {
-      uses MNSRegistryGrp;
-    }
+    uses top3gpp:Top_Grp;
   }
 }
