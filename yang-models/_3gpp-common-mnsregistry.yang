@@ -62,21 +62,27 @@ module _3gpp-common-mnsregistry {
       uses MNSInfoGrp;
     }
   }
-  
-  augment "/mnsregist3gpp:MNSRegistry" {
-  list MNSInfo {
-    description "Represents the MNSInfo IOC.";
-    key id;   
-    uses top3gpp:Top_Grp;      
-    container attributes {
-      uses MNSInfoGrp;
-    }
-  }  
-  }
-  
-  augment "/subnet3gpp:SubNetwork" {
-    description "Represents the MNSRegistry IOC.";
-    uses top3gpp:Top_Grp;
-  }
  
+  augment "/mnsregist3gpp:MNSRegistry" {
+    list MNSInfo {
+      description "Represents the MNS Registry.";
+      reference "3GPP TS 28.622";
+      key id;
+      uses top3gpp:Top_Grp;
+      container attributes {
+        uses MNSInfoGrp;
+      }
+    }
+  }
+
+  augment "/subnet3gpp:SubNetwork" {
+    description "Represents the MNS Registry IOC.";
+    reference "3GPP TS 28.622";
+    key id;
+    uses top3gpp:Top_Grp;
+    container attributes {
+      uses MNSRegistryGrp;
+    }
+    }
+
 }
