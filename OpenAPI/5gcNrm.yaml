@@ -514,7 +514,7 @@ components:
       type: object
       properties:
         plmnId:
-          $ref: 'nrNrm.yaml#/components/schemas/PlmnIdList'
+          $ref: 'nrNrm.yaml#/components/schemas/PlmnId'
         nRTACRangelist:
           type: array
           items:
