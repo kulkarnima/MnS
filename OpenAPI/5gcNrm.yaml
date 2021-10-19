@@ -1191,6 +1191,31 @@ components:
             EP_Npc8:
               $ref: '#/components/schemas/EP_Npc8-Multiple'
 
+    EASDFFunction-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
+                - type: object
+                  properties:
+                    plmnId:
+                      $ref: 'nrNrm.yaml#/components/schemas/PlmnId'
+                    sBIFqdn:
+                      type: string
+                    managedNFProfile:
+                      $ref: '#/components/schemas/ManagedNFProfile'
+                    serverAddr:
+                      type: string
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+        - type: object
+          properties:
+            EP_Nxx:
+              $ref: '#/components/schemas/EP_Nxx-Multiple'
+
+
     ExternalAmfFunction-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -1753,7 +1778,22 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/LocalAddress'
                     remoteAddress:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
-
+                      
+    EP_Nxx-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'nrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
+                      
     FiveQiDscpMappingSet-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -2166,7 +2206,11 @@ components:
     EP_Npc8-Multiple:
       type: array
       items:
-        $ref: '#/components/schemas/EP_Npc8-Single'
+        $ref: '#/components/schemas/EP_Npc66-Single'
+    EP_Nxx-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_Nxx-Single'
     Configurable5QISet-Multiple:
       type: array
       items:
