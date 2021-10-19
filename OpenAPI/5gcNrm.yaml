@@ -1185,9 +1185,7 @@ components:
                       type: array
                       items:
                         $ref: '#/components/schemas/NsacfInfoSnssai'
-                    taiList:
-                      items:
-                        $ref: 'nrNrm.yaml#/components/schemas/TaiList'
+
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
