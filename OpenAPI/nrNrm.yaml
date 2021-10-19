@@ -120,6 +120,10 @@ components:
           $ref: '#/components/schemas/PlmnId'
         nrTac:
           $ref: '#/components/schemas/NrTac'
+    TaiList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Tai' 
 
     BackhaulAddress:
       type: object
