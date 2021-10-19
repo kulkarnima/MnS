@@ -1155,9 +1155,8 @@ components:
                     isCAPIFSup:
                       type: boolean
                     taiList:
-                      type: array
                       items:
-                        $ref: 'nrNrm.yaml#/components/schemas/Tai'
+                        $ref: 'nrNrm.yaml#/components/schemas/TaiList'
                     taiRangeList:
                       type: array
                       items:
