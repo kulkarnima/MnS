@@ -671,6 +671,8 @@ components:
               $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
             DMROFunction:
               $ref: '#/components/schemas/DMROFunction-Single'
+            DLBOFunction:
+              $ref: '#/components/schemas/DLBOFunction-Single'
             DPCIConfigurationFunction:
               $ref: '#/components/schemas/DPCIConfigurationFunction-Single'
             CPCIConfigurationFunction:
@@ -706,6 +708,8 @@ components:
               $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
             DMROFunction:
               $ref: '#/components/schemas/DMROFunction-Single'
+            DLBOFunction:
+              $ref: '#/components/schemas/DLBOFunction-Single'
             DPCIConfigurationFunction:
               $ref: '#/components/schemas/DPCIConfigurationFunction-Single'
             CPCIConfigurationFunction:
@@ -852,6 +856,8 @@ components:
               $ref: '#/components/schemas/DESManagementFunction-Single'
             DMROFunction:
               $ref: '#/components/schemas/DMROFunction-Single'
+            DLBOFunction:
+              $ref: '#/components/schemas/DLBOFunction-Single'
 
     NrCellCu-Single:
       allOf:
@@ -886,6 +892,8 @@ components:
               $ref: '#/components/schemas/DESManagementFunction-Single'
             DMROFunction:
               $ref: '#/components/schemas/DMROFunction-Single'
+            DLBOFunction:
+              $ref: '#/components/schemas/DLBOFunction-Single'
             CESManagementFunction:
               $ref: '#/components/schemas/CESManagementFunction-Single'
             DPCIConfigurationFunction:
@@ -1380,6 +1388,20 @@ components:
                       $ref: '#/components/schemas/MinimumTimeBetweenHoTriggerChange'
                     tstoreUEcntxt:
                       $ref: '#/components/schemas/TstoreUEcntxt'
+    DLBOFunction-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes: 
+                  type: object
+                  properties:
+                    dlboControl:
+                      type: boolean
+                    maximumDeviationHoTrigger:
+                          $ref: '#/components/schemas/MaximumDeviationHoTrigger'
+                    minimumTimeBetweenHoTriggerChange:
+                          $ref: '#/components/schemas/MinimumTimeBetweenHoTriggerChange'
 
     DPCIConfigurationFunction-Single:
       allOf:
@@ -1924,6 +1946,7 @@ components:
         - $ref: '#/components/schemas/DESManagementFunction-Single'
         - $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
         - $ref: '#/components/schemas/DMROFunction-Single'
+        - $ref: '#/components/schemas/DLBOFunction-Single'        
         - $ref: '#/components/schemas/DPCIConfigurationFunction-Single'
         - $ref: '#/components/schemas/CPCIConfigurationFunction-Single'
         - $ref: '#/components/schemas/CESManagementFunction-Single'
