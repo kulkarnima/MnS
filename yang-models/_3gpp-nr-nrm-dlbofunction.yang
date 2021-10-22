@@ -1,4 +1,3 @@
-
 module _3gpp-nr-nrm-dlbofunction {
   yang-version 1.1;
   namespace "urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction";
@@ -17,6 +16,22 @@ module _3gpp-nr-nrm-dlbofunction {
     Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2021-10-22 { reference "CR-0577"; }  
+
+  feature DLBOUnderGNBCUCPFunction {
+    description "The DLBOFunction shall be available under
+      GNBCUCPFunction";
+  }
+
+  feature DLBOUnderManagedElement {
+    description "The DLBOFunction shall be available under
+      ManagedElement";
+  }
+
+  feature DLBOUnderSubNetwork {
+    description "The DLBOFunction shall be available under
+      SubNetwork";
+  }
   grouping DLBOFunctionGrp {
     description "Represents the DLBOFunction IOC.";
 
@@ -27,13 +42,17 @@ module _3gpp-nr-nrm-dlbofunction {
     }
 
     leaf maximumDeviationHoTrigger {
-        description "This parameter defines the maximum allowed absolute deviation of the Handover Trigger, from the default point of operation.";
+      description "This parameter defines the maximum allowed absolute 
+        deviation of the Handover Trigger, from the default point of 
+        operation.";
         type int32 { range "-20..20"; }
         units "0.5";
     }
 
     leaf minimumTimeBetweenHoTriggerChange {
-        description "This parameter defines the minimum allowed time interval between two Handover Trigger change performed by MRO. This is used to control the stability and convergence of the algorithm.";
+      description "This parameter defines the minimum allowed time interval 
+        between two Handover Trigger change performed by MRO. This is used 
+        to control the stability and convergence of the algorithm.";
         type int32 { range "0..604800"; }
         units "1";
     }
@@ -59,19 +78,15 @@ module _3gpp-nr-nrm-dlbofunction {
 
   augment "/me3gpp:ManagedElement/gnbcucp3gpp:GNBCUCPFunction/"+
       "nrcellcu3gpp:NRCellCU" {
-    if-feature nrcellcu3gpp:DLBOFunction;
-    uses DLBOFunctionSubtree;
-  }
-  augment /me3gpp:ManagedElement/gnbcucp3gpp:GNBCUCPFunction {
-    if-feature gnbcucp3gpp:DLBOFunction;
+    if-feature DLBOUnderGNBCUCPFunction;
     uses DLBOFunctionSubtree;
   }
   augment /me3gpp:ManagedElement {
-    if-feature me3gpp:DLBOFunction;
+    if-feature DLBOUnderManagedElement;
     uses DLBOFunctionSubtree;
   }
   augment /subnet3gpp:SubNetwork {
-    if-feature subnet3gpp:DLBOFunction;
+    if-feature DLBOUnderSubNetwork;
     uses DLBOFunctionSubtree;
   }
 }
