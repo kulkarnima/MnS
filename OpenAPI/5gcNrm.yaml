@@ -1138,12 +1138,14 @@ components:
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
-            EP_N64:
-              $ref: '#/components/schemas/EP_N64-Multiple'
-            EP_N65:
-              $ref: '#/components/schemas/EP_N65-Multiple'
-            EP_N66:
-              $ref: '#/components/schemas/EP_N66-Multiple'
+            EP_Npc4:
+              $ref: '#/components/schemas/EP_Npc4-Multiple'
+            EP_Npc6:
+              $ref: '#/components/schemas/EP_Npc6-Multiple'
+            EP_Npc7:
+              $ref: '#/components/schemas/EP_Npc7-Multiple'
+            EP_Npc8:
+              $ref: '#/components/schemas/EP_Npc8-Multiple'
 
     ExternalAmfFunction-Single:
       allOf:
@@ -1651,7 +1653,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/LocalAddress'
                     remoteAddress:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
-    EP_N64-Single:
+    EP_Npc4-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
@@ -1665,7 +1667,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/LocalAddress'
                     remoteAddress:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
-    EP_N65-Single:
+    EP_Npc6-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
@@ -1679,7 +1681,21 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/LocalAddress'
                     remoteAddress:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress' 
-    EP_N66-Single:
+    EP_Npc7-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'nrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_Npc8-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
@@ -2091,18 +2107,22 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/EP_N60-Single'
-    EP_N64-Multiple:
+    EP_Npc4-Multiple:
       type: array
       items:
-        $ref: '#/components/schemas/EP_N64-Single'
-    EP_N65-Multiple:
+        $ref: '#/components/schemas/EP_Npc4-Single'
+    EP_Npc6-Multiple:
       type: array
       items:
-        $ref: '#/components/schemas/EP_N65-Single'
-    EP_N66-Multiple:
+        $ref: '#/components/schemas/EP_Npc6-Single'
+    EP_Npc7-Multiple:
       type: array
       items:
-        $ref: '#/components/schemas/EP_N66-Single'
+        $ref: '#/components/schemas/EP_Npc7-Single'
+    EP_Npc8-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_Npc8-Single'
     Configurable5QISet-Multiple:
       type: array
       items:
