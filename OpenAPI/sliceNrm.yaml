@@ -298,6 +298,8 @@ components:
           $ref: '#/components/schemas/DeterministicComm'
         survivalTime:
           type: string
+        nSSAA:
+          $ref: '#/components/schemas/Nssaa'
     RANSliceSubnetProfile:
       type: object
       properties:
@@ -476,6 +478,8 @@ components:
             $ref: '#/components/schemas/SliceSimultaneousUse'
           energyEfficiency:
             $ref: '#/components/schemas/EnergyEfficiency'
+          nSSAA:
+            $ref: '#/components/schemas/Nssaa'
     SliceProfile:
       type: object
       properties:
@@ -516,6 +520,12 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/SliceProfile'
+
+    Nssaa:
+      type: string
+      enum:
+        - NOT SUPPORTED
+        - SUPPORTED
 
 #------------ Definition of concrete IOCs ----------------------------------------
     SubNetwork-Single:
