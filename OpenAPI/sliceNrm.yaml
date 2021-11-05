@@ -261,7 +261,7 @@ components:
       type: object
       properties:
         secFunId:
-          type: integer
+          type: string
         secFunType:
           type: string
         secRules:
