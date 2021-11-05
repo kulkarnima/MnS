@@ -263,7 +263,27 @@ components:
         servAttrCom:
           $ref: '#/components/schemas/ServAttrCom'
         support:
-          $ref: '#/components/schemas/Support'   
+          $ref: '#/components/schemas/Support'  
+    SecFunc:
+      type: object
+      properties:
+        secFunId:
+          type: integer
+        secFunType:
+          type: string
+        secRules:
+          type: array
+          items:
+            type: string
+    N6Protection:
+      type: object
+      properties:
+        servAttrCom:
+          $ref: '#/components/schemas/ServAttrCom'
+        secFuncList:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecFunc'
     CNSliceSubnetProfile:
       type: object
       properties:
@@ -307,6 +327,8 @@ components:
           type: string
         nssaaSupport:
           $ref: '#/components/schemas/NSSAASupport'
+        n6Protection:
+          $ref: '#/components/schemas/N6Protection'    
     RANSliceSubnetProfile:
       type: object
       properties:
@@ -487,6 +509,8 @@ components:
             $ref: '#/components/schemas/EnergyEfficiency'
           nssaaSupport:
             $ref: '#/components/schemas/NSSAASupport'
+          n6Protection:
+            $ref: '#/components/schemas/N6Protection'
     SliceProfile:
       type: object
       properties:
