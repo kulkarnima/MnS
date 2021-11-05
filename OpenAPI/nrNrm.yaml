@@ -65,7 +65,7 @@ components:
     PlmnInfo:
       type: object
       properties:
-        plmnId":
+        plmnId:
           $ref: '#/components/schemas/PlmnId'
         snssai:
           $ref: '#/components/schemas/Snssai'
@@ -80,7 +80,7 @@ components:
     NpnIdentity:
       type: object
       properties:
-        plmnId":
+        plmnId:
           $ref: '#/components/schemas/PlmnId'
         cagidList:
           $ref: '#/components/schemas/cagId'
