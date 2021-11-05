@@ -382,6 +382,8 @@ components:
           $ref: '#/components/schemas/SteeringMode'
         mulAccCtrl:
           $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/MulticastAccessControl'
+        snssaiList:
+          $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
 
     TrafficControlDataList:
       type: array
