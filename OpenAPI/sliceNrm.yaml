@@ -306,7 +306,7 @@ components:
         survivalTime:
           type: string
         nssaaSupport:
-          $ref: '#/components/schemas/NSSAASupport’
+          $ref: '#/components/schemas/NSSAASupport'
     RANSliceSubnetProfile:
       type: object
       properties:
@@ -486,7 +486,7 @@ components:
           energyEfficiency:
             $ref: '#/components/schemas/EnergyEfficiency'
           nssaaSupport:
-            $ref: '#/components/schemas/NSSAASupport’
+            $ref: '#/components/schemas/NSSAASupport'
     SliceProfile:
       type: object
       properties:
