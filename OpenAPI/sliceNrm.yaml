@@ -257,6 +257,13 @@ components:
           $ref: '#/components/schemas/ServAttrCom'
         performance:
           $ref: '#/components/schemas/EEPerfReq'      
+    NSSAASupport:
+      type: object
+      properties:
+        servAttrCom:
+          $ref: '#/components/schemas/ServAttrCom'
+        support:
+          $ref: '#/components/schemas/Support'   
     CNSliceSubnetProfile:
       type: object
       properties:
@@ -298,8 +305,8 @@ components:
           $ref: '#/components/schemas/DeterministicComm'
         survivalTime:
           type: string
-        nSSAA:
-          $ref: '#/components/schemas/Nssaa'
+        nssaaSupport:
+          $ref: '#/components/schemas/NSSAASupport’
     RANSliceSubnetProfile:
       type: object
       properties:
@@ -478,8 +485,8 @@ components:
             $ref: '#/components/schemas/SliceSimultaneousUse'
           energyEfficiency:
             $ref: '#/components/schemas/EnergyEfficiency'
-          nSSAA:
-            $ref: '#/components/schemas/Nssaa'
+          nssaaSupport:
+            $ref: '#/components/schemas/NSSAASupport’
     SliceProfile:
       type: object
       properties:
@@ -520,12 +527,6 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/SliceProfile'
-
-    Nssaa:
-      type: string
-      enum:
-        - NOT SUPPORTED
-        - SUPPORTED
 
 #------------ Definition of concrete IOCs ----------------------------------------
     SubNetwork-Single:
