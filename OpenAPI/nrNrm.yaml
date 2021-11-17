@@ -1104,7 +1104,7 @@ components:
                       $ref: '#/components/schemas/CellIndividualOffset'
                     adjacentNRCellRef:
                       $ref: 'genericNrm.yaml#/components/schemas/Dn'
-                    nRFrequencyRef:
+                    nRFreqRelationRef:
                       $ref: 'genericNrm.yaml#/components/schemas/Dn'
                     isRemoveAllowed:
                       type: boolean
@@ -1139,13 +1139,13 @@ components:
                   properties:
                     offsetMO:
                       $ref: '#/components/schemas/QOffsetRangeList'
-                    blackListEntry:
+                    blockListEntry:
                       type: array
                       items:
                         type: integer
                         minimum: 0
                         maximum: 1007
-                    blackListEntryIdleMode:
+                    blockListEntryIdleMode:
                       type: integer
                     cellReselectionPriority:
                       type: integer
