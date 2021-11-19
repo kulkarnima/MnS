@@ -464,6 +464,10 @@ components:
           items:
             type: string
          
+    SupportedBMOList:
+      type: array
+      items:
+        type: string
 
 #-------- Definition of concrete IOCs --------------------------------------------
 
@@ -707,8 +711,8 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
-                    commModelList:
-                      $ref: '#/components/schemas/CommModelList'
+                    supportedBMOList:
+                      $ref: '#/components/schemas/SupportedBMOList'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -767,6 +771,8 @@ components:
                       $ref: 'genericNrm.yaml#/components/schemas/Dn'
                     dynamic5QISetRef:
                       $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                    supportedBMOList:
+                      $ref: '#/components/schemas/SupportedBMOList'
 
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
