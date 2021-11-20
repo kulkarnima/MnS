@@ -660,7 +660,7 @@ components:
         - notifyCorrelatedNotificationChanged
         - notifyComments
         - notifyClearedAlarm
-        - notifyAlarmListRebuiltAlarm
+        - notifyAlarmListRebuilt
         - notifyPotentialFaultyAlarmList
     AlarmListAlignmentRequirement:
       type: string
