@@ -498,6 +498,11 @@ components:
       type: array
       items:
         type: string
+    
+    ECSAddrConfigInfo:
+      type: array
+      items:
+        type: string
 
 #-------- Definition of concrete IOCs --------------------------------------------
 
@@ -874,7 +879,7 @@ components:
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
                     eCSAddrConfigInfo:
-                      type: string
+                      $ref: '#/components/schemas/ECSAddrConfigInfo'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
