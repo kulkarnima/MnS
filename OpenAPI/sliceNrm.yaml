@@ -581,6 +581,12 @@ components:
                       $ref: 'genericNrm.yaml#/components/schemas/DnList'
                     priorityLabel:
                       type: integer
+                    networkSliceSubnetType:
+                      type: string
+                      enum:
+                        - TOP_SLICESUBNET
+                        - RAN_SLICESUBNET
+                        - CN_SLICESUBNET
 
     EP_Transport-Single:
       allOf:
