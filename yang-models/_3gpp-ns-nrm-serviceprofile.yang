@@ -16,6 +16,10 @@ submodule _3gpp-ns-nrm-serviceprofile {
     Information model definitions for network slice NRM (chapter 6)
     ";
 
+  revision 2021-12-14 {
+    reference "CR-xxxx";
+  }
+  
   revision 2020-06-02 {
     reference "CR-0485, CR-0508";
   }
@@ -499,5 +503,13 @@ submodule _3gpp-ns-nrm-serviceprofile {
         type ns3cmn:Support-enum;
       }
     }
+    
+    list homePLMNInfoList {
+      description "Stores the mapping of S-NSSAI(s) to HPLMN S-NSSAI(s).";
+      key "mcc mnc";
+      ordered-by user;
+      uses types3gpp:PLMNId;
+    }
+
   }
 }
