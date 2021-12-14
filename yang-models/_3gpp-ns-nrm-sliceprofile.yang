@@ -19,6 +19,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
     Information model definitions for network slice NRM (chapter 6)
     ";
 
+  revision 2021-12-14 { reference CR-xxxx ; }
   revision 2021-07-16 { reference CR-0566 ; } 
   revision 2021-05-05 {
     description "replace perfReq with 3 new datatypes xxxSliceSubnetProfile";
@@ -532,6 +533,13 @@ submodule _3gpp-ns-nrm-sliceprofile {
         //Stage2 issue: Not defined in 28.541, guessing integer
         type uint32;
       }
+    
+    list homePLMNInfoList {
+      description "Stores the mapping of S-NSSAI(s) to HPLMN S-NSSAI(s).";
+      key "mcc mnc";
+      ordered-by user;
+      uses types3gpp:PLMNId;
+    }  
     }
     leaf sliceSimultaneousUse {
       description "This attribute describes whether a network slice
@@ -585,6 +593,7 @@ submodule _3gpp-ns-nrm-sliceprofile {
       type types3gpp:ResourceSharingLevel;
     }
 
+    
     list deterministicComm {
       //Stage2 issue: deterministicComm is not defined in 28.541 chapter 6, 
       //              but I guess determinComm is meant
