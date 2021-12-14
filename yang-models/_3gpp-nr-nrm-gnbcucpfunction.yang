@@ -16,6 +16,7 @@ module _3gpp-nr-nrm-gnbcucpfunction {
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
   revision 2021-11-05 { reference "CR-0609"; }
+  revision 2020-11-05 { reference "CR-0611" ; }
   revision 2020-10-02 { reference CR-0384 ; }
   revision 2020-08-06 { reference "CR-0333"; }
   revision 2020-08-03 { reference "CR-0321"; }
@@ -121,6 +122,12 @@ module _3gpp-nr-nrm-gnbcucpfunction {
     leaf dCHOControl {
       type boolean;
       description "This attribute determines whether the CHO function is enabled or disabled.";
+    }
+
+    leaf dDAPSHOControl {
+      type boolean;
+      description "This attribute determines whether the DAPS handover function
+                   is enabled or disabled.";
     }
   }
 
