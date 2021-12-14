@@ -409,6 +409,9 @@ components:
               - S6d
               - S6a
               - Sh
+              - N70
+              - N71
+              - NU1
         EIRInterfaces:
           type: array
           items:
@@ -551,6 +554,7 @@ components:
               - N10
               - N13
               - N21
+              - NU1
         UPFInterfaces:
           type: array
           items:
@@ -615,6 +619,8 @@ components:
           - UPF
           - AUSF
           - SMSF
+          - HSS
+          - UDM
 
     tjPLMNTarget-Type:
       type: object
