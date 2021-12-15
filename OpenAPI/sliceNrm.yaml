@@ -299,7 +299,7 @@ components:
         survivalTime:
           type: string
         homeplmnInfoList:
-          $ref: 'nrNrm.yaml#/components/schemas/homePlmnInfoList'
+          $ref: 'nrNrm.yaml#/components/schemas/PlmnInfoList'
           type: PlmnInfo
     RANSliceSubnetProfile:
       type: object
@@ -480,7 +480,7 @@ components:
           energyEfficiency:
             $ref: '#/components/schemas/EnergyEfficiency'
           homeplmnInfoList:
-            $ref: 'nrNrm.yaml#/components/schemas/homePlmnInfoList'
+            $ref: 'nrNrm.yaml#/components/schemas/PlmnInfoList'
             type: PlmnInfo
     SliceProfile:
       type: object
