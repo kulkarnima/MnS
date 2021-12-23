@@ -184,21 +184,21 @@ components:
         -  LOCATION_UPDATE_NOTIFICATION
         -  NSSAA_REAUTH_NOTIFICATION
         -  NSSAA_REVOC_NOTIFICATION
-      DefaultNotificationSubscription:
-        type: object
-        properties:
-          notificationType:
-            $ref: '#/components/schemas/NotificationType'
-          callbackURI:
-            type: string
-          n1MessageClass:  
-            type: boolean
-          n2InfroamtionClass:
-            type: boolean
-          versions:
-            type: string
-          binding:
-            type: string
+    DefaultNotificationSubscription:
+      type: object
+      properties:
+        notificationType:
+          $ref: '#/components/schemas/NotificationType'
+        callbackURI:
+          type: string
+        n1MessageClass:  
+          type: boolean
+        n2InfroamtionClass:
+          type: boolean
+        versions:
+          type: string
+        binding:
+          type: string
     ManagedNFProfile:
       type: object
       properties:
