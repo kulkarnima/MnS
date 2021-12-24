@@ -463,7 +463,8 @@ components:
           type: array
           items:
             type: string
-         
+        maxNumberofPDUSessions:
+          type: integer
 
 #-------- Definition of concrete IOCs --------------------------------------------
 
