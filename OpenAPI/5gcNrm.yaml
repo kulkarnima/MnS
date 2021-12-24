@@ -465,7 +465,27 @@ components:
             type: string
         maxNumberofPDUSessions:
           type: integer
+     
+    NRTACRange:
+      type: object
+      properties:
+        nRTACstart:
+          type: string
+        nRTACend:
+          type: string
+        nRTACpattern:
+          type: string
 
+    TaiRange:
+      type: object
+      properties:
+        plmnId:
+          $ref: 'nrNrm.yaml#/components/schemas/PlmnId'
+        nRTACRangelist:
+          type: array
+          items:
+            $ref: '#/components/schemas/NRTACRange'
+    
 #-------- Definition of concrete IOCs --------------------------------------------
 
     SubNetwork-Single:
@@ -1085,6 +1105,16 @@ components:
                       $ref: '#/components/schemas/CapabilityList'
                     isCAPIFSup:
                       type: boolean
+                    taiList:
+                      items:
+                        $ref: 'nrNrm.yaml#/components/schemas/TaiList'
+                    taiRangeList:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/TaiRange'
+                    dnai:
+                      type: string
+
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
