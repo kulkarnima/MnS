@@ -65,7 +65,7 @@ components:
     PlmnInfo:
       type: object
       properties:
-        plmnId":
+        plmnId:
           $ref: '#/components/schemas/PlmnId'
         snssai:
           $ref: '#/components/schemas/Snssai'
@@ -80,7 +80,7 @@ components:
     NpnIdentity:
       type: object
       properties:
-        plmnId":
+        plmnId:
           $ref: '#/components/schemas/PlmnId'
         cagidList:
           $ref: '#/components/schemas/cagId'
@@ -709,6 +709,23 @@ components:
               $ref: '#/components/schemas/EP_F1U-Multiple'
             DRACHOptimizationFunction:
               $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
+
+    OperatorDu-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            gnbId:
+              $ref: '#/components/schemas/GnbId'
+            gnbIdLength:
+              $ref: '#/components/schemas/GnbIdLength'
+        - type: object
+          properties:
+            EP_F1C:
+              $ref: '#/components/schemas/EP_F1C-Single'
+            EP_F1U:
+              $ref: '#/components/schemas/EP_F1U-Multiple'
+
     GnbCuUpFunction-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -784,6 +801,10 @@ components:
                       $ref: 'genericNrm.yaml#/components/schemas/Dn'
                     dynamic5QISetRef:
                       $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                    dCHOControl:
+                      type: boolean
+                    dDAPSHOControl:
+                      type: boolean
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -935,6 +956,18 @@ components:
               $ref: '#/components/schemas/CPCIConfigurationFunction-Single'
             DRACHOptimizationFunction:
               $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
+
+    NrOperatorCellDu-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            cellLocalId:
+              type: integer
+            plmnInfoList:
+              $ref: '#/components/schemas/PlmnInfoList'
+            nrTac:
+              $ref: '#/components/schemas/NrTac'
 
     NRFrequency-Single:
       allOf:
@@ -1104,7 +1137,7 @@ components:
                       $ref: '#/components/schemas/CellIndividualOffset'
                     adjacentNRCellRef:
                       $ref: 'genericNrm.yaml#/components/schemas/Dn'
-                    nRFrequencyRef:
+                    nRFreqRelationRef:
                       $ref: 'genericNrm.yaml#/components/schemas/Dn'
                     isRemoveAllowed:
                       type: boolean
@@ -1139,13 +1172,13 @@ components:
                   properties:
                     offsetMO:
                       $ref: '#/components/schemas/QOffsetRangeList'
-                    blackListEntry:
+                    blockListEntry:
                       type: array
                       items:
                         type: integer
                         minimum: 0
                         maximum: 1007
-                    blackListEntryIdleMode:
+                    blockListEntryIdleMode:
                       type: integer
                     cellReselectionPriority:
                       type: integer
@@ -1712,6 +1745,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/GnbDuFunction-Single'
+    OperatorDu-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/OperatorDu-Single'    
     GnbCuUpFunction-Multiple:
       type: array
       items:
@@ -1725,6 +1762,12 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/NrCellDu-Single'
+    
+    NrOperatorCellDu-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/NrOperatorCellDu-Single'    
+        
     NrCellCu-Multiple:
       type: array
       items:
@@ -1857,9 +1900,11 @@ components:
         - $ref: '#/components/schemas/GnbDuFunction-Single'
         - $ref: '#/components/schemas/GnbCuUpFunction-Single'
         - $ref: '#/components/schemas/GnbCuCpFunction-Single'
+        - $ref: '#/components/schemas/OperatorDu-Single'
 
         - $ref: '#/components/schemas/NrCellCu-Single'
         - $ref: '#/components/schemas/NrCellDu-Single'
+        - $ref: '#/components/schemas/NrOperatorCellDu-Single'
 
         - $ref: '#/components/schemas/NRFrequency-Single'
         - $ref: '#/components/schemas/EUtranFrequency-Single'
