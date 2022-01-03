@@ -11,7 +11,7 @@ module _3gpp-common-yang-types {
   description "The model defines a YANG mapping of the top level 
     information classes used for management of 5G networks and 
     network slicing.";
-  reference "3GPP TS 28.541";
+  reference "3GPP TS 28.623";
 
   revision 2021-11-01 { reference "CR-0141"; }
   revision 2021-09-30 {
@@ -82,6 +82,8 @@ module _3gpp-common-yang-types {
     }
   }
   
+  // grouping ManagedNFProfile will be removed as it is 
+  //  being moved to _3gpp-5gc-nrm-nfprofile
   grouping ManagedNFProfile {
     description "Defines profile for managed NF";
     reference "3GPP TS 23.501";

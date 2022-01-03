@@ -22,6 +22,7 @@ module _3gpp-common-fm {
       Integration Reference Point (IRP);
       Information Service (IS)";
 
+  revision 2021-08-08 { reference "CR-0132"; }
   revision 2021-06-02 { reference "CR-0130"; }
   revision 2020-06-03 { reference "CR-0091"; }
   revision 2020-02-24 {
