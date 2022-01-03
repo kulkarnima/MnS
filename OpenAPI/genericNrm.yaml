@@ -1207,8 +1207,9 @@ components:
         AlarmList:
           $ref: '#/components/schemas/AlarmList-Single'
         MnsRegistry:
-          $ref: '#/components/schemas/MnsRegistry-Single'
-          
+          type: array
+          items:
+            $ref: '#/components/schemas/MnsRegistry'
     ManagedElement-ncO:
       type: object
       properties:
@@ -1345,11 +1346,17 @@ components:
         TraceJob:
           $ref: '#/components/schemas/TraceJob-Multiple'
 
-    MnsRegistry-Single:
+    MnsRegistry:
       type: object
       properties:
-        MnsInfo:
-          $ref: '#/components/schemas/MnsInfo-Multiple'
+        mnsLabel:
+          type: string
+        mnsType:
+          type: string
+        mnsVersion:
+          type: string
+        mnsAddress:
+          type: string
 
 #-------- Definition of concrete IOCs --------------------------------------------
 
@@ -1540,24 +1547,6 @@ components:
                   additionalProperties:
                     $ref: 'faultMnS.yaml#/components/schemas/AlarmRecord'
 
-    MnsInfo-Single:
-      type: object
-      properties:
-        mnsLabel:
-          type: string
-        mnsType:
-          type: string
-          enum:
-            - ProvMnS
-            - FaultSupervisionMnS
-            - StreamingDataReportingMnS
-            - FileDataReportingMnS
-        mnsVersion:
-          type: string
-        mnsAddress:
-          description: Resource URI as defined in the relevant Technical Specification
-          $ref: 'comDefs.yaml#/components/schemas/Uri'
-
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
 
     VsDataContainer-Multiple:
@@ -1592,10 +1581,6 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/TraceJob-Single'
-    MnsInfo-Multiple:
-      type: array
-      items:
-        $ref: '#/components/schemas/MnsInfo-Single'
 
 #-------- Definitions in TS 28.623 for TS 28.532 ---------------------------------
 
@@ -1619,5 +1604,3 @@ components:
         - $ref: '#/components/schemas/TraceJob-Single'
 
         - $ref: '#/components/schemas/AlarmList-Single'
-        - $ref: '#/components/schemas/MnsRegistry-Single'
-        - $ref: '#/components/schemas/MnsInfo-Single'
