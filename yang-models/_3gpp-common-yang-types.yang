@@ -13,6 +13,7 @@ module _3gpp-common-yang-types {
     network slicing.";
   reference "3GPP TS 28.623";
 
+  revision 2022-01-03 { reference "CR-0144"; }
   revision 2021-11-01 { reference "CR-0141"; }
   revision 2021-09-30 {
     description "Added Longitude, Latitude, TenthOfDegrees, OnOff.";
@@ -47,6 +48,123 @@ module _3gpp-common-yang-types {
     type enumeration {
       enum DISABLED ;
       enum ENABLED ;
+    }
+  }
+  
+  grouping JobProgress {
+    description "Provides attributes to monitor the progress of a job.
+      
+      The mandatory attributes provide an identifier and status for the 
+      associated job.
+      
+      For jobs which are long-running or need more detailed progress or result 
+      information other attributes, such as jobProgressInfo, can be used.
+      
+      If a management operation results in starting an assosiacted job it 
+      should also result in the setting and updating of an attribute named 
+      'jobProgress' that has the type 'JobProgress'. The jobProgress  
+      attribute should be accompanied by use-case specific additional data 
+      items as needed.";
+      
+    leaf jobId {
+      type string;
+      config false;
+      mandatory true;
+      description "Id of the associated job. It is unique within a single 
+        multivalue attribute of type JobProgress.";
+    }
+    
+    leaf jobStatus {
+      type enumeration {
+        enum RUNNING {
+          description "Execution of the associated job is currently in 
+            progress";
+        }
+        enum FINISHED {
+          description "The job stopped, finished succesfully";
+        }
+        enum CANCELLING {
+          description "Cancellation is in progress";
+        }
+        enum CANCELLED {
+          description "The job stopped, it was cancelled";
+        }
+        enum FAILED {
+          description "The job stopped, but failed";
+        }
+        enum PARTIALLY_FAILED {
+          description "The job stopped, partly succeeded, partly failed";
+        }
+      }
+      config false;
+      default  RUNNING;
+      description "Represents the status of the associated job, 
+        whether it fails, succeeds etc. 
+        It does not represent the returned values of a successfully finished 
+        job. 
+        Even a successfully finished job may report back, the task for which 
+        it was started is unsuccessful. 
+        E.g. a reserve-resource-job finished the reservation process 
+        successfully, but it reports back that the resource is not available.";
+    }
+
+    leaf jobProgressPercentage {
+      type uint8 {
+        range 0..100;
+      }
+      config false;
+      description "Progress of the associated job as percentage";
+    }
+
+    leaf-list jobProgressInfo {
+      type string;
+      config false;
+      description "Textual information about the state and progress 
+        of the associated job.
+        Specific jobs may define specific well-defined strings to be used 
+        in this attribute using e.g. string patterns or enums.";
+    }
+
+    leaf jobResult {
+      type string;
+      config false;
+      description "Detailed result or reason.
+        Specific jobs may define specific well-defined strings to be used 
+        in this attribute using e.g. string patterns or enums.";
+    }
+
+    leaf jobStartTime {
+      type yang:date-and-time;
+      config false;
+      description "Date and time when associated job started.";
+    }
+
+    leaf jobEndTime {
+      type yang:date-and-time;
+      config false;
+      description "Date and time when jobStatus changed to 
+        FINISHED, CANCELLED, FAILED or PARTIALLY_FAILED.
+        If the time is in the future, it is the estimated time 
+        the job will end.";
+    }
+
+    leaf jobTimer {
+      type uint32;
+      units seconds;
+      description "Time until the associated job is automatically cancelled
+        by the provider. If set, the system decreases the jobTimer with time. 
+        When it reaches zero the cancellation of the associated job is 
+        initiated.  If not set, there is no time limit for the job.";
+    }
+
+    leaf cancelJob {
+      type boolean;
+      default false;
+      description "If set to True, the job is requested to be cancelled. 
+        Once set to true, it is not possible to stop the cancellation. 
+        Further changes to the attribute have no effect. 
+        In case cancellation fails the job might stay in 
+        jobStatus=CANCELLING indefinitely.";
     }
   }
   
