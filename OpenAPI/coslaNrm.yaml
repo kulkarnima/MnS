@@ -43,6 +43,18 @@ components:
         - FULFILLED
         - NOT_FULFILLED
 
+    AssuranceTargetStatusObserved:
+      type: string
+      enum:
+        - FULFILLED
+        - NOT_FULFILLED
+
+    AssuranceTargetStatusPredicted:
+      type: string
+      enum:
+        - FULFILLED
+        - NOT_FULFILLED
+        
     AssuranceTarget:
       type: object
       properties:
@@ -50,6 +62,10 @@ components:
           type: string
         assuranceTargetValue:
           type: string
+        assuranceTargetStatusObserved:
+          $ref: '#/components/schemas/AssuranceTargetStatusObserved'
+        assuranceTargetStatusPredicted:
+          $ref: '#/components/schemas/AssuranceTargetStatusPredicted'
          
     AssuranceTargetList:
       type: array
@@ -96,9 +112,9 @@ components:
               type: object
               properties:
                     operationalState:
-                      $ref: 'comDefs.yaml#/components/schemas/OperationalState'
+                      $ref: 'genericNrm.yaml#/components/schemas/OperationalState'
                     administrativeState:
-                      $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
+                      $ref: 'genericNrm.yaml#/components/schemas/AdministrativeState'
                     controlLoopLifeCyclePhase:
                       $ref: '#/components/schemas/ControlLoopLifeCyclePhase'
             AssuranceGoal:

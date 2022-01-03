@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Slice NRM
-  version: 16.10.0
+  version: 17.4.0
   description: >-
     OAS 3.0.1 specification of the Slice NRM
     @ 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -25,58 +25,56 @@ components:
         - NOMADIC
         - RESTRICTED MOBILITY
         - FULLY MOBILITY
+    SynAvailability:
+      type: string
+      enum:
+        - NOT SUPPORTED
+        - BETWEEN BS AND UE
+        - BETWEEN BS AND UE & UE AND UE
+    PositioningAvailability:
+      type: array
+      items:
+        type: string
+        enum:
+          - CIDE-CID
+          - OTDOA
+          - RF FINGERPRINTING
+          - AECID
+          - HYBRID POSITIONING
+          - NET-RTK
+    Predictionfrequency:
+      type: string
+      enum:
+        - PERSEC
+        - PERMIN
+        - PERHOUR
     SharingLevel:
       type: string
       enum:
         - SHARED
         - NON-SHARED
+
     NetworkSliceSharingIndicator:
       type: string
       enum:
         - SHARED
         - NON-SHARED
-    PerfReqEmbb:
-      type: object
-      properties:
-        expDataRateDL:
-          type: number
-        expDataRateUL:
-          type: number
-        areaTrafficCapDL:
-          type: number
-        areaTrafficCapUL:
-          type: number
-        userDensity:
-          type: number
-        activityFactor:
-          type: number
-    PerfReqEmbbList:
-      type: array
-      items:
-        $ref: '#/components/schemas/PerfReqEmbb'
-    PerfReqUrllc:
-      type: object
-      properties:
-        cSAvailabilityTarget:
-          type: number
-        cSReliabilityMeanTime:
-          type: string
-        expDataRate:
-          type: number
-        msgSizeByte:
-          type: string
-        transferIntervalTarget:
-          type: string
-        survivalTime:
-          type: string
-    PerfReqUrllcList:
-      type: array
-      items:
-        $ref: '#/components/schemas/PerfReqUrllc'
-    PerfReq:
-      oneOf:
-        - $ref: '#/components/schemas/PerfReqEmbbList'
-        - $ref: '#/components/schemas/PerfReqUrllcList'
+
+    ServiceType:
+      type: string
+      enum:
+        - eMBB
+        - RLLC
+        - MIoT
+        - V2X
+    SliceSimultaneousUse:
+      type: string
+      enum:
+        - ZERO
+        - ONE
+        - TWO
+        - THREE
+        - FOUR
     Category:
       type: string
       enum:
@@ -90,8 +88,6 @@ components:
           - PERFORMANCE
           - FUNCTION
           - OPERATION
-
-
     Exposure:
       type: string
       enum:
@@ -127,34 +123,7 @@ components:
           $ref: '#/components/schemas/Support'
         periodicityList:
           type: string
-    DLThptPerSlice:
-      type: object
-      properties:
-        servAttrCom:
-          $ref: '#/components/schemas/ServAttrCom'
-        guaThpt:
-          $ref: '#/components/schemas/Float'
-        maxThpt:
-          $ref: '#/components/schemas/Float'
-    DLThptPerUE:
-      type: object
-      properties:
-        servAttrCom:
-          $ref: '#/components/schemas/ServAttrCom'
-        guaThpt:
-          $ref: '#/components/schemas/Float'
-        maxThpt:
-          $ref: '#/components/schemas/Float'
-    ULThptPerSlice:
-      type: object
-      properties:
-        servAttrCom:
-          $ref: '#/components/schemas/ServAttrCom'
-        guaThpt:
-          $ref: '#/components/schemas/Float'
-        maxThpt:
-          $ref: '#/components/schemas/Float'
-    ULThptPerUE:
+    XLThpt:
       type: object
       properties:
         servAttrCom:
@@ -170,12 +139,12 @@ components:
           $ref: '#/components/schemas/ServAttrCom'
         maxsize:
           type: integer
-    MaxNumberofConns:
+    MaxNumberofPDUSessions:
       type: object
       properties:
         servAttrCom:
           $ref: '#/components/schemas/ServAttrCom'
-        nOofConn:
+        nOofPDUSessions:
           type: integer
     KPIMonitoring:
       type: object
@@ -184,6 +153,56 @@ components:
           $ref: '#/components/schemas/ServAttrCom'
         kPIList:
           type: string
+    NBIoT:
+      type: object
+      properties:
+        servAttrCom:
+          $ref: '#/components/schemas/ServAttrCom'
+        support:
+          $ref: '#/components/schemas/Support'
+    RadioSpectrum:
+      type: object
+      properties:
+        servAttrCom:
+          $ref: '#/components/schemas/ServAttrCom'
+        nROperatingBands:
+          type: string
+    Synchronicity:
+      type: object
+      properties:
+        servAttrCom:
+          $ref: '#/components/schemas/ServAttrCom'
+        availability:
+          $ref: '#/components/schemas/SynAvailability'
+        accuracy:
+          $ref: '#/components/schemas/Float'
+    SynchronicityRANSubnet:
+      type: object
+      properties:
+        availability:
+          $ref: '#/components/schemas/SynAvailability'
+        accuracy:
+          $ref: '#/components/schemas/Float'
+    Positioning:
+      type: object
+      properties:
+        servAttrCom:
+          $ref: '#/components/schemas/ServAttrCom'
+        availability:
+          $ref: '#/components/schemas/PositioningAvailability'
+        predictionfrequency:
+          $ref: '#/components/schemas/Predictionfrequency'
+        accuracy:
+          $ref: '#/components/schemas/Float'
+    PositioningRANSubnet:
+      type: object
+      properties:
+        availability:
+          $ref: '#/components/schemas/PositioningAvailability'
+        predictionfrequency:
+          $ref: '#/components/schemas/Predictionfrequency'
+        accuracy:
+          $ref: '#/components/schemas/Float'     
     UserMgmtOpen:
       type: object
       properties:
@@ -212,6 +231,176 @@ components:
           type: string
         nsName:
           type: string
+    EmbbEEPerfReq:
+      type: integer
+    UrllcEEPerfReq:
+      type: integer
+    MIoTEEPerfReq:
+      type: object
+      properties:
+        KpiType:
+          type: string
+          enum:
+            - MAXREGSUBS
+            - MEANACTIVEUES
+        Req:
+          type: integer
+    EEPerfReq:
+      oneOf:
+        - $ref: '#/components/schemas/EmbbEEPerfReq'
+        - $ref: '#/components/schemas/UrllcEEPerfReq'
+        - $ref: '#/components/schemas/MIoTEEPerfReq'
+    EnergyEfficiency:
+      type: object
+      properties:
+        servAttrCom:
+          $ref: '#/components/schemas/ServAttrCom'
+        performance:
+          $ref: '#/components/schemas/EEPerfReq'      
+    CNSliceSubnetProfile:
+      type: object
+      properties:
+        maxNumberofUEs:
+          type: integer
+        latency:
+          type: integer
+        dLThptPerSliceSubnet:
+          $ref: '#/components/schemas/XLThpt'
+        dLThptPerUE:
+          $ref: '#/components/schemas/XLThpt'
+        uLThptPerSliceSubnet:
+          $ref: '#/components/schemas/XLThpt'
+        uLThptPerUE:
+          $ref: '#/components/schemas/XLThpt'
+        maxNumberOfPDUSessions:
+          type: integer
+        coverageAreaTAList:
+          type: integer
+        resourceSharingLevel:
+          $ref: '#/components/schemas/SharingLevel'
+        dLMaxPktSize:
+          type: integer
+        uLMaxPktSize:
+          type: integer
+        delayTolerance:
+          $ref: '#/components/schemas/DelayTolerance'
+        synchronicity:
+          $ref: '#/components/schemas/SynchronicityRANSubnet'
+        sliceSimultaneousUse:
+          $ref: '#/components/schemas/SliceSimultaneousUse'
+        reliability:
+          type: string
+        energyEfficiency:
+          type: integer 
+        dLDeterministicComm:
+          $ref: '#/components/schemas/DeterministicComm'
+        uLDeterministicComm:
+          $ref: '#/components/schemas/DeterministicComm'
+        survivalTime:
+          type: string
+    RANSliceSubnetProfile:
+      type: object
+      properties:
+        coverageAreaTAList:
+          type: integer
+        uEMobilityLevel:
+          $ref: '#/components/schemas/MobilityLevel'
+        resourceSharingLevel:
+          $ref: '#/components/schemas/SharingLevel'
+        maxNumberofUEs:
+          type: integer
+        activityFactor:
+          type: integer
+        dLThptPerUE:
+          $ref: '#/components/schemas/XLThpt'
+        uLThptPerUE:
+          $ref: '#/components/schemas/XLThpt'
+        uESpeed:
+          type: integer
+        reliability:
+          type: string
+        serviceType:
+          $ref: '#/components/schemas/ServiceType'
+        dLMaxPktSize:
+          type: integer
+        uLMaxPktSize:
+          type: integer
+        nROperatingBands:
+          type: string
+        delayTolerance:
+          $ref: '#/components/schemas/DelayTolerance'
+        positioning:
+          $ref: '#/components/schemas/PositioningRANSubnet'
+        sliceSimultaneousUse:
+          $ref: '#/components/schemas/SliceSimultaneousUse'
+        energyEfficiency:
+          type: integer
+        termDensity:
+          $ref: '#/components/schemas/TermDensity'
+        survivalTime:
+          type: string
+        synchronicity:
+          $ref: '#/components/schemas/SynchronicityRANSubnet'
+        dLDeterministicComm:
+          $ref: '#/components/schemas/DeterministicComm'
+        uLDeterministicComm:
+          $ref: '#/components/schemas/DeterministicComm'
+    TopSliceSubnetProfile:
+      type: object
+      properties:
+        latency:
+          type: integer
+        maxNumberofUEs:
+          type: integer
+        dLThptPerSliceSubnet:
+          $ref: '#/components/schemas/XLThpt'
+        dLThptPerUE:
+          $ref: '#/components/schemas/XLThpt'
+        uLThptPerSliceSubnet:
+          $ref: '#/components/schemas/XLThpt'
+        uLThptPerUE:
+          $ref: '#/components/schemas/XLThpt'
+        dLMaxPktSize:
+          type: integer
+        uLMaxPktSize:
+          type: integer
+        maxNumberOfPDUSessions:
+          type: integer
+        nROperatingBands:
+          type: string
+        sliceSimultaneousUse:
+          $ref: '#/components/schemas/SliceSimultaneousUse'
+        energyEfficiency:
+          type: integer
+        synchronicity:
+          $ref: '#/components/schemas/Synchronicity'
+        delayTolerance:
+          $ref: '#/components/schemas/DelayTolerance'
+        positioning:
+          $ref: '#/components/schemas/Positioning'  
+        termDensity:
+          $ref: '#/components/schemas/TermDensity'
+        activityFactor:
+          type: integer
+        coverageAreaTAList:
+          type: integer
+        resourceSharingLevel:
+          $ref: '#/components/schemas/SharingLevel'
+        uEMobilityLevel:
+          $ref: '#/components/schemas/MobilityLevel'
+        uESpeed:
+          type: integer
+        reliability:
+          type: string
+        serviceType:
+          $ref: '#/components/schemas/ServiceType'
+        dLDeterministicComm:
+          $ref: '#/components/schemas/DeterministicComm'
+        uLDeterministicComm:
+          $ref: '#/components/schemas/DeterministicComm'
+        survivalTime:
+          type: string
+
     ServiceProfile:
       type: object
       properties:
@@ -233,22 +422,34 @@ components:
             type: number
           delayTolerance:
             $ref: '#/components/schemas/DelayTolerance'
-          deterministicComm:
+          dLDeterministicComm:
+            $ref: '#/components/schemas/DeterministicComm'
+          uLDeterministicComm:
             $ref: '#/components/schemas/DeterministicComm'
           dLThptPerSlice:
-            $ref: '#/components/schemas/DLThptPerSlice'
+            $ref: '#/components/schemas/XLThpt'
           dLThptPerUE:
-            $ref: '#/components/schemas/DLThptPerUE'
+            $ref: '#/components/schemas/XLThpt'
           uLThptPerSlice:
-            $ref: '#/components/schemas/ULThptPerSlice'
+            $ref: '#/components/schemas/XLThpt'
           uLThptPerUE:
-            $ref: '#/components/schemas/ULThptPerUE'
-          maxPktSize:
+            $ref: '#/components/schemas/XLThpt'
+          dLMaxPktSize:
             $ref: '#/components/schemas/MaxPktSize'
-          maxNumberofConns:
-            $ref: '#/components/schemas/MaxNumberofConns'
+          uLMaxPktSize:
+            $ref: '#/components/schemas/MaxPktSize'
+          maxNumberofPDUSessions:
+            $ref: '#/components/schemas/MaxNumberofPDUSessions'
           kPIMonitoring:
             $ref: '#/components/schemas/KPIMonitoring'
+          nBIoT:
+            $ref: '#/components/schemas/NBIoT'
+          radioSpectrum:
+            $ref: '#/components/schemas/RadioSpectrum'
+          synchronicity:
+            $ref: '#/components/schemas/Synchronicity'
+          positioning:
+            $ref: '#/components/schemas/Positioning'
           userMgmtOpen:
             $ref: '#/components/schemas/UserMgmtOpen'
           v2XModels:
@@ -267,31 +468,45 @@ components:
             type: string
           reliability:
             type: string
+          maxDLDataVolume:
+            type: string
+          maxULDataVolume:
+            type: string
+          sliceSimultaneousUse:
+            $ref: '#/components/schemas/SliceSimultaneousUse'
+          energyEfficiency:
+            $ref: '#/components/schemas/EnergyEfficiency'
     SliceProfile:
       type: object
       properties:
-          sliceProfileId:
+          serviceProfileId: 
             type: string
-
           plmnInfoList:
             $ref: 'nrNrm.yaml#/components/schemas/PlmnInfoList'
-          perfReq:
-            $ref: '#/components/schemas/PerfReq'
-          maxNumberofUEs:
-            type: number
-          coverageAreaTAList:
-            $ref: '5gcNrm.yaml#/components/schemas/TACList'
-          latency:
-            type: number
-          uEMobilityLevel:
-            $ref: '#/components/schemas/MobilityLevel'
-          resourceSharingLevel:
-            $ref: '#/components/schemas/SharingLevel'
+          cNSliceSubnetProfile:
+            $ref: '#/components/schemas/CNSliceSubnetProfile'
+          rANSliceSubnetProfile:
+            $ref: '#/components/schemas/RANSliceSubnetProfile'
+          topSliceSubnetProfile:
+            $ref: '#/components/schemas/TopSliceSubnetProfile'
 
     IpAddress:
       oneOf:
-        - $ref: 'comDefs.yaml#/components/schemas/Ipv4Addr'
-        - $ref: 'comDefs.yaml#/components/schemas/Ipv6Addr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Ipv6Addr'
+    
+    LogicInterfaceInfo:
+      type: object
+      properties:
+         logicalInterfceType:
+           type: string
+           enum: 
+            - VLAN
+            - MPLS
+            - Segment
+         logicalInterfceId:
+           type: string
+
     ServiceProfileList:
        type: array
        items:
@@ -303,7 +518,6 @@ components:
         $ref: '#/components/schemas/SliceProfile'
 
 #------------ Definition of concrete IOCs ----------------------------------------
-
     SubNetwork-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -334,13 +548,14 @@ components:
                 - type: object
                   properties:
                     networkSliceSubnetRef:
-                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
                     operationalState:
-                      $ref: 'comDefs.yaml#/components/schemas/OperationalState'
+                      $ref: 'genericNrm.yaml#/components/schemas/OperationalState'
                     administrativeState:
-                      $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
+                      $ref: 'genericNrm.yaml#/components/schemas/AdministrativeState'
                     serviceProfileList:
                       $ref: '#/components/schemas/ServiceProfileList'
+
     NetworkSliceSubnet-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -351,21 +566,22 @@ components:
                 - type: object
                   properties:
                     managedFunctionRefList:
-                      $ref: 'comDefs.yaml#/components/schemas/DnList'
+                      $ref: 'genericNrm.yaml#/components/schemas/DnList'
                     networkSliceSubnetRefList:
-                      $ref: 'comDefs.yaml#/components/schemas/DnList'
+                      $ref: 'genericNrm.yaml#/components/schemas/DnList'
                     operationalState:
-                      $ref: 'comDefs.yaml#/components/schemas/OperationalState'
+                      $ref: 'genericNrm.yaml#/components/schemas/OperationalState'
                     administrativeState:
-                      $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
+                      $ref: 'genericNrm.yaml#/components/schemas/AdministrativeState'
                     nsInfo:
                       $ref: '#/components/schemas/NsInfo'
                     sliceProfileList:
                       $ref: '#/components/schemas/SliceProfileList'
                     epTransportRefList:
-                      $ref: 'comDefs.yaml#/components/schemas/DnList'
+                      $ref: 'genericNrm.yaml#/components/schemas/DnList'
                     priorityLabel:
                       type: integer
+
     EP_Transport-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -376,15 +592,15 @@ components:
               properties:
                 ipAddress:
                   $ref: '#/components/schemas/IpAddress'
-                logicInterfaceId:
-                  type: string 
+                logicInterfaceInfo:
+                  $ref: '#/components/schemas/LogicInterfaceInfo'
                 nextHopInfo:
                   type: string 
                 qosProfile:
                   type: string 
                 epApplicationRefs:
-                  $ref: 'comDefs.yaml#/components/schemas/DnList'
-                      
+                  $ref: 'genericNrm.yaml#/components/schemas/DnList'
+
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
     SubNetwork-Multiple:
       type: array
@@ -400,7 +616,7 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/NetworkSliceSubnet-Single'
-
+                      
     EP_Transport-Multiple:
       type: array
       items:
