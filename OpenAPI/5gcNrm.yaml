@@ -520,6 +520,7 @@ components:
             type: string
         maxNumberofPDUSessions:
           type: integer
+          
     SupportedBMOList:
       type: array
       items:
