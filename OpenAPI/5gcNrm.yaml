@@ -491,7 +491,6 @@ components:
           type: array
           items:
             type: string
-
     GUAMInfo:
       type: object
       properties:
