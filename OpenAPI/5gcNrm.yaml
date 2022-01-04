@@ -144,11 +144,6 @@ components:
       properties:
         smfServingAreas:
           type: string
-    AmfInfo:
-      type: object
-      properties:
-        priority:
-          type: integer
     SupportedDataSetId:
       type: string
       description: any of enumrated value
@@ -171,7 +166,6 @@ components:
         - $ref: '#/components/schemas/UdmInfo'
         - $ref: '#/components/schemas/AusfInfo'
         - $ref: '#/components/schemas/UpfInfo'
-        - $ref: '#/components/schemas/AmfInfo'
         - $ref: '#/components/schemas/Udrinfo'
     ManagedNFProfile:
       type: object
@@ -184,12 +178,46 @@ components:
           type: string
         hostAddr:
           $ref: 'genericNrm.yaml#/components/schemas/HostAddr'
+        allowedPLMNs:
+          type: array
+          items:
+            $ref: 'comDefs.yaml#/components/schemas/PlmnId'
+        allowedSNPNs:
+          type: array
+          items:
+            $ref: 'nrNrm.yaml#/components/schemas/SnpnInfo'
+        allowedNfTypes:
+          type: array
+          items:
+            $ref: 'genericNrm.yaml#/components/schemas/NFType'
+        allowedNfDomains:
+          type: array
+          items: string
+        allowedNSSAIs:
+          type: array
+          items:
+            $ref: 'nrNrm.yaml#/components/schemas/Snssai'
         locality:
           type: string
         nFInfo:
           $ref: '#/components/schemas/NFInfo'
         capacity:
           type: integer
+        nfSetIdList:
+          type: array
+          items: string
+        servingScope:
+          type: array
+          items: string
+        nfSetRecoveryTimeList:
+          type: array
+          items:
+            $ref: 'comDefs.yaml#/components/schemas/DateTime'
+        scpDomains:
+          type: array
+          items: string
+        vendorId:
+          type: string
     SEPPType:
       type: string
       description: any of enumrated value
@@ -475,7 +503,7 @@ components:
           type: string
         nRTACpattern:
           type: string
-
+  
     TaiRange:
       type: object
       properties:
@@ -485,7 +513,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/NRTACRange'
-    
+   
+    GUAMInfo:
+      type: object
+      properties:
+          pLMNId: 
+            $ref: 'nrNrm.yaml#/components/schemas/PlmnId'
+          aMFIdentifier:
+            type: integer   
+            
 #-------- Definition of concrete IOCs --------------------------------------------
 
     SubNetwork-Single:
@@ -569,7 +605,7 @@ components:
               $ref: '#/components/schemas/Configurable5QISet-Multiple'
             Dynamic5QISet:
               $ref: '#/components/schemas/Dynamic5QISet-Multiple'
- 
+
     AmfFunction-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -586,10 +622,22 @@ components:
                       $ref: '#/components/schemas/AmfIdentifier'
                     sBIFqdn:
                       type: string
+                    interPlmnFQDN:
+                      type: string
+                    taiList:
+                      $ref: 'nrNrm.yaml#/components/schemas/Tai'
+                    taiRangeList:
+                      $ref: 'nrNrm.yaml#/components/schemas/TaiRange'
                     weightFactor:
                       $ref: '#/components/schemas/WeightFactor'
-                    snssaiList:
-                      $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
+                    cNSIIdList:
+                      $ref: '#/components/schemas/CNSIIdList'
+                    gUAMIdList: 
+                      $ref: '#/components/schemas/GUAMInfo'
+                    backupInfoAmfFailure:
+                      $ref: '#/components/schemas/GUAMInfo'
+                    backupInfoAmfRemoval:
+                      $ref: '#/components/schemas/GUAMInfo'
                     amfSet:
                       $ref: 'genericNrm.yaml#/components/schemas/Dn'
                     managedNFProfile:
