@@ -73,6 +73,22 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/PlmnInfo'
+    SnpnId:
+      type: object
+      properties:
+        mcc:
+          $ref: 'genericNrm.yaml#/components/schemas/Mcc'
+        mnc:
+          $ref: '#/components/schemas/Mnc'
+        nid:
+          type: string
+    SnpnInfo:
+      type: object
+      properties:
+        snpnId:
+          $ref: '#/components/schemas/SnpnId'
+        snssai:
+          $ref: '#/components/schemas/Snssai'
     cagId:
       type: string
     nid:
@@ -124,6 +140,24 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Tai' 
+    NrtacRange: 
+      type: object
+      properties:
+        nRTACstart:
+          type: string
+        nRTACend:
+          type: string
+        nRTACpattern:
+          type: string
+    TaiRange:
+      type: object
+      properties:
+        plmnId:
+          $ref: '#/components/schemas/PlmnId'
+        nRTACRangeList:
+          type: array
+          items: 
+             $ref: '#/components/schemas/NrtacRange'
 
     BackhaulAddress:
       type: object
