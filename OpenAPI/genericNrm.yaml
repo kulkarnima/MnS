@@ -322,8 +322,8 @@ components:
       description: The configuration parameters which are specific for Logged MDT. See 3GPP TS 32.422 clause 4.3.A for additional details.
       type: object
       properties:
-        traceCollectionEntityID:
-          $ref: '#/components/schemas/traceCollectionEntityID-Type'
+        traceCollectionEntityId:
+          $ref: '#/components/schemas/traceCollectionEntityId-Type'
         loggingDuration:
           $ref: '#/components/schemas/loggingDuration-Type'
         loggingInterval:
