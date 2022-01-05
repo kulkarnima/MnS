@@ -1162,7 +1162,7 @@ components:
 
     DDNMFFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1585,7 +1585,7 @@ components:
                       type: boolean
     EP_N33-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1698,7 +1698,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_Npc4-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1712,7 +1712,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_Npc6-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1726,7 +1726,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress' 
     EP_Npc7-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1740,7 +1740,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
     EP_Npc8-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -1769,7 +1769,7 @@ components:
 
     FiveQICharacteristics-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             fiveQIValue:
@@ -2202,6 +2202,7 @@ components:
        - $ref: '#/components/schemas/ScpFunction-Single'
        - $ref: '#/components/schemas/NefFunction-Single'
        - $ref: '#/components/schemas/NsacfFunction-Single'
+       - $ref: '#/components/schemas/DDNMFFunction-Single'
 
        - $ref: '#/components/schemas/ExternalAmfFunction-Single'
        - $ref: '#/components/schemas/ExternalNrfFunction-Single'
@@ -2241,6 +2242,11 @@ components:
        - $ref: '#/components/schemas/EP_N32-Single'
        - $ref: '#/components/schemas/EP_N33-Single'       
        - $ref: '#/components/schemas/EP_N60-Single'
+
+       - $ref: '#/components/schemas/EP_Npc4-Single'
+       - $ref: '#/components/schemas/EP_Npc6-Single'
+       - $ref: '#/components/schemas/EP_Npc7-Single'
+       - $ref: '#/components/schemas/EP_Npc8-Single'
 
        - $ref: '#/components/schemas/EP_S5C-Single'
        - $ref: '#/components/schemas/EP_S5U-Single'
