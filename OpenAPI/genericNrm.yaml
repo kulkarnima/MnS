@@ -330,7 +330,7 @@ components:
         positioningMethod:
           $ref: '#/components/schemas/positioningMethod-Type'
 
-    LoggedMdtConfig-Type:
+    LoggedMdtConfig:
       description: The configuration parameters which are specific for Logged MDT. See 3GPP TS 32.422 clause 4.3.A for additional details.
       type: object
       properties:
