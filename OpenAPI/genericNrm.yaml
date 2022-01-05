@@ -249,18 +249,6 @@ components:
 
 #-------- Definition of types used in Trace control NRM fragment------------------
                 
-    jobType-Type:
-      type: string
-      description: Specifies whether the TraceJob represents only MDT, Logged MBSFN MDT, Trace or a combined Trace and MDT job. Applicable for Trace, MDT, RCEF and RLF reporting. See 3GPP TS 32.422 clause 5.9a for additional details.
-      enum:
-        - IMMEDIATE_MDT_ONLY
-        - LOGGED_MDT_ONLY
-        - TRACE_ONLY
-        - IMMEDIATE_MDT AND TRACE
-        - RLF_REPORT_ONLY
-        - RCEF_REPORT_ONLY
-        - LOGGED_MBSFN_MDT
-
     TraceConfig:
       description: The configuration parameters which are specific for Trace or combined Trace and Immediate MDT. See 3GPP TS 32.422 clause 4.3.X for additional details.
       type: object
@@ -360,6 +348,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MbsfnArea'
+
+    jobType-Type:
+      type: string
+      description: Specifies whether the TraceJob represents only MDT, Logged MBSFN MDT, Trace or a combined Trace and MDT job. Applicable for Trace, MDT, RCEF and RLF reporting. See 3GPP TS 32.422 clause 5.9a for additional details.
+      enum:
+        - IMMEDIATE_MDT_ONLY
+        - LOGGED_MDT_ONLY
+        - TRACE_ONLY
+        - IMMEDIATE_MDT AND TRACE
+        - RLF_REPORT_ONLY
+        - RCEF_REPORT_ONLY
+        - LOGGED_MBSFN_MDT
 
     listOfInterfaces-Type:
       description: The interfaces to be recorded in the Network Element. See 3GPP TS 32.422 clause 5.5 for additional details.
