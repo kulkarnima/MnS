@@ -1553,9 +1553,9 @@ components:
       description: abstract class used as a container of all TraceJob attributes
       properties:
         jobType:
-          $ref: '#/components/schemas/tjJobType-Type'
+          $ref: '#/components/schemas/jobType-Type'
         plmnTarget:
-          $ref: '#/components/schemas/tjPLMNTarget-Type'
+          $ref: '#/components/schemas/plmnTarget-Type'
         traceReportingConsumerUri:
           $ref: 'comDefs.yaml#/components/schemas/Uri'
         traceCollectionEntityAddress:
