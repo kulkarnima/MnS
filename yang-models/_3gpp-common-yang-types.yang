@@ -152,7 +152,7 @@ module _3gpp-common-yang-types {
       type uint32;
       units seconds;
       description "Time until the associated job is automatically cancelled
-        by the provider. If set, the system decreases the jobTimer with time. 
+        by the MnSProducer. If set, the system decreases the jobTimer with time. 
         When it reaches zero the cancellation of the associated job is 
         initiated.  If not set, there is no time limit for the job.";
     }
