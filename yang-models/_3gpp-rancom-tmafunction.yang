@@ -1,0 +1,156 @@
+module _3gpp-rancom-tmafunction {
+  yang-version 1.1;
+  namespace "urn:3gpp:sa5:_3gpp-rancom-tmafunction";
+  prefix "tma3gpp";
+    
+  import _3gpp-common-yang-types { prefix types3gpp; }
+  import _3gpp-common-top { prefix top3gpp; }
+  import _3gpp-common-managed-element { prefix me3gpp; }
+  import _3gpp-common-managed-function { prefix mf3gpp; }
+
+  organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
+    
+  description "Defines IOC for Tower Mounted Amplifier (TMA).";
+  reference "3GPP TS 28.663
+      Generic Radio Access Network (RAN)
+      Network Resource Model (NRM)
+      Integration Reference Point (IRP);
+      Solution Set (SS) definitions
+      
+      3GPP TS 28.662
+      Generic Radio Access Network (RAN)
+      Network Resource Model (NRM)
+      Integration Reference Point (IRP);
+      Information Service (IS)";
+  
+  revision 2021-10-01 { reference CR-0022; }
+
+  grouping TmaFunctionGrp {
+    description "Represents the TMAFunction IOC.";
+    reference "3GPP TS 28.663";
+    uses mf3gpp:ManagedFunctionGrp;
+    
+    leaf tmaSubunitNumber {
+      description "TMA subunit number. TMA subunits shall be numbered starting 
+        with 1 and proceeding upwards.";
+      reference "Defined in 3GPP TS 37.466";
+      type uint32 { range "1..max"; }   
+    }
+    leaf tmaStateFlag {
+      description "The mode state flag indicating whether the TMA subunit is 
+        in normal mode or in bypass mode. TMA subunits which do not support 
+        bypass mode shall return Normal mode.
+        Mode state flag = 0 represents Normal mode. 
+        Mode state flag = 1 represents Bypass mode.";
+      reference "Defined in 3GPP TS 37.466";
+      type uint32 { range "0..1"; }   
+    }
+    leaf tmaFunctionFlag {
+      description "The function flags and parameters indicating the supported 
+        functionality of the addressed TMA subunit";
+      reference "Defined in 3GPP TS 37.466";
+      type uint32 { range "0..1"; }   
+    }
+    leaf tmaMinGain {
+      description "Minimum supported gain given as gain figure expressed in 
+        dB/4.";
+      reference "Defined in 3GPP TS 37.466";
+      type uint32;
+      config false;
+    }
+    leaf tmaMaxGain {
+      description "Maximum supported gain given as gain figure expressed in 
+        dB/4.";
+      reference "Defined in 3GPP TS 37.466";
+      type uint32;
+      config false;
+    }
+    leaf tmaResolution {
+      description "Gain resolution given as the gain resolution figure 
+        expressed in dB/4.";
+      reference "Defined in 3GPP TS 37.466";
+      type uint32;
+      config false;
+    }
+    leaf tmaGainFigure {
+      description "TMA gain figure, calculated as 4 times the required gain 
+        expressed in dB.";
+      reference "Defined in 3GPP TS 37.466";
+      type uint32;
+    }
+    leaf tmaNumberOfSubunits {
+      description "The number of subunits controlled by the secondary device.";
+      reference "Defined in 3GPP TS 37.466";
+      type uint32;
+      config false;
+    }
+    leaf tmaBaseStationId {
+      description "Base station ID.";
+      reference "Data field defined in Table B.3 of 3GPP TS 37.466";
+      type string;
+    }
+    leaf tmaSectorId {
+      description "Sector ID.";
+      reference "Data field defined in Table B.3 of 3GPP TS 37.466";
+      type string;
+    }
+    leaf tmaAntennaBearing {
+      description "Antenna bearing.";
+      reference "Data field defined in Table B.3 of 3GPP TS 37.466";
+      type uint16;
+    }
+    leaf tmaInstalledMechanicalTilt {
+      description "Installed mechanical tilt (degrees * 10).";
+      reference "Data field defined in Table B.3 of 3GPP TS 37.466";
+      type types3gpp:TenthOfDegrees;
+    }
+    leaf tmaSubunitType {
+      description "TMA subunit type.";
+      reference "Data field defined in Table B.3 of 3GPP TS 37.466";
+      type uint32;
+    }
+    leaf-list tmaSubunitRxFrequencyBand {
+      description "TMA subunit receive frequency band.";
+      reference "Data field defined in Table B.3 of 3GPP TS 37.466";
+      type uint16;
+      min-elements 2;
+      max-elements 2;
+    }
+    leaf-list tmaSubunitTxFrequencyBand {
+      description "TMA subunit transmit frequency band.";
+      reference "Data field defined in Table B.3 of 3GPP TS 37.466";
+      type uint16;
+      min-elements 2;
+      max-elements 2;
+    }
+    leaf tmaGainResolution {
+      description "Gain resolution given as the gain resolution figure 
+        expressed in dB/4.";
+      reference "Data field defined in Table B.3 of 3GPP TS 37.466";
+      type uint32;
+    }
+
+    leaf-list theCellList {
+      description "Contains the DNs of EUtranGenericCell or UtranGenericCell 
+        if associations between them exist.";
+      config false;
+      type types3gpp:DistinguishedName;
+    }
+
+  }
+  
+  augment "/me3gpp:ManagedElement" {
+    list TmaFunction {
+      description "Represents a Tower Mounted Amplifier (TMA) or a number of 
+        TMA subunits within one TMA, each separately addressable by a specific 
+        index at the application layer.";
+      uses top3gpp:Top_Grp;
+      key id;
+      container attributes {
+        uses TmaFunctionGrp;
+      }
+      uses mf3gpp:ManagedFunctionContainedClasses;
+    }
+  }
+}

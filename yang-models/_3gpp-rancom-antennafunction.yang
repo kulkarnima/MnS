@@ -1,0 +1,125 @@
+module _3gpp-rancom-antennafunction {
+  yang-version 1.1;
+  namespace "urn:3gpp:sa5:_3gpp-rancom-antennafunction";
+  prefix "ant3gpp";
+    
+  import _3gpp-common-yang-types { prefix types3gpp; }
+  import _3gpp-common-top { prefix top3gpp; }
+  import _3gpp-common-managed-element { prefix me3gpp; }
+  import _3gpp-common-managed-function { prefix mf3gpp; }
+
+  organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
+    
+  description "Defines IOC for antenna function.";
+  reference "3GPP TS 28.663
+      Generic Radio Access Network (RAN)
+      Network Resource Model (NRM)
+      Integration Reference Point (IRP);
+      Solution Set (SS) definitions
+      
+      3GPP TS 28.662
+      Generic Radio Access Network (RAN)
+      Network Resource Model (NRM)
+      Integration Reference Point (IRP);
+      Information Service (IS)";
+  
+  revision 2021-10-01 { reference CR-0022; }
+
+  grouping AntennaFunctionGrp {
+    description "Represents the AntennaFunction IOC.";
+
+    uses mf3gpp:ManagedFunctionGrp;
+    
+    leaf retTiltValue {
+      description "The electrical tilt setting of the antenna. The tilt value 
+        is 10 times the antenna electrical tilt angle in degrees.";
+      reference "See 'Tilt value' in Ref. 3GPP TS 37.466";
+      type types3gpp:TenthOfDegrees;
+    }
+    leaf bearing {
+      description "The bearing in degrees that the antenna is pointing in, 
+      expressed as bearing value times 10.";
+      reference "See 'Antenna bearing' in 3GPP TS 37.463";
+      type types3gpp:TenthOfDegrees;
+    }
+    leaf retGroupName {
+      description "A textual, alpha-numeric string to define a logical 
+        grouping of antennas which may be in different cells.
+        This attribute permits the definition of a logical grouping of the 
+        antennas.  This may be defined either at installation time, or by 
+        management activity to provisioning the group name via the Itf-N.";
+      type string { length "0..80"; }
+    }
+    leaf height {
+      description "The height of an antenna above sea level. An integral value 
+        representing a number of meters in 0.1 meter increments.
+        Note: The value of this attribute has no operational impact on the 
+        network, e.g. the NE behavior is not affected by the value setting of 
+        this attribute.  Note as well that this attribute is not supported 
+        over the Iuant interface according to Ref. 3GPP TS 37.466.";
+      type uint32;
+      units decimeter;
+    }
+    leaf maxAzimuthValue {
+      description "The maximum amount of change of azimuth the RET system can 
+        support. This is the change in degrees clockwise from bearing.   
+        Note: The value of this attribute has no operational impact on the 
+        network, e.g. the NE behavior is not affected by the value setting of 
+        this attribute.  Note as well that this attribute is not supported 
+        over the Iuant interface according to Ref. 3GPP TS 37.466.";
+      type types3gpp:TenthOfDegrees;
+    }
+    leaf minAzimuthValue {
+      description "The minimum amount of change of azimuth the RET system can 
+        support. This is the change in degrees counter-clockwise from bearing. 
+        Note: The value of this attribute has no operational impact on the 
+        network, e.g. the NE behavior is not affected by the value setting of 
+        this attribute.  Note as well that this attribute is not supported 
+        over the Iuant interface according to Ref. 3GPP TS 37.466.";
+      type types3gpp:TenthOfDegrees;
+    }
+    leaf horizBeamwidth {
+      description "The 3 dB power beamwidth of the antenna pattern in the 
+        horizontal plane. A single integral value corresponding to an angle 
+        in degrees between 0 and 360. A value of 360 indicates an 
+        omni-directional antenna.
+        Note: The value of this attribute has no operational impact on the 
+        network, e.g. the NE behavior is not affected by the value setting of 
+        this attribute.  Note as well that this attribute is not supported 
+        over the Iuant interface according to Ref. 3GPP TS 37.466.";
+      type uint32 { range 0..360; }
+    }
+    leaf vertBeamwidth {
+      description "The 3 dB power beamwidth of the antenna pattern in the 
+        vertical plane. A single integral value corresponding to an angle 
+        in degrees between 0 and 180.
+        Note: The value of this attribute has no operational impact on the 
+        network, e.g. the NE behavior is not affected by the value setting of 
+        this attribute.  Note as well that this attribute is not supported 
+        over the Iuant interface according to Ref. 3GPP TS 37.466.";
+      type uint32 { range 0..180; }
+    }
+
+    leaf-list theCellList {
+      description "Contains the DNs of EUtranGenericCell or UtranGenericCell 
+        if associations between them exist.";
+      config false;
+      type types3gpp:DistinguishedName;
+    }
+
+  }
+  
+  augment "/me3gpp:ManagedElement" {
+    list AntennaFunction {
+      description "Represents an array of radiating elements that may be 
+        tilted to adjust the RF coverage of a cell(s).";
+      uses top3gpp:Top_Grp;
+      key id;
+      container attributes {
+        uses AntennaFunctionGrp;
+      }
+      uses mf3gpp:ManagedFunctionContainedClasses;
+    }
+  }
+}

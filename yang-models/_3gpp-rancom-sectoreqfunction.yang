@@ -1,0 +1,115 @@
+module _3gpp-rancom-sectoreqfunction {
+  yang-version 1.1;
+  namespace "urn:3gpp:sa5:_3gpp-rancom-sectoreqfunction";
+  prefix "sef3gpp";
+    
+  import _3gpp-common-yang-types { prefix types3gpp; }
+  import _3gpp-common-top { prefix top3gpp; }
+  import _3gpp-common-managed-element { prefix me3gpp; }
+  import _3gpp-common-managed-function { prefix mf3gpp; }
+
+  organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
+    
+  description "Defines IOC for sector equipment function.";
+  reference "3GPP TS 28.663
+      Generic Radio Access Network (RAN)
+      Network Resource Model (NRM)
+      Integration Reference Point (IRP);
+      Solution Set (SS) definitions
+      
+      3GPP TS 28.662
+      Generic Radio Access Network (RAN)
+      Network Resource Model (NRM)
+      Integration Reference Point (IRP);
+      Information Service (IS)";
+  
+  revision 2021-10-01 { reference CR-0022; }
+
+  grouping SectorEquipmentFunctionGrp {
+    description "Represents the SectorEquipmentFunction IOC.";
+
+    uses mf3gpp:ManagedFunctionGrp;
+    
+    leaf fqBand {
+      description "This is the LTE frequency band supported by the hardware 
+        associated with the SectorEquipmentFunction. The earfcnDl and earfcnUl 
+        of cells associated with the SectorEquipmentFunction must be assigned 
+        with value within this fqBand value.";
+      reference "Valid frequency band values are specified in clause 5 Table 
+        5.2-1 'E-UTRA frequency band' of 3GPP TS 36.104";
+      type uint32;
+      config false;
+    }
+    leaf-list eUTRANFqBands {
+      description "This is the list of LTE frequency bands supported by the 
+        hardware associated with the SectorEquipmentFunction. The earfcnDl and 
+        earfcnUl or earfcn of LTE cells associated with the 
+        SectorEquipmentFunction must be assigned with value within one of the 
+        specified eUTRANFqBands values.";
+      reference "Valid frequency band values are specified in sub-clause 5.7.3 
+        in 3GPP TS 36.104";
+      type string;
+      config false;
+    }
+    leaf-list nRFqBands {
+      description "This is the list of NR frequency bands supported by the 
+        hardware associated with the SectorEquipmentFunction. 
+        The arfcnDl and arfcnUl of the NRSectorCarrier must be assigned with 
+        value within one of the specified nRFqBands values - if the attributes 
+        on NRSectorCarriers are set.
+        The arfcnDl and arfcnUl of the NRCellDU associated with the 
+        NRSectorCarrier must be assigned with value within one of the specified 
+        nRFqBands values - if there is a NRCellDU associated with the 
+        NRSectorCarrier.";
+      reference "Valid frequency band values are specified in sub-clause 5.4.2 
+        in 3GPP TS 38.104";
+      type string;
+      config false;
+    }
+    leaf confOutputPower {
+      description "It defines the allowed total power to use for all cells 
+        together in this sector. It may be set by the operator and/or limited 
+        by HW limitation or licensed power, e.g.: 20, 40, 60, 80, 120 watts.";
+      type uint32;
+      units watt ;
+    }
+
+    leaf-list theTMAList {
+      description "Contains the DNs of one or more TMAFunction.";
+      type types3gpp:DistinguishedName;
+      config false;
+    }
+    leaf-list theAntennaList {
+      description "Contains the DNs of one or more AntennaFunction.";
+      type types3gpp:DistinguishedName;
+      config false;
+    }
+    leaf-list theCellList {
+      description "Contains the DNs of EUtranGenericCell or UtranGenericCell 
+        if associations between them exist.";
+      type types3gpp:DistinguishedName;
+      config false;
+    }
+    leaf-list theNRSectorCarrierList {
+      description "Contains the DNs of one or more NRSectorCarrier.";
+      type types3gpp:DistinguishedName;
+      config false;
+    }
+
+  }
+  
+  augment "/me3gpp:ManagedElement" {
+    list SectorEquipmentFunction {
+      description "Represents a set of cells within a geographical area that 
+        has common functions relating to AntennaFunction, TMAFunction and 
+        supporting equipment, such as power amplifier.";
+      uses top3gpp:Top_Grp;
+      key id;
+      container attributes {
+        uses SectorEquipmentFunctionGrp;
+      }
+      uses mf3gpp:ManagedFunctionContainedClasses;
+    }
+  }
+}

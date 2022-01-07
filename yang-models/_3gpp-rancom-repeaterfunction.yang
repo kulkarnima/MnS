@@ -1,0 +1,116 @@
+module _3gpp-rancom-repeaterfunction {
+  yang-version 1.1;
+  namespace "urn:3gpp:sa5:_3gpp-rancom-repeaterfunction";
+  prefix "rep3gpp";
+    
+  import _3gpp-common-yang-types { prefix types3gpp; }
+  import _3gpp-common-top { prefix top3gpp; }
+  import _3gpp-common-managed-element { prefix me3gpp; }
+  import _3gpp-common-managed-function { prefix mf3gpp; }
+
+  organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
+    
+  description "Defines IOC for Tower Mounted Amplifier (TMA).";
+  reference "3GPP TS 28.663
+      Generic Radio Access Network (RAN)
+      Network Resource Model (NRM)
+      Integration Reference Point (IRP);
+      Solution Set (SS) definitions
+      
+      3GPP TS 28.662
+      Generic Radio Access Network (RAN)
+      Network Resource Model (NRM)
+      Integration Reference Point (IRP);
+      Information Service (IS)";
+  
+  revision 2021-10-01 { reference CR-0022; }
+
+  grouping RepeaterFunctionGrp {
+    description "Represents the RepeaterFunction IOC.";
+    
+    uses mf3gpp:ManagedFunctionGrp;
+    
+    leaf priority {
+      description "The priority of a repeater decided by an operator.";
+      type uint32;
+    }
+    leaf latitude {
+      description "The latitude of the antenna location based on World 
+        Geodetic System (1984 version) global reference frame (WGS 84). 
+        Positive values correspond to the northern hemisphere.";
+      type types3gpp:Latitude;
+      config false;
+    }
+    leaf longitude {
+      description "The longitude of the antenna location based on World 
+        Geodetic System (1984 version) global reference frame (WGS 84). 
+        Positive values correspond to degrees east of 0 degrees longitude.";
+      type types3gpp:Longitude;
+      config false;
+    }
+    leaf ctrlConnMode {
+      description "Remote communication mode used by a repeater to send and 
+        receive control message, such as GSM SMS, WCDMA SMS, Circle Switch 
+        Data-CSD, Package Switch Dat-IP, Serial port.";
+      type enumeration {
+        enum GSM_SMS;
+        enum WCDMA_SMS;                           
+        enum CIRCLE_SWITCH_DATA_CSD;                           
+        enum PACKAGE_SWITCH_DAT_IP;                           
+        enum SERIAL_PORT;                           
+      }
+    }
+    leaf environmentInfo {
+      description "The repeater device is located either in the building or 
+        out of the building.";
+      type string;
+      config false;
+    }
+    leaf powerSwitch {
+      description "Power switch of device which has two status: ON/OFF.";
+      type types3gpp:OnOff;
+    }
+    leaf ulAttenuation {
+      description "Uplink signal attenuation of the device to change uplink 
+        gain.";
+      type uint32;
+    }
+    leaf dlAttenuation {
+      description "Downlink signal attenuation of the device to change 
+        downlink gain.";
+      type uint32;
+    }
+    leaf firmwareVer {
+      description "Version of the device firmware.";
+      type string;
+      config false;
+    }
+    leaf repeaterType {
+      description "The repeater type defined by operator, such as wide band, 
+        frequency selective, indoor and fiber optic.";
+      type enumeration {
+        enum WIDE_BAND_REPT_FUNCTION;
+        enum FREQ_SEL_REPT_FUNCTION;
+        enum FIBER_REPT_FUNCTION;
+        enum INDOOR_REPT_FUNCTION;
+        enum FREQ_SHIFT_REPT_FUNCTION;
+      }
+      config false;
+    }
+
+  }
+  
+  augment "/me3gpp:ManagedElement" {
+    list RepeaterFunction {
+      description "Represents the management aspect of a repeater.";
+      reference "3GPP TS 28.663, 3GPP TS 25.106";
+      key id;
+      uses top3gpp:Top_Grp;
+      container attributes {
+        uses RepeaterFunctionGrp;
+      }
+      uses mf3gpp:ManagedFunctionContainedClasses;
+    }
+  }
+}

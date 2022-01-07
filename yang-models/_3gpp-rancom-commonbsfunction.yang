@@ -1,0 +1,68 @@
+module _3gpp-rancom-commonbsfunction {
+  yang-version 1.1;
+  namespace "urn:3gpp:sa5:_3gpp-rancom-commonbsfunction";
+  prefix "combs3gpp";
+    
+  import _3gpp-common-yang-types { prefix types3gpp; }
+  import _3gpp-common-top { prefix top3gpp; }
+  import _3gpp-common-managed-element { prefix me3gpp; }
+  import _3gpp-common-managed-function { prefix mf3gpp; }
+
+  organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
+    
+  description "Defines IOC for common base station functionality.";
+  reference "3GPP TS 28.663
+      Generic Radio Access Network (RAN)
+      Network Resource Model (NRM)
+      Integration Reference Point (IRP);
+      Solution Set (SS) definitions
+      
+      3GPP TS 28.662
+      Generic Radio Access Network (RAN)
+      Network Resource Model (NRM)
+      Integration Reference Point (IRP);
+      Information Service (IS)";
+  
+  revision 2021-10-01 { reference CR-0022; }
+
+  grouping CommonBsFunctionGrp {
+    description "Represents the CommonBsFunction IOC.";
+    uses mf3gpp:ManagedFunctionGrp;
+    
+    leaf-list sharedTechnologies {
+      description "Defines the radio access technologies sharing the common 
+        functionalities of a Base Station (BS).";
+      type enumeration {
+        enum GSM;
+        enum UMTS;                           
+        enum LTE;                           
+        enum NR;                           
+      }
+    }
+
+    leaf-list theProxyBsList {
+      description "A CommonBsFunction instance serves a number of 
+        ProxyBsFunction instances. This CommonBsFunction role-attribute 
+        contains a list of DNs of ENBFunction (3GPP TS 28.658), NodeBFunction 
+        (3GPP TS 28.652) and BssFunction (3GPP TS 28.655) that it serves.";
+      reference "3GPP TS 28.652, 3GPP TS 28.655, 3GPP TS 28.658";
+      type types3gpp:DistinguishedName;
+      config false;
+    }
+
+  }
+  
+  augment "/me3gpp:ManagedElement" {
+    list CommonBsFunction {
+      description "Represents common aspects of Base Station (BS) functionality
+        shared by several radio access technologies.";
+      uses top3gpp:Top_Grp;
+      key id;
+      container attributes {
+        uses CommonBsFunctionGrp;
+      }
+      uses mf3gpp:ManagedFunctionContainedClasses;
+    }
+  }
+}
