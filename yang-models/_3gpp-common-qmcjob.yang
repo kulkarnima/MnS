@@ -34,7 +34,8 @@ module _3gpp-common-qmcjob {
         range "0..2";
       }
       mandatory true;
-      description "Identifies an individual UE for a specified end user service/end user service type.    
+      description "Identifies an individual UE for a specified end user service/end user service
+        type.    
         allowedValues: DASH (0), MTSI (1), VR (2).";
     }
 
