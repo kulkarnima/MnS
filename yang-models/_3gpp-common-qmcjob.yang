@@ -110,7 +110,7 @@ module _3gpp-common-qmcjob {
    description "Helps with augmenting QMBJob into multple places.";
     list QMCJob {
       description "Represents the QMCJob IOC.";
-      key "id";
+      key id;
       uses top3gpp:Top_Grp;
       container attributes {
         uses QMCJobGrp;
