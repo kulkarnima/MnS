@@ -106,25 +106,23 @@ module _3gpp-common-qmcjob {
     }
   }
     
-   augment "/subnet3gpp:SubNetwork" {
-     list QMCJob {
-      description "Represents the QMCJOb IOC.";
+   grouping QMCJob {
+    list QMCJob {
+      description "Represents the QMCJob IOC.";
       key id;
-      uses top3gpp:Top_Grp;      
+      uses top3gpp:Top_Grp;
       container attributes {
         uses QMCJobGrp;
-       }
       }
+    }
+  }
+
+
+   augment "/subnet3gpp:SubNetwork" {
+        uses QMCJob;
    }
 
-  augment "/me3gpp:ManagedElement" {
-     list QMCJob {
-      description "Represents the QMCJOb IOC.";
-      key id;   
-      uses top3gpp:Top_Grp;      
-      container attributes {
-        uses QMCJobGrp;
-       }
-     }
+   augment "/me3gpp:ManagedElement" {
+        uses QMCJob;
   }
 }
