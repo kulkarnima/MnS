@@ -116,6 +116,12 @@ module _3gpp-common-qmcjob {
       key "sd sst";
       uses types5g3gpp:SNssai;
     }
+
+    leaf uEQMCConfigurationFileRef {
+      type string;
+      description "Provides the reference to the UE QMC configuration file.";
+      mandatory true;
+    }
   }
     
    grouping QMCJobSubTree {
@@ -138,4 +144,5 @@ module _3gpp-common-qmcjob {
         uses QMCJobSubTree;
    }
   }
+}
 }
