@@ -56,7 +56,7 @@ module _3gpp-common-qmcjob {
         This attribute shall be present when Management Based Activation is used.";
     }
 
-    leaf qoECollectionEntityAddress {
+    leaf qoeCollectionEntityAddress {
       type union {
         type inet:uri;
         type inet:ip-address;
@@ -66,7 +66,7 @@ module _3gpp-common-qmcjob {
       Ipv4 or Ipv6 address(es) may be used.";
     }
 
-    list pLMNTarget {
+    list plmnTarget {
       min-elements 0;
       max-elements 1;
       description "This parameter defines the PLMN for which sessions shall be selected in the
@@ -117,7 +117,7 @@ module _3gpp-common-qmcjob {
       uses types5g3gpp:SNssai;
     }
 
-    leaf qMCUeConfigurationFileRef {
+    leaf qmcUeConfigurationFileRef {
       type string;
       description "Provides the reference to the UE QMC configuration file.";
       mandatory true;
