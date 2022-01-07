@@ -33,24 +33,24 @@ module _3gpp-common-filemanagement {
       type yang3gpp:JobProgress;
     }
   }
+
+  grouping FileDownloadJobSubtree {
+    description "Helps augmenting FileDownloadJob into multiple places.";
+    list FileDownloadJob {
+      description "Specifies the FileDownloadJob IOC, see 3GPP TS 28.622.";
+      key "id";
+      uses top3gpp:Top_Grp;
+      container attributes {
+        uses FileDownloadJobGrp;
+      }
+    }  
+  }
+  
   augment "/subnet3gpp:SubNetwork" {
-  list FileDownloadJob {
-    description "Represents the FileDownloadJob IOC.";
-    key id;   
-    uses top3gpp:Top_Grp;      
-    container attributes {
-      uses FileDownloadJobGrp;
-    }
+    uses FileDownloadJob;
   }
-  }
+
   augment "/me3gpp:ManagedElement" {
-  list FileDownloadJob {
-    description "Represents the FileDownloadJob IOC.";
-    key id;   
-    uses top3gpp:Top_Grp;      
-    container attributes {
-      uses FileDownloadJobGrp;
-    }
-  }
+    uses FileDownloadJob;
   }
 }
