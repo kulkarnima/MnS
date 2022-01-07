@@ -30,13 +30,19 @@ module _3gpp-common-qmcjob {
     
   grouping QMCJobGrp {
     leaf serviceType {
-      type uint32 {
-        range "0..2";
+      description "Identifies an individual UE for a specified end user service/end user service
+        type.";
+      type enumeration {
+      enum DASH {
+        value 0;
+      }
+      enum MTSI {
+        value 1;
+      }
+      enum VR {
+        value 2;
       }
       mandatory true;
-      description "Identifies an individual UE for a specified end user service/end user service
-        type.    
-        allowedValues: DASH (0), MTSI (1), VR (2).";
     }
 
     leaf areaScope {
@@ -74,14 +80,18 @@ module _3gpp-common-qmcjob {
     }
 
     leaf qoeTarget {
-      type uint32 {
-        range "0..1";
-      }
-      mandatory true;
+      leaf serviceType {
       description "The QoE target parameter specifies it the QMC is area based or individual UE
-        based.
-          -   Area based QMC (0)
-          -   individual UE based (1)";
+        based.";
+      type enumeration {
+      enum AREA_BASED_QMC {
+        value 0;
+      }
+      enum INDIVIDUAL_BASED_QMC {
+        value 1;
+      }
+    }
+    mandatory true;
     }
 
     leaf qoeReference {
