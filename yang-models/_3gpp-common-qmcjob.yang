@@ -106,24 +106,23 @@ module _3gpp-common-qmcjob {
     }
   }
     
-   grouping QMCJob {
+   grouping QMCJobSubTree {
+   description "Helps with augmenting QMBJob into multple places.";
     list QMCJob {
       description "Represents the QMCJob IOC.";
-      key id;
+      key "id";
       uses top3gpp:Top_Grp;
       container attributes {
-        key id;
         uses QMCJobGrp;
       }
     }
   }
-
-
+  
    augment "/subnet3gpp:SubNetwork" {
-        uses QMCJob;
+        uses QMCJobSubTree;
    }
 
    augment "/me3gpp:ManagedElement" {
-        uses QMCJob;
+        uses QMCJobSubTree;
   }
 }
