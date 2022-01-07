@@ -17,7 +17,7 @@ submodule _3gpp-ns-nrm-serviceprofile {
     ";
 
   revision 2021-12-14 {
-    reference "CR-xxxx";
+    reference "CR-0669";
   }
   
   revision 2020-06-02 {
