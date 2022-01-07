@@ -1,0 +1,149 @@
+module _3gpp-inv-inventoryunit {
+  yang-version 1.1;
+  namespace "urn:3gpp:sa5:_3gpp-inv-inventoryunit";
+  prefix inv3gpp;
+
+  import ietf-yang-types { prefix yang; }
+  import _3gpp-common-yang-types { prefix types3gpp; }
+  import _3gpp-common-top { prefix top3gpp; }
+  import _3gpp-common-managed-element { prefix me3gpp; }
+
+  organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
+
+  description "This model defines a YANG mapping of the inventory data IOC for 
+    Alternative 1 of the IM NRM, TS 28.632.";
+  reference "3GPP TS 28.633
+     Inventory Management (IM)
+     Network Resource Model (NRM)
+     Integration Reference Point (IRP);
+     Solution Set (SS) definitions
+  
+     3GPP TS 28.632
+     Inventory Management (IM)
+     Network Resource Model (NRM)
+     Integration Reference Point (IRP);
+     Information Service (IS)";
+
+  revision 2021-10-01 { reference "CR-0009"; }
+
+  grouping InventoryUnitGrp {
+    description "Represents the InventoryUnit IOC.";
+    
+    leaf inventoryUnitType {
+      description "Type of inventory unit.";
+      reference "3GPP TS 32.690";
+      type string;
+      config false;
+    }
+    leaf vendorUnitFamilyType {
+      description "Mnemonic of inventory unit family type (e.g. Fan, PSU) 
+        assigned by vendor.";
+      type string;
+      config false;
+    }
+    leaf vendorUnitTypeNumber {
+      description "A vendor/manufacturer defined and assigned number which 
+        uniquely identifies the unit type and optionally for backward 
+        compatibility reasons only, also version (used for replacing hardware 
+        units, spares).";
+      type string;
+      config false;
+    }
+    leaf versionNumber {
+      description "The version information related to vendorUnitTypeNumber.";
+      type string;
+      config false;
+    }
+    leaf vendorName {
+      description "Name of inventory unit vendor (or vendors may provide 
+        manufacturer name)";
+      type string;
+      config false;
+    }
+    leaf serialNumber {
+      description "Serial number of inventory unit.";
+      type string;
+      config false;
+    }
+    leaf dateOfManufacture {
+      description "Date of manufacture of inventory unit";
+      type yang:date-and-time;
+      config false;
+    }
+    leaf dateOfLastService {
+      description "Date of last service or repair of inventory unit";
+      type yang:date-and-time;
+      config false;
+    }
+    leaf unitPosition {
+      description "Position of inventory unit (e.g. Rack, shelf, slot, etc.).
+        Depending on the implementation of the inventory unit in the managed 
+        system, the value and meaning of this attribute may vary. 
+        For example, if a system has three levels and types of inventory units 
+        representing Rack, Shelf and Slot respectively (i.e. the Managed 
+        Element contains multiple Rack inventory units, each Rack inventory 
+        unit contains multiple Shelf inventory units and each Shelf inventory 
+        unit contains multiple Slot inventory units), then for this example:
+        - for the Inventory Unit representing a Rack, the Frame 
+          Identification code may be used as the value of this attribute;
+        - for the Inventory Unit representing a Shelf, the Rack Shelf code may 
+          be used as the value of this attribute;
+        - for the Inventory Unit representing a Slot, the position code may be 
+          used as the value of this attribute.";
+      type string;
+      config false;
+    }
+    leaf manufacturerData {
+      description "Manufacturer specific data of inventory unit.";
+      type string;
+      config false;
+    }
+    
+    leaf relatedFunction {
+      description "DN of related ManagedFunction.";
+      type types3gpp:DistinguishedName;
+      config false;
+    }
+
+  }
+
+  augment "/me3gpp:ManagedElement" {
+    list InventoryUnit {
+      uses top3gpp:Top_Grp;
+      key id;
+      description "Represents inventory information for an Inventory Unit.";
+      container attributes {
+        uses InventoryUnitGrp;
+        
+        // Data nodes that follow provide recursive containment
+        leaf-list parents {
+          type leafref {
+            path "../../../InventoryUnit/id";
+          }
+          description
+            "Reference to all containing InventoryUnit instances in
+             strict order from the root down to the immediate
+             parent (i.e. the full path from the top level InventoryUnit 
+             and downward).
+             If InventoryUnit instances form a containment hierarchy this is
+             modeled using references between the child InventoryUnits
+             and the parent InventoryUnit.
+             This reference MUST NOT be present for the top level
+             InventoryUnit and MUST be present for all InventoryUnits below 
+             it.";
+        }
+        leaf-list containedChildren {
+          type leafref {
+            path "../../../InventoryUnit/id";
+          }
+          description
+            "Reference to all directly contained InventoryUnit instances.
+             If InventoryUnit instances form a containment hierarchy
+             this is modeled using references between the child
+             InventoryUnits and the parent InventoryUnit.";
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,145 @@
+module _3gpp-inv-tmainventoryunit {
+  yang-version 1.1;
+  namespace "urn:3gpp:sa5:_3gpp-inv-tmainventoryunit";
+  prefix tmainv3gpp;
+    
+  import ietf-yang-types { prefix yang; }
+  import _3gpp-common-top { prefix top3gpp; }
+  import _3gpp-common-managed-element { prefix me3gpp; }
+  import _3gpp-inv-inventoryunit { prefix inv3gpp; }
+
+  organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
+    
+  description "This model defines a YANG mapping of the Tower Mounted 
+    Amplifier (TMA) inventory data IOC for Alternative 1 of the IM NRM, TS 
+    28.632.";
+  reference "3GPP TS 28.633
+     Inventory Management (IM)
+     Network Resource Model (NRM)
+     Integration Reference Point (IRP);
+     Solution Set (SS) definitions
+  
+     3GPP TS 28.632
+     Inventory Management (IM)
+     Network Resource Model (NRM)
+     Integration Reference Point (IRP);
+     Information Service (IS)";
+  
+  revision 2021-10-01 { reference CR-0009 ; }
+
+  grouping TmaInventoryUnitGrp {
+    description "Represents the TmaInventoryUnit IOC.";
+    uses inv3gpp:InventoryUnitGrp;
+
+    leaf tmaNumberOfNon-LinearGainValues {
+      description "Number of non linear gain values supported (N).";
+      reference "Defined in 3GPP TS 37.466";
+      type uint32;
+      config false;
+    }
+    leaf tmaNon-LinearGainValue {
+      description "Non linear gain supported value number (expressed in 
+        dB/4).";
+      reference "Defined in 3GPP TS 37.466";
+      type uint32;
+    }
+    leaf tmaAdditionalDataFieldNumber {
+      description "Identifies a standard data field which has no operational 
+        impact. Used by the procedures SetDeviceData and GetDevicedata.";
+      reference "Data field defined in Table B.3 of 3GPP TS 37.466";
+      type uint32;
+    }
+    leaf tmaAntennaModelNumber {
+      description "Antenna model number.";
+      reference "Data field defined in Table B.3 of 3GPP TS 37.466";
+      type string;
+    }
+    leaf tmaAntennaOperatingBands {
+      description "Antenna operating band(s). Not supported in this release.";
+      reference "Data field defined in Table B.3 of 3GPP TS 37.466";
+      type uint32;
+    }
+    leaf-list tmaBeamwidthForEachOpBandInBandOrder {
+      description "Beamwidth for each operating band in band order (deg), 
+        beginning with lowest band. The lowest band is transmitted within the 
+        first 16-bit value. Not supported in this release.";
+        // If the leaf-list is present it MUST have exactly four entries.
+      reference "Data field defined in Table B.3 of 3GPP TS 37.466";
+      type uint16;
+      max-elements 4;
+    }
+    leaf-list tmaGainForEachOpBandInBandOrder {
+      description "Gain [dBi] for each operating band in band order, expressed 
+        in gain value times 10, beginning with the lowest band. The lowest band 
+        is transmitted within the first 8-bit value. Not supported in this 
+        release.";
+        // If the leaf-list is present it MUST have exactly four entries.
+      reference "Data field defined in Table B.3 of 3GPP TS 37.466";
+      type uint8;
+      max-elements 4;
+    }
+    leaf tmaInstallationDate {
+      description "Installation date.";
+      reference "Data field defined in Table B.3 of 3GPP TS 37.466";
+      type yang:date-and-time;
+    }
+    leaf tmaInstallersId {
+      description "Installer's ID.";
+      reference "Data field defined in Table B.3 of 3GPP TS 37.466";
+      type string;
+    }
+    leaf tmaMaxSupportedGain {
+      description "Maximum supported gain given as gain figure expressed in 
+        dB/4.";
+      reference "Defined in 3GPP TS 37.466";
+      type uint32;
+    }
+    leaf tmaMinSupportedGain {
+      description "Minimum supported gain given as gain figure expressed in 
+        dB/4.";
+      reference "Defined in 3GPP TS 37.466";
+      type uint32;
+    }
+  }
+  
+  augment "/me3gpp:ManagedElement" {
+    list TmaInventoryUnit {
+      uses top3gpp:Top_Grp;
+      key id;
+      description "Represents inventory information for a Tower Mounted 
+        Amplifier Unit.";
+      container attributes {
+        uses TmaInventoryUnitGrp;
+        
+        // Data nodes that follow provide recursive containment
+        leaf-list parents {
+          type leafref {
+            path "../../../TmaInventoryUnit/id";
+          }
+          description
+            "Reference to all containing TmaInventoryUnit instances in
+             strict order from the root down to the immediate parent (i.e. 
+             the full path from the top level TmaInventoryUnit and downward).
+             If TmaInventoryUnit instances form a containment hierarchy this is
+             modeled using references between the child TmaInventoryUnits
+             and the parent InventoryUnit.
+             This reference MUST NOT be present for the top level
+             TmaInventoryUnit and MUST be present for all TmaInventoryUnits 
+             below it.";
+        }
+        leaf-list containedChildren {
+          type leafref {
+            path "../../../TmaInventoryUnit/id";
+          }
+          description
+            "Reference to all directly contained TmaInventoryUnit instances.
+             If TmaInventoryUnit instances form a containment hierarchy
+             this is modeled using references between the child
+             TmaInventoryUnits and the parent TmaInventoryUnit.";
+        }
+      }
+    }
+  }
+  
+}

@@ -1,0 +1,144 @@
+module _3gpp-inv-antennainventoryunit {
+  yang-version 1.1;
+  namespace "urn:3gpp:sa5:_3gpp-inv-antennainventoryunit";
+  prefix "antinv3gpp";
+    
+  import _3gpp-common-yang-types { prefix types3gpp; }
+  import _3gpp-common-top { prefix top3gpp; }
+  import _3gpp-common-managed-element { prefix me3gpp; }
+  import _3gpp-inv-inventoryunit { prefix inv3gpp; }
+
+  organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
+    
+  description "This model defines a YANG mapping of the antenna inventory data 
+    IOC for Alternative 1 of the IM NRM, TS 28.632.";
+  reference "3GPP TS 28.633
+     Inventory Management (IM)
+     Network Resource Model (NRM)
+     Integration Reference Point (IRP);
+     Solution Set (SS) definitions
+  
+     3GPP TS 28.632
+     Inventory Management (IM)
+     Network Resource Model (NRM)
+     Integration Reference Point (IRP);
+     Information Service (IS)";
+  
+  revision 2021-10-01 { reference CR-0009 ; }
+
+  grouping AntennaInventoryUnitGrp {
+    description "Represents the AntennaInventoryUnit IOC.";
+    reference "3GPP TS 28.633";
+    uses inv3gpp:InventoryUnitGrp;
+    
+    leaf maxTiltValue {
+      description "The maximum amount of electrical tilt the RET system can 
+        support, expressed in tilt value times 10.";
+      reference "See 'Maximum supported tilt' in Ref. 3GPP TS 37.466";
+      type types3gpp:TenthOfDegrees;
+    }
+    leaf minTiltValue {
+      description "The minimum amount of electrical tilt the RET system can 
+        support, expressed in tilt value times 10.";
+      reference "See 'Minimum supported tilt' in Ref. 3GPP TS 37.466";
+      type types3gpp:TenthOfDegrees;
+    }
+    leaf mechanicalOffset {
+      description "Non-adjustable tilt value, which is imparted to the antenna 
+        due to the physical installation. The actual tilt at any point in time 
+        is the summation of mechanicalOffset and retTiltValue. 
+        Note: The value of this attribute has no operational impact on the 
+        network, e.g. the NE behavior is not affected by the value setting of 
+        this attribute.  Note as well that this attribute is not supported 
+        over the Iuant interface according to 3GPP TS 37.466.";
+      type types3gpp:TenthOfDegrees;
+    }
+    leaf baseElevation {
+      description "The elevation in meters above sea level at the base of the 
+        antenna structure. This value, when subtracted from height (see TS 
+        28.662), provides the height of the antenna above the ground. 
+        An integral value representing a number of meters in 0.1 meter 
+        increments.
+        Note: The value of this attribute has no operational impact on the 
+        network, e.g. the NE behavior is not affected by the value setting of 
+        this attribute.  Note as well that this attribute is not supported 
+        over the Iuant interface according to 3GPP TS 37.466.";
+      type uint32;
+      units decimeter;
+    }
+    leaf latitude {
+      description "The latitude of the antenna location based on World 
+        Geodetic System (1984 version) global reference frame (WGS 84). 
+        Positive values correspond to the northern hemisphere.
+        Note: The value of this attribute has no operational impact on the 
+        network, e.g. the NE behavior is not affected by the value setting of 
+        this attribute.  Note as well that this attribute is not supported 
+        over the Iuant interface according to 3GPP TS 37.466.";
+      reference "Valid values described in 3GPP TS 23.032";
+      type types3gpp:Latitude;
+    }
+    leaf longitude {
+      description "The longitude of the antenna location based on World 
+        Geodetic System (1984 version) global reference frame (WGS 84). 
+        Positive values correspond to degrees east of 0 degrees longitude.
+        Note: The value of this attribute has no operational impact on the 
+        network, e.g. the NE behavior is not affected by the value setting of 
+        this attribute.  Note as well that this attribute is not supported 
+        over the Iuant interface according to 3GPP TS 37.466.";
+      reference "Valid values described in 3GPP TS 23.032";
+      type types3gpp:Longitude;
+    }
+    leaf patternLabel {
+      description "The pattern name is a textual, alpha-numeric string to 
+        allow identification of the antenna pattern along with the antenna 
+        vendor information such as model number, etc.
+        Note: The value of this attribute has no operational impact on the 
+        network, e.g. the NE behavior is not affected by the value setting of 
+        this attribute.  Note as well that this attribute is not supported 
+        over the Iuant interface according to 3GPP TS 37.466.";
+      type string { length "0..80"; }
+      reference "3GPP TS 37.466";
+    }
+
+  }
+  
+  augment "/me3gpp:ManagedElement" {
+    list AntennaInventoryUnit {
+      uses top3gpp:Top_Grp;
+      key id;
+      description "Represents inventory information for an Antenna Unit.";
+      container attributes {
+        uses AntennaInventoryUnitGrp;
+        
+        // Data nodes that follow provide recursive containment
+        leaf-list parents {
+          type leafref {
+            path "../../../AntennaInventoryUnit/id";
+          }
+          description
+            "Reference to all containing AntennaInventoryUnit instances in
+             strict order from the root down to the immediate parent (i.e. the 
+             full path from the top level AntennaInventoryUnit and downward).
+             If AntennaInventoryUnit instances form a containment hierarchy 
+             this is modeled using references between the child 
+             AntennaInventoryUnits and the parent AntennaInventoryUnit.
+             This reference MUST NOT be present for the top level
+             AntennaInventoryUnit and MUST be present for all 
+             AntennaInventoryUnits below it.";
+        }
+        leaf-list containedChildren {
+          type leafref {
+            path "../../../AntennaInventoryUnit/id";
+          }
+          description
+            "Reference to all directly contained AntennaInventoryUnit 
+             instances. If AntennaInventoryUnit instances form a containment 
+             hierarchy this is modeled using references between the child
+             AntennaInventoryUnits and the parent AntennaInventoryUnit.";
+        }
+      }
+    }
+  }
+
+}
