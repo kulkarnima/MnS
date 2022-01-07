@@ -143,5 +143,4 @@ module _3gpp-common-qmcjob {
    augment "/me3gpp:ManagedElement" {
         uses QMCJobSubTree;
    }
-  }
 }
