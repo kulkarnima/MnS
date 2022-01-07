@@ -314,6 +314,65 @@ components:
       items:
         $ref: '#/components/schemas/NotificationType'
 
+
+    AccessToken:
+      tokenId:
+        type: string
+      context:
+        type: array
+        items: string
+      tokenType:
+        type: string
+          enum:
+            - BEARER
+      issuer:
+        type: string
+      permissions:
+        $ref: 'comDefs.yaml#/components/schemas/DnList'
+
+    AuthSession: 
+      type: object
+      properties:
+        sessionId:
+          type: string
+        authState:
+          type: string
+          enum:
+            - AUTHENTICATED
+            - AUTHENTICATING
+        context:
+          type: string
+        assocClient:
+          type: string
+        assertion:
+          type: string
+        accessToken:
+          $ref: '#/components/schemas/AccessToken'
+        permissions:
+          $ref: 'comDefs.yaml#/components/schemas/DnList'
+
+
+    AuthSessionList:
+      type: array
+      items:
+        $ref: '#/components/schemas/AuthSession'
+        
+    Sst:
+      type: integer
+      maximum: 255
+    Snssai:
+      type: object
+      properties:
+        sst:
+          $ref: '#/components/schemas/Sst'
+        sd:
+          type: string
+
+     SnssaiList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Snssai'
+
 #-------- Definition of types used in Trace control NRM fragment------------------
                 
     tjJobType-Type:
@@ -1547,6 +1606,160 @@ components:
                   additionalProperties:
                     $ref: 'faultMnS.yaml#/components/schemas/AlarmRecord'
 
+    Identity4AC-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            administrativeState:
+              $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
+            identifier:
+              type: string
+            identifierType:
+              type: string
+              enum:
+                - USER_NAME
+                - EMAIL_ADDRESS
+                - IP_ADDRESS
+                - PHONE_NUMBER
+                - FQDN
+            identityType:
+              type: string
+              enum:
+                - HUMAN_MNS_CONSUMER
+                - MNS_CONSUMER_MNF
+                - MNS_CONSUMER_PORTAL 
+                - MNS_PRODUCER
+            identityStatus:
+              type: string
+              enum:
+                - SECURE
+                - UNSECURE
+                - UNKNOWN 
+            identityOwner:
+              type: string 
+            identityDomain:
+              type: string
+            authSessionList:
+              $ref: '#/components/schemas/AuthSessionList'
+            credential:
+              type: string
+            groupRef:
+              $ref: 'comDefs.yaml#/components/schemas/Dn'
+            roleRef:
+              $ref: 'comDefs.yaml#/components/schemas/Dn'
+    
+    GroupOfIdentity-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            administrativeState:
+              $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
+            groupName:
+              type: string
+            groupType:
+              type: string
+              enum:
+                - HUMAN_MNS
+                - CONSUMER
+                - MNS_CONSUMER_MNF
+                - MNS_CONSUMER_PORTAL
+                - MNS_PRODUCER
+            groupOwner:
+              type: string
+            groupDomain:
+              type: string
+            plmnIds:
+              type: array
+              items:
+                $ref: 'comDefs.yaml#/components/schemas/PlmnId'
+            sNSSAIs:
+              #$ref: 'comDefs.yaml#/components/schemas/SnssaiList'
+              $ref: '#/components/schemas/SnssaiList'
+            noOfMembers:
+              type: integer
+            authPolicyRef:
+              $ref: 'comDefs.yaml#/components/schemas/Dn'
+            identityRef:
+              $ref: 'comDefs.yaml#/components/schemas/Dn'
+            roleRef:
+              $ref: 'comDefs.yaml#/components/schemas/Dn'
+            permRef:
+              $ref: 'comDefs.yaml#/components/schemas/Dn'
+
+    Policy4Authn-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            policies:
+              type: string
+          
+    AccessRight-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            operation:
+              type: string
+              enum:
+                - CREATE
+                - DELETE
+                - READ
+                - UPDATE
+            attribute:
+              type: string
+            childObjectClass:
+              type: string
+            childObjectInstance:
+              $ref: 'comDefs.yaml#/components/schemas/Dn'
+               
+
+    ResourceProfile:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            resourceOwner:
+              type: string
+            resourceDomain:
+              type: string
+            plmnIds:
+              type: array
+              items:
+                $ref: 'comDefs.yaml#/components/schemas/PlmnId'
+            sNSSAIs:
+              #$ref: 'comDefs.yaml#/components/schemas/Snssai'
+              $ref: '#/components/schemas/SnssaiList'
+            region:
+              type: string
+               
+    RoleInfo-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            administrativeState:
+              $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
+            roleName:
+              type: string
+            permRef:
+              $ref: 'comDefs.yaml#/components/schemas/Dn'
+
+    PermInfo-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            condition:
+              type: string
+            accessRight:
+              $ref: 'comDefs.yaml#/components/schemas/Dn'
+            subjectRef:
+              $ref: 'comDefs.yaml#/components/schemas/Dn'
+
+
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
 
     VsDataContainer-Multiple:
@@ -1604,3 +1817,12 @@ components:
         - $ref: '#/components/schemas/TraceJob-Single'
 
         - $ref: '#/components/schemas/AlarmList-Single'
+        
+        - $ref: '#/components/schemas/Identity4AC-Single'
+        - $ref: '#/components/schemas/GroupOfIdentity-Single'
+        - $ref: '#/components/schemas/Policy4Authn-Single'
+        - $ref: '#/components/schemas/AccessRight-Single'
+        - $ref: '#/components/schemas/ResourceProfile-Single'
+        - $ref: '#/components/schemas/RoleInfo-Single'
+        - $ref: '#/components/schemas/PermInfo-Single'
+
