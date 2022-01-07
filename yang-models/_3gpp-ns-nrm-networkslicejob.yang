@@ -1,0 +1,135 @@
+// TODO jobProgress is writable to allow for cancellation and jobTimer
+// What do the attribute constraint mean 
+//    e.g. "or network slice related requirements"
+// for attributes with multiplicity > 1 isOrdered and isUnique cannot be N/A
+// I assumed isOrdered=alse, isUnique=true
+
+module _3gpp-ns-nrm-networkslicejob {
+  yang-version 1.1;
+  namespace "urn:3gpp:sa5:_3gpp-ns-nrm-networkslicejob";
+  prefix "nsjob3gpp";
+
+  import _3gpp-common-top { prefix top3gpp; }
+  import _3gpp-common-yang-types { prefix types3gpp; }
+  import _3gpp-common-yang-extensions { prefix yext3gpp; }
+  import _3gpp-common-subnetwork { prefix subnet3gpp; }
+
+  organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
+  description "Defines the YANG mapping for class NetworkSliceJob.";
+  reference "3GPP TS 28.541";
+
+  revision 2021-11-23 { reference "Initial revision, CR-0639"; }
+
+  grouping ProfileAttributeValuePairSetGrp {
+    leaf name {
+      type string;
+      mandatory true;
+      description "The name of the attribute. The name shall be equal to the 
+        name of an attribute that represents a requirement in the 
+        ServiceProfile or SliceProfile. ";
+    }
+
+    leaf value {
+      type string;
+      mandatory true;
+      description "The value of the named attribute. The value shall be equal 
+        to the value of the named attribute that represents a requirement in 
+        the ServiceProfile or SliceProfile.";
+    }
+  }
+  
+  grouping NetworkSliceJobGrp {
+    description "Represents the NetworkSliceJob IOC.";
+
+    list requirementListIn {
+      uses ProfileAttributeValuePairSetGrp;
+      key "name value";
+      yext3gpp:inVariant;
+      description "A list of name/value pairs which contains the requirement 
+        for a NetworkSlice or a NetworkSliceSubnet instance 
+
+        - when jobType value is FEASIBILITYCHECKNSI or ALLOCATENSI the 
+        name/value pairs in the attributeListIn are that of a ServiceProfile.
+        - when jobType value is FEASIBILITYCHECKNSSI or ALLOCATENSSI the 
+        name/value pairs in the attributeListIn are that of the SliceProfile.";
+   }
+    
+    leaf jobType {
+      yext3gpp:inVariant;
+      type enumeration {
+        enum FEASIBILITYCHECKNSI;
+        enum FEASIBILITYCHECKNSSI;
+        enum ALLOCATENSI;
+        enum ALLOCATENSSI;
+        enum DEALLOCATENSI;
+        enum DEALLOCATENSSI;
+      }
+      mandatory true;
+      description "The type of job for a NetworkSliceJob instance.";
+   }
+    
+    list jobProgress {
+      key jobId;
+      uses types3gpp:JobProgress;
+      description "Provides monitoring for the download job.
+        Instances of jobProgress are always created by the system.";
+    }
+    
+    leaf nSIDRef {
+      when '../jobType = "ALLOCATENSI"' ;
+      type types3gpp:DistinguishedName;
+      config false;
+      description "Reference to the NetworkSlice instance that is created or 
+        modified as result of a NetworkSliceJob instance";
+   }
+    
+    leaf nSSIDRef {
+      when '../jobType = "ALLOCATENSSI"' ;
+      type types3gpp:DistinguishedName;
+      config false;
+      description "Reference to the NetworkSliceSubnet instance that is 
+        created or modified as result of a NetworkSliceJob instance";
+   }
+    
+    list attributeListOut {
+      when '../jobType = "ALLOCATENSI" or ../jobType = "ALLOCATENSSI"' ;
+      key "name value";
+      uses ProfileAttributeValuePairSetGrp;
+      config false;
+      description "A list of name/value pairs which contains the attributes 
+        of ServiceProfile or SliceProfile which has been allocated and the 
+        actual value assigned to each.
+
+        - when jobType value is FEASIBILITYCHECKNSI or ALLOCATENSI the 
+        allocated values in the attributeListOut are that of the ServiceProfile.
+        - when jobType value is FEASIBILITYCHECKNSSI or ALLOCATENSSI the 
+        allocated values in the attributeListOut are that of the SliceProfile.";
+    }
+  }
+
+  augment "/subnet3gpp:SubNetwork" {
+    list NetworkSliceJob {
+      description "Represents a network slice job that is used for 
+        asynchronous network slicing provisioning procedures.
+
+        In order to initiate a procedure, the MnS consumer creates an instance 
+        of the NetworkSliceJob IOC and provides the necessary inputs as initial 
+        attribute values. 
+
+        To obtain the progress information of a NetworkSliceJob instance, the 
+        MnS consumer needs to request MnS producer to get the values of 
+        attribute 'jobProgress', alternatively the consumer subscribes to 
+        notifications from the producer. 
+
+        To obtain the result of a NetworkSliceJob instance, the MnS consumer 
+        needs to request the MnS producer to get the values of attribute 
+        'jobProgress' which includes the result.";
+      key id;
+      uses top3gpp:Top_Grp;
+      container attributes {
+        uses NetworkSliceJobGrp;
+      }
+    }
+  }
+}
