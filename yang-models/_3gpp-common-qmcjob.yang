@@ -117,7 +117,7 @@ module _3gpp-common-qmcjob {
       uses types5g3gpp:SNssai;
     }
 
-    leaf uEQMCConfigurationFileRef {
+    leaf qMCUeConfigurationFileRef {
       type string;
       description "Provides the reference to the UE QMC configuration file.";
       mandatory true;
