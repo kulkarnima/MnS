@@ -113,7 +113,6 @@ module _3gpp-common-qmcjob {
       uses top3gpp:Top_Grp;      
       container attributes {
         uses QMCJobGrp;
-        key id;
        }
       }
    }
@@ -125,7 +124,6 @@ module _3gpp-common-qmcjob {
       uses top3gpp:Top_Grp;      
       container attributes {
         uses QMCJobGrp;
-        key id;
        }
      }
   }
