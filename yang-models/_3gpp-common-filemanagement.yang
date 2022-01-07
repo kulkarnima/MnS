@@ -28,9 +28,10 @@ module _3gpp-common-filemanagement {
       type string;
     }
     
-    leaf jobProgress {
+    list jobProgress {
+      key jobId;
       description "Provides monitoring for the file download job.";
-      type yang3gpp:JobProgress;
+      uses yang3gpp:JobProgress;
     }
   }
 

@@ -68,7 +68,6 @@ module _3gpp-common-yang-types {
       
     leaf jobId {
       type string;
-      config false;
       mandatory true;
       description "Id of the associated job. It is unique within a single 
         multivalue attribute of type JobProgress.";
