@@ -30,7 +30,7 @@ module _3gpp-common-filemanagement {
     
     leaf jobProgress {
       description "Provides monitoring for the file download job.";
-      type yang3gpp:JobProgress;
+      uses yang3gpp:JobProgress;
     }
   }
 
