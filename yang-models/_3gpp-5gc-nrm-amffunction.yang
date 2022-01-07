@@ -13,8 +13,10 @@ module _3gpp-5gc-nrm-amffunction {
   organization "3gpp SA5";
   contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
   description "AMFFunction derived from basic ManagedFunction.";
-
-  revision 2020-11-05 { reference CR-0412 ; }
+  reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
+  
+  revision 2022-01-07 { reference CR-0643; }
+  revision 2020-11-06 { reference CR-0412 ; }
   revision 2019-10-25 { reference "S5-194457 S5-193518"; }
 
   revision 2019-05-31 { reference "Ericsson refactoring."; }
