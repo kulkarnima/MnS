@@ -40,8 +40,8 @@ module _3gpp-common-qmcjob {
 
     leaf areaScope {
       type string;
-      description "The area scope parameter defines the area in terms of cells or Tracking Area where
-        the QMC shall take place.
+      description "The area scope parameter defines the area in terms of cells or Tracking Area
+        where the QMC shall take place.
         The area scope parameter in NR is either:
           - list of cells, identified by N-CGI. Maximum 32 NCGI can be defined
           - list of Tracking Area, identified by TAC. Maximum of 8 TAC can be defined.
@@ -77,9 +77,10 @@ module _3gpp-common-qmcjob {
         range "0..1";
       }
       mandatory true;
-      description "The QoE target parameter specifies it the QMC is area based or individual UE based.
-        -   Area based QMC (0)
-        -   individual UE based (1)";
+      description "The QoE target parameter specifies it the QMC is area based or individual UE
+        based.
+          -   Area based QMC (0)
+          -   individual UE based (1)";
     }
 
     leaf qoeReference {
