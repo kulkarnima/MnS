@@ -11,7 +11,13 @@ module _3gpp-common-yang-types {
   description "The model defines a YANG mapping of the top level 
     information classes used for management of 5G networks and 
     network slicing.";
-  reference "3GPP TS 28.541";
+  reference "3GPP TS 28.623";
+
+  revision 2021-11-01 { reference "CR-0141"; }
+  revision 2021-09-30 {
+    description "Added Longitude, Latitude, TenthOfDegrees, OnOff.";
+    reference "CR-0138";
+  }
 
   revision 2020-11-06 {
     description "Removed incorrect S-NSSAI definitions.";
@@ -37,6 +43,47 @@ module _3gpp-common-yang-types {
     reference  "Initial version.";
   }
 
+  typedef EnabledDisabled {
+    type enumeration {
+      enum DISABLED ;
+      enum ENABLED ;
+    }
+  }
+  
+  typedef TenthOfDegrees { 
+    type uint16 { 
+      range 0..3600; 
+    }
+    units "0.1 degrees";
+    description "A single integral value corresponding to an angle in degrees 
+      between 0 and 360 with a resolution of 0.1 degrees.";
+  }
+
+  typedef Latitude {
+    type decimal64 {
+      fraction-digits 4;
+      range "-90.0000..+90.0000"; 
+    }
+    description "Latitude values";
+  }
+
+  typedef Longitude {
+    type decimal64 {
+      fraction-digits 4;
+      range "-180.0000..+180.0000"; 
+    }
+    description "Longitude values";
+  }
+
+  typedef OnOff {
+    type enumeration {
+      enum ON;
+      enum OFF;
+    }
+  }
+  
+  // grouping ManagedNFProfile will be removed as it is 
+  //  being moved to _3gpp-5gc-nrm-nfprofile
   grouping ManagedNFProfile {
     description "Defines profile for managed NF";
     reference "3GPP TS 23.501";

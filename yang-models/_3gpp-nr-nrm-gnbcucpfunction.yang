@@ -15,6 +15,8 @@ module _3gpp-nr-nrm-gnbcucpfunction {
     Object Class (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2021-11-06 { reference "CR-0611" ; }
+  revision 2021-11-05 { reference "CR-0609"; }
   revision 2020-10-02 { reference CR-0384 ; }
   revision 2020-08-06 { reference "CR-0333"; }
   revision 2020-08-03 { reference "CR-0321"; }
@@ -113,6 +115,17 @@ module _3gpp-nr-nrm-gnbcucpfunction {
     leaf dynamic5QISetRef {
       type types3gpp:DistinguishedName;
       description "DN of the Dynamic5QISet that the GNBCUCPFunction supports (is associated to).";
+    }
+
+    leaf dCHOControl {
+      type boolean;
+      description "This attribute determines whether the CHO function is enabled or disabled.";
+    }
+
+    leaf dDAPSHOControl {
+      type boolean;
+      description "This attribute determines whether the DAPS handover function
+                   is enabled or disabled.";
     }
   }
 
