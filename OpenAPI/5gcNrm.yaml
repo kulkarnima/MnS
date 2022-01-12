@@ -192,7 +192,8 @@ components:
             $ref: 'genericNrm.yaml#/components/schemas/NFType'
         allowedNfDomains:
           type: array
-          items: string
+          items: 
+            type: string
         allowedNSSAIs:
           type: array
           items:
@@ -205,17 +206,20 @@ components:
           type: integer
         nfSetIdList:
           type: array
-          items: string
+          items:
+            type: string
         servingScope:
           type: array
-          items: string
+          items:
+            type: string
         nfSetRecoveryTimeList:
           type: array
           items:
             $ref: 'comDefs.yaml#/components/schemas/DateTime'
         scpDomains:
           type: array
-          items: string
+          items:
+            type: string
         vendorId:
           type: string
     SEPPType:
