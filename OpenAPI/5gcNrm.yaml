@@ -2310,3 +2310,4 @@ components:
        - $ref: '#/components/schemas/FiveQiDscpMappingSet-Single'
        - $ref: '#/components/schemas/PredefinedPccRuleSet-Single'
        - $ref: '#/components/schemas/Dynamic5QISet-Single'
+       - $ref: '#/components/schemas/EASDFFunction-Single
