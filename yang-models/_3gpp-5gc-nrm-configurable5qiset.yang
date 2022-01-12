@@ -42,7 +42,7 @@ module _3gpp-5gc-nrm-configurable5qiset {
     description "Represents the FiveQICharacteristics IOC.";
     reference "3GPP TS 28.541";
   }
- 
+
   list configurableFiveQIs {
     key fiveQIValue;
     leaf fiveQIValue {
@@ -109,7 +109,7 @@ module _3gpp-5gc-nrm-configurable5qiset {
             uses FiveQICharacteristicsGrp;
         }
     }  
-}
+  }
 
   grouping Configurable5QISetGrp {
     description "Represents the Configurable5QISet IOC.";
@@ -120,8 +120,7 @@ module _3gpp-5gc-nrm-configurable5qiset {
         uses FiveQICharacteristicsGrp;
       }
     }  
-}    
-
+  }    
 
   grouping Configurable5QISetSubtree {
     list Configurable5QISet {
