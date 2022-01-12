@@ -181,7 +181,7 @@ components:
         allowedPLMNs:
           type: array
           items:
-            $ref: 'comDefs.yaml#/components/schemas/PlmnId'
+            $ref: 'nrNrm.yaml#/components/schemas/PlmnId'
         allowedSNPNs:
           type: array
           items:
