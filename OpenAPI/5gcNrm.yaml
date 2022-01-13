@@ -736,7 +736,7 @@ components:
                     snssaiList:
                       $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
                     aMFRegionRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     aMFSetMemberList:
                       $ref: 'comDefs.yaml#/components/schemas/DnList'
     AmfRegion-Single:
@@ -782,9 +782,9 @@ components:
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
                     configurable5QISetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     dynamic5QISetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
 
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
@@ -885,9 +885,9 @@ components:
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
                     configurable5QISetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     dynamic5QISetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     supportedBMOList:
                       $ref: '#/components/schemas/SupportedBMOList'
 
