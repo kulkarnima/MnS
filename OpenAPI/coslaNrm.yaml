@@ -112,9 +112,9 @@ components:
               type: object
               properties:
                     operationalState:
-                      $ref: 'genericNrm.yaml#/components/schemas/OperationalState'
+                      $ref: 'comDefs.yaml#/components/schemas/OperationalState'
                     administrativeState:
-                      $ref: 'genericNrm.yaml#/components/schemas/AdministrativeState'
+                      $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
                     controlLoopLifeCyclePhase:
                       $ref: '#/components/schemas/ControlLoopLifeCyclePhase'
             AssuranceGoal:
