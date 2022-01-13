@@ -931,9 +931,9 @@ components:
                 - type: object
                   properties:
                     administrativeState:
-                      $ref: 'genericNrm.yaml#/components/schemas/AdministrativeState'
+                      $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
                     operationalState:
-                      $ref: 'genericNrm.yaml#/components/schemas/OperationalState'
+                      $ref: 'comDefs.yaml#/components/schemas/OperationalState'
                     cellLocalId:
                       type: integer
                     cellState:
