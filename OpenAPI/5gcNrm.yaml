@@ -496,7 +496,7 @@ components:
         plmnInfo:
           $ref: 'nrNrm.yaml#/components/schemas/PlmnInfo'
         administrativeState:
-          $ref: 'genericNrm.yaml#/components/schemas/AdministrativeState'
+          $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
 
     NsacfInfoSnssai:
       type: object
