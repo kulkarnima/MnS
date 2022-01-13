@@ -283,7 +283,7 @@ components:
         commModelType:
           $ref: '#/components/schemas/CommModelType'
         targetNFServiceList:
-          $ref: 'genericNrm.yaml#/components/schemas/DnList'
+          $ref: 'comDefs.yaml#/components/schemas/DnList'
         commModelConfiguration:
           type: string
     CommModelList:
@@ -311,7 +311,7 @@ components:
         cNSIId:
           $ref: '#/components/schemas/CNSIId'
         networkSliceRef:
-          $ref: 'genericNrm.yaml#/components/schemas/DnList'
+          $ref: 'comDefs.yaml#/components/schemas/DnList'
     NetworkSliceInfoList:
       type: array
       items:
@@ -727,7 +727,7 @@ components:
                     aMFRegionRef:
                       $ref: 'genericNrm.yaml#/components/schemas/Dn'
                     aMFSetMemberList:
-                      $ref: 'genericNrm.yaml#/components/schemas/DnList'
+                      $ref: 'comDefs.yaml#/components/schemas/DnList'
     AmfRegion-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -747,7 +747,7 @@ components:
                     snssaiList:
                       $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
                     aMFSetListRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/DnList'
+                      $ref: 'comDefs.yaml#/components/schemas/DnList'
     SmfFunction-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -1378,7 +1378,7 @@ components:
                     remoteAddress:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
                     epTransportRefs:
-                      $ref: 'genericNrm.yaml#/components/schemas/DnList'
+                      $ref: 'comDefs.yaml#/components/schemas/DnList'
     EP_N4-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
