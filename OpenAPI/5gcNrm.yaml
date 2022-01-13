@@ -71,9 +71,9 @@ components:
         sNssais:
           $ref: 'nrNrm.yaml#/components/schemas/Snssai'
         fqdn:
-          $ref: 'genericNrm.yaml#/components/schemas/Fqdn'
+          $ref: 'comDefs.yaml#/components/schemas/Fqdn'
         interPlmnFqdn:
-          $ref: 'genericNrm.yaml#/components/schemas/Fqdn'
+          $ref: 'comDefs.yaml#/components/schemas/Fqdn'
         nfServices:
           type: array
           items:
@@ -91,9 +91,9 @@ components:
         schema:
           type: string
         fqdn:
-          $ref: 'genericNrm.yaml#/components/schemas/Fqdn'
+          $ref: 'comDefs.yaml#/components/schemas/Fqdn'
         interPlmnFqdn:
-          $ref: 'genericNrm.yaml#/components/schemas/Fqdn'
+          $ref: 'comDefs.yaml#/components/schemas/Fqdn'
         ipEndPoints:
           type: array
           items:
@@ -1134,7 +1134,7 @@ components:
                     sEPPId:
                       type: integer
                     fqdn:
-                      $ref: 'genericNrm.yaml#/components/schemas/Fqdn'
+                      $ref: 'comDefs.yaml#/components/schemas/Fqdn'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -1346,7 +1346,7 @@ components:
                     sEPPId:
                       type: integer
                     fqdn:
-                      $ref: 'genericNrm.yaml#/components/schemas/Fqdn'
+                      $ref: 'comDefs.yaml#/components/schemas/Fqdn'
 
 
     EP_N2-Single:
