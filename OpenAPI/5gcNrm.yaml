@@ -685,7 +685,7 @@ components:
                     backupInfoAmfRemoval:
                       $ref: '#/components/schemas/GUAMInfo'
                     amfSetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
