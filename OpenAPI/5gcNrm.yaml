@@ -41,11 +41,11 @@ components:
       type: object
       properties:
         ipv4Address:
-          $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
+          $ref: 'comDefs.yaml#/components/schemas/Ipv4Addr'
         ipv6Address:
-          $ref: 'genericNrm.yaml#/components/schemas/Ipv6Addr'
+          $ref: 'comDefs.yaml#/components/schemas/Ipv6Addr'
         ipv6Prefix:
-          $ref: 'genericNrm.yaml#/components/schemas/Ipv6Prefix'
+          $ref: 'comDefs.yaml#/components/schemas/Ipv6Prefix'
         transport:
           $ref: 'genericNrm.yaml#/components/schemas/TransportProtocol'
         port:
