@@ -62,15 +62,41 @@ components:
           type: string
         assuranceTargetValue:
           type: string
-        assuranceTargetStatusObserved:
-          $ref: '#/components/schemas/AssuranceTargetStatusObserved'
-        assuranceTargetStatusPredicted:
-          $ref: '#/components/schemas/AssuranceTargetStatusPredicted'
          
     AssuranceTargetList:
       type: array
       items:
          $ref: '#/components/schemas/AssuranceTarget'
+
+    AssuranceGoalStatus:
+      type: object
+      properties:
+        assuranceGoalStatusId:
+          type: string
+        assuranceGoalStatusObserved:
+          $ref: '#/components/schemas/AssuranceGoalStatusObserved'
+        assuranceGoalStatusPredicted:
+          $ref: '#/components/schemas/AssuranceGoalStatusPredicted'
+          
+    AssuranceGoalStatusList:
+      type: array
+      items:
+         $ref: '#/components/schemas/AssuranceGoalStatus'
+
+    AssuranceTargetStatus:
+      type: object
+      properties:
+        assuranceTargetStatusId:
+          type: string
+        assuranceTargetStatusObserved:
+          $ref: '#/components/schemas/AssuranceTargetStatusObserved'
+        assuranceTargetStatusPredicted:
+          $ref: '#/components/schemas/AssuranceTargetStatusPredicted'
+         
+    AssuranceTargetStatusList:
+      type: array
+      items:
+         $ref: '#/components/schemas/AssuranceTargetStatus'
      
     AttributeNameList:
       type: array
@@ -163,21 +189,25 @@ components:
                       $ref: '#/components/schemas/ObservationTime'
                     assuranceTargetList:
                       $ref: '#/components/schemas/AssuranceTargetList'
-                    assuranceGoalStatusObserved:
-                      $ref: '#/components/schemas/AssuranceGoalStatusObserved'
-                    assuranceGoalStatusPredicted:
-                      $ref: '#/components/schemas/AssuranceGoalStatusPredicted'
                     assuranceScope:
                       $ref: '#/components/schemas/AssuranceScope'
                     serviceProfileId:
                       type: string
                     sliceProfileId:
                       type: string
-                    networkSliceRef:
-                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
-                    networkSliceSubnetRef:
-                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn' 
-                      
+
+    AssuranceReport-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    assuranceGoalStatusList:
+                      $ref: '#/components/schemas/AssuranceGoalStatusList'
+
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
     SubNetwork-Multiple:
       type: array
@@ -206,5 +236,6 @@ components:
        - $ref: '#/components/schemas/MnS'
        - $ref: '#/components/schemas/AssuranceClosedControlLoop-Single'
        - $ref: '#/components/schemas/AssuranceGoal-Single'    
+       - $ref: '#/components/schemas/AssuranceReport-Single'
        - $ref: '#/components/schemas/SubNetwork-Single'
        - $ref: '#/components/schemas/ManagedElement-Single'
