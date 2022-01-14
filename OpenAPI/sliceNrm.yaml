@@ -489,6 +489,13 @@ components:
             $ref: '#/components/schemas/RANSliceSubnetProfile'
           topSliceSubnetProfile:
             $ref: '#/components/schemas/TopSliceSubnetProfile'
+    KeyValuePair:
+      type: object
+      properties:
+          key:
+            type: string
+          value:
+            type: string
 
     IpAddress:
       oneOf:
@@ -517,6 +524,13 @@ components:
       items:
         $ref: '#/components/schemas/SliceProfile'
 
+    RequirementListIn:
+      type: array
+      $ref: '#/components/schemas/KeyValuePair'
+    AttributeListOut:
+      type: array
+      $ref: '#/components/schemas/KeyValuePair'
+
 #------------ Definition of concrete IOCs ----------------------------------------
     SubNetwork-Single:
       allOf:
@@ -537,6 +551,8 @@ components:
               $ref: '#/components/schemas/NetworkSliceSubnet-Multiple'
             EP_Transport:
               $ref: '#/components/schemas/EP_Transport-Multiple'
+            NetworkSliceJob:
+              $ref: '#/components/schemas/NetworkSliceJob-Multiple'
 
     NetworkSlice-Single:
       allOf:
@@ -601,6 +617,31 @@ components:
                 epApplicationRefs:
                   $ref: 'genericNrm.yaml#/components/schemas/DnList'
 
+    NetworkSliceJob-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                requirementListIn:
+                  oneOf:
+                    - $ref: '#/components/schemas/SliceProfile'
+                    - $ref: '#/components/schemas/ServiceProfile'
+                jobProgress:
+                  $ref: 'genericNrm.yaml#/components/schemas/jobProgress'
+                jobType:
+                  $ref: '#/components/schemas/JobType'
+                nSIIdRef:                
+                  $ref: '#/components/schemas/NSIIdRef'
+                nSSIIdRef:
+                  $ref: '#/components/schemas/NSSIIdRef'
+                attributeListOut:
+                  oneOf:
+                    - $ref: '#/components/schemas/SliceProfile'
+                    - $ref: '#/components/schemas/ServiceProfile'
+
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
     SubNetwork-Multiple:
       type: array
@@ -622,6 +663,11 @@ components:
       items:
         $ref: '#/components/schemas/EP_Transport-Single'
 
+    NetworkSliceJob-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/NetworkSliceJob-Single'
+
 #------------ Definitions in TS 28.541 for TS 28.532 -----------------------------
 
     resources-sliceNrm:
@@ -630,3 +676,4 @@ components:
        - $ref: '#/components/schemas/NetworkSlice-Single'
        - $ref: '#/components/schemas/NetworkSliceSubnet-Single'
        - $ref: '#/components/schemas/EP_Transport-Single'
+       - $ref: '#/components/schemas/NetworkSliceJob-Single'
