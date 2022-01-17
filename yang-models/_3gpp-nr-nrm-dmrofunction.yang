@@ -16,22 +16,30 @@ module _3gpp-nr-nrm-dmrofunction {
     Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2022-01-07 { reference CR-0633; }
   revision 2021-08-05 { reference S5-214053/CR-0518; }
   revision 2020-05-08 { reference S5-203316; }
 
   grouping DMROFunctionGrp {
     description "Represents the DMROFunction IOC.";
 
-    leaf maximumDeviationHoTrigger {
-      description "This parameter defines the maximum allowed absolute 
+
+    leaf maximumDeviationHoTriggerLow {
+      description "This parameter defines the maximum allowed lower 
         deviation of the Handover Trigger, from the default point of 
-        operation. Range -20 to 20 in .5 dB steps. ";
-      type string { 
-        pattern '-?((20)|(1?[0-9]))\.[05]'; 
-        // -20.0, -19.5, -19.0, ..., -0.5, 0.0, 0.5, 1.0, ... 19.5, 20.0
-      }
-      units dB;
+        operation.";
+      type integer {range "-20..20";}
+      units "0.5 dB";
     }
+ 
+    leaf maximumDeviationHoTrigger {
+      description "This parameter defines the maximum allowed upper 
+        deviation of the Handover Trigger, from the default point of 
+        operation.";
+      type integer {range "-20..20";}
+      units "0.5 dB";
+    }
+
     leaf minimumTimeBetweenHoTriggerChange {
       description "This parameter defines the minimum allowed time interval
         between two Handover Trigger change performed by MRO. This is used to 
