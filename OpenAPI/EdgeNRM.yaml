@@ -25,21 +25,21 @@ components:
         geographicalLocation:
           $ref: '#/components/schemas/GeoLoc'
         tAi:
-          $ref: 'genericNrm.yaml#/components/schemas/TAI '
+          $ref: 'genericNrm.yaml#/components/schemas/TAI'
     GeoLoc:
       type: object
       properties:
         civicAddress:
-          Type: String
+          type: string
         lat:
-          type: float
+          type: integer
         long:
-          type: float
+          type: integer
     EDNConnectionInfo:
       type: object
       properties:
         dNN:
-          Type: String
+          type: string
         eDNServiceArea:
           $ref: '#/components/schemas/ServingLocation'
 
@@ -69,7 +69,7 @@ components:
                 - type: object
                   properties:
                     eASIdentifier:
-                      Type: string
+                      type: string
                     eASRequirements:
                       $ref: '#/components/schemas/EASRequirements'
     ECSFunction-Single:
@@ -82,9 +82,9 @@ components:
                 - type: object
                   properties:
                     eCSAddress:
-                      Type: string
+                      type: string
                     providerIdentifier:
-                      Type: string
+                      type: string
                     eDNConnectionInfo:
                       $ref: '#/components/schemas/EASRequirements'
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------                               
@@ -96,4 +96,4 @@ components:
     ECSFunction-Multiple:
       type: array
       items:
-        $ref: '#/components/schemas/ECSFunction-Single'   
+        $ref: '#/components/schemas/ECSFunction-Single'
