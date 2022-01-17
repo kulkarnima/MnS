@@ -28,15 +28,15 @@ module _3gpp-nr-nrm-dmrofunction {
       description "This parameter defines the maximum allowed lower 
         deviation of the Handover Trigger, from the default point of 
         operation.";
-      type integer {range "-20..20";}
+      type int32 {range "-20..20";}
       units "0.5 dB";
     }
  
-    leaf maximumDeviationHoTrigger {
+    leaf maximumDeviationHoTriggerHigh {
       description "This parameter defines the maximum allowed upper 
         deviation of the Handover Trigger, from the default point of 
         operation.";
-      type integer {range "-20..20";}
+      type int32 {range "-20..20";}
       units "0.5 dB";
     }
 
