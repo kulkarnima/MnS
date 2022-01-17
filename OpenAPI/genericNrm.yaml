@@ -250,7 +250,7 @@ components:
 #-------- Definition of types used in Trace control NRM fragment------------------
                 
     TraceConfig:
-      description: The configuration parameters which are specific for Trace or combined Trace and Immediate MDT. 
+      description: The configuration parameters which are specific for Trace or combined Trace and Immediate MDT. See 3GPP TS 32.422 clause 4.3.X for additional details.
       type: object
       properties:
         listOfInterfaces:
@@ -263,7 +263,7 @@ components:
           $ref: '#/components/schemas/triggeringEvents-Type'
 
     MdtConfig:
-      description: The configuration parameters which are specific for MDT. 
+      description: The configuration parameters which are specific for MDT. See 3GPP TS 32.422 clause 4.3.Y for additional details.
       type: object
       properties:
         anonymizationOfMdtData:
@@ -280,7 +280,7 @@ components:
           $ref: '#/components/schemas/LoggedMdtConfig'
 
     ImmediateMdtConfig:
-      description: The configuration parameters which are specific for Immediate MDT. 
+      description: The configuration parameters which are specific for Immediate MDT. See 3GPP TS 32.422 clause 4.3.Z for additional details.
       type: object
       properties:
         listOfMeasurements:
@@ -319,7 +319,7 @@ components:
           $ref: '#/components/schemas/positioningMethod-Type'
 
     LoggedMdtConfig:
-      description: The configuration parameters which are specific for Logged MDT. 
+      description: The configuration parameters which are specific for Logged MDT. See 3GPP TS 32.422 clause 4.3.A for additional details.
       type: object
       properties:
         traceCollectionEntityId:
