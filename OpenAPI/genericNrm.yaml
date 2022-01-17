@@ -316,7 +316,107 @@ components:
 
 #-------- Definition of types used in Trace control NRM fragment------------------
                 
-    tjJobType-Type:
+    TraceConfig:
+      description: The configuration parameters which are specific for Trace or combined Trace and Immediate MDT. 
+      type: object
+      properties:
+        listOfInterfaces:
+          $ref: '#/components/schemas/listOfInterfaces-Type'
+        listOfNeTypes:
+          $ref: '#/components/schemas/listOfNeTypes-Type'
+        traceDepth:
+          $ref: '#/components/schemas/traceDepth-Type'
+        triggeringEvents:
+          $ref: '#/components/schemas/triggeringEvents-Type'
+
+    MdtConfig:
+      description: The configuration parameters which are specific for MDT. 
+      type: object
+      properties:
+        anonymizationOfMdtData:
+          $ref: '#/components/schemas/anonymizationOfMdtData-Type'
+        areaScope:
+          type: array
+          items:
+            $ref: '#/components/schemas/AreaScope'
+        sensorInformation:
+          $ref: '#/components/schemas/sensorInformation-Type'
+        immediateMdtConfig:
+          $ref: '#/components/schemas/ImmediateMdtConfig'
+        loggedMdtConfig:
+          $ref: '#/components/schemas/LoggedMdtConfig'
+
+    ImmediateMdtConfig:
+      description: The configuration parameters which are specific for Immediate MDT. 
+      type: object
+      properties:
+        listOfMeasurements:
+          $ref: '#/components/schemas/listOfMeasurements-Type'
+        reportingTrigger:
+          $ref: '#/components/schemas/reportingTrigger-Type'
+        reportInterval:
+          $ref: '#/components/schemas/reportInterval-Type'
+        reportAmount:
+          $ref: '#/components/schemas/reportAmount-Type'
+        eventThreshold:
+          $ref: '#/components/schemas/eventThreshold-Type'
+        collectionPeriodRrmNr:
+          $ref: '#/components/schemas/collectionPeriodRrmNr-Type'
+        collectionPeriodM6Nr:
+          $ref: '#/components/schemas/collectionPeriodM6Nr-Type'
+        collectionPeriodM7Nr:
+          $ref: '#/components/schemas/collectionPeriodM7Nr-Type'
+        collectionPeriodRrmLte:
+          $ref: '#/components/schemas/collectionPeriodRrmLte-Type'
+        measurementPeriodLte:
+          $ref: '#/components/schemas/measurementPeriodLte-Type'
+        collectionPeriodM6Lte:
+          $ref: '#/components/schemas/collectionPeriodM6Lte-Type'
+        collectionPeriodM7Lte:
+          $ref: '#/components/schemas/collectionPeriodM7Lte-Type'
+        eventThresholdUphUmts:
+          $ref: '#/components/schemas/eventThresholdUphUmts-Type'
+        collectionPeriodRrmUmts:
+          $ref: '#/components/schemas/collectionPeriodRrmUmts-Type'
+        measurementPeriodUmts:
+          $ref: '#/components/schemas/measurementPeriodUmts-Type'
+        measurementQuantity:
+          $ref: '#/components/schemas/measurementQuantity-Type'
+        positioningMethod:
+          $ref: '#/components/schemas/positioningMethod-Type'
+
+    LoggedMdtConfig:
+      description: The configuration parameters which are specific for Logged MDT.
+      type: object
+      properties:
+        traceCollectionEntityId:
+          $ref: '#/components/schemas/traceCollectionEntityId-Type'
+        loggingDuration:
+          $ref: '#/components/schemas/loggingDuration-Type'
+        loggingInterval:
+          $ref: '#/components/schemas/loggingInterval-Type'
+        reportType:
+          $ref: '#/components/schemas/reportType-Type'
+        eventListForEventTriggeredMeasurement:
+          $ref: '#/components/schemas/eventListForEventTriggeredMeasurement-Type'
+        eventThresholdL1:
+          $ref: '#/components/schemas/eventThresholdL1-Type'
+        hysteresisL1:
+          $ref: '#/components/schemas/hysteresisL1-Type'
+        timeToTriggerL1:
+          $ref: '#/components/schemas/timeToTriggerL1-Type'
+        plmnList:
+          $ref: '#/components/schemas/plmnList-Type'
+        areaConfigurationForNeighCells:
+          type: array
+          items:
+            $ref: '#/components/schemas/AreaConfig'
+        mbsfnAreaList:
+          type: array
+          items:
+            $ref: '#/components/schemas/MbsfnArea'
+
+    jobType-Type:
       type: string
       description: Specifies whether the TraceJob represents only MDT, Logged MBSFN MDT, Trace or a combined Trace and MDT job. Applicable for Trace, MDT, RCEF and RLF reporting. See 3GPP TS 32.422 clause 5.9a for additional details.
       enum:
@@ -328,7 +428,7 @@ components:
         - RCEF_REPORT_ONLY
         - LOGGED_MBSFN_MDT
 
-    tjListOfInterfaces-Type:
+    listOfInterfaces-Type:
       description: The interfaces to be recorded in the Network Element. See 3GPP TS 32.422 clause 5.5 for additional details.
       type: object
       properties:
@@ -656,7 +756,7 @@ components:
             enum:
               - F1-C
 
-    tjListOfNeTypes-Type:
+    listOfNeTypes-Type:
       description: The Network Element types where Trace Session activation is needed. See 3GPP TS 32.422 clause 5.4 for additional details.
       type: array
       items:
@@ -677,7 +777,7 @@ components:
           - GNB_CU_UP
           - GNB_DU
 
-    tjPLMNTaget-Type:
+    plmnTaget-Type:
       type: object
       description: The PLMN for which sessions shall be selected in the Trace Session in case of management based activation when several PLMNs are supported in the RAN (this means that shared cells and not shared cells are allowed for the specified PLMN. Note that the PLMN Target might differ from the PLMN specified in the Trace Reference, as that specifies the PLMN that is containing the management system requesting the Trace Session from the NE. See 3GPP TS 32.422 clause 5.9b for additional details.
       properties:
@@ -700,7 +800,7 @@ components:
         - $ref: '#/components/schemas/Ipv4Addr'
         - $ref: '#/components/schemas/Ipv6Addr'
 
-    tjTraceDepth-Type:
+    traceDepth-Type:
       description: Specifies how detailed information should be recorded in the Network Element. The Trace Depth is a paremeter for Trace Session level, i.e., the Trace Depth is the same for all of the NEs to be traced in the same Trace Session. See 3GPP TS 32.422 clause 5.3 for additional details.
       type: string
       enum:
@@ -711,7 +811,7 @@ components:
         - VENDORMEDIUM
         - VENDORMAXIMUM
 
-    tjTraceReference-Type:
+    traceReference-Type:
       type: object
       description: The Trace Reference parameter shall be globally unique, therefore the Trace Reference shall compose as follows - MCC+MNC+Trace ID, where the MCC and MNC are coming with the Trace activation request from the management system to identify one PLMN containing the management system, and Trace ID is a 3 byte Octet String. See 3GPP TS 32.422 clause 5.6 for additional details.
       properties:
@@ -726,14 +826,14 @@ components:
         - mnc
         - traceId
 
-    tjTraceReportingFormat-Type:
+    traceReportingFormat-Type:
       type: string
       description: Specifies whether file-based or streaming reporting shall be used for this Trace Session. See 3GPP TS 32.422 clause 5.11 for additional details.
       enum:
         - FILE-BASED
         - STREAMING
 
-    tjTraceTarget-Type:
+    traceTarget-Type:
       type: string
       description: Type of trace target. For additional details see 3GPP TS 32.422.
       enum:
@@ -748,32 +848,165 @@ components:
         - RNC
         - gNB
     
-    tjTriggeringEvent-Type:
+    triggeringEvents-Type:
       type: object
       description: Specifies when to start a Trace Recording Session and which message shall be recorded first, when to stop a Trace Recording Session and which message shall be recorded last respectively. See 3GPP TS 32.422 clause 5.1 for additional detials.
       properties:
-        NetworkElement:
-          type: string
-          enum:
-            - MSC_SERVER
-            - SGSN
-            - MGW
-            - GGSN
-            - BM_SC
-            - MME
-            - SGW
-            - PGW
-            - AMF
-            - SMF
-            - PCF
-            - UPF
-        EventBitmap:
-          type: integer
-      required:
-        - NetworkElement
-        - EventBitmap
+        MSC_SERVER:
+          type: array
+          items:
+            type: string
+            enum:
+              - MO_MT_CALLS
+              - MO_MT_SMS
+              - LU_IMSIattach_IMSIdetach
+              - HANDOVER
+              - SS
+        SGSN:
+          type: array
+          items:
+            type: string
+            enum:
+              - PDPcontext
+              - MO_MT_SMS
+              - RAU_GPRSattach_GPRSdetach
+              - MBMScontext
+        MGW:
+          type: array
+          items:
+            type: string
+            enum:
+              - CONTEXT
+        GGSN:
+          type: array
+          items:
+            type: string
+            enum:
+              - PDPcontext
+              - MBMScontext
+        IMS:
+          type: array
+          items:
+            type: string
+            enum:
+              - SIPsession_StandaloneTransaction
+        BM_SC:
+          type: array
+          items:
+            type: string
+            enum:
+              - MBMSactivation
+        MME:
+          type: array
+          items:
+            type: string
+            enum:
+              - UEinitiatedPDNconnectivityRequest
+              - ServiceRequest
+              - InitialAttach_TAU_Detach
+              - UEinitiatedPDNdisconnection
+              - BearerActivationModificationDeletion
+              - Handover
+        SGW:
+          type: array
+          items:
+            type: string
+            enum:
+              - PDNconnectionCreation
+              - PDNconnectionTermination
+              - BearerActivationModificationDeletion
+        PGW:
+          type: array
+          items:
+            type: string
+            enum:
+              - PDNconnectionCreation
+              - PDNconnectionTermination
+              - BearerActivationModificationDeletion
+        AMF:
+          type: array
+          items:
+            type: string
+            enum:
+              - Registration
+              - ServiceRequest
+              - Handover
+              - UEderegistration
+              - NetworkDeregistration
+              - UEMobilityFromEPC
+              - UEMobilityToEPC
+        SMF:
+          type: array
+          items:
+            type: string
+            enum:
+              - PDUsessionEstablishment
+              - PDUsessionModification
+              - PDUsessionRelease
+              - PDUsessionUPactivationDeactivation
+              - MobilityBtw3gppAndN3gppTo5GC
+              - MobilityFromEpc
+        PCF:
+          type: array
+          items:
+            type: string
+            enum:
+              - AMpolicy
+              - SMpolicy
+              - Authorization
+              - BDTpolicy
+        UPF:
+          type: array
+          items:
+            type: string
+            enum:
+              - N4Session
+        AUSF:
+          type: array
+          items:
+            type: string
+            enum:
+              - UEauthentication
+        NEF:
+          type: array
+          items:
+            type: string
+            enum:
+              - EventExposure
+              - PFDmanagement
+              - ParameterProvision
+              - Trigger
+        NRF:
+          type: array
+          items:
+            type: string
+            enum:
+              - NFmanagement
+              - NFdiscovery
+        NSSF:
+          type: array
+          items:
+            type: string
+            enum:
+              - NSSelection
+              - NSSAI
+        SMSF:
+          type: array
+          items:
+            type: string
+            enum:
+              - SMservice
+        UDM:
+          type: array
+          items:
+            type: string
+            enum:
+              - UEcontext
+              - SubscriberData
+              - UEauthentication
+              - EventExposure
     
-    tjMDTAnonymizationOfData-Type:
+    anonymizationOfMdtData-Type:
       description: Specifies level of MDT anonymization. For additional details see 3GPP TS 32.422 clause 5.10.12.
       type: string
       enum:
@@ -796,7 +1029,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/DnList'
         
-    tjMDTCollectionPeriodRrmLte-Type:
+    collectionPeriodRrmLte-Type:
       description: See details in 3GPP TS 32.422 clause 5.10.20.
       type: string
       enum:
