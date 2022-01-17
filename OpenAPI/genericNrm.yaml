@@ -1558,7 +1558,7 @@ components:
           $ref: '#/components/schemas/plmnTarget-Type'
         traceReportingConsumerUri:
           $ref: 'comDefs.yaml#/components/schemas/Uri'
-        traceCollectionEntityAddress:
+        traceCollectionEntityIpAddress:
           $ref: '#/components/schemas/IpAddr'
         traceReference:
           $ref: '#/components/schemas/traceReference-Type'
