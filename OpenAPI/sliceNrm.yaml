@@ -232,18 +232,34 @@ components:
         nsName:
           type: string
     EmbbEEPerfReq:
-      type: integer
+      type: object
+      properties:
+        kpiType:
+          type: string
+          enum:
+            - NUMOFBITS
+            - NUMOFBITS_RANBASED
+        req:
+          type: integer
     UrllcEEPerfReq:
-      type: integer
+      type: object
+      properties:
+        kpiType:
+          type: string
+          enum:
+            - INVOFLATENCY
+            - NUMOFBITS_MULTIPLIED_INVOFLATENCY
+        req:
+          type: number
     MIoTEEPerfReq:
       type: object
       properties:
-        KpiType:
+        kpiType:
           type: string
           enum:
             - MAXREGSUBS
             - MEANACTIVEUES
-        Req:
+        req:
           type: integer
     EEPerfReq:
       oneOf:
