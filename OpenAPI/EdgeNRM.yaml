@@ -14,11 +14,6 @@ components:
   schemas: 
                       
 #-------- Definition of types-----------------------------------------------------
-    EASRequirements:
-      type: object
-      properties:
-        requiredEASservingLocation:
-          $ref: '#/components/schemas/ServingLocation'
     ServingLocation:
       type: object
       properties:
@@ -57,38 +52,44 @@ components:
         - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-ncO'
         - type: object
           properties:
-            DNFunction:
-              $ref: '5GCNrm.yaml#/components/schemas/DNFunction'
+            Subnetwork:
+              $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-Multiple'
     EASFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
         - type: object
           properties:
-            attributes:
-              allOf:
-                - type: object
-                  properties:
-                    eASIdentifier:
-                      type: string
-                    eASRequirements:
-                      $ref: '#/components/schemas/EASRequirements'
+            eASIdentifier:
+              type: string
+            eASRequirements:
+              $ref: '#/components/schemas/EASRequirements'
     ECSFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
         - type: object
           properties:
-            attributes:
-              allOf:
-                - type: object
-                  properties:
-                    eCSAddress:
-                      type: string
-                    providerIdentifier:
-                      type: string
-                    eDNConnectionInfo:
-                      $ref: '#/components/schemas/EASRequirements'
+            eCSAddress:
+              type: string
+            providerIdentifier:
+              type: string
+            eDNConnectionInfo:
+              $ref: '#/components/schemas/EDNConnectionInfo'
+    EASRequirements:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            requiredEASservingLocation:
+              $ref: '#/components/schemas/ServingLocation'
+
+
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------                               
           
+    SubNetwork-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/SubNetwork-Single'
+    
     EASFunction-Multiple:
       type: array
       items:
