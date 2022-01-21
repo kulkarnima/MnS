@@ -633,10 +633,10 @@ components:
                   $ref: 'genericNrm.yaml#/components/schemas/jobProgress'
                 jobType:
                   $ref: '#/components/schemas/JobType'
-                nSIIdRef:                
-                  $ref: '#/components/schemas/NSIIdRef'
-                nSSIIdRef:
-                  $ref: '#/components/schemas/NSSIIdRef'
+                networkSliceRef:                
+                  $ref: '#/components/schemas/NetworkSliceRef'
+                networkSliceSubnetRef:
+                  $ref: '#/components/schemas/NetworkSliceSubnetRef'
                 attributeListOut:
                   oneOf:
                     - $ref: '#/components/schemas/SliceProfile'
