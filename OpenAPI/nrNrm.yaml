@@ -1017,6 +1017,8 @@ components:
           properties:
             cellLocalId:
               type: integer
+            administrativeState:
+              $ref: 'genericNrm.yaml#/components/schemas/AdministrativeState'
             plmnInfoList:
               $ref: '#/components/schemas/PlmnInfoList'
             nrTac:
