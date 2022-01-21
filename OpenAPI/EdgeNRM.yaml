@@ -1,10 +1,3 @@
-P.1	General 
-This annex contains the OpenAPI definition of the Edge NRM in YAML format.
-The Information Service (IS) of the Edge NRM is defined in clause 6.
-Mapping rules to produce the OpenAPI definition based on the IS are defined in TS 32.160 [10].
-P.2	Solution Set (SS) definitions
-P.2.1	OpenAPI document "edgeNrm.yml"
-
 openapi: 3.0.1
 info:
   title: 3GPP Edge NRM
