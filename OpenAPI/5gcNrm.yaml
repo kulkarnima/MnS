@@ -595,6 +595,13 @@ components:
           type: string
         ipv6Prefix:
           type: string
+
+      AccessType:
+        type: string
+        enum:
+          - 3GPP_ACCESS
+          - NON_3GPP_ACCESS
+
 #-------- Definition of concrete IOCs --------------------------------------------
 
     SubNetwork-Single:
@@ -823,7 +830,7 @@ components:
                       items:
                         $ref: '#/components/schemas/IpAddr'
                     accessType:
-                      type: enum
+                      $ref: '#/components/schemas/AccessType'
                     priority:
                       type: integer
                     cNSIIdList:
