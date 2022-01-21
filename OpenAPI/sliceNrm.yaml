@@ -634,9 +634,9 @@ components:
                 jobType:
                   $ref: '#/components/schemas/JobType'
                 networkSliceRef:                
-                  $ref: '#/components/schemas/NetworkSliceRef'
+                  $ref: '#/components/schemas/Dn'
                 networkSliceSubnetRef:
-                  $ref: '#/components/schemas/NetworkSliceSubnetRef'
+                  $ref: '#/components/schemas/Dn'
                 attributeListOut:
                   oneOf:
                     - $ref: '#/components/schemas/SliceProfile'
