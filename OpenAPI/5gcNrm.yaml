@@ -573,7 +573,8 @@ components:
           type: string
         dnaiList:
           type: array
-          items: string
+          items:
+            type: string
     
     SNssaiSmfInfoItem:
       type: object
@@ -820,7 +821,7 @@ components:
                     pgwAddrList:
                       type: array
                       items:
-                       $ref: '#/components/schemas/IpAddr'
+                        $ref: '#/components/schemas/IpAddr'
                     accessType:
                       type: enum
                     priority:
@@ -831,7 +832,8 @@ components:
                       type: boolean
                     pwgFqdnList:    
                       type: array
-                      items: string
+                      items: 
+                        type: string
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
