@@ -566,6 +566,34 @@ components:
       items:
         type: string
 
+    DnnSmfInfoItem:
+      type: object
+      properties:
+        dnn:
+          type: string
+        dnaiList:
+          type: array
+          items: string
+    
+    SNssaiSmfInfoItem:
+      type: object
+      properties:
+        sNSSAI:
+          $ref: 'nrNrm.yaml#/components/schemas/Snssai'
+        dnnSmfInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/DnnSmfInfoItem'
+    
+    IpAddr:
+      type: object
+      properties:
+        ipv4Addr:
+          type: string
+        ipv6Addr:
+          type: string
+        ipv6Prefix:
+          type: string
 #-------- Definition of concrete IOCs --------------------------------------------
 
     SubNetwork-Single:
@@ -769,14 +797,41 @@ components:
                 - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
-                    plmnIdList:
-                      $ref: 'nrNrm.yaml#/components/schemas/PlmnIdList'
+                    pLMNInfoList:
+                      $ref: 'nrNrm.yaml#/components/schemas/PlmnInfoList'
                     nRTACList:
                       $ref: '#/components/schemas/TACList'
                     sBIFqdn:
                       type: string
-                    snssaiList:
-                      $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
+                    sNssaiSmfInfoList:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/SNssaiSmfInfoItem'
+                    taiList:
+                      type: array
+                      items:
+                        $ref: 'nrNrm.yaml#/components/schemas/Tai'
+                    taiRangeList:
+                      type: array
+                      items:
+                        $ref: 'nrNrm.yaml#/components/schemas/TaiRange'
+                    pwgFqdn:
+                      type: string
+                    pgwAddrList:
+                      type: array
+                      items:
+                       $ref: '#/components/schemas/IpAddr'
+                    accessType:
+                      type: enum
+                    priority:
+                      type: integer
+                    cNSIIdList:
+                      $ref: '#/components/schemas/CNSIIdList'
+                    vsmfSupportInd:
+                      type: boolean
+                    pwgFqdnList:    
+                      type: array
+                      items: string
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
