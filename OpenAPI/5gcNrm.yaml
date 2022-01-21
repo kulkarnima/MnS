@@ -596,12 +596,6 @@ components:
         ipv6Prefix:
           type: string
 
-      AccessType:
-        type: string
-        enum:
-          - 3GPP_ACCESS
-          - NON_3GPP_ACCESS
-
 #-------- Definition of concrete IOCs --------------------------------------------
 
     SubNetwork-Single:
@@ -830,7 +824,7 @@ components:
                       items:
                         $ref: '#/components/schemas/IpAddr'
                     accessType:
-                      $ref: '#/components/schemas/AccessType'
+                      $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/AccessType'
                     priority:
                       type: integer
                     cNSIIdList:
