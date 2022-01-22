@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Common Type Definitions
-  version: 16.8.0
+  version: 17.0.0
   description: >-
     OAS 3.0.1 specification of common type definitions in the Generic NRM
     © 2021, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
