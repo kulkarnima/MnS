@@ -51,7 +51,7 @@ components:
             - RAN_SubNetwrok  #value for Radio Network Expectation--#
             - TBD    #-This will be added based on defined scenario specfic intent expectation-#
         objectInstance:
-          $ref: "comdefs.yaml#/components/schemas/Dn"
+          $ref: "comDefs.yaml#/components/schemas/Dn"
         objectContexts:
           type: array
           items:
