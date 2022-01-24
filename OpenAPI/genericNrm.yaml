@@ -324,7 +324,7 @@ components:
       issuer:
         type: string
       permissions:
-        $ref: 'comDefs.yaml#/components/schemas/DnList'
+        $ref: '#/components/schemas/DnList'
 
     AuthSession: 
       type: object
@@ -345,7 +345,7 @@ components:
         accessToken:
           $ref: '#/components/schemas/AccessToken'
         permissions:
-          $ref: 'comDefs.yaml#/components/schemas/DnList'
+          $ref: '#/components/schemas/DnList'
 
 
     AuthSessionList:
@@ -1639,9 +1639,9 @@ components:
             credential:
               type: string
             groupRef:
-              $ref: 'comDefs.yaml#/components/schemas/Dn'
+              $ref: '#/components/schemas/Dn'
             roleRef:
-              $ref: 'comDefs.yaml#/components/schemas/Dn'
+              $ref: '#/components/schemas/Dn'
     
     GroupOfIdentity-Single:
       allOf:
@@ -1665,20 +1665,20 @@ components:
             plmnIds:
               type: array
               items:
-                $ref: 'comDefs.yaml#/components/schemas/PlmnId'
+                $ref: '#/components/schemas/PlmnId'
             sNSSAIs:
               #$ref: 'comDefs.yaml#/components/schemas/SnssaiList'
               $ref: '#/components/schemas/SnssaiList'
             noOfMembers:
               type: integer
             authPolicyRef:
-              $ref: 'comDefs.yaml#/components/schemas/Dn'
+              $ref: '#/components/schemas/Dn'
             identityRef:
-              $ref: 'comDefs.yaml#/components/schemas/Dn'
+              $ref: '#/components/schemas/Dn'
             roleRef:
-              $ref: 'comDefs.yaml#/components/schemas/Dn'
+              $ref: '#/components/schemas/Dn'
             permRef:
-              $ref: 'comDefs.yaml#/components/schemas/Dn'
+              $ref: '#/components/schemas/Dn'
 
     Policy4Authn-Single:
       allOf:
@@ -1705,7 +1705,7 @@ components:
             childObjectClass:
               type: string
             childObjectInstance:
-              $ref: 'comDefs.yaml#/components/schemas/Dn'
+              $ref: '#/components/schemas/Dn'
                
 
     ResourceProfile:
@@ -1733,7 +1733,7 @@ components:
             roleName:
               type: string
             permRef:
-              $ref: 'comDefs.yaml#/components/schemas/Dn'
+              $ref: '#/components/schemas/Dn'
 
     PermInfo-Single:
       allOf:
@@ -1745,9 +1745,9 @@ components:
             postCondition:
               type: string
             accessRight:
-              $ref: 'comDefs.yaml#/components/schemas/Dn'
+              $ref: '#/components/schemas/Dn'
             subjectRef:
-              $ref: 'comDefs.yaml#/components/schemas/Dn'
+              $ref: '#/components/schemas/Dn'
 
 
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
