@@ -240,7 +240,7 @@ components:
             - NUMOFBITS
             - NUMOFBITS_RANBASED
         req:
-          type: integer
+          type: number
     UrllcEEPerfReq:
       type: object
       properties:
@@ -260,7 +260,7 @@ components:
             - MAXREGSUBS
             - MEANACTIVEUES
         req:
-          type: integer
+          type: number
     EEPerfReq:
       oneOf:
         - $ref: '#/components/schemas/EmbbEEPerfReq'
@@ -337,7 +337,7 @@ components:
         reliability:
           type: string
         energyEfficiency:
-          type: integer 
+          type: number 
         dLDeterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
         uLDeterministicComm:
@@ -388,7 +388,7 @@ components:
         sliceSimultaneousUse:
           $ref: '#/components/schemas/SliceSimultaneousUse'
         energyEfficiency:
-          type: integer
+          type: number
         termDensity:
           $ref: '#/components/schemas/TermDensity'
         survivalTime:
@@ -427,7 +427,7 @@ components:
         sliceSimultaneousUse:
           $ref: '#/components/schemas/SliceSimultaneousUse'
         energyEfficiency:
-          type: integer
+          $ref: '#/components/schemas/EnergyEfficiency'
         synchronicity:
           $ref: '#/components/schemas/Synchronicity'
         delayTolerance:
