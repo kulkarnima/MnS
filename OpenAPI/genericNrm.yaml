@@ -1720,7 +1720,8 @@ components:
             plmnIds:
               type: array
               items:
-                $ref: 'comDefs.yaml#/components/schemas/PlmnId'
+                #$ref: 'comDefs.yaml#/components/schemas/PlmnId'
+                $ref: '#/components/schemas/PlmnId'
             sNSSAIs:
               #$ref: 'comDefs.yaml#/components/schemas/Snssai'
               $ref: '#/components/schemas/SnssaiList'
