@@ -314,6 +314,13 @@ components:
       items:
         $ref: '#/components/schemas/NotificationType'
 
+    PlmnId:
+      type: object
+      properties:
+        mcc:
+          $ref: '#/components/schemas/Mcc'
+        mnc:
+          $ref: '#/components/schemas/Mnc'
 
     AccessToken:
       tokenId:
