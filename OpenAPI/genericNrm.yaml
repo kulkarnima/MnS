@@ -323,15 +323,17 @@ components:
           $ref: '#/components/schemas/Mnc'
 
     AccessToken:
-      tokenId:
-        type: string
-      context:
-        type: array
-        items: string
-      issuer:
-        type: string
-      permissions:
-        $ref: '#/components/schemas/DnList'
+      type: object
+      properties:
+        tokenId:
+          type: string
+        context:
+          type: array
+          items: string
+        issuer:
+          type: string
+        permissions:
+          $ref: '#/components/schemas/DnList'
 
     AuthSession: 
       type: object
