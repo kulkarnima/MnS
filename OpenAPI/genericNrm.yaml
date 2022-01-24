@@ -329,7 +329,8 @@ components:
           type: string
         context:
           type: array
-          items: string
+          items: 
+            type: string
         issuer:
           type: string
         permissions:
