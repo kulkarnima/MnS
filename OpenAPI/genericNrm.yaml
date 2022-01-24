@@ -364,7 +364,7 @@ components:
         sd:
           type: string
 
-     SnssaiList:
+    SnssaiList:
       type: array
       items:
         $ref: '#/components/schemas/Snssai'
