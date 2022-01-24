@@ -321,10 +321,6 @@ components:
       context:
         type: array
         items: string
-      tokenType:
-        type: string
-          enum:
-            - BEARER
       issuer:
         type: string
       permissions:
@@ -1611,8 +1607,6 @@ components:
         - $ref: '#/components/schemas/Top'
         - type: object
           properties:
-            administrativeState:
-              $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
             identifier:
               type: string
             identifierType:
@@ -1654,8 +1648,6 @@ components:
         - $ref: '#/components/schemas/Top'
         - type: object
           properties:
-            administrativeState:
-              $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
             groupName:
               type: string
             groupType:
@@ -1732,16 +1724,12 @@ components:
             sNSSAIs:
               #$ref: 'comDefs.yaml#/components/schemas/Snssai'
               $ref: '#/components/schemas/SnssaiList'
-            region:
-              type: string
                
     RoleInfo-Single:
       allOf:
         - $ref: '#/components/schemas/Top'
         - type: object
           properties:
-            administrativeState:
-              $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
             roleName:
               type: string
             permRef:
@@ -1752,7 +1740,9 @@ components:
         - $ref: '#/components/schemas/Top'
         - type: object
           properties:
-            condition:
+            preCondition:
+              type: string
+            postCondition:
               type: string
             accessRight:
               $ref: 'comDefs.yaml#/components/schemas/Dn'
