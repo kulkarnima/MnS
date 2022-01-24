@@ -296,16 +296,9 @@ components:
         contextValueRange:
           type: array
           items:
-            $ref: "#/components/schemas/PolygonLocation"
-
-    PolygonLocation:
-      type: object
-      properties:
-        latitude:
-          type: number
-        longitude:
-          type: number
-
+            $ref: "#/components/schemas/CoverageArea"
+    CoverageArea:
+      type: string
     CoverageTACContext:
       type: object
       properties:
