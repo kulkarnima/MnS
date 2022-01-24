@@ -64,6 +64,10 @@ components:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
+            ednIdentifier:
+              type: string
+            eDNConnectionInfo:
+              $ref: '#/components/schemas/EDNConnectionInfo'
             EASFunction:
               $ref: '#/components/schemas/EASFunction-Multiple'
             EESFunction:
@@ -112,8 +116,8 @@ components:
                       type: string
                     providerIdentifier:
                       type: string
-                    eDNConnectionInfo:
-                      $ref: '#/components/schemas/EDNConnectionInfo'
+                    edgeDataNetworkRef:
+                      $ref: '#/components/schemas/DnList'
         - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-ncO'
 
     EASRequirements:
