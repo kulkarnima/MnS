@@ -19,17 +19,55 @@ components:
       properties:
         geographicalLocation:
           $ref: '#/components/schemas/GeoLoc'
-        tAi:
-          $ref: 'genericNrm.yaml#/components/schemas/TAI'
+        topologicalLocation:
+          $ref: 'genericNrm.yaml#/components/schemas/TopologicalLocation'
+
+    TopologicalLocation:
+      type: object
+      properties:
+        cellIdList:
+          $ref: '#/components/schemas/CellIdList'
+        trackingAreaIdList:
+          $ref: '#/components/schemas/TrackingAreaIdList'
+        servingPLMN:
+          $ref: '#/components/schemas/PLMNId'
+
+
+    CellIdList:
+      type: array
+      items:
+        $ref: '#/components/schemas/CellId'
+
+    CellId:
+      type: integer
+      description: represent the ID of a NR cell
+
+    TrackingAreaIdList:
+      type: array
+      items:
+        $ref: '#/components/schemas/TrackingAreaId’
+
+    TrackingAreaId:
+      type: object
+        $ref: 'genericNrm.yaml#/components/schemas/TAI'
+
     GeoLoc:
       type: object
       properties:
-        civicAddress:
+        geographicalCoordinates:
+          $ref: '#/components/schemas/GeographicalCoordinates'
+
+        civicLocations:
           type: string
-        lat:
+
+    GeographicalCoordinates:
+      type: object
+      properties:
+        lattitude:
           type: integer
-        long:
+        longitude:
           type: integer
+
     EDNConnectionInfo:
       type: object
       properties:
@@ -37,6 +75,17 @@ components:
           type: string
         eDNServiceArea:
           $ref: '#/components/schemas/ServingLocation'
+
+    SoftwareImageInfo:
+      type: object
+      properties:
+        minimumDisk:
+          type: integer
+        minimumRAM:
+          type: integer
+        swImageRef:
+          type: string
+          description: indicates the reference to the actual software image that is represented by URL (see clause 7.1.6.5 in in ETSI NFV IFA-011 [7]).
 
 
 #-------- Definition of concrete IOCs --------------------------------------------
@@ -81,6 +130,8 @@ components:
                   properties:
                     eASIdentifier:
                       type: string
+                    eASAddress:
+                      type: string
                     eASRequirementsRef:
                       $ref: '#/components/schemas/EASRequirements'
         - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-ncO'
@@ -114,6 +165,8 @@ components:
                       type: string
                     eDNConnectionInfo:
                       $ref: '#/components/schemas/EDNConnectionInfo'
+                    softwareImageInfo:
+                      $ref: '#/components/schemas/SoftwareImageInfo'
         - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-ncO'
 
     EASRequirements:
@@ -123,6 +176,8 @@ components:
           properties:
             requiredEASservingLocation:
               $ref: '#/components/schemas/ServingLocation'
+            softwareImageInfo:
+              $ref: '#/components/schemas/SoftwareImageInfo'
 
 
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------                               
