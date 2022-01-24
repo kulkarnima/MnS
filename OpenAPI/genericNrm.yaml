@@ -1715,7 +1715,7 @@ components:
               $ref: '#/components/schemas/Dn'
                
 
-    ResourceProfile:
+    ResourceProfile-Single:
       allOf:
         - $ref: '#/components/schemas/Top'
         - type: object
