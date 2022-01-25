@@ -37,22 +37,6 @@ components:
           type: string
         eDNServiceArea:
           $ref: '#/components/schemas/ServingLocation'
-    AffinityAntiAffinity:
-      type: object
-      properties:
-        affinityEAS:
-          type: string
-        antiAffinityEAS:
-          type: string
-    VirtualResource:
-      type: object
-      properties:
-        virtualMemory:
-          type: integer
-        virtualDisk:
-          type: integer
-
-
 
 #-------- Definition of concrete IOCs --------------------------------------------
 
@@ -140,13 +124,6 @@ components:
           properties:
             requiredEASservingLocation:
               $ref: '#/components/schemas/ServingLocation'
-            affinityAntiAffinity:
-              $ref: '#/components/schemas/AffinityAntiAffinity'
-            serviceContinuity:
-              type: boolean
-            virtualResource:
-              $ref: '#/components/schemas/VirtualResource'
-
 
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------                               
           
