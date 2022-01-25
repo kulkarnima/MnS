@@ -1,26 +1,23 @@
 openapi: 3.0.1
 info:
   title: TS 28.550 Performance Measurement Job Control Service
-  version: 16.5.0
+  version: 16.8.0
   description: >-
     OAS 3.0.1 specification of the Performance Measurement Job Control Service
     @ 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 externalDocs:
-  description: 3GPP TS 28.550 V16.5.0; Performance assurance
+  description: 3GPP TS 28.550 V16.8.0; Performance assurance
   url: http://www.3gpp.org/ftp/Specs/archive/28_series/28.550/
 servers:
-  - url: 'http://{URI-DN-prefix}/{root}/PerfMeasJobCtrlMnS/v1650/{LDN-first-part}'
+  - url: '{MnSRoot}/PerfMeasJobCtrlMnS/{MnSVersion}'
     variables:
-      URI-DN-prefix:
-        description: See subclause 4.4 of TS 32.158
-        default: example.com
-      root:
-        description: See subclause 4.4 of TS 32.158
-        default: 3GPPManagement
-      LDN-first-part:
-        description: See subclause 4.4 of TS 32.158
-        default: ''
+      MnSRoot:
+        description: See clause 4.4.2 of TS 32.158
+        default: http://example.com/3GPPManagement
+      MnSVersion:
+        description: Version number of the OpenAPI definition
+        default: XXX
 paths:
   /measJobs:
     post:
