@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: 3GPP Edge NRM
-  version: 17.1.0
+  version: 17.0.0
   description: >-
     OAS 3.0.1 specification of the Edge NRM
     © 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -20,7 +20,7 @@ components:
         geographicalLocation:
           $ref: '#/components/schemas/GeoLoc'
         tAi:
-          $ref: 'genericNrm.yaml#/components/schemas/Tai'
+          $ref: 'nrNrm.yaml#/components/schemas/Tai'
     GeoLoc:
       type: object
       properties:
@@ -100,7 +100,7 @@ components:
                       type: string
                     eASRequirementsRef:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'
-        - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-ncO'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
     EESFunction-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -113,7 +113,7 @@ components:
                   properties:
                     eESIdentifier:
                       type: string
-                - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-ncO'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
     ECSFunction-Single:
       allOf:
@@ -131,9 +131,9 @@ components:
                       type: string
                     eDNConnectionInfo:
                       $ref: '#/components/schemas/EDNConnectionInfo'
-        - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-ncO'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
-    EASRequirements:
+    EASRequirements-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
@@ -180,3 +180,4 @@ components:
         - $ref: '#/components/schemas/ECSFunction-Single'
         - $ref: '#/components/schemas/EESFunction-Single'
         - $ref: '#/components/schemas/EdgeDataNetwork-Single'
+        - $ref: '#/components/schemas/EASRequirements-Single'
