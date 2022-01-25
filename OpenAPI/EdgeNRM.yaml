@@ -67,7 +67,7 @@ components:
         - type: object
           properties:
             Subnetwork:
-              $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-Multiple'
+              $ref: '#/components/schemas/SubNetwork-Multiple'
             ECSFunction:
               $ref: '#/components/schemas/ECSFunction-Multiple'
             EdgeDataNetwork:
