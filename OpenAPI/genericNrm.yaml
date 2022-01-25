@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Generic NRM
-  version: 16.9.0
+  version: 16.10.0
   description: >-
     OAS 3.0.1 definition of the Generic NRM
     © 2021, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -409,6 +409,9 @@ components:
               - S6d
               - S6a
               - Sh
+              - N70
+              - N71
+              - NU1
         EIRInterfaces:
           type: array
           items:
@@ -551,6 +554,7 @@ components:
               - N10
               - N13
               - N21
+              - NU1
         UPFInterfaces:
           type: array
           items:
@@ -615,6 +619,8 @@ components:
           - UPF
           - AUSF
           - SMSF
+          - HSS
+          - UDM
 
     tjPLMNTarget-Type:
       type: object

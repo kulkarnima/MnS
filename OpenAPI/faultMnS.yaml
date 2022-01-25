@@ -1,10 +1,10 @@
 openapi: 3.0.1
 info:
   title: Fault Supervision MnS
-  version: 16.6.0
+  version: 16.10.0
   description: >-
     OAS 3.0.1 definition of the Fault Supervision MnS
-    © 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    © 2021, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 externalDocs:
   description: 3GPP TS 28.532; Generic management services
@@ -660,7 +660,7 @@ components:
         - notifyCorrelatedNotificationChanged
         - notifyComments
         - notifyClearedAlarm
-        - notifyAlarmListRebuiltAlarm
+        - notifyAlarmListRebuilt
         - notifyPotentialFaultyAlarmList
     AlarmListAlignmentRequirement:
       type: string
