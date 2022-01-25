@@ -20,7 +20,7 @@ components:
         geographicalLocation:
           $ref: '#/components/schemas/GeoLoc'
         tAi:
-          $ref: 'genericNrm.yaml#/components/schemas/TAI'
+          $ref: 'genericNrm.yaml#/components/schemas/Tai'
     GeoLoc:
       type: object
       properties:
@@ -99,7 +99,7 @@ components:
                     eESAddress:
                       type: string
                     eASRequirementsRef:
-                      $ref: '#/components/schemas/EASRequirements'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
         - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-ncO'
     EESFunction-Single:
       allOf:
