@@ -562,29 +562,6 @@ components:
       type: array
       items:
         type: string
-
-    TaiRange:
-      type: object
-      properties:
-        plmnId:
-          $ref: 'nrNrm.yaml#/components/schemas/PlmnId'
-        nRTACRangelist:
-          type: array
-          items:
-            $ref: '#/components/schemas/NRTACRange' 
-            
-    ECSAddrConfigInfo:
-      type: array
-      items:
-        type: string
-
-    GUAMInfo:
-      type: object
-      properties:
-          pLMNId: 
-            $ref: 'nrNrm.yaml#/components/schemas/PlmnId'
-          aMFIdentifier:
-            type: integer 
             
 #-------- Definition of concrete IOCs --------------------------------------------
 
