@@ -139,8 +139,7 @@ components:
     TaiList:
       type: array
       items:
-        $ref: '#/components/schemas/Tai'
-        
+        $ref: '#/components/schemas/Tai' 
     NrtacRange: 
       type: object
       properties:

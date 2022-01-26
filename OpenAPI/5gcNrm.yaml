@@ -524,12 +524,7 @@ components:
             type: string
         maxNumberofPDUSessions:
           type: integer
-          
-    SupportedBMOList:
-      type: array
-      items:
-        type: string
-        
+     
     NRTACRange:
       type: object
       properties:
@@ -539,6 +534,34 @@ components:
           type: string
         nRTACpattern:
           type: string
+  
+    TaiRange:
+      type: object
+      properties:
+        plmnId:
+          $ref: 'nrNrm.yaml#/components/schemas/PlmnId'
+        nRTACRangelist:
+          type: array
+          items:
+            $ref: '#/components/schemas/NRTACRange'
+   
+    GUAMInfo:
+      type: object
+      properties:
+          pLMNId: 
+            $ref: 'nrNrm.yaml#/components/schemas/PlmnId'
+          aMFIdentifier:
+            type: integer   
+       
+    SupportedBMOList:
+      type: array
+      items:
+        type: string
+    
+    ECSAddrConfigInfo:
+      type: array
+      items:
+        type: string
 
     TaiRange:
       type: object
@@ -673,6 +696,14 @@ components:
                       $ref: '#/components/schemas/WeightFactor'
                     snssaiList:
                       $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
+                    cNSIIdList:
+                      $ref: '#/components/schemas/CNSIIdList'
+                    gUAMIdList: 
+                      $ref: '#/components/schemas/GUAMInfo'
+                    backupInfoAmfFailure:
+                      $ref: '#/components/schemas/GUAMInfo'
+                    backupInfoAmfRemoval:
+                      $ref: '#/components/schemas/GUAMInfo'
                     amfSetRef:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'
                     managedNFProfile:
@@ -2283,7 +2314,7 @@ components:
     EP_Npc8-Multiple:
       type: array
       items:
-        $ref: '#/components/schemas/EP_Npc66-Single'
+        $ref: '#/components/schemas/EP_Npc8-Single'
     EP_Nxx-Multiple:
       type: array
       items:
