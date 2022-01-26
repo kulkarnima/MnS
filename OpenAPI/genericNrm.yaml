@@ -729,6 +729,10 @@ components:
         - NO_IDENTITY
         - TAC_OF_IMEI
     
+    tjMDTBeamLevelMeasurement-Type:
+      description: Determines whether beam level measurements shall be included in case of immediate MDT M1 measurement in NR. For additional details see 3GPP TS 32.422 clause 5.10.40.
+      type: boolean
+    
     tjMDTCollectionPeriodRrmLte-Type:
       description: See details in 3GPP TS 32.422 clause 5.10.20.
       type: string
@@ -1365,6 +1369,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AreaScope'
+        tjMDTBeamLevelMeasurement:
+          $ref: '#/components/schemas/tjMDTBeamLevelMeasurement-Type'
         tjMDTCollectionPeriodRrmLte:
           $ref: '#/components/schemas/tjMDTCollectionPeriodRrmLte-Type'
         tjMDTCollectionPeriodM6Lte:
