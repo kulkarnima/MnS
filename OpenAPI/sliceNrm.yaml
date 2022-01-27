@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Slice NRM
-  version: 17.4.0
+  version: 17.5.0
   description: >-
     OAS 3.0.1 specification of the Slice NRM
     @ 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -257,12 +257,42 @@ components:
           $ref: '#/components/schemas/ServAttrCom'
         performance:
           $ref: '#/components/schemas/EEPerfReq'      
+    NSSAASupport:
+      type: object
+      properties:
+        servAttrCom:
+          $ref: '#/components/schemas/ServAttrCom'
+        support:
+          $ref: '#/components/schemas/Support'  
+    SecFunc:
+      type: object
+      properties:
+        secFunId:
+          type: string
+        secFunType:
+          type: string
+        secRules:
+          type: array
+          items:
+            type: string
+    N6Protection:
+      type: object
+      properties:
+        servAttrCom:
+          $ref: '#/components/schemas/ServAttrCom'
+        secFuncList:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecFunc'
+
     CNSliceSubnetProfile:
       type: object
       properties:
         maxNumberofUEs:
           type: integer
-        latency:
+        dLLatency:
+          type: integer
+        uLLatency:
           type: integer
         dLThptPerSliceSubnet:
           $ref: '#/components/schemas/XLThpt'
@@ -298,10 +328,18 @@ components:
           $ref: '#/components/schemas/DeterministicComm'
         survivalTime:
           type: string
+        nssaaSupport:
+          $ref: '#/components/schemas/NSSAASupport'
+        n6Protection:
+          $ref: '#/components/schemas/N6Protection'    
     RANSliceSubnetProfile:
       type: object
       properties:
         coverageAreaTAList:
+          type: integer
+        dLLatency:
+          type: integer
+        uLLatency:
           type: integer
         uEMobilityLevel:
           $ref: '#/components/schemas/MobilityLevel'
@@ -348,7 +386,9 @@ components:
     TopSliceSubnetProfile:
       type: object
       properties:
-        latency:
+        dLLatency:
+          type: integer
+        uLLatency:
           type: integer
         maxNumberofUEs:
           type: integer
@@ -410,7 +450,9 @@ components:
             $ref: 'nrNrm.yaml#/components/schemas/PlmnInfoList'
           maxNumberofUEs:
             type: number
-          latency:
+          dLLatency:
+            type: number
+          uLLatency:
             type: number
           uEMobilityLevel:
             $ref: '#/components/schemas/MobilityLevel'
@@ -476,6 +518,10 @@ components:
             $ref: '#/components/schemas/SliceSimultaneousUse'
           energyEfficiency:
             $ref: '#/components/schemas/EnergyEfficiency'
+          nssaaSupport:
+            $ref: '#/components/schemas/NSSAASupport'
+          n6Protection:
+            $ref: '#/components/schemas/N6Protection'
     SliceProfile:
       type: object
       properties:
@@ -492,8 +538,8 @@ components:
 
     IpAddress:
       oneOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
-        - $ref: 'genericNrm.yaml#/components/schemas/Ipv6Addr'
+        - $ref: 'comDefs.yaml#/components/schemas/Ipv4Addr'
+        - $ref: 'comDefs.yaml#/components/schemas/Ipv6Addr'
     
     LogicInterfaceInfo:
       type: object
@@ -548,11 +594,11 @@ components:
                 - type: object
                   properties:
                     networkSliceSubnetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     operationalState:
-                      $ref: 'genericNrm.yaml#/components/schemas/OperationalState'
+                      $ref: 'comDefs.yaml#/components/schemas/OperationalState'
                     administrativeState:
-                      $ref: 'genericNrm.yaml#/components/schemas/AdministrativeState'
+                      $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
                     serviceProfileList:
                       $ref: '#/components/schemas/ServiceProfileList'
 
@@ -566,21 +612,27 @@ components:
                 - type: object
                   properties:
                     managedFunctionRefList:
-                      $ref: 'genericNrm.yaml#/components/schemas/DnList'
+                      $ref: 'comDefs.yaml#/components/schemas/DnList'
                     networkSliceSubnetRefList:
-                      $ref: 'genericNrm.yaml#/components/schemas/DnList'
+                      $ref: 'comDefs.yaml#/components/schemas/DnList'
                     operationalState:
-                      $ref: 'genericNrm.yaml#/components/schemas/OperationalState'
+                      $ref: 'comDefs.yaml#/components/schemas/OperationalState'
                     administrativeState:
-                      $ref: 'genericNrm.yaml#/components/schemas/AdministrativeState'
+                      $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
                     nsInfo:
                       $ref: '#/components/schemas/NsInfo'
                     sliceProfileList:
                       $ref: '#/components/schemas/SliceProfileList'
                     epTransportRefList:
-                      $ref: 'genericNrm.yaml#/components/schemas/DnList'
+                      $ref: 'comDefs.yaml#/components/schemas/DnList'
                     priorityLabel:
                       type: integer
+                    networkSliceSubnetType:
+                      type: string
+                      enum:
+                        - TOP_SLICESUBNET
+                        - RAN_SLICESUBNET
+                        - CN_SLICESUBNET
 
     EP_Transport-Single:
       allOf:
@@ -599,7 +651,7 @@ components:
                 qosProfile:
                   type: string 
                 epApplicationRefs:
-                  $ref: 'genericNrm.yaml#/components/schemas/DnList'
+                  $ref: 'comDefs.yaml#/components/schemas/DnList'
 
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
     SubNetwork-Multiple:

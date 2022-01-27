@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: NR NRM
-  version: 17.4.0
+  version: 17.5.0
   description: >-
     OAS 3.0.1 specification of the NR NRM
     © 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -55,7 +55,7 @@ components:
       type: object
       properties:
         mcc:
-          $ref: 'genericNrm.yaml#/components/schemas/Mcc'
+          $ref: 'comDefs.yaml#/components/schemas/Mcc'
         mnc:
           $ref: '#/components/schemas/Mnc'
     PlmnIdList:
@@ -65,7 +65,7 @@ components:
     PlmnInfo:
       type: object
       properties:
-        plmnId":
+        plmnId:
           $ref: '#/components/schemas/PlmnId'
         snssai:
           $ref: '#/components/schemas/Snssai'
@@ -73,6 +73,22 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/PlmnInfo'
+    SnpnId:
+      type: object
+      properties:
+        mcc:
+          $ref: 'comDefs.yaml#/components/schemas/Mcc'
+        mnc:
+          $ref: '#/components/schemas/Mnc'
+        nid:
+          type: string
+    SnpnInfo:
+      type: object
+      properties:
+        snpnId:
+          $ref: '#/components/schemas/SnpnId'
+        snssai:
+          $ref: '#/components/schemas/Snssai'
     cagId:
       type: string
     nid:
@@ -80,7 +96,7 @@ components:
     NpnIdentity:
       type: object
       properties:
-        plmnId":
+        plmnId:
           $ref: '#/components/schemas/PlmnId'
         cagidList:
           $ref: '#/components/schemas/cagId'
@@ -120,6 +136,28 @@ components:
           $ref: '#/components/schemas/PlmnId'
         nrTac:
           $ref: '#/components/schemas/NrTac'
+    TaiList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Tai' 
+    NrtacRange: 
+      type: object
+      properties:
+        nRTACstart:
+          type: string
+        nRTACend:
+          type: string
+        nRTACpattern:
+          type: string
+    TaiRange:
+      type: object
+      properties:
+        plmnId:
+          $ref: '#/components/schemas/PlmnId'
+        nRTACRangeList:
+          type: array
+          items: 
+             $ref: '#/components/schemas/NrtacRange'
 
     BackhaulAddress:
       type: object
@@ -289,9 +327,9 @@ components:
       type: object
       properties:
         ipv4Address:
-          $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
+          $ref: 'comDefs.yaml#/components/schemas/Ipv4Addr'
         ipv6Address:
-          $ref: 'genericNrm.yaml#/components/schemas/Ipv6Addr'
+          $ref: 'comDefs.yaml#/components/schemas/Ipv6Addr'
         vlanId:
           type: integer
           minimum: 0
@@ -309,9 +347,9 @@ components:
       type: object
       properties:
         ipv4Address:
-          $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
+          $ref: 'comDefs.yaml#/components/schemas/Ipv4Addr'
         ipv6Address:
-          $ref: 'genericNrm.yaml#/components/schemas/Ipv6Addr'
+          $ref: 'comDefs.yaml#/components/schemas/Ipv6Addr'
 
     CellIndividualOffset:
       type: object
@@ -573,8 +611,8 @@ components:
       properties:
         TceIPAddress:
           oneOf:
-            - $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
-            - $ref: 'genericNrm.yaml#/components/schemas/Ipv6Addr'
+            - $ref: 'comDefs.yaml#/components/schemas/Ipv4Addr'
+            - $ref: 'comDefs.yaml#/components/schemas/Ipv6Addr'
         TceID:
           type: integer
         PlmnTarget:
@@ -583,7 +621,14 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/TceMappingInfo'
-
+    ResourceType:
+      type: string
+      enum:
+        - PRB
+        - PRB_UL
+        - PRB_DL
+        - RRC
+        - DRB    
 
 #-------- Definition of abstract IOCs --------------------------------------------
 
@@ -591,7 +636,7 @@ components:
       type: object
       properties:
         resourceType:
-          type: string
+          $ref: '#/components/schemas/ResourceType'        
         rRMPolicyMemberList:
           $ref: '#/components/schemas/RrmPolicyMemberList'
 
@@ -626,6 +671,8 @@ components:
               $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
             DMROFunction:
               $ref: '#/components/schemas/DMROFunction-Single'
+            DLBOFunction:
+              $ref: '#/components/schemas/DLBOFunction-Single'
             DPCIConfigurationFunction:
               $ref: '#/components/schemas/DPCIConfigurationFunction-Single'
             CPCIConfigurationFunction:
@@ -661,6 +708,8 @@ components:
               $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
             DMROFunction:
               $ref: '#/components/schemas/DMROFunction-Single'
+            DLBOFunction:
+              $ref: '#/components/schemas/DLBOFunction-Single'
             DPCIConfigurationFunction:
               $ref: '#/components/schemas/DPCIConfigurationFunction-Single'
             CPCIConfigurationFunction:
@@ -709,6 +758,23 @@ components:
               $ref: '#/components/schemas/EP_F1U-Multiple'
             DRACHOptimizationFunction:
               $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
+
+    OperatorDu-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            gnbId:
+              $ref: '#/components/schemas/GnbId'
+            gnbIdLength:
+              $ref: '#/components/schemas/GnbIdLength'
+        - type: object
+          properties:
+            EP_F1C:
+              $ref: '#/components/schemas/EP_F1C-Single'
+            EP_F1U:
+              $ref: '#/components/schemas/EP_F1U-Multiple'
+
     GnbCuUpFunction-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -728,9 +794,9 @@ components:
                     plmnInfoList:
                       $ref: '#/components/schemas/PlmnInfoList'
                     configurable5QISetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     dynamic5QISetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -781,9 +847,13 @@ components:
                     tceMappingInfoList:
                       $ref: '#/components/schemas/TceMappingInfoList'
                     configurable5QISetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     dynamic5QISetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                    dCHOControl:
+                      type: boolean
+                    dDAPSHOControl:
+                      type: boolean
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -807,6 +877,8 @@ components:
               $ref: '#/components/schemas/DESManagementFunction-Single'
             DMROFunction:
               $ref: '#/components/schemas/DMROFunction-Single'
+            DLBOFunction:
+              $ref: '#/components/schemas/DLBOFunction-Single'
 
     NrCellCu-Single:
       allOf:
@@ -823,7 +895,7 @@ components:
                     plmnInfoList:
                       $ref: '#/components/schemas/PlmnInfoList'
                     nRFrequencyRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -841,6 +913,8 @@ components:
               $ref: '#/components/schemas/DESManagementFunction-Single'
             DMROFunction:
               $ref: '#/components/schemas/DMROFunction-Single'
+            DLBOFunction:
+              $ref: '#/components/schemas/DLBOFunction-Single'
             CESManagementFunction:
               $ref: '#/components/schemas/CESManagementFunction-Single'
             DPCIConfigurationFunction:
@@ -857,9 +931,9 @@ components:
                 - type: object
                   properties:
                     administrativeState:
-                      $ref: 'genericNrm.yaml#/components/schemas/AdministrativeState'
+                      $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
                     operationalState:
-                      $ref: 'genericNrm.yaml#/components/schemas/OperationalState'
+                      $ref: 'comDefs.yaml#/components/schemas/OperationalState'
                     cellLocalId:
                       type: integer
                     cellState:
@@ -901,11 +975,11 @@ components:
                     nrSectorCarrierRef:
                       type: array
                       items:
-                        $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                        $ref: 'comDefs.yaml#/components/schemas/Dn'
                     bwpRef:
                       type: array
                       items:
-                        $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                        $ref: 'comDefs.yaml#/components/schemas/Dn'
                     rimRSMonitoringStartTime:
                       type: string
                     rimRSMonitoringStopTime:
@@ -921,11 +995,11 @@ components:
                     rimRSMonitoringOccasionStartingOffset:
                       type: integer
                     nRFrequencyRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     victimSetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     aggressorSetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -935,6 +1009,18 @@ components:
               $ref: '#/components/schemas/CPCIConfigurationFunction-Single'
             DRACHOptimizationFunction:
               $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
+
+    NrOperatorCellDu-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            cellLocalId:
+              type: integer
+            plmnInfoList:
+              $ref: '#/components/schemas/PlmnInfoList'
+            nrTac:
+              $ref: '#/components/schemas/NrTac'
 
     NRFrequency-Single:
       allOf:
@@ -994,7 +1080,7 @@ components:
                     bSChannelBwUL:
                       type: integer
                     sectorEquipmentFunctionRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -1103,9 +1189,9 @@ components:
                     cellIndividualOffset:
                       $ref: '#/components/schemas/CellIndividualOffset'
                     adjacentNRCellRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
-                    nRFrequencyRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                    nRFreqRelationRef:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     isRemoveAllowed:
                       type: boolean
                     isHOAllowed:
@@ -1127,7 +1213,7 @@ components:
                 - type: object
                   properties:
                     adjacentEUtranCellRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
     NRFreqRelation-Single:
       allOf:
@@ -1139,13 +1225,13 @@ components:
                   properties:
                     offsetMO:
                       $ref: '#/components/schemas/QOffsetRangeList'
-                    blackListEntry:
+                    blockListEntry:
                       type: array
                       items:
                         type: integer
                         minimum: 0
                         maximum: 1007
-                    blackListEntryIdleMode:
+                    blockListEntryIdleMode:
                       type: integer
                     cellReselectionPriority:
                       type: integer
@@ -1191,7 +1277,7 @@ components:
                     tReselectionNRSfMedium:
                       $ref: '#/components/schemas/TReselectionNRSf'
                     nRFrequencyRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
     EUtranFreqRelation-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -1254,7 +1340,7 @@ components:
                     tReselectionNRSfMedium:
                       $ref: '#/components/schemas/TReselectionNRSf'
                     eUTranFrequencyRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
     DANRManagementFunction-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -1335,6 +1421,20 @@ components:
                       $ref: '#/components/schemas/MinimumTimeBetweenHoTriggerChange'
                     tstoreUEcntxt:
                       $ref: '#/components/schemas/TstoreUEcntxt'
+    DLBOFunction-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes: 
+                  type: object
+                  properties:
+                    dlboControl:
+                      type: boolean
+                    maximumDeviationHoTrigger:
+                          $ref: '#/components/schemas/MaximumDeviationHoTrigger'
+                    minimumTimeBetweenHoTriggerChange:
+                          $ref: '#/components/schemas/MinimumTimeBetweenHoTriggerChange'
 
     DPCIConfigurationFunction-Single:
       allOf:
@@ -1427,7 +1527,7 @@ components:
                 setType:
                   $ref: '#/components/schemas/RSSetType'
                 nRCellDURefs:
-                  $ref: 'genericNrm.yaml#/components/schemas/DnList'
+                  $ref: 'comDefs.yaml#/components/schemas/DnList'
 
     ExternalGnbDuFunction-Single:
       allOf:
@@ -1518,7 +1618,7 @@ components:
                     plmnIdList:
                       $ref: '#/components/schemas/PlmnIdList'
                     nRFrequencyRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
     ExternalENBFunction-Single:
       allOf:
@@ -1548,7 +1648,7 @@ components:
                 - type: object
                   properties:
                     EUtranFrequencyRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
     EP_XnC-Single:
@@ -1650,7 +1750,7 @@ components:
                     remoteAddress:
                       $ref: '#/components/schemas/RemoteAddress'
                     epTransportRefs:
-                      $ref: 'genericNrm.yaml#/components/schemas/DnList'
+                      $ref: 'comDefs.yaml#/components/schemas/DnList'
 
     EP_NgU-Single:
       allOf:
@@ -1667,7 +1767,7 @@ components:
                     remoteAddress:
                       $ref: '#/components/schemas/RemoteAddress'
                     epTransportRefs:
-                      $ref: 'genericNrm.yaml#/components/schemas/DnList'
+                      $ref: 'comDefs.yaml#/components/schemas/DnList'
 
     EP_X2U-Single:
       allOf:
@@ -1712,6 +1812,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/GnbDuFunction-Single'
+    OperatorDu-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/OperatorDu-Single'    
     GnbCuUpFunction-Multiple:
       type: array
       items:
@@ -1725,6 +1829,12 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/NrCellDu-Single'
+    
+    NrOperatorCellDu-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/NrOperatorCellDu-Single'    
+        
     NrCellCu-Multiple:
       type: array
       items:
@@ -1857,9 +1967,11 @@ components:
         - $ref: '#/components/schemas/GnbDuFunction-Single'
         - $ref: '#/components/schemas/GnbCuUpFunction-Single'
         - $ref: '#/components/schemas/GnbCuCpFunction-Single'
+        - $ref: '#/components/schemas/OperatorDu-Single'
 
         - $ref: '#/components/schemas/NrCellCu-Single'
         - $ref: '#/components/schemas/NrCellDu-Single'
+        - $ref: '#/components/schemas/NrOperatorCellDu-Single'
 
         - $ref: '#/components/schemas/NRFrequency-Single'
         - $ref: '#/components/schemas/EUtranFrequency-Single'
@@ -1879,6 +1991,7 @@ components:
         - $ref: '#/components/schemas/DESManagementFunction-Single'
         - $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
         - $ref: '#/components/schemas/DMROFunction-Single'
+        - $ref: '#/components/schemas/DLBOFunction-Single'        
         - $ref: '#/components/schemas/DPCIConfigurationFunction-Single'
         - $ref: '#/components/schemas/CPCIConfigurationFunction-Single'
         - $ref: '#/components/schemas/CESManagementFunction-Single'

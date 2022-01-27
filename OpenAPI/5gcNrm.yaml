@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: 3GPP 5GC NRM
-  version: 17.4.0
+  version: 17.5.0
   description: >-
     OAS 3.0.1 specification of the 5GC NRM
     © 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -41,11 +41,11 @@ components:
       type: object
       properties:
         ipv4Address:
-          $ref: 'genericNrm.yaml#/components/schemas/Ipv4Addr'
+          $ref: 'comDefs.yaml#/components/schemas/Ipv4Addr'
         ipv6Address:
-          $ref: 'genericNrm.yaml#/components/schemas/Ipv6Addr'
+          $ref: 'comDefs.yaml#/components/schemas/Ipv6Addr'
         ipv6Prefix:
-          $ref: 'genericNrm.yaml#/components/schemas/Ipv6Prefix'
+          $ref: 'comDefs.yaml#/components/schemas/Ipv6Prefix'
         transport:
           $ref: 'genericNrm.yaml#/components/schemas/TransportProtocol'
         port:
@@ -71,9 +71,9 @@ components:
         sNssais:
           $ref: 'nrNrm.yaml#/components/schemas/Snssai'
         fqdn:
-          $ref: 'genericNrm.yaml#/components/schemas/Fqdn'
+          $ref: 'comDefs.yaml#/components/schemas/Fqdn'
         interPlmnFqdn:
-          $ref: 'genericNrm.yaml#/components/schemas/Fqdn'
+          $ref: 'comDefs.yaml#/components/schemas/Fqdn'
         nfServices:
           type: array
           items:
@@ -91,9 +91,9 @@ components:
         schema:
           type: string
         fqdn:
-          $ref: 'genericNrm.yaml#/components/schemas/Fqdn'
+          $ref: 'comDefs.yaml#/components/schemas/Fqdn'
         interPlmnFqdn:
-          $ref: 'genericNrm.yaml#/components/schemas/Fqdn'
+          $ref: 'comDefs.yaml#/components/schemas/Fqdn'
         ipEndPoints:
           type: array
           items:
@@ -144,11 +144,6 @@ components:
       properties:
         smfServingAreas:
           type: string
-    AmfInfo:
-      type: object
-      properties:
-        priority:
-          type: integer
     SupportedDataSetId:
       type: string
       description: any of enumrated value
@@ -171,8 +166,33 @@ components:
         - $ref: '#/components/schemas/UdmInfo'
         - $ref: '#/components/schemas/AusfInfo'
         - $ref: '#/components/schemas/UpfInfo'
-        - $ref: '#/components/schemas/AmfInfo'
         - $ref: '#/components/schemas/Udrinfo'
+    NotificationType:      
+      type: string
+      enum:
+        -  N1_MESSAGES 
+        -  N2_INFORMATION
+        -  LOCATION_NOTIFICATION
+        -  DATA_REMOVAL_NOTIFICATION
+        -  DATA_CHANGE_NOTIFICATION
+        -  LOCATION_UPDATE_NOTIFICATION
+        -  NSSAA_REAUTH_NOTIFICATION
+        -  NSSAA_REVOC_NOTIFICATION
+    DefaultNotificationSubscription:
+      type: object
+      properties:
+        notificationType:
+          $ref: '#/components/schemas/NotificationType'
+        callbackURI:
+          type: string
+        n1MessageClass:  
+          type: boolean
+        n2InfroamtionClass:
+          type: boolean
+        versions:
+          type: string
+        binding:
+          type: string
     ManagedNFProfile:
       type: object
       properties:
@@ -180,16 +200,56 @@ components:
           type: string
         nfType:
           $ref: 'genericNrm.yaml#/components/schemas/NFType'
+        heartbeatTimer:
+          type: integer
         authzInfo:
           type: string
         hostAddr:
-          $ref: 'genericNrm.yaml#/components/schemas/HostAddr'
+          $ref: 'comDefs.yaml#/components/schemas/HostAddr'
+        allowedPLMNs:
+          type: array
+          items:
+            $ref: 'nrNrm.yaml#/components/schemas/PlmnId'
+        allowedSNPNs:
+          type: array
+          items:
+            $ref: 'nrNrm.yaml#/components/schemas/SnpnInfo'
+        allowedNfTypes:
+          type: array
+          items:
+            $ref: 'genericNrm.yaml#/components/schemas/NFType'
+        allowedNfDomains:
+          type: array
+          items: 
+            type: string
+        allowedNSSAIs:
+          type: array
+          items:
+            $ref: 'nrNrm.yaml#/components/schemas/Snssai'
         locality:
           type: string
         nFInfo:
           $ref: '#/components/schemas/NFInfo'
         capacity:
           type: integer
+        nfSetIdList:
+          type: array
+          items:
+            type: string
+        servingScope:
+          type: array
+          items:
+            type: string
+        nfSetRecoveryTimeList:
+          type: array
+          items:
+            $ref: 'comDefs.yaml#/components/schemas/DateTime'
+        scpDomains:
+          type: array
+          items:
+            type: string
+        vendorId:
+          type: string
     SEPPType:
       type: string
       description: any of enumrated value
@@ -223,7 +283,7 @@ components:
         commModelType:
           $ref: '#/components/schemas/CommModelType'
         targetNFServiceList:
-          $ref: 'genericNrm.yaml#/components/schemas/DnList'
+          $ref: 'comDefs.yaml#/components/schemas/DnList'
         commModelConfiguration:
           type: string
     CommModelList:
@@ -251,12 +311,11 @@ components:
         cNSIId:
           $ref: '#/components/schemas/CNSIId'
         networkSliceRef:
-          $ref: 'genericNrm.yaml#/components/schemas/DnList'
+          $ref: 'comDefs.yaml#/components/schemas/DnList'
     NetworkSliceInfoList:
       type: array
       items:
         $ref: '#/components/schemas/NetworkSliceInfo'
-
 
     PacketErrorRate:
       type: object
@@ -265,8 +324,6 @@ components:
           type: integer
         exponent:
           type: integer
-
-
 
     GtpUPathDelayThresholdsType:
       type: object
@@ -382,6 +439,8 @@ components:
           $ref: '#/components/schemas/SteeringMode'
         mulAccCtrl:
           $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/MulticastAccessControl'
+        snssaiList:
+          $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
 
     TrafficControlDataList:
       type: array
@@ -437,7 +496,7 @@ components:
         plmnInfo:
           $ref: 'nrNrm.yaml#/components/schemas/PlmnInfo'
         administrativeState:
-          $ref: 'genericNrm.yaml#/components/schemas/AdministrativeState'
+          $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
 
     NsacfInfoSnssai:
       type: object
@@ -463,8 +522,47 @@ components:
           type: array
           items:
             type: string
-         
-
+        maxNumberofPDUSessions:
+          type: integer
+     
+    NRTACRange:
+      type: object
+      properties:
+        nRTACstart:
+          type: string
+        nRTACend:
+          type: string
+        nRTACpattern:
+          type: string
+  
+    TaiRange:
+      type: object
+      properties:
+        plmnId:
+          $ref: 'nrNrm.yaml#/components/schemas/PlmnId'
+        nRTACRangelist:
+          type: array
+          items:
+            $ref: '#/components/schemas/NRTACRange'
+   
+    GUAMInfo:
+      type: object
+      properties:
+          pLMNId: 
+            $ref: 'nrNrm.yaml#/components/schemas/PlmnId'
+          aMFIdentifier:
+            type: integer   
+       
+    SupportedBMOList:
+      type: array
+      items:
+        type: string
+    
+    ECSAddrConfigInfo:
+      type: array
+      items:
+        type: string
+            
 #-------- Definition of concrete IOCs --------------------------------------------
 
     SubNetwork-Single:
@@ -548,7 +646,7 @@ components:
               $ref: '#/components/schemas/Configurable5QISet-Multiple'
             Dynamic5QISet:
               $ref: '#/components/schemas/Dynamic5QISet-Multiple'
- 
+
     AmfFunction-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -565,12 +663,26 @@ components:
                       $ref: '#/components/schemas/AmfIdentifier'
                     sBIFqdn:
                       type: string
+                    interPlmnFQDN:
+                      type: string
+                    taiList:
+                      $ref: 'nrNrm.yaml#/components/schemas/Tai'
+                    taiRangeList:
+                      $ref: 'nrNrm.yaml#/components/schemas/TaiRange'
                     weightFactor:
                       $ref: '#/components/schemas/WeightFactor'
                     snssaiList:
                       $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
-                    amfSet:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                    cNSIIdList:
+                      $ref: '#/components/schemas/CNSIIdList'
+                    gUAMIdList: 
+                      $ref: '#/components/schemas/GUAMInfo'
+                    backupInfoAmfFailure:
+                      $ref: '#/components/schemas/GUAMInfo'
+                    backupInfoAmfRemoval:
+                      $ref: '#/components/schemas/GUAMInfo'
+                    amfSetRef:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
@@ -620,6 +732,10 @@ components:
                       $ref: '#/components/schemas/AmfSetId'
                     snssaiList:
                       $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
+                    aMFRegionRef:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                    aMFSetMemberList:
+                      $ref: 'comDefs.yaml#/components/schemas/DnList'
     AmfRegion-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -638,6 +754,8 @@ components:
                       $ref: '#/components/schemas/AmfRegionId'
                     snssaiList:
                       $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
+                    aMFSetListRef:
+                      $ref: 'comDefs.yaml#/components/schemas/DnList'
     SmfFunction-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -661,9 +779,9 @@ components:
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
                     configurable5QISetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     dynamic5QISetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
 
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
@@ -707,8 +825,8 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
-                    commModelList:
-                      $ref: '#/components/schemas/CommModelList'
+                    supportedBMOList:
+                      $ref: '#/components/schemas/SupportedBMOList'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -764,9 +882,11 @@ components:
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
                     configurable5QISetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
                     dynamic5QISetRef:
-                      $ref: 'genericNrm.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                    supportedBMOList:
+                      $ref: '#/components/schemas/SupportedBMOList'
 
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
@@ -831,6 +951,8 @@ components:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
+                    eCSAddrConfigInfo:
+                      $ref: '#/components/schemas/ECSAddrConfigInfo'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -1020,7 +1142,7 @@ components:
                     sEPPId:
                       type: integer
                     fqdn:
-                      $ref: 'genericNrm.yaml#/components/schemas/Fqdn'
+                      $ref: 'comDefs.yaml#/components/schemas/Fqdn'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -1062,7 +1184,7 @@ components:
                     supportedFuncList:
                       $ref: '#/components/schemas/SupportedFuncList'
                     address:
-                      $ref: 'genericNrm.yaml#/components/schemas/HostAddr'
+                      $ref: 'comDefs.yaml#/components/schemas/HostAddr'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
     NefFunction-Single:
       allOf:
@@ -1084,6 +1206,16 @@ components:
                       $ref: '#/components/schemas/CapabilityList'
                     isCAPIFSup:
                       type: boolean
+                    taiList:
+                      items:
+                        $ref: 'nrNrm.yaml#/components/schemas/TaiList'
+                    taiRangeList:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/TaiRange'
+                    dnai:
+                      type: string
+
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -1105,6 +1237,9 @@ components:
                       type: array
                       items:
                         $ref: '#/components/schemas/NsacfInfoSnssai'
+                    taiList:
+                      items:
+                        $ref: 'nrNrm.yaml#/components/schemas/TaiList'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -1132,12 +1267,39 @@ components:
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
-            EP_N64:
-              $ref: '#/components/schemas/EP_N64-Multiple'
-            EP_N65:
-              $ref: '#/components/schemas/EP_N65-Multiple'
-            EP_N66:
-              $ref: '#/components/schemas/EP_N66-Multiple'
+            EP_Npc4:
+              $ref: '#/components/schemas/EP_Npc4-Multiple'
+            EP_Npc6:
+              $ref: '#/components/schemas/EP_Npc6-Multiple'
+            EP_Npc7:
+              $ref: '#/components/schemas/EP_Npc7-Multiple'
+            EP_Npc8:
+              $ref: '#/components/schemas/EP_Npc8-Multiple'
+
+    EASDFFunction-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
+                - type: object
+                  properties:
+                    plmnId:
+                      $ref: 'nrNrm.yaml#/components/schemas/PlmnId'
+                    sBIFqdn:
+                      type: string
+                    managedNFProfile:
+                      $ref: '#/components/schemas/ManagedNFProfile'
+                    serverAddr:
+                      type: string
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+        - type: object
+          properties:
+            EP_Nxx:
+              $ref: '#/components/schemas/EP_Nxx-Multiple'
+
 
     ExternalAmfFunction-Single:
       allOf:
@@ -1192,7 +1354,7 @@ components:
                     sEPPId:
                       type: integer
                     fqdn:
-                      $ref: 'genericNrm.yaml#/components/schemas/Fqdn'
+                      $ref: 'comDefs.yaml#/components/schemas/Fqdn'
 
 
     EP_N2-Single:
@@ -1224,7 +1386,7 @@ components:
                     remoteAddress:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
                     epTransportRefs:
-                      $ref: 'genericNrm.yaml#/components/schemas/DnList'
+                      $ref: 'comDefs.yaml#/components/schemas/DnList'
     EP_N4-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -1523,7 +1685,7 @@ components:
                     remotePlmnId:
                       $ref: 'nrNrm.yaml#/components/schemas/PlmnId'
                     remoteSeppAddress:
-                      $ref: 'genericNrm.yaml#/components/schemas/HostAddr'
+                      $ref: 'comDefs.yaml#/components/schemas/HostAddr'
                     remoteSeppId:
                       type: integer
                     n32cParas:
@@ -1645,7 +1807,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/LocalAddress'
                     remoteAddress:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
-    EP_N64-Single:
+    EP_Npc4-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
@@ -1659,7 +1821,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/LocalAddress'
                     remoteAddress:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
-    EP_N65-Single:
+    EP_Npc6-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
@@ -1673,7 +1835,7 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/LocalAddress'
                     remoteAddress:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress' 
-    EP_N66-Single:
+    EP_Npc7-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
         - type: object
@@ -1687,7 +1849,36 @@ components:
                       $ref: 'nrNrm.yaml#/components/schemas/LocalAddress'
                     remoteAddress:
                       $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
-
+    EP_Npc8-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top-Attr'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'nrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
+                      
+    EP_Nxx-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'genericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'nrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'nrNrm.yaml#/components/schemas/RemoteAddress'
+                      
     FiveQiDscpMappingSet-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -2085,18 +2276,26 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/EP_N60-Single'
-    EP_N64-Multiple:
+    EP_Npc4-Multiple:
       type: array
       items:
-        $ref: '#/components/schemas/EP_N64-Single'
-    EP_N65-Multiple:
+        $ref: '#/components/schemas/EP_Npc4-Single'
+    EP_Npc6-Multiple:
       type: array
       items:
-        $ref: '#/components/schemas/EP_N65-Single'
-    EP_N66-Multiple:
+        $ref: '#/components/schemas/EP_Npc6-Single'
+    EP_Npc7-Multiple:
       type: array
       items:
-        $ref: '#/components/schemas/EP_N66-Single'
+        $ref: '#/components/schemas/EP_Npc7-Single'
+    EP_Npc8-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_Npc8-Single'
+    EP_Nxx-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_Nxx-Single'
     Configurable5QISet-Multiple:
       type: array
       items:
@@ -2172,6 +2371,7 @@ components:
        - $ref: '#/components/schemas/EP_N32-Single'
        - $ref: '#/components/schemas/EP_N33-Single'       
        - $ref: '#/components/schemas/EP_N60-Single'
+       - $ref: '#/components/schemas/EP_Nxx-Single'
 
        - $ref: '#/components/schemas/EP_S5C-Single'
        - $ref: '#/components/schemas/EP_S5U-Single'
@@ -2183,3 +2383,4 @@ components:
        - $ref: '#/components/schemas/FiveQiDscpMappingSet-Single'
        - $ref: '#/components/schemas/PredefinedPccRuleSet-Single'
        - $ref: '#/components/schemas/Dynamic5QISet-Single'
+       - $ref: '#/components/schemas/EASDFFunction-Single'

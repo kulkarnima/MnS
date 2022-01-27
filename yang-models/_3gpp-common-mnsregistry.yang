@@ -12,12 +12,13 @@ module _3gpp-common-mnsregistry {
     Class (IOC) that is part of the Generic Network Resource Model (NRM).";
   reference "3GPP TS 28.623 Generic Network Resource Model (NRM)";
 
-  revision 2021-10-18 { reference "S5-215263"; }
   revision 2021-08-29 { reference "Initial revision, S5-214388"; }
-  
-  grouping MNSInfoGrp {
-    description "Represents the MNSInfo IOC.";
-    reference "3GPP TS 28.622";
+
+  grouping MNSRegistryGrp {
+    description "Represents the MNSRegistry IOC.";
+    reference "3GPP TS 28.541";
+    uses top3gpp:Top_Grp;
+    
     leaf mnsLabel {
       description "Human-readable name of management service.";
       mandatory true;
@@ -27,10 +28,9 @@ module _3gpp-common-mnsregistry {
     leaf mnsType {
       description "Type of management service.";
       type enumeration {
-         enum ProvMnS;
-         enum FaultSupervisionMnS;
-         enum StreamingDataReportingMnS;
-         enum FileDataReportingMnS;
+         enum PROVISIONING;
+         enum FAULT_SUPERVISION; 
+         enum PERFORMANCE_ASSURANCE;
       }
     }
     
@@ -44,37 +44,16 @@ module _3gpp-common-mnsregistry {
       mandatory true;
       type string;
     }    
-  }
-  
-  grouping MNSInfo {
-    description "Represents the MNSInfo IOC.";
-    reference "3GPP TS 28.622";
-    uses top3gpp:Top_Grp;
-    container attributes {
-      uses MNSInfoGrp;
     }
-  }
-  
-  grouping MNSRegistryGrp {
-    description "Represents the MNSRegistry IOC.";
-    reference "3GPP TS 28.622";
-    uses top3gpp:Top_Grp;
-  }
-  
-  grouping MNSRegistry {
-    list mnsRegistry {
-    description "Represents the MNSRegistry IOC.";
-    reference "3GPP TS 28.622";
-    uses top3gpp:Top_Grp;
-    key "mnsType mnsVersion mnsAddress";
-    container attributes {
-      uses MNSInfoGrp;
+    
+    augment "/subnet3gpp:SubNetwork" {
+    list MNSRegistry {
+      description "Represents the MNSRegistry IOC.";
+      key id;   
+      uses top3gpp:Top_Grp;      
+      container attributes {
+        uses MNSRegistryGrp;
+      }
     }
-  }
-  }
-  
-  augment "/subnet3gpp:SubNetwork" {
-    uses MNSRegistryGrp;
-  }
-  
+ }
 }
