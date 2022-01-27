@@ -66,28 +66,34 @@ components:
     AssuranceTargetList:
       type: array
       items:
-         $ref: '#/components/schemas/AssuranceTarget'
+        $ref: '#/components/schemas/AssuranceTarget'
 
     AssuranceGoalStatus:
       type: object
       properties:
         assuranceGoalStatusId:
           type: string
+        assuranceGoalDn:
+          $ref: 'comDefs.yaml#/components/schemas/Dn'
         assuranceGoalStatusObserved:
           $ref: '#/components/schemas/AssuranceGoalStatusObserved'
         assuranceGoalStatusPredicted:
           $ref: '#/components/schemas/AssuranceGoalStatusPredicted'
-          
+        assuranceGoalRef:
+          $ref: 'comDefs.yaml#/components/schemas/Dn'
+
     AssuranceGoalStatusList:
       type: array
       items:
-         $ref: '#/components/schemas/AssuranceGoalStatus'
+        $ref: '#/components/schemas/AssuranceGoalStatus'
 
     AssuranceTargetStatus:
       type: object
       properties:
         assuranceTargetStatusId:
           type: string
+        assuranceTargetName:
+          $ref: '#/components/schemas/AssuranceTargetName'
         assuranceTargetStatusObserved:
           $ref: '#/components/schemas/AssuranceTargetStatusObserved'
         assuranceTargetStatusPredicted:
@@ -175,6 +181,10 @@ components:
                       $ref: '#/components/schemas/ACCLDisallowedAttributes'
             AssuranceGoal:
               $ref: '#/components/schemas/AssuranceGoal-Multiple'
+              networkSliceRef:
+                $ref: 'comDefs.yaml#/components/schemas/Dn'
+              networkSliceSubnetRef:
+                $ref: 'comDefs.yaml#/components/schemas/Dn'
 
     AssuranceGoal-Single:
       allOf:
