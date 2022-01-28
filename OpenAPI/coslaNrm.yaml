@@ -54,12 +54,15 @@ components:
       enum:
         - FULFILLED
         - NOT_FULFILLED
-        
+
+    AssuranceTargetName:
+      type: string
+
     AssuranceTarget:
       type: object
       properties:
         assuranceTargetName:
-          type: string
+          $ref: '#/components/schemas/AssuranceTargetName'
         assuranceTargetValue:
           type: string
          
@@ -93,7 +96,7 @@ components:
         assuranceTargetStatusId:
           type: string
         assuranceTargetName:
-          type: string
+          $ref: '#/components/schemas/AssuranceTargetName'
         assuranceTargetStatusObserved:
           $ref: '#/components/schemas/AssuranceTargetStatusObserved'
         assuranceTargetStatusPredicted:
