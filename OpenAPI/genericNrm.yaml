@@ -1351,6 +1351,8 @@ components:
           $ref: '#/components/schemas/tjTraceReference-Type'
         tjTraceRecordSessionReference:
           type: string
+        jobId:
+          type: string
         tjTraceReportingFormat:
           $ref: '#/components/schemas/tjTraceReportingFormat-Type'
         tjTraceTarget:
