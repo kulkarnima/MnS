@@ -93,7 +93,7 @@ components:
         assuranceTargetStatusId:
           type: string
         assuranceTargetName:
-          $ref: '#/components/schemas/AssuranceTargetName'
+          type: string
         assuranceTargetStatusObserved:
           $ref: '#/components/schemas/AssuranceTargetStatusObserved'
         assuranceTargetStatusPredicted:
