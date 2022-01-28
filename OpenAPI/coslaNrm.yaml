@@ -76,7 +76,7 @@ components:
       properties:
         assuranceGoalStatusId:
           type: string
-        assuranceGoalDn:
+        assuranceGoalId:
           $ref: 'comDefs.yaml#/components/schemas/Dn'
         assuranceGoalStatusObserved:
           $ref: '#/components/schemas/AssuranceGoalStatusObserved'
