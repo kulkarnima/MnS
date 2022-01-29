@@ -1018,7 +1018,7 @@ components:
             cellLocalId:
               type: integer
             administrativeState:
-              $ref: 'genericNrm.yaml#/components/schemas/AdministrativeState'
+              $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
             plmnInfoList:
               $ref: '#/components/schemas/PlmnInfoList'
             nrTac:
