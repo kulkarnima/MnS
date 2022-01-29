@@ -629,7 +629,13 @@ components:
         - PRB_DL
         - RRC
         - DRB    
-
+    ParameterInfo:
+      type: object
+      properties:
+          maxValue:
+            type: integer
+          minValue:
+            type: integer
 #-------- Definition of abstract IOCs --------------------------------------------
 
     RrmPolicy_-Attr:
@@ -685,7 +691,8 @@ components:
               $ref: '#/components/schemas/RimRSGlobal-Single'
             Dynamic5QISet:
               $ref: '5gcNrm.yaml#/components/schemas/Dynamic5QISet-Multiple'
-
+            CCOFunction:
+              $ref: '#/components/schemas/CCOFunction-Single'
     ManagedElement-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -1799,6 +1806,57 @@ components:
                       $ref: '#/components/schemas/LocalAddress'
                     remoteAddress:
                       $ref: '#/components/schemas/RemoteAddress'
+    CCOFunction-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                cCOSwitch:
+                  type: boolean
+                cCOWeakCoverageParameters:
+                  $ref: '#/components/schemas/CCOWeakCoverageParameters-Single'
+                cCOPilotPollutionParameters:
+                  $ref: '#/components/schemas/CCOPilotPollutionParameters-Single'  
+                cCOOvershootCoverageParameters-Single:
+                  $ref: '#/components/schemas/CCOOvershootCoverageParameters-Single'  
+    CCOParameters_-Attr:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                coverageShapeList:
+                  type: integer
+                downlinkTransmitPowerInfo:
+                  $ref: '#/components/schemas/ParameterInfo'
+                antennaTiltInfo:
+                  $ref: '#/components/schemas/ParameterInfo'
+                antennaAzimuthInfo:
+                  $ref: '#/components/schemas/ParameterInfo'
+                digitalTiltInfo:
+                  $ref: '#/components/schemas/ParameterInfo'
+                digitalAzimuthInfo:
+                  $ref: '#/components/schemas/ParameterInfo'
+
+    CCOWeakCoverageParameters-Single:
+      allOf:
+        - $ref: '#/components/schemas/CCOParameters_-Attr'
+        - type: object
+
+    CCOPilotPollutionParameters-Single:
+      allOf:
+        - $ref: '#/components/schemas/CCOParameters_-Attr'
+        - type: object
+    
+    CCOOvershootCoverageParameters-Single:
+      allOf:
+        - $ref: '#/components/schemas/CCOParameters_-Attr'
+        - type: object
 
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
 
@@ -2018,3 +2076,7 @@ components:
         - $ref: '#/components/schemas/EP_NgU-Single'
         - $ref: '#/components/schemas/EP_X2U-Single'
         - $ref: '#/components/schemas/EP_S1U-Single'
+        - $ref: '#/components/schemas/CCOFunction-Single'
+        - $ref: '#/components/schemas/CCOWeakCoverageParameters-Single'
+        - $ref: '#/components/schemas/CCOPilotPollutionParameters-Single'
+        - $ref: '#/components/schemas/CCOOvershootCoverageParameters-Single'
