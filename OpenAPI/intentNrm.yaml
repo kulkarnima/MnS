@@ -374,7 +374,7 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Intent-Single'              
-   #------Definition of JSON arrays for name-contained IOCs ---------------#
+   #------Definition of JSON arrays for name-contained IOCs --------------#
    
    #----- Definitions in TS 28.312 for TS 28.532 --------------------------#
     resources-intentNrm:
