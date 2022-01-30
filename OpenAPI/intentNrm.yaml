@@ -80,7 +80,7 @@ components:
         - $ref: "#/components/schemas/PLMNContext"
         - $ref: "#/components/schemas/NRFqBandContext"
         - $ref: "#/components/schemas/RATContext"
-      #--ObjectContext defind for Radio Network Expectation (ObjectType is RAN_SubNetwork)-------#   
+      #--ObjectContext defind for Radio Network Expectation (ObjectType is RAN_SubNetwork)------#   
 
       #--ObjectContext defind for other Scenario specific Expectation -----------TBD------------#  
       #--ObjectContext defind for other Scenario specific Expectation -----------TBD------------#  
