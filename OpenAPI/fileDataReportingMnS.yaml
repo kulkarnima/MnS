@@ -1,10 +1,10 @@
 openapi: 3.0.1
 info:
   title: File Data Reporting MnS
-  version: 16.10.0
+  version: 17.0.0
   description: >-
     OAS 3.0.1 definition of the File Data Reporting MnS
-    © 2021, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    © 2022, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 externalDocs:
   description: 3GPP TS 28.532; Generic management services
@@ -191,18 +191,20 @@ components:
       properties:
         fileLocation:
           $ref: 'comDefs.yaml#/components/schemas/Uri'
+        fileCompression:
+          type: string
         fileSize:
           type: integer
+        fileDataType:
+           $ref: '#/components/schemas/FileDataType'
+        fileFormat:
+          type: string
         fileReadyTime:
           $ref: 'comDefs.yaml#/components/schemas/DateTime'
         fileExpirationTime:
           $ref: 'comDefs.yaml#/components/schemas/DateTime'
-        fileCompression:
+        jobId:
           type: string
-        fileFormat:
-          type: string
-        fileDataType:
-           $ref: '#/components/schemas/FileDataType'
     NotifyFileReady:
       allOf:
         - $ref: 'comDefs.yaml#/components/schemas/NotificationHeader'
