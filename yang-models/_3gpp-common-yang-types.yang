@@ -51,49 +51,75 @@ module _3gpp-common-yang-types {
     }
   }
   
-  grouping JobProgress {
+  grouping JobMonitor {
     description "Provides attributes to monitor the progress of a job.
       
-      The mandatory attributes provide an identifier and status for the 
-      associated job.
+      The attributes in this clause are defined in a generic way. 
+      Specialisations may be provided when specifying a concrete job.
+
+      The progess of the job is described by the 'status' and
+      'progressPercentage' attributes.
       
-      For jobs which are long-running or need more detailed progress or result 
-      information other attributes, such as jobProgressInfo, can be used.
+      When the associated job is created, the 'status' is set to 'NOT_RUNNING' 
+      and the 'progressPercentage' to '0'. The MnS producer decides when to 
+      start exceting the job and to transition into the 'RUNNING' state. This 
+      time is captured in the 'startTime' attribute. During the 'RUNNING' 
+      state the 'progressPercentage' attribute may be repeatedly updated. The 
+      exact semantic of this attribute is subject to further specialisation. 
+      The 'progessInfo' attribute may be used to provide additional textual 
+      information in the 'NOT_RUNNING', 'CANCELLING' and 'RUNNING' states. 
+      Further specialisation of 'progressInfo' may be provided where this data 
+      type is used.
       
+      Upon successful completion of the job, the 'status' attribute is set to 
+      'FINISHED', the 'progressPercentage' to 100%. The time is captured in the 
+      'endTime' attribute. Additional textual information may be provided in the 
+      'resultInfo' attribute. The type of 'resultInfo' in this data type 
+      definition is 'String'. Further specialisation of 'resultInfo' may be 
+      provided where this data type is used.
+      
+      In case the job fails to complete, the 'status' attribute is set to 
+      'FAILURE' or - PARTIALLY_FAILED, the current value of 'progressPercentage' 
+      is frozen, and the time captured in 'endTime'. The 'resultInfo' specifies 
+      the reason for the failure. Specific failure reasons may be specified 
+      where the data type defined in this clause is used. The exact semantic of 
+      failure may be subject for further specialisation as well.
+
+      In case the job is cancelled, the 'status' attribue is first set to 
+      'CANCELLING' and when the job is really cancelled to 'CANCELLED'. The 
+      transition to 'CANCELLED' is captured in the 'endTime' attribute. 
+      The value of 'progressPercentage' is frozen. Additional textual 
+      information may be provided in the 'resultInfo' attribute.
+
+      The job may have to be completed within a certain time after its creation, 
+      for example because required data may not be available any more after a 
+      certain time, or the job outcome is needed until a certain time and when 
+      not provided by this time is not needed any more. The time until the MnS 
+      producer automatically cancels the job is indicated by the 'timer' 
+      attribute.
+
       If a management operation results in starting an assosiacted job it 
       should also result in the setting and updating of an attribute named 
-      'jobProgress' that has the type 'JobProgress'. The jobProgress  
-      attribute should be accompanied by use-case specific additional data 
-      items as needed.";
+      'jobMonitor' that has the type 'JobMonitor'. The jobMonitor attribute 
+      may be accompanied by use-case specific additional data items.";
       
-    leaf jobId {
+    leaf id {
       type string;
       mandatory true;
       description "Id of the associated job. It is unique within a single 
-        multivalue attribute of type JobProgress.";
+        multivalue attribute of type JobMonitor.";
     }
     
-    leaf jobStatus {
+    leaf status { 
       type enumeration {
-        enum RUNNING {
-          description "Execution of the associated job is currently in 
-            progress";
-        }
-        enum FINISHED {
-          description "The job stopped, finished succesfully";
-        }
-        enum CANCELLING {
-          description "Cancellation is in progress";
-        }
-        enum CANCELLED {
-          description "The job stopped, it was cancelled";
-        }
-        enum FAILED {
-          description "The job stopped, but failed";
-        }
-        enum PARTIALLY_FAILED {
-          description "The job stopped, partly succeeded, partly failed";
-        }
+        enum NOT_STARTED ;
+        enum RUNNING ;
+        enum SUSPENDED ;
+        enum CANCELLING ;
+        enum FINISHED ;
+        enum FAILURE ;
+        enum PARTIALLY_FAILED ;
+        enum CANCELLED ;
       }
       config false;
       default  RUNNING;
@@ -107,7 +133,7 @@ module _3gpp-common-yang-types {
         successfully, but it reports back that the resource is not available.";
     }
 
-    leaf jobProgressPercentage {
+    leaf progressPercentage {
       type uint8 {
         range 0..100;
       }
@@ -115,55 +141,59 @@ module _3gpp-common-yang-types {
       description "Progress of the associated job as percentage";
     }
 
-    leaf-list jobProgressInfo {
+    leaf-list progressInfo {
       type string;
       config false;
-      description "Textual information about the state and progress 
-        of the associated job.
+      description "Additional textual information about the state and progress 
+        of the associated job. The attribute is updated during the 
+        'NOT_STARTED', 'CANCELLING' and 'RUNNING' states.
         Specific jobs may define specific well-defined strings to be used 
         in this attribute using e.g. string patterns or enums.";
     }
 
-    leaf jobResult {
+    leaf resultInfo {
       type string;
       config false;
-      description "Detailed result or reason.
+      description "Additional textual information about the final result of 
+        the associated job. The attribute is populated when transitioning in 
+        the 'FINISHED', 'FAILURE', 'PARTIALLY_FAILED' or 'CANCELLED' state. 
+        In the failure state it shall provide the failure reasons.
+        
+        This attribue shall not be used to make the outcome of the job 
+        available for retrieval, if any. For this purpose, dedicated 
+        attributes shall be specified when specifying a specific job.
+        
         Specific jobs may define specific well-defined strings to be used 
         in this attribute using e.g. string patterns or enums.";
     }
 
-    leaf jobStartTime {
+    leaf startTime {
       type yang:date-and-time;
       config false;
-      description "Date and time when associated job started.";
+      description "Start time of the associated job, i.e. the time when the 
+        status changed from 'NOT_STARTED' to 'RUNNING'.";
     }
 
-    leaf jobEndTime {
+    leaf endTime {
       type yang:date-and-time;
       config false;
-      description "Date and time when jobStatus changed to 
-        FINISHED, CANCELLED, FAILED or PARTIALLY_FAILED.
+      description "Date and time when status changed to 'SUCCESS', 'CANCELLED', 
+        'FAILED' or 'PARTIALLY_FAILED'. 
+
         If the time is in the future, it is the estimated time 
         the job will end.";
     }
 
-    leaf jobTimer {
+    leaf timer {
       type uint32;
-      units seconds;
-      description "Time until the associated job is automatically cancelled
-        by the MnSProducer. If set, the system decreases the jobTimer with time. 
-        When it reaches zero the cancellation of the associated job is 
-        initiated.  If not set, there is no time limit for the job.";
-    }
-
-    leaf cancelJob {
-      type boolean;
-      default false;
-      description "If set to True, the job is requested to be cancelled. 
-        Once set to true, it is not possible to stop the cancellation. 
-        Further changes to the attribute have no effect. 
-        In case cancellation fails the job might stay in 
-        jobStatus=CANCELLING indefinitely.";
+      units minutes;
+      description "Time until the associated job is automatically cancelled.
+      If set, the system decreases the timer with time. When it reaches zero 
+      the cancellation of the associated job is initiated by the MnS_Producer. 
+      If not set, there is no time limit for the job.
+      
+      Once the timer is set, the consumer can not change it anymore. 
+      If the consumer has not set the timer the MnS Producer may set it.";
     }
   }
   
