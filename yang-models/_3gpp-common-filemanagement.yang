@@ -46,7 +46,6 @@ module _3gpp-common-filemanagement {
       key "id";
       description "Provides monitoring for the file download job.";
       uses yang3gpp:JobMonitor;
-      mandatory true;
     }
   }
 
