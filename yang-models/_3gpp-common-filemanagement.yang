@@ -22,8 +22,8 @@ module _3gpp-common-filemanagement {
     uses top3gpp:Top_Grp;
     
     leaf fileLocation {
-      description "Provides the location of the file to be downloaded.
-        Value is a URI including the protocol, address, and filename for the file transfer.";
+      description "Provides the location of a file.
+        allowedValues:  File URI (See RFC 8089)";
       mandatory true;
       type string;
     }
@@ -31,7 +31,7 @@ module _3gpp-common-filemanagement {
     list jobProgress {
       key jobId;
       description "Provides monitoring for the file download job.";
-      uses yang3gpp:JobProgress;
+      uses yang3gpp:JobMonitor;
     }
   }
 
