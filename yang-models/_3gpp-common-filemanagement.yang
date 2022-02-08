@@ -29,7 +29,7 @@ module _3gpp-common-filemanagement {
     }
     
     leaf notificationRecipientAddress {
-      description "Address of the notification recipient."
+      description "Address of the notification recipient.";
       type string;
     }
 
@@ -37,7 +37,7 @@ module _3gpp-common-filemanagement {
       description "Setting this attribute to TRUE cancels the file download job.
          As specified in the definition of JobMonitor, cancellation is possible in
          the NOT_STARTED and RUNNING state. Setting the attribute to FALSE has no 
-         observable result."
+         observable result.";
       type boolean;
       mandatory true;
     }
