@@ -28,10 +28,25 @@ module _3gpp-common-filemanagement {
       type string;
     }
     
+    leaf notificationRecipientAddress {
+      description "Address of the notification recipient."
+      type string;
+    }
+
+    leaf cancelJob {
+      description "Setting this attribute to TRUE cancels the file download job.
+         As specified in the definition of JobMonitor, cancellation is possible in
+         the NOT_STARTED and RUNNING state. Setting the attribute to FALSE has no 
+         observable result."
+      type boolean;
+      mandatory true;
+    }
+
     list jobMonitor {
       key "id";
       description "Provides monitoring for the file download job.";
       uses yang3gpp:JobMonitor;
+      mandatory true;
     }
   }
 
