@@ -29,7 +29,7 @@ module _3gpp-common-filemanagement {
     }
     
     list jobProgress {
-      key jobId;
+      key id;
       description "Provides monitoring for the file download job.";
       uses yang3gpp:JobMonitor;
     }
