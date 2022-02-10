@@ -152,7 +152,7 @@ components:
                     serviceContinuitySupport:
                       type: boolean
                     eASFunctonRef:
-                      $ref: 'comDefs.yaml#/components/schemas/DnList'  
+                      $ref: 'genericNrm.yaml#/components/schemas/DnList'  
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
     ECSFunction-Single:
@@ -170,7 +170,7 @@ components:
                     providerIdentifier:
                       type: string
                     edgeDataNetworkRef:
-                      $ref: 'comDefs.yaml#/components/schemas/DnList'
+                      $ref: 'genericNrm.yaml#/components/schemas/DnList'
                     eESFuncitonRef:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'
                     softwareImageInfo:
