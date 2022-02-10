@@ -33,12 +33,12 @@ module _3gpp-common-filemanagement {
           }
           refine status {
            description "Limits to status applicable for file download.";
-             enum NOT_STARTED ;
-             enum RUNNING ;
-             enum CANCELLING ;
-             enum FINISHED ;
-             enum FAILURE ;
-             enum CANCELLED ;    
+           must "true() = 'NOT_STARTED'";
+           must "true() = 'RUNNING'";
+           must "true() = 'CANCELLING'";
+           must "true() = 'FINISHED'";
+           must "true() = 'FAILURE'";
+           must "true() = 'CANCELLED'";   
           } 
     }
   }
