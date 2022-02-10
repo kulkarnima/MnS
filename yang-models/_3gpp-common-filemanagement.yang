@@ -109,6 +109,7 @@ module _3gpp-common-filemanagement {
       description "Provides monitoring for the file download job.";
       uses FileDownloadProcessMonitor;
     }
+  }
 
   grouping FileDownloadJobSubtree {
     description "Helps augmenting FileDownloadJob into multiple places.";
