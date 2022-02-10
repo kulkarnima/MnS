@@ -21,7 +21,7 @@ module _3gpp-common-filemanagement {
     uses yang3gpp:ProcessMonitor {
           refine resultStateInfo {
            description "If status is FAILED this provides the reason.";
-           must "true() = 'NULL'";
+           must "true() = 'NULL' or 'UNKNOWN'";
            must "true() = 'UNKNOWN'";
            must "true() = 'NO_STORAGE'";
            must "true() = 'LOW_MEMORY'";
@@ -34,7 +34,7 @@ module _3gpp-common-filemanagement {
           refine status {
            description "Limits to status applicable for file download.";
            must "false() = 'PARTIALLY_FAILED'";
-           } 
+          } 
     }
   }
   
