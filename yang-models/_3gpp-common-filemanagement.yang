@@ -20,18 +20,19 @@ module _3gpp-common-filemanagement {
     description "Provides specialisations of the ProcessMonitor datatype.";
     uses yang3gpp:ProcessMonitor {
           refine resultStateInfo {
-            description "If status is FAILED resultStateInfo must be one of
-               the following.";
-               must '. = "NULL" or
-               or . = "UNKNOWN"
-               or . = "NO_STORAGE"
-               or . = "LOW_MEMORY"
-               or . = "NO_CONNECTION_TO_REMOTE_SERVER"
-               or . = "FILE_NOT_AVAILABLE"
-               or . = "DNS_CANNOT_BE_RESOLVED"
-               or . = "TIMER_EXPIRED"
-               or . = "OTHER" ';
-               }
+            description "If status is FAILED resultStateInfo will be one of
+                the following or empty.";
+                must '../status != "FAILED" or
+                or . = "UNKNOWN"
+                or . = "NO_STORAGE"
+                or . = "LOW_MEMORY"
+                or . = "NO_CONNECTION_TO_REMOTE_SERVER"
+                or . = "FILE_NOT_AVAILABLE"
+                or . = "DNS_CANNOT_BE_RESOLVED"
+                or . = "TIMER_EXPIRED"
+                or . = "OTHER"
+                or . = "NULL" ';
+          }
            refine status {
              description "Status must not be 'PARTIALLY_FAILED'.";
              must '. != "PARTIALLY_FAILED" ';
