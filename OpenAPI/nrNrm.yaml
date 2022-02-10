@@ -260,7 +260,7 @@ components:
       minimum: -20
       maximum: 20
 
-   MaximumDeviationHoTriggerHigh:
+    MaximumDeviationHoTriggerHigh:
       type: integer
       minimum: -20
       maximum: 20
