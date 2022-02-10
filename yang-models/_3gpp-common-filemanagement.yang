@@ -20,7 +20,7 @@ module _3gpp-common-filemanagement {
     description "Provides specialisations of the ProcessMonitor datatype.";
     uses yang3gpp:JobMonitor {
           refine resultInfo {
-           description "In status is FAILED this provides the reason for the failure.";
+           description "If status is FAILED this provides the reason.";
            type enumeration {
              enum NULL ;
              enum UNKNOWN ;
@@ -34,7 +34,7 @@ module _3gpp-common-filemanagement {
             }
           }
           refine status {
-           description "Provides status for file download.";
+           description "Provides status applicable for file download.";
            type enumeration {
              enum NOT_STARTED ;
              enum RUNNING ;
