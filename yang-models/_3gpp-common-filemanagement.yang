@@ -30,7 +30,7 @@ module _3gpp-common-filemanagement {
                or . = "FILE_NOT_AVAILABLE"
                or . = "DNS_CANNOT_BE_RESOLVED"
                or . = "TIMER_EXPIRED"
-               or . = "OTHER"';
+               or . = "OTHER" ';
                }
            refine status {
              description "Status must not be 'PARTIALLY_FAILED'.";
