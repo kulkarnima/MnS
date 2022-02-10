@@ -51,6 +51,16 @@ components:
           type: integer
         virtualDisk:
           type: integer
+    SoftwareImageInfo:
+      type: object
+      properties:
+        minimumDisk:
+          type: integer
+        minimumRAM:
+          type: integer
+        swImageRef:
+          type: string
+
 
 #-------- Definition of concrete IOCs --------------------------------------------
 
@@ -113,7 +123,17 @@ components:
                   properties:
                     eESIdentifier:
                       type: string
-        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+                    eESServingLocation:
+                      $ref: '#/components/schemas/ServingLocation'
+                    eESAddress:
+                      type: string
+                    softwareImageInfo:
+                      $ref: '#/components/schemas/SoftwareImageInfo'
+                    serviceContinuitySupport:
+                      type: boolean
+                    eASFunctonRef:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'  
+      - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
     ECSFunction-Single:
       allOf:
