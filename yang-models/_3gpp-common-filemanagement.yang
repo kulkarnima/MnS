@@ -73,7 +73,6 @@ module _3gpp-common-filemanagement {
             enum CANCELLED {
              value 5;
             }
-          }
         }
       }
     }
