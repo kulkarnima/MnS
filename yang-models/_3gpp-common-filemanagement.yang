@@ -20,63 +20,62 @@ module _3gpp-common-filemanagement {
     description "Provides specialisations of the ProcessMonitor datatype
        for use for File Download jobs.";
     uses yang3gpp:JobMonitor {
-      refine leaf resultStateInfo {
-      description "Provides specialisations for the "resultStateInfo" attribute 
-         of the "ProcessMonitor" data type for the "FileDownloadJob".  In the event the
-         file download fails, and the "status" is equal to "FAILED" it provides the
-         reason for the failure.";
-      type enumeration {
-        enum NULL {
-         value 0;
-        }
-        enum UNKNOWN {
-         value 1;
-        }
-        enum NO_STORAGE {
-         value 2;
-        }
-        enum LOW_MEMORY {
-         value 3;
-        }
-        enum NO_CONNECTION_TO_REMOTE_SERVER {
-         value 4;
-        }
-        enum FILE_NOT_AVAILABLE {
-         value 5;
-        }
-        enum DNS_CANNOT_BE_RESOLVED {
-        value 6;
-        }
-        enum TIMER_EXPIRED {
-         value 7;
-        }
-        enum OTHER {
-         value 8;
+        refine leaf resultStateInfo {
+          description "Provides specialisations for the resultStateInfo.
+             In the event the file download fails, and the "status" is equal
+             to "FAILED" it provides the reason for the failure.";
+          type enumeration {
+            enum NULL {
+              value 0;
+             }
+            enum UNKNOWN {
+             value 1;
+             }
+            enum NO_STORAGE {
+             value 2;
+             }
+            enum LOW_MEMORY {
+             value 3;
+             }
+            enum NO_CONNECTION_TO_REMOTE_SERVER {
+             value 4;
+             }
+            enum FILE_NOT_AVAILABLE {
+             value 5;
+             }
+            enum DNS_CANNOT_BE_RESOLVED {
+             value 6;
+             } 
+            enum TIMER_EXPIRED {
+             value 7;
+             }
+            enum OTHER {
+             value 8;
+            }
+          }
       }
-    }
-     refine leaf status {
-        description "Pro
-        type enumeration {
-         enum NOT_STARTED {
-           value 0;
-         }
-          enum RUNNING {
-           value 1;
-         }
-          enum FINISHED {
-           value 2;
-         }
-         enum FAILED {
-           value 3;
-         }
-         enum CANCELLING {
-           value 4;
-         }
-         enum CANCELLED {
-           value 5;
-         }
+        refine leaf status {
+           description "Provides specialisations of the status.";
+           type enumeration {
+            enum NOT_STARTED {
+             value 0;
+            }
+            enum RUNNING {
+             value 1;
+            }
+            enum FINISHED {
+             value 2;
+            }
+            enum FAILED {
+             value 3;
+            }
+            enum CANCELLING {
+             value 4;
+            }
+            enum CANCELLED {
+             value 5;
+            }
         }
-      }
       }
     }
   }
