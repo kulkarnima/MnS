@@ -14,15 +14,14 @@ module _3gpp-common-filemanagement {
     Class (IOC) that is part of the Generic Network Resource Model (NRM).";
   reference "3GPP TS 28.623 Generic Network Resource Model (NRM)";
 
-  revision 2021-08-29 { reference "Initial revision, S5-221371"; }
+  revision 2022-02-10 { reference "Initial revision, S5-221757"; }
 
   grouping FileDownloadProcessMonitor {
     description "Provides specialisations of the ProcessMonitor datatype.";
     uses yang3gpp:JobMonitor {
-        refine leaf resultStateInfo {
-          description "Provides specialisations for the resultStateInfo.
-             In the event the file download fails, and the "status" is equal
-             to "FAILED" it provides the reason for the failure.";
+        refine leaf resultInfo {
+          description "In the event the file download fails, and the status
+             is equal to "FAILED" it provides the reason for the failure.";
           type enumeration {
             enum NULL {
               value 0;
