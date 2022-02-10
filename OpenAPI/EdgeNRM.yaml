@@ -29,7 +29,7 @@ components:
         trackingAreaIdList:
           $ref: 'nrNrm.yaml#/components/schemas/Tai'
         servingPLMN:
-          $ref: 'nrNrm.yaml#/components/schemas/PLMNId'
+          $ref: 'nrNrm.yaml#/components/schemas/PlmnId'
     GeoLoc:
       type: object
       properties:
