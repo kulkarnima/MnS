@@ -131,6 +131,8 @@ components:
                       type: string
                     eDNConnectionInfo:
                       $ref: '#/components/schemas/EDNConnectionInfo'
+                    eESFuncitonRef:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
     EASRequirements-Single:
