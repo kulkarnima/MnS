@@ -19,16 +19,30 @@ components:
       properties:
         geographicalLocation:
           $ref: '#/components/schemas/GeoLoc'
-        tAi:
+        topologicalLocation:
+          $ref: '#/components/schemas/TopologicalServiceArea'
+    TopologicalServiceArea:
+      type: object
+      properties:
+        cellIdList:
+          type: integer
+        trackingAreaIdList:
           $ref: 'nrNrm.yaml#/components/schemas/Tai'
+        servingPLMN:
+          $ref: 'nrNrm.yaml#/components/schemas/PLMNId'
     GeoLoc:
       type: object
       properties:
-        civicAddress:
+        geographicalCoordinates:
+          $ref: '#/components/schemas/GeographicalCoordinates'
+        civicLocation:
           type: string
-        lat:
+    GeographicalCoordinates:
+      type: object
+      properties:
+        lattitude:
           type: integer
-        long:
+        longitude:
           type: integer
     EDNConnectionInfo:
       type: object
@@ -87,6 +101,12 @@ components:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
+            ednIdentifier:
+              type: string
+            eDNConnectionInfo:
+              $ref: '#/components/schemas/EDNConnectionInfo'         
+        - type: object
+          properties:
             EASFunction:
               $ref: '#/components/schemas/EASFunction-Multiple'
             EESFunction:
@@ -132,7 +152,7 @@ components:
                     serviceContinuitySupport:
                       type: boolean
                     eASFunctonRef:
-                      $ref: 'comDefs.yaml#/components/schemas/Dn'  
+                      $ref: 'comDefs.yaml#/components/schemas/DnList'  
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
     ECSFunction-Single:
@@ -149,10 +169,12 @@ components:
                       type: string
                     providerIdentifier:
                       type: string
-                    eDNConnectionInfo:
-                      $ref: '#/components/schemas/EDNConnectionInfo'
+                    edgeDataNetworkRef:
+                      $ref: '#/components/schemas/DnList'
                     eESFuncitonRef:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'
+                    softwareImageInfo:
+                      $ref: '#/components/schemas/SoftwareImageInfo'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
     EASRequirements-Single:
@@ -168,7 +190,8 @@ components:
               type: boolean
             virtualResource:
               $ref: '#/components/schemas/VirtualResource'
-
+            softwareImageInfo:
+              $ref: '#/components/schemas/SoftwareImageInfo'
 
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------                               
           
