@@ -170,7 +170,7 @@ components:
                     providerIdentifier:
                       type: string
                     edgeDataNetworkRef:
-                      $ref: '#/components/schemas/DnList'
+                      $ref: 'comDefs.yaml#/components/schemas/DnList'
                     eESFuncitonRef:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'
                     softwareImageInfo:
