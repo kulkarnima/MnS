@@ -21,7 +21,6 @@ module _3gpp-common-filemanagement {
     uses yang3gpp:ProcessMonitor {
           refine resultStateInfo {
            description "If status is FAILED this provides the reason.";
-           type enumeration {
              enum NULL ;
              enum UNKNOWN ;
              enum NO_STORAGE ;
@@ -31,18 +30,15 @@ module _3gpp-common-filemanagement {
              enum DNS_CANNOT_BE_RESOLVED ;
              enum TIMER_EXPIRED ;
              enum OTHER ;
-            }
           }
           refine status {
            description "Limits to status applicable for file download.";
-           type enumeration {
              enum NOT_STARTED ;
              enum RUNNING ;
              enum CANCELLING ;
              enum FINISHED ;
              enum FAILURE ;
-             enum CANCELLED ;
-            }    
+             enum CANCELLED ;    
           } 
     }
   }
