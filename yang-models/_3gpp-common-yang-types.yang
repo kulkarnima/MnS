@@ -61,7 +61,7 @@ module _3gpp-common-yang-types {
       concrete process representation.
 
       If a management operation on some IOCs triggers an associated 
-      asynchronous process (whose progess shall be monitored), this should 
+      asynchronous process (whose progress shall be monitored), this should 
       also result in creating an attribute named 'processMonitor' (of type 
       'ProcessMonitor') in these IOC(s). The processMonitor attribute may be 
       accompanied by use-case specific additional data items.
@@ -102,7 +102,7 @@ module _3gpp-common-yang-types {
       this clause is used. The exact semantic of failure may be subject for 
       further specialisation as well.
 
-      In case the process is cancelled, the 'status' attribue is first set to 
+      In case the process is cancelled, the 'status' attribute is first set to 
       'CANCELLING' and when the process is really cancelled then to 'CANCELLED'. 
       The transition to 'CANCELLED' is captured in the 'endTime' attribute. 
       The value of 'progressPercentage' is frozen. Additional textual 
@@ -171,7 +171,7 @@ module _3gpp-common-yang-types {
         For example, in the 'FAILED' or 'PARTIALLY_FAILED' state this 
         attribute may be used to provide error reasons.
 
-        This attribue shall not be used to make the outcome of the process 
+        This attribute shall not be used to make the outcome of the process 
         available for retrieval, if any. For this purpose, dedicated 
         attributes shall be specified when specifying the representation of 
         a specific process.
