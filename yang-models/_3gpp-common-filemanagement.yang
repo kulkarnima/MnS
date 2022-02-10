@@ -20,9 +20,9 @@ module _3gpp-common-filemanagement {
     description "Provides specialisations of the ProcessMonitor datatype.";
     uses yang3gpp:ProcessMonitor {
           refine resultStateInfo {
-            description "If status is FAILED resultStateInfo will be one of
+            description "If status is FAILED resultStateInfo must be one of
                the following.";
-               must '. ../status= "FAILED" or
+               must '. ../resultStateInfo= "NULL" or
                or . = "UNKNOWN"
                or . = "NO_STORAGE"
                or . = "LOW_MEMORY"
