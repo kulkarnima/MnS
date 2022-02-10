@@ -37,6 +37,20 @@ components:
           type: string
         eDNServiceArea:
           $ref: '#/components/schemas/ServingLocation'
+    AffinityAntiAffinity:
+      type: object
+      properties:
+        affinityEAS:
+          type: string
+        antiAffinityEAS:
+          type: string
+    VirtualResource:
+      type: object
+      properties:
+        virtualMemory:
+          type: integer
+        virtualDisk:
+          type: integer
 
 #-------- Definition of concrete IOCs --------------------------------------------
 
@@ -84,6 +98,8 @@ components:
                       type: string
                     eASRequirementsRef:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'
+                    eASAddress:
+                      type: string
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
     EESFunction-Single:
       allOf:
@@ -124,6 +140,13 @@ components:
           properties:
             requiredEASservingLocation:
               $ref: '#/components/schemas/ServingLocation'
+            affinityAntiAffinity:
+              $ref: '#/components/schemas/AffinityAntiAffinity'
+            serviceContinuity:
+              type: boolean
+            virtualResource:
+              $ref: '#/components/schemas/VirtualResource'
+
 
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------                               
           
