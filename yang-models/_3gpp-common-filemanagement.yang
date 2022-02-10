@@ -22,7 +22,7 @@ module _3gpp-common-filemanagement {
           refine resultStateInfo {
             description "If status is FAILED resultStateInfo will be one of
                 the following or empty.";
-                must '../status != "FAILED" or
+                must '../status != "FAILED"
                 or . = "UNKNOWN"
                 or . = "NO_STORAGE"
                 or . = "LOW_MEMORY"
