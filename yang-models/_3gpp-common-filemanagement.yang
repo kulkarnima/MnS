@@ -17,8 +17,7 @@ module _3gpp-common-filemanagement {
   revision 2021-08-29 { reference "Initial revision, S5-221371"; }
 
   grouping FileDownloadProcessMonitor {
-    description "Provides specialisations of the ProcessMonitor datatype
-       for use for File Download jobs.";
+    description "Provides specialisations of the ProcessMonitor datatype.";
     uses yang3gpp:JobMonitor {
         refine leaf resultStateInfo {
           description "Provides specialisations for the resultStateInfo.
@@ -53,7 +52,7 @@ module _3gpp-common-filemanagement {
              value 8;
             }
           }
-      }
+        }
         refine leaf status {
            description "Provides specialisations of the status.";
            type enumeration {
@@ -75,6 +74,7 @@ module _3gpp-common-filemanagement {
             enum CANCELLED {
              value 5;
             }
+          }
         }
       }
     }
