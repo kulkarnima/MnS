@@ -20,64 +20,35 @@ module _3gpp-common-filemanagement {
     description "Provides specialisations of the ProcessMonitor datatype.";
     uses yang3gpp:JobMonitor {
           refine resultInfo {
-          description "In the event the file download fails, and the status
-             is equal to FAILED it provides the reason for the failure.";
-          type enumeration {
-            enum NULL {
-              value 0;
-             }
-            enum UNKNOWN {
-             value 1;
-             }
-            enum NO_STORAGE {
-             value 2;
-             }
-            enum LOW_MEMORY {
-             value 3;
-             }
-            enum NO_CONNECTION_TO_REMOTE_SERVER {
-             value 4;
-             }
-            enum FILE_NOT_AVAILABLE {
-             value 5;
-             }
-            enum DNS_CANNOT_BE_RESOLVED {
-             value 6;
-             } 
-            enum TIMER_EXPIRED {
-             value 7;
-             }
-            enum OTHER {
-             value 8;
+           description "In status is FAILED this provides the reason for the failure.";
+           type enumeration {
+             enum NULL ;
+             enum UNKNOWN ;
+             enum NO_STORAGE ;
+             enum LOW_MEMORY ;
+             enum NO_CONNECTION_TO_REMOTE_SERVER ;
+             enum FILE_NOT_AVAILABLE ;
+             enum DNS_CANNOT_BE_RESOLVED ;
+             enum TIMER_EXPIRED ;
+             enum OTHER ;
             }
           }
-        }
-         refine status {
-           description "Provides specialisations of the status.";
+          refine status {
+           description "Provides status for file download.";
            type enumeration {
-            enum NOT_STARTED {
-             value 0;
-            }
-            enum RUNNING {
-             value 1;
-            }
-            enum FINISHED {
-             value 2;
-            }
-            enum FAILED {
-             value 3;
-            }
-            enum CANCELLING {
-             value 4;
-            }
-            enum CANCELLED {
-             value 5;
-            }
+             enum NOT_STARTED ;
+             enum RUNNING ;
+             enum CANCELLING ;
+             enum FINISHED ;
+             enum FAILURE ;
+             enum CANCELLED ;
+            }    
+          } 
         }
       }
-    }
+    }  
   }
-
+  
   grouping FileDownloadJobGrp {
     description "Represents the FileDownloadJob IOC.";
     reference "3GPP TS 28.622";
