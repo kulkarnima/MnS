@@ -44,9 +44,7 @@ module _3gpp-common-filemanagement {
              enum CANCELLED ;
             }    
           } 
-        }
-      }
-    }  
+    }
   }
   
   grouping FileDownloadJobGrp {
