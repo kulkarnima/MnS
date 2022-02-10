@@ -232,19 +232,35 @@ components:
         nsName:
           type: string
     EmbbEEPerfReq:
-      type: integer
+      type: object
+      properties:
+        kpiType:
+          type: string
+          enum:
+            - NUMOFBITS
+            - NUMOFBITS_RANBASED
+        req:
+          type: number
     UrllcEEPerfReq:
-      type: integer
+      type: object
+      properties:
+        kpiType:
+          type: string
+          enum:
+            - INVOFLATENCY
+            - NUMOFBITS_MULTIPLIED_INVOFLATENCY
+        req:
+          type: number
     MIoTEEPerfReq:
       type: object
       properties:
-        KpiType:
+        kpiType:
           type: string
           enum:
             - MAXREGSUBS
             - MEANACTIVEUES
-        Req:
-          type: integer
+        req:
+          type: number
     EEPerfReq:
       oneOf:
         - $ref: '#/components/schemas/EmbbEEPerfReq'
@@ -321,7 +337,7 @@ components:
         reliability:
           type: string
         energyEfficiency:
-          type: integer 
+          type: number 
         dLDeterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
         uLDeterministicComm:
@@ -372,7 +388,7 @@ components:
         sliceSimultaneousUse:
           $ref: '#/components/schemas/SliceSimultaneousUse'
         energyEfficiency:
-          type: integer
+          type: number
         termDensity:
           $ref: '#/components/schemas/TermDensity'
         survivalTime:
@@ -411,7 +427,7 @@ components:
         sliceSimultaneousUse:
           $ref: '#/components/schemas/SliceSimultaneousUse'
         energyEfficiency:
-          type: integer
+          $ref: '#/components/schemas/EnergyEfficiency'
         synchronicity:
           $ref: '#/components/schemas/Synchronicity'
         delayTolerance:
