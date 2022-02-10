@@ -133,7 +133,7 @@ components:
                       type: boolean
                     eASFunctonRef:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'  
-      - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
     ECSFunction-Single:
       allOf:
