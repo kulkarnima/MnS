@@ -21,15 +21,15 @@ module _3gpp-common-filemanagement {
     uses yang3gpp:ProcessMonitor {
           refine resultStateInfo {
            description "If status is FAILED this provides the reason.";
-             enum NULL ;
-             enum UNKNOWN ;
-             enum NO_STORAGE ;
-             enum LOW_MEMORY ;
-             enum NO_CONNECTION_TO_REMOTE_SERVER ;
-             enum FILE_NOT_AVAILABLE ;
-             enum DNS_CANNOT_BE_RESOLVED ;
-             enum TIMER_EXPIRED ;
-             enum OTHER ;
+           must "false() = 'NULL'";
+           must "false() = 'UNKNOWN'";
+           must "false() = 'NO_STORAGE'";
+           must "false() = 'LOW_MEMORY'";
+           must "false() = 'NO_CONNECTION_TO_REMOTE_SERVER'";
+           must "false() = 'FILE_NOT_AVAILABLE'";
+           must "false() = 'DNS_CANNOT_BE_RESOLVED'";
+           must "false() = 'TIMER_EXPIRED'";
+           must "false() = 'OTHER'";
           }
           refine status {
            description "Limits to status applicable for file download.";
