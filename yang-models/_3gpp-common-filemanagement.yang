@@ -21,7 +21,7 @@ module _3gpp-common-filemanagement {
     uses yang3gpp:JobMonitor {
         refine leaf resultInfo {
           description "In the event the file download fails, and the status
-             is equal to "FAILED" it provides the reason for the failure.";
+             is equal to FAILED it provides the reason for the failure.";
           type enumeration {
             enum NULL {
               value 0;
