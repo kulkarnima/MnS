@@ -13,7 +13,7 @@ module _3gpp-common-yang-types {
     network slicing.";
   reference "3GPP TS 28.623";
 
-  revision 2022-01-03 { reference "CR-0144"; }
+  revision 2022-02-09 { reference "CR-0144"; }
   revision 2021-11-01 { reference "CR-0141"; }
   revision 2021-09-30 {
     description "Added Longitude, Latitude, TenthOfDegrees, OnOff.";
@@ -51,86 +51,98 @@ module _3gpp-common-yang-types {
     }
   }
   
-  grouping JobMonitor {
-    description "Provides attributes to monitor the progress of a job.
-      
+  grouping ProcessMonitor {
+    description "Provides attributes to monitor the progress of processes 
+      with specific purpose and limited lifetime running on MnS producers. 
+      It may be used as data type for dedicated progress monitor attributes 
+      when specifying the management representation of these processes. 
       The attributes in this clause are defined in a generic way. 
-      Specialisations may be provided when specifying a concrete job.
+      For some attributes specialisations may be provided when specifying a 
+      concrete process representation.
 
-      The progess of the job is described by the 'status' and
-      'progressPercentage' attributes.
-      
-      When the associated job is created, the 'status' is set to 'NOT_RUNNING' 
+      If a management operation on some IOCs triggers an associated 
+      asynchronous process (whose progess shall be monitored), this should 
+      also result in creating an attribute named 'processMonitor' (of type 
+      'ProcessMonitor') in these IOC(s). The processMonitor attribute may be 
+      accompanied by use-case specific additional data items.
+
+      The progress of the process is described by the 'status' and 
+      'progressPercentage' attributes. Additional textual qualifications for 
+      the 'status' attribute may be provided by the 'progessStateInfo' and 
+      'resultStateInfo' attributes.
+
+      When the process is instantiated, the 'status' is set to 'NOT_RUNNING' 
       and the 'progressPercentage' to '0'. The MnS producer decides when to 
-      start exceting the job and to transition into the 'RUNNING' state. This 
-      time is captured in the 'startTime' attribute. During the 'RUNNING' 
-      state the 'progressPercentage' attribute may be repeatedly updated. The 
-      exact semantic of this attribute is subject to further specialisation. 
-      The 'progessInfo' attribute may be used to provide additional textual 
-      information in the 'NOT_RUNNING', 'CANCELLING' and 'RUNNING' states. 
-      Further specialisation of 'progressInfo' may be provided where this data 
-      type is used.
-      
-      Upon successful completion of the job, the 'status' attribute is set to 
-      'FINISHED', the 'progressPercentage' to 100%. The time is captured in the 
-      'endTime' attribute. Additional textual information may be provided in the 
-      'resultInfo' attribute. The type of 'resultInfo' in this data type 
-      definition is 'String'. Further specialisation of 'resultInfo' may be 
-      provided where this data type is used.
-      
-      In case the job fails to complete, the 'status' attribute is set to 
-      'FAILURE' or - PARTIALLY_FAILED, the current value of 'progressPercentage' 
-      is frozen, and the time captured in 'endTime'. The 'resultInfo' specifies 
-      the reason for the failure. Specific failure reasons may be specified 
-      where the data type defined in this clause is used. The exact semantic of 
-      failure may be subject for further specialisation as well.
+      start executing the process and to transition into the 'RUNNING' state. 
+      This time is captured in the 'startTime' attribute. Alternatively, the 
+      process may start to execute directly upon its instantiation. One 
+      alternative must be selected when using this data type.
 
-      In case the job is cancelled, the 'status' attribue is first set to 
-      'CANCELLING' and when the job is really cancelled to 'CANCELLED'. The 
-      transition to 'CANCELLED' is captured in the 'endTime' attribute. 
+      During the 'RUNNING' state the 'progressPercentage' attribute may be 
+      repeatedly updated. The exact semantic of this attribute is subject to 
+      further specialisation. The 'progessInfo' attribute may be used to 
+      provide additional textual information in the 'NOT_RUNNING', 'CANCELLING' 
+      and 'RUNNING' states. Further specialisation of 
+      'progressStateInfo' may be provided where this data type is 
+      used.
+
+      Upon successful completion of the process, the 'status' attribute is set 
+      to 'FINISHED', the 'progressPercentage' to 100%. The time is captured in 
+      the 'endTime' attribute. Additional textual information may be provided 
+      in the 'resultStateInfo' attribute. The type of 
+      'resultStateInfo' in this data type definition is 'String'. 
+      Further specialisation of 'resultStateInfo' may be provided 
+      where this data type is used.
+
+      In case the process fails to complete successfully, the 'status' 
+      attribute is set to 'FAILED' or 'PARTIALLY_FAILED', the current value of 
+      'progressPercentage' is frozen, and the time captured in 'endTime'. The 
+      'resultStateInfo' specifies the reason for the failure. 
+      Specific failure reasons may be specified where the data type defined in 
+      this clause is used. The exact semantic of failure may be subject for 
+      further specialisation as well.
+
+      In case the process is cancelled, the 'status' attribue is first set to 
+      'CANCELLING' and when the process is really cancelled then to 'CANCELLED'. 
+      The transition to 'CANCELLED' is captured in the 'endTime' attribute. 
       The value of 'progressPercentage' is frozen. Additional textual 
-      information may be provided in the 'resultInfo' attribute.
+      information may be provided in the 'resultStateInfo' attribute.
 
-      The job may have to be completed within a certain time after its creation, 
-      for example because required data may not be available any more after a 
-      certain time, or the job outcome is needed until a certain time and when 
-      not provided by this time is not needed any more. The time until the MnS 
-      producer automatically cancels the job is indicated by the 'timer' 
-      attribute.
+      The 'resultStateInfo' attribute is provided only for additional textual 
+      qualification of the states 'FINISHED', 'FAILED', 'PARTIALLY_FAILED' or 
+      'CANCELLED'. It shall not be used for making the outcome, that the 
+      process may produce in case of success, available.
 
-      If a management operation results in starting an assosiacted job it 
-      should also result in the setting and updating of an attribute named 
-      'jobMonitor' that has the type 'JobMonitor'. The jobMonitor attribute 
-      may be accompanied by use-case specific additional data items.";
+      The process may have to be completed within a certain time after its 
+      creation, for example because required data may not be available any 
+      more after a certain time, or the process outcome is needed until a 
+      certain time and when not provided by this time is not needed any more. 
+      The time until the MnS producer automatically cancels the process is 
+      indicated by the 'timer' attribute.";
       
     leaf id {
       type string;
       mandatory true;
-      description "Id of the associated job. It is unique within a single 
-        multivalue attribute of type JobMonitor.";
+      description "Id of the process. It is unique within a single 
+        multivalue attribute of type ProcessMonitor.";
     }
     
     leaf status { 
       type enumeration {
         enum NOT_STARTED ;
         enum RUNNING ;
-        enum SUSPENDED ;
         enum CANCELLING ;
         enum FINISHED ;
-        enum FAILURE ;
+        enum FAILED ;
         enum PARTIALLY_FAILED ;
         enum CANCELLED ;
       }
       config false;
       default  RUNNING;
-      description "Represents the status of the associated job, 
+      description "Represents the status of the associated process, 
         whether it fails, succeeds etc. 
         It does not represent the returned values of a successfully finished 
-        job. 
-        Even a successfully finished job may report back, the task for which 
-        it was started is unsuccessful. 
-        E.g. a reserve-resource-job finished the reservation process 
-        successfully, but it reports back that the resource is not available.";
+        process. ";
     }
 
     leaf progressPercentage {
@@ -138,39 +150,40 @@ module _3gpp-common-yang-types {
         range 0..100;
       }
       config false;
-      description "Progress of the associated job as percentage";
+      description "Progress of the associated process as percentage";
     }
 
-    leaf-list progressInfo {
+    leaf-list progressStateInfo {
       type string;
       config false;
-      description "Additional textual information about the state and progress 
-        of the associated job. The attribute is updated during the 
-        'NOT_STARTED', 'CANCELLING' and 'RUNNING' states.
-        Specific jobs may define specific well-defined strings to be used 
-        in this attribute using e.g. string patterns or enums.";
+      description "Additional textual qualification of the states 
+        'NOT_STARTED', 'CANCELLING' and 'RUNNING'.
+
+        For specific processes, specific well-defined strings (e.g. string 
+        patterns or enums) may be defined as a specialisation.";
     }
 
-    leaf resultInfo {
+    leaf resultStateInfo {
       type string;
       config false;
-      description "Additional textual information about the final result of 
-        the associated job. The attribute is populated when transitioning in 
-        the 'FINISHED', 'FAILURE', 'PARTIALLY_FAILED' or 'CANCELLED' state. 
-        In the failure state it shall provide the failure reasons.
-        
-        This attribue shall not be used to make the outcome of the job 
+      description "Additional textual qualification of the states 
+        'FINISHED', 'FAILED', 'PARTIALLY_FAILED and 'CANCELLED'. 
+        For example, in the 'FAILED' or 'PARTIALLY_FAILED' state this 
+        attribute may be used to provide error reasons.
+
+        This attribue shall not be used to make the outcome of the process 
         available for retrieval, if any. For this purpose, dedicated 
-        attributes shall be specified when specifying a specific job.
-        
-        Specific jobs may define specific well-defined strings to be used 
-        in this attribute using e.g. string patterns or enums.";
+        attributes shall be specified when specifying the representation of 
+        a specific process.
+
+        For specific processes, specific well-defined strings (e.g. string 
+        patterns or enums) may be defined as a specialisation.";
     }
 
     leaf startTime {
       type yang:date-and-time;
       config false;
-      description "Start time of the associated job, i.e. the time when the 
+      description "Start time of the associated process, i.e. the time when the 
         status changed from 'NOT_STARTED' to 'RUNNING'.";
     }
 
@@ -181,19 +194,20 @@ module _3gpp-common-yang-types {
         'FAILED' or 'PARTIALLY_FAILED'. 
 
         If the time is in the future, it is the estimated time 
-        the job will end.";
+        the process will end.";
     }
 
     leaf timer {
       type uint32;
       units minutes;
-      description "Time until the associated job is automatically cancelled.
-      If set, the system decreases the timer with time. When it reaches zero 
-      the cancellation of the associated job is initiated by the MnS_Producer. 
-      If not set, there is no time limit for the job.
-      
-      Once the timer is set, the consumer can not change it anymore. 
-      If the consumer has not set the timer the MnS Producer may set it.";
+      description "Time until the associated process is automatically cancelled.
+        If set, the system decreases the timer with time. When it reaches zero 
+        the cancellation of the associated process is initiated by the 
+        MnS_Producer. 
+        If not set, there is no time limit for the process.
+        
+        Once the timer is set, the consumer can not change it anymore. 
+        If the consumer has not set the timer the MnS Producer may set it.";
     }
   }
   
