@@ -629,7 +629,7 @@ components:
         - PRB_DL
         - RRC
         - DRB    
-    ParameterInfo:
+    ParameterRange:
       type: object
       properties:
           maxValue:
@@ -1814,7 +1814,7 @@ components:
             attributes:
               type: object
               properties:
-                cCOSwitch:
+                cCOControl:
                   type: boolean
                 cCOWeakCoverageParameters:
                   $ref: '#/components/schemas/CCOWeakCoverageParameters-Single'
@@ -1832,30 +1832,30 @@ components:
               properties:
                 coverageShapeList:
                   type: integer
-                downlinkTransmitPowerInfo:
-                  $ref: '#/components/schemas/ParameterInfo'
-                antennaTiltInfo:
-                  $ref: '#/components/schemas/ParameterInfo'
-                antennaAzimuthInfo:
-                  $ref: '#/components/schemas/ParameterInfo'
-                digitalTiltInfo:
-                  $ref: '#/components/schemas/ParameterInfo'
-                digitalAzimuthInfo:
-                  $ref: '#/components/schemas/ParameterInfo'
+                downlinkTransmitPowerRange:
+                  $ref: '#/components/schemas/ParameterRange'
+                antennaTiltRange:
+                  $ref: '#/components/schemas/ParameterRange'
+                antennaAzimuthRange:
+                  $ref: '#/components/schemas/ParameterRange'
+                digitalTiltRange:
+                  $ref: '#/components/schemas/ParameterRange'
+                digitalAzimuthRange:
+                  $ref: '#/components/schemas/ParameterRange'
 
     CCOWeakCoverageParameters-Single:
       allOf:
-        - $ref: '#/components/schemas/CCOParameters_-Attr'
+        - $ref: '#/components/schemas/CCOParameters-Attr'
         - type: object
 
     CCOPilotPollutionParameters-Single:
       allOf:
-        - $ref: '#/components/schemas/CCOParameters_-Attr'
+        - $ref: '#/components/schemas/CCOParameters-Attr'
         - type: object
     
     CCOOvershootCoverageParameters-Single:
       allOf:
-        - $ref: '#/components/schemas/CCOParameters_-Attr'
+        - $ref: '#/components/schemas/CCOParameters-Attr'
         - type: object
 
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
