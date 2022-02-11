@@ -1822,7 +1822,7 @@ components:
                   $ref: '#/components/schemas/CCOPilotPollutionParameters-Single'  
                 cCOOvershootCoverageParameters-Single:
                   $ref: '#/components/schemas/CCOOvershootCoverageParameters-Single'  
-    CCOParameters_-Attr:
+    CCOParameters-Attr:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
