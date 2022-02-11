@@ -255,6 +255,11 @@ components:
         NRPci:
           type: integer
 
+    MaximumDeviationHoTrigger:
+      type: integer
+      minimum: -20
+      maximum: 20
+
     MaximumDeviationHoTriggerLow:
       type: integer
       minimum: -20
