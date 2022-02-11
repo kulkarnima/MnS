@@ -181,6 +181,80 @@ components:
             - BASE_SUBTREE
         scopeLevel:
           type: integer
+    ProcessMonitor:
+      description: >-
+        This data type is the "ProcessMonitor" data type without specialisations.
+      type: object
+      properties:
+        jobId:
+          type: string
+        status:
+          type: string
+          enum:
+            - NOT_STARTED
+            - RUNNING
+            - FINSHED
+            - FAILED
+            - PARTIALLY_FAILED
+            - CANCELLING
+            - CANCELLED
+        progressPercentage:
+          type: integer
+          minimum: 0
+          maximum: 100
+        progressStateInfo:
+          type: string
+        resultStateInfo:
+          type: string
+        startTime:
+          $ref: 'comDefs.yaml#/components/schemas/DateTime'
+        endTime:
+          $ref: 'comDefs.yaml#/components/schemas/DateTime'
+        timer:
+          type: integer
+    FileDownloadJobProcessMonitor:
+      description: >-
+        This data type is the "ProcessMonitor" data type with specialisations
+        for usage in the "FileDownloadJob".
+      type: object
+      properties:
+        jobId:
+          type: string
+        status:
+          type: string
+          enum:
+            - NOT_STARTED
+            - RUNNING
+            - FINSHED
+            - FAILED
+            - CANCELLING
+            - CANCELLED
+        progressPercentage:
+          type: integer
+          minimum: 0
+          maximum: 100
+        progressStateInfo:
+          type: string
+        resultStateInfo:
+          oneOf:
+            - type: string
+              enum:
+                - NULL
+                - UNKNOWN
+                - NO_STORAGE
+                - LOW_MEMROY
+                - NO_CONNECTION_TO_REMOTE_SERVER
+                - FILE_NOT_AVAILABLE
+                - DNS_CANNOT_BE_RESOLVED
+                - TIMER_EXPIRED
+                - OTHER
+            - type: string
+        startTime:
+          $ref: 'comDefs.yaml#/components/schemas/DateTime'
+        endTime:
+          $ref: 'comDefs.yaml#/components/schemas/DateTime'
+        timer:
+          type: integer
     AreaScope:
       oneOf:
       - type: array
@@ -1282,6 +1356,8 @@ components:
           $ref: '#/components/schemas/TraceJob-Multiple'
         AlarmList:
           $ref: '#/components/schemas/AlarmList-Single'
+        FileDownloadJob:
+          $ref: '#/components/schemas/FileDownloadJob-Multiple'
         MnsRegistry:
           $ref: '#/components/schemas/MnsRegistry-Single'
     ManagedElement-ncO:
@@ -1299,6 +1375,8 @@ components:
           $ref: '#/components/schemas/TraceJob-Multiple'
         AlarmList:
           $ref: '#/components/schemas/AlarmList-Single'
+        FileDownloadJob:
+          $ref: '#/components/schemas/FileDownloadJob-Multiple'
 
 #-------- Definition of abstract IOCs --------------------------------------------
 
@@ -1655,7 +1733,25 @@ components:
                   type: object
                   additionalProperties:
                     $ref: 'faultMnS.yaml#/components/schemas/AlarmRecord'
-
+    FileDownloadJob-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                fileLocation:
+                  type: string
+                notificationRecipientAddress:
+                  $ref: 'comDefs.yaml#/components/schemas/Uri'
+                cancelJob:
+                  type: string
+                  enum:
+                    - TRUE
+                    - FALSE
+                jobMonitor:
+                  $ref: '#/components/schemas/FileDownloadJobProcessMonitor'
     MnsInfo-Single:
       type: object
       properties:
@@ -1717,6 +1813,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/NtfSubscriptionControl-Single'
+    FileDownloadJob-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/FileDownloadJob-Single'
     MnsInfo-Multiple:
       type: array
       items:
@@ -1743,5 +1843,8 @@ components:
        - $ref: '#/components/schemas/HeartbeatControl-Single'
 
        - $ref: '#/components/schemas/AlarmList-Single'
+
+       - $ref: '#/components/schemas/FileDownloadJob-Single'
+       
        - $ref: '#/components/schemas/MnsRegistry-Single'
        - $ref: '#/components/schemas/MnsInfo-Single'
