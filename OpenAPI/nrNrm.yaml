@@ -260,6 +260,16 @@ components:
       minimum: -20
       maximum: 20
 
+    MaximumDeviationHoTriggerLow:
+      type: integer
+      minimum: -20
+      maximum: 20
+
+    MaximumDeviationHoTriggerHigh:
+      type: integer
+      minimum: -20
+      maximum: 20
+
     MinimumTimeBetweenHoTriggerChange:
       type: integer
       minimum: 0
@@ -1424,8 +1434,10 @@ components:
                   properties:
                     dmroControl:
                       type: boolean
-                    maximumDeviationHoTrigger:
-                      $ref: '#/components/schemas/MaximumDeviationHoTrigger'
+                    maximumDeviationHoTriggerLow:
+                      $ref: '#/components/schemas/MaximumDeviationHoTriggerLow'
+                    maximumDeviationHoTriggerHigh:
+                      $ref: '#/components/schemas/MaximumDeviationHoTriggerHigh'
                     minimumTimeBetweenHoTriggerChange:
                       $ref: '#/components/schemas/MinimumTimeBetweenHoTriggerChange'
                     tstoreUEcntxt:
