@@ -612,7 +612,6 @@ components:
         5GCNFRef:
           $ref: 'genericNrm.yaml#/components/schemas/Dn'
 
-
     UPFConnectionInfo:
       type: object
       properties:
