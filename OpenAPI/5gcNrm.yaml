@@ -358,11 +358,11 @@ components:
         fiveQIValue:
           type: integer
         maxbrUl:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/BitRateRm'
+          $ref: 'ctCommonDataRef.yaml#/components/schemas/BitRateRm'
         maxbrDl:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/BitRateRm'
+          $ref: 'ctCommonDataRef.yaml#/components/schemas/BitRateRm'
         gbrUl:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/BitRateRm'
+          $ref: 'ctCommonDataRef.yaml#/components/schemas/BitRateRm'
         gbrDl:
           $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/BitRateRm'
         arp:
@@ -409,7 +409,7 @@ components:
         flowStatus:
           $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowStatus'
         redirectInfo:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RedirectInformation'
+          $ref: 'ctCommonDataRef.yaml#/components/schemas/RedirectInformation'
         addRedirectInfo:
           type: array
           items:
@@ -486,7 +486,7 @@ components:
         conditionData:
             $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ConditionData'
         tscaiInputDl:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer'
+          $ref: 'ctCommonDataRef.yaml#/components/schemas/TscaiInputContainer'
         tscaiInputUl:
           $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer'
 

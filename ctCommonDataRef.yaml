@@ -13,8 +13,8 @@ paths: {}
 components:
   schemas:
 
-    EthFlowDescription:
-      $ref: 'TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/EthFlowDescription'
+    TscaiInputContainer:
+      $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer'
 
     RedirectInformation:
       $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RedirectInformation'
