@@ -365,7 +365,11 @@ components:
           type: integer
         activityFactor:
           type: integer
+        dLThptPerSliceSubnet:
+          $ref: '#/components/schemas/XLThpt'
         dLThptPerUE:
+          $ref: '#/components/schemas/XLThpt'
+        uLThptPerSliceSubnet:
           $ref: '#/components/schemas/XLThpt'
         uLThptPerUE:
           $ref: '#/components/schemas/XLThpt'
