@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Common Type Definitions
+  title: Common Type Definitions as proxy reference
   version: 17.0.0
   description: >-
     OAS 3.0.1 specification of common type definitions in the Generic NRM
