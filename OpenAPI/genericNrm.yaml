@@ -1677,7 +1677,7 @@ components:
           description: List of top level addresses (Root DN) of the 3GPP models supported by the MnS
           type: array
           items:
-            type: $ref: 'comDefs.yaml#/components/schemas/Dn'
+            $ref: 'comDefs.yaml#/components/schemas/Dn'
 
 #-------- Definition of YAML arrays for name-contained IOCs ----------------------
 
