@@ -563,6 +563,7 @@ components:
       items:
         type: string
 
+<<<<<<< HEAD
     DnnSmfInfoItem:
       type: object
       properties:
@@ -593,6 +594,8 @@ components:
         ipv6Prefix:
           type: string
 
+=======
+>>>>>>> 988c66de086071215dc877dab89b30ca570331a7
     5GCNfConnEcmInfoList:
       type: array
       items:
@@ -621,6 +624,10 @@ components:
         uPFRef:
           $ref: 'genericNrm.yaml#/components/schemas/Dn'
 
+<<<<<<< HEAD
+=======
+            
+>>>>>>> 988c66de086071215dc877dab89b30ca570331a7
 #-------- Definition of concrete IOCs --------------------------------------------
 
     SubNetwork-Single:
