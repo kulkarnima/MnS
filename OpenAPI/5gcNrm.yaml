@@ -610,7 +610,7 @@ components:
         5GCNFIpAddress:
           type: string
         5GCNFRef:
-          $ref: 'genericNrm.yaml#/components/schemas/Dn'
+          $ref: 'comDefs.yaml#/components/schemas/Dn'
 
 
     UPFConnectionInfo:
@@ -619,7 +619,7 @@ components:
         uPFIpAddress:
           type: string
         uPFRef:
-          $ref: 'genericNrm.yaml#/components/schemas/Dn'
+          $ref: 'comDefs.yaml#/components/schemas/Dn'
 
 #-------- Definition of concrete IOCs --------------------------------------------
 
