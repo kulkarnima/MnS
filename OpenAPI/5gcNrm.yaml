@@ -593,6 +593,33 @@ components:
         ipv6Prefix:
           type: string
 
+    5GCNfConnEcmInfoList:
+      type: array
+      items:
+        $ref: '#/components/schemas/5GCNfConnEcmInfo'
+    5GCNfConnEcmInfo:
+      type: object
+      description: 'Store the 5GC NF connection information'
+      properties:
+        5GCNFType:
+          type: string
+          enum:
+            - PCF
+            - NEF
+            - SCEF
+        5GCNFIpAddress:
+          type: string
+        5GCNFRef:
+          $ref: 'comDefs.yaml#/components/schemas/Dn'
+
+    UPFConnectionInfo:
+      type: object
+      properties:
+        uPFIpAddress:
+          type: string
+        uPFRef:
+          $ref: 'comDefs.yaml#/components/schemas/Dn'
+
 #-------- Definition of concrete IOCs --------------------------------------------
 
     SubNetwork-Single:
@@ -624,6 +651,8 @@ components:
               $ref: '#/components/schemas/Configurable5QISet-Multiple'
             Dynamic5QISet:
               $ref: '#/components/schemas/Dynamic5QISet-Multiple'
+            EcmConnectionInfo:
+              $ref: '#/components/schemas/EcmConnectionInfo-Multiple'
 
     ManagedElement-Single:
       allOf:
@@ -676,6 +705,8 @@ components:
               $ref: '#/components/schemas/Configurable5QISet-Multiple'
             Dynamic5QISet:
               $ref: '#/components/schemas/Dynamic5QISet-Multiple'
+            EcmConnectionInfo:
+              $ref: '#/components/schemas/EcmConnectionInfo-Multiple'
 
     AmfFunction-Single:
       allOf:
@@ -1357,6 +1388,40 @@ components:
           properties:
             EP_Nxx:
               $ref: '#/components/schemas/EP_Nxx-Multiple'
+
+    EcmConnectionInfo-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    eASServiceArea:
+                      $ref: 'EdgeNRM.yaml#/components/schemas/ServingLocation'
+                    eESServiceArea:
+                      $ref: 'EdgeNRM.yaml#/components/schemas/ServingLocation'
+                    eDNServiceArea:
+                      $ref: 'EdgeNRM.yaml#/components/schemas/ServingLocation'
+                    eASIpAddress:
+                      type: string
+                    eESIpAddress:
+                      type: string
+                    eCSIpAddress:
+                      type: string
+                    ednIdentifier:
+                      type: string
+                    ecmConnectionType:
+                      type: string
+                      enum:
+                        - USERPLANE
+                        - CONTROLPLANE
+                        - BOTH
+                    5GCNfConnEcmInfoList:
+                      $ref: '#/components/schemas/5GCNfConnEcmInfoList'
+                    uPFConnectionInfo:
+                      $ref: '#/components/schemas/UPFConnectionInfo'
 
 
     ExternalAmfFunction-Single:
@@ -2362,6 +2427,11 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Dynamic5QISet-Single'
+    EcmConnectionInfo-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EcmConnectionInfo-Single'
+
 
 
 
@@ -2448,3 +2518,5 @@ components:
        - $ref: '#/components/schemas/PredefinedPccRuleSet-Single'
        - $ref: '#/components/schemas/Dynamic5QISet-Single'
        - $ref: '#/components/schemas/EASDFFunction-Single'
+       - $ref: '#/components/schemas/EcmConnectionInfo-Single'
+
