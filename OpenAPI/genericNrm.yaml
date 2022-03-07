@@ -1,10 +1,10 @@
 openapi: 3.0.1
 info:
   title: Generic NRM
-  version: 17.0.0
+  version: 17.1.0
   description: >-
     OAS 3.0.1 definition of the Generic NRM
-    © 2021, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    © 2022, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 externalDocs:
   description: 3GPP TS 28.623; Generic NRM
@@ -1278,6 +1278,8 @@ components:
           $ref: '#/components/schemas/TraceJob-Multiple'
         AlarmList:
           $ref: '#/components/schemas/AlarmList-Single'
+        Files:
+          $ref: '#/components/schemas/Files-Multiple'
         MnsRegistry:
           $ref: '#/components/schemas/MnsRegistry-Single'
     ManagedElement-ncO:
@@ -1295,6 +1297,8 @@ components:
           $ref: '#/components/schemas/TraceJob-Multiple'
         AlarmList:
           $ref: '#/components/schemas/AlarmList-Single'
+        Files:
+          $ref: '#/components/schemas/Files-Multiple'
 
 #-------- Definition of abstract IOCs --------------------------------------------
 
@@ -1556,6 +1560,8 @@ components:
                   $ref: 'comDefs.yaml#/components/schemas/DnList'
                 reportingCtrl:
                   $ref: '#/components/schemas/ReportingCtrl'
+            Files:
+              $ref: '#/components/schemas/Files-Multiple'
     ThresholdMonitor-Single:
       allOf:
         - $ref: '#/components/schemas/Top'
@@ -1623,7 +1629,8 @@ components:
           properties:
             attributes:
               $ref: '#/components/schemas/TraceJob-Attr'
-
+            Files:
+              $ref: '#/components/schemas/Files-Multiple'
     AlarmList-Single:
       allOf:
         - $ref: '#/components/schemas/Top'
@@ -1647,7 +1654,55 @@ components:
                   type: object
                   additionalProperties:
                     $ref: 'faultMnS.yaml#/components/schemas/AlarmRecord'
-
+    Files-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                numberOfFiles:
+                  type: integer
+                jobRef:
+                  $ref: 'comDefs.yaml#/components/schemas/Dn'
+                jobId:
+                  type: string
+                File:
+                  $ref: '#/components/schemas/File-Multiple'
+    File-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                fileLocation:
+                  $ref: 'comDefs.yaml#/components/schemas/Uri'
+                fileCompression:
+                  type: string
+                fileSize:
+                  type: integer
+                fileDataType:
+                  type: string
+                  enum:
+                    - PERFORMANCE
+                    - TRACE
+                    - ANALYTICS
+                    - PROPRIETARY
+                fileFormat:
+                  type: string
+                fileReadyTime:
+                  $ref: 'comDefs.yaml#/components/schemas/DateTime'
+                fileExpirationTime:
+                  $ref: 'comDefs.yaml#/components/schemas/DateTime'
+                fileContent:
+                  type: string
+                jobRef:
+                  $ref: 'comDefs.yaml#/components/schemas/Dn'
+                jobId:
+                  type: string
     MnsInfo-Single:
       type: object
       properties:
@@ -1704,6 +1759,14 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/NtfSubscriptionControl-Single'
+    Files-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/Files-Single'
+    File-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/File-Single'
     MnsInfo-Multiple:
       type: array
       items:
@@ -1730,5 +1793,9 @@ components:
        - $ref: '#/components/schemas/HeartbeatControl-Single'
 
        - $ref: '#/components/schemas/AlarmList-Single'
+
+       - $ref: '#/components/schemas/Files-Single'
+       - $ref: '#/components/schemas/File-Single'
+       
        - $ref: '#/components/schemas/MnsRegistry-Single'
        - $ref: '#/components/schemas/MnsInfo-Single'
