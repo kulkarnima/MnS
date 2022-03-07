@@ -727,21 +727,29 @@ components:
                     interPlmnFQDN:
                       type: string
                     taiList:
-                      $ref: 'nrNrm.yaml#/components/schemas/Tai'
+                      $ref: 'nrNrm.yaml#/components/schemas/TaiList'
                     taiRangeList:
-                      $ref: 'nrNrm.yaml#/components/schemas/TaiRange'
+                      type: array
+                      items:
+                        $ref: 'nrNrm.yaml#/components/schemas/TaiRange'
                     weightFactor:
                       $ref: '#/components/schemas/WeightFactor'
                     snssaiList:
                       $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
                     cNSIIdList:
                       $ref: '#/components/schemas/CNSIIdList'
-                    gUAMIdList: 
-                      $ref: '#/components/schemas/GUAMInfo'
+                    gUAMIdList:
+                      type: array
+                      items: 
+                        $ref: '#/components/schemas/GUAMInfo'
                     backupInfoAmfFailure:
-                      $ref: '#/components/schemas/GUAMInfo'
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/GUAMInfo'
                     backupInfoAmfRemoval:
-                      $ref: '#/components/schemas/GUAMInfo'
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/GUAMInfo'
                     amfSetRef:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'
                     managedNFProfile:
