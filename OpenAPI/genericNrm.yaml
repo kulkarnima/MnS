@@ -42,6 +42,9 @@ components:
           $ref: 'comDefs.yaml#/components/schemas/Latitude'
         siteLongitude:
           $ref: 'comDefs.yaml#/components/schemas/Longitude'
+        siteAltitude:
+          type: number
+          format: float
         equipmentType:
           type: string
         environmentType:
