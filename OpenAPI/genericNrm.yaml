@@ -248,107 +248,7 @@ components:
 
 
 #-------- Definition of types used in Trace control NRM fragment------------------
-                
-    TraceConfig:
-      description: The configuration parameters which are specific for Trace or combined Trace and Immediate MDT. 
-      type: object
-      properties:
-        listOfInterfaces:
-          $ref: '#/components/schemas/listOfInterfaces-Type'
-        listOfNeTypes:
-          $ref: '#/components/schemas/listOfNeTypes-Type'
-        traceDepth:
-          $ref: '#/components/schemas/traceDepth-Type'
-        triggeringEvents:
-          $ref: '#/components/schemas/triggeringEvents-Type'
-
-    MdtConfig:
-      description: The configuration parameters which are specific for MDT. 
-      type: object
-      properties:
-        anonymizationOfMdtData:
-          $ref: '#/components/schemas/anonymizationOfMdtData-Type'
-        areaScope:
-          type: array
-          items:
-            $ref: '#/components/schemas/AreaScope'
-        sensorInformation:
-          $ref: '#/components/schemas/sensorInformation-Type'
-        immediateMdtConfig:
-          $ref: '#/components/schemas/ImmediateMdtConfig'
-        loggedMdtConfig:
-          $ref: '#/components/schemas/LoggedMdtConfig'
-
-    ImmediateMdtConfig:
-      description: The configuration parameters which are specific for Immediate MDT. 
-      type: object
-      properties:
-        listOfMeasurements:
-          $ref: '#/components/schemas/listOfMeasurements-Type'
-        reportingTrigger:
-          $ref: '#/components/schemas/reportingTrigger-Type'
-        reportInterval:
-          $ref: '#/components/schemas/reportInterval-Type'
-        reportAmount:
-          $ref: '#/components/schemas/reportAmount-Type'
-        eventThreshold:
-          $ref: '#/components/schemas/eventThreshold-Type'
-        collectionPeriodRrmNr:
-          $ref: '#/components/schemas/collectionPeriodRrmNr-Type'
-        collectionPeriodM6Nr:
-          $ref: '#/components/schemas/collectionPeriodM6Nr-Type'
-        collectionPeriodM7Nr:
-          $ref: '#/components/schemas/collectionPeriodM7Nr-Type'
-        collectionPeriodRrmLte:
-          $ref: '#/components/schemas/collectionPeriodRrmLte-Type'
-        measurementPeriodLte:
-          $ref: '#/components/schemas/measurementPeriodLte-Type'
-        collectionPeriodM6Lte:
-          $ref: '#/components/schemas/collectionPeriodM6Lte-Type'
-        collectionPeriodM7Lte:
-          $ref: '#/components/schemas/collectionPeriodM7Lte-Type'
-        eventThresholdUphUmts:
-          $ref: '#/components/schemas/eventThresholdUphUmts-Type'
-        collectionPeriodRrmUmts:
-          $ref: '#/components/schemas/collectionPeriodRrmUmts-Type'
-        measurementPeriodUmts:
-          $ref: '#/components/schemas/measurementPeriodUmts-Type'
-        measurementQuantity:
-          $ref: '#/components/schemas/measurementQuantity-Type'
-        positioningMethod:
-          $ref: '#/components/schemas/positioningMethod-Type'
-
-    LoggedMdtConfig:
-      description: The configuration parameters which are specific for Logged MDT. 
-      type: object
-      properties:
-        traceCollectionEntityId:
-          $ref: '#/components/schemas/traceCollectionEntityId-Type'
-        loggingDuration:
-          $ref: '#/components/schemas/loggingDuration-Type'
-        loggingInterval:
-          $ref: '#/components/schemas/loggingInterval-Type'
-        reportType:
-          $ref: '#/components/schemas/reportType-Type'
-        eventListForEventTriggeredMeasurement:
-          $ref: '#/components/schemas/eventListForEventTriggeredMeasurement-Type'
-        eventThresholdL1:
-          $ref: '#/components/schemas/eventThresholdL1-Type'
-        hysteresisL1:
-          $ref: '#/components/schemas/hysteresisL1-Type'
-        timeToTriggerL1:
-          $ref: '#/components/schemas/timeToTriggerL1-Type'
-        plmnList:
-          $ref: '#/components/schemas/plmnList-Type'
-        areaConfigurationForNeighCells:
-          type: array
-          items:
-            $ref: '#/components/schemas/AreaConfig'
-        mbsfnAreaList:
-          type: array
-          items:
-            $ref: '#/components/schemas/MbsfnArea'
-
+  
     jobType-Type:
       type: string
       description: Specifies whether the TraceJob represents only MDT, Logged MBSFN MDT, Trace or a combined Trace and MDT job. Applicable for Trace, MDT, RCEF and RLF reporting. See 3GPP TS 32.422 clause 5.9a for additional details.
@@ -1547,7 +1447,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SupportedPerfMetricGroup'
-
     TraceJob-Attr:
       type: object
       description: abstract class used as a container of all TraceJob attributes
@@ -1568,11 +1467,175 @@ components:
           $ref: '#/components/schemas/traceReportingFormat-Type'
         traceTarget:
           $ref: '#/components/schemas/traceTarget-Type'
-        traceConfig:
-          $ref: '#/components/schemas/TraceConfig'
-        mdtConfig:
-          $ref: '#/components/schemas/MdtConfig'
-
+        oneOf:
+          - type: object
+            description: The configuration parameters which are specific for Trace. 
+            properties:
+              listOfInterfaces:
+                $ref: '#/components/schemas/listOfInterfaces-Type'
+              listOfNeTypes:
+                $ref: '#/components/schemas/listOfNeTypes-Type'
+              traceDepth:
+                $ref: '#/components/schemas/traceDepth-Type'
+              triggeringEvents:
+                $ref: '#/components/schemas/triggeringEvents-Type'
+          - type: object
+            description: The configuration parameters which are specific for Immediate MDT. 
+            properties:
+              anonymizationOfMdtData:
+                $ref: '#/components/schemas/anonymizationOfMdtData-Type'
+              areaScope:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AreaScope'
+              sensorInformation:
+                $ref: '#/components/schemas/sensorInformation-Type'
+              listOfMeasurements:
+                $ref: '#/components/schemas/listOfMeasurements-Type'
+              reportingTrigger:
+                $ref: '#/components/schemas/reportingTrigger-Type'
+              reportInterval:
+                $ref: '#/components/schemas/reportInterval-Type'
+              reportAmount:
+                $ref: '#/components/schemas/reportAmount-Type'
+              eventThreshold:
+                $ref: '#/components/schemas/eventThreshold-Type'
+              collectionPeriodRrmNr:
+                $ref: '#/components/schemas/collectionPeriodRrmNr-Type'
+              collectionPeriodM6Nr:
+                $ref: '#/components/schemas/collectionPeriodM6Nr-Type'
+              collectionPeriodM7Nr:
+                $ref: '#/components/schemas/collectionPeriodM7Nr-Type'
+              collectionPeriodRrmLte:
+                $ref: '#/components/schemas/collectionPeriodRrmLte-Type'
+              measurementPeriodLte:
+                $ref: '#/components/schemas/measurementPeriodLte-Type'
+              collectionPeriodM6Lte:
+                $ref: '#/components/schemas/collectionPeriodM6Lte-Type'
+              collectionPeriodM7Lte:
+                $ref: '#/components/schemas/collectionPeriodM7Lte-Type'
+              eventThresholdUphUmts:
+                $ref: '#/components/schemas/eventThresholdUphUmts-Type'
+              collectionPeriodRrmUmts:
+                $ref: '#/components/schemas/collectionPeriodRrmUmts-Type'
+              measurementPeriodUmts:
+                $ref: '#/components/schemas/measurementPeriodUmts-Type'
+              measurementQuantity:
+                $ref: '#/components/schemas/measurementQuantity-Type'
+              positioningMethod:
+                $ref: '#/components/schemas/positioningMethod-Type'
+          - type: object
+            description: The configuration parameters which are specific for combination of Trace and Immediate MDT. 
+            properties:
+              listOfInterfaces:
+                $ref: '#/components/schemas/listOfInterfaces-Type'
+              listOfNeTypes:
+                $ref: '#/components/schemas/listOfNeTypes-Type'
+              traceDepth:
+                $ref: '#/components/schemas/traceDepth-Type'
+              triggeringEvents:
+                $ref: '#/components/schemas/triggeringEvents-Type'
+              anonymizationOfMdtData:
+                $ref: '#/components/schemas/anonymizationOfMdtData-Type'
+              areaScope:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AreaScope'
+              sensorInformation:
+                $ref: '#/components/schemas/sensorInformation-Type'
+              listOfMeasurements:
+                $ref: '#/components/schemas/listOfMeasurements-Type'
+              reportingTrigger:
+                $ref: '#/components/schemas/reportingTrigger-Type'
+              reportInterval:
+                $ref: '#/components/schemas/reportInterval-Type'
+              reportAmount:
+                $ref: '#/components/schemas/reportAmount-Type'
+              eventThreshold:
+                $ref: '#/components/schemas/eventThreshold-Type'
+              collectionPeriodRrmNr:
+                $ref: '#/components/schemas/collectionPeriodRrmNr-Type'
+              collectionPeriodM6Nr:
+                $ref: '#/components/schemas/collectionPeriodM6Nr-Type'
+              collectionPeriodM7Nr:
+                $ref: '#/components/schemas/collectionPeriodM7Nr-Type'
+              collectionPeriodRrmLte:
+                $ref: '#/components/schemas/collectionPeriodRrmLte-Type'
+              measurementPeriodLte:
+                $ref: '#/components/schemas/measurementPeriodLte-Type'
+              collectionPeriodM6Lte:
+                $ref: '#/components/schemas/collectionPeriodM6Lte-Type'
+              collectionPeriodM7Lte:
+                $ref: '#/components/schemas/collectionPeriodM7Lte-Type'
+              eventThresholdUphUmts:
+                $ref: '#/components/schemas/eventThresholdUphUmts-Type'
+              collectionPeriodRrmUmts:
+                $ref: '#/components/schemas/collectionPeriodRrmUmts-Type'
+              measurementPeriodUmts:
+                $ref: '#/components/schemas/measurementPeriodUmts-Type'
+              measurementQuantity:
+                $ref: '#/components/schemas/measurementQuantity-Type'
+              positioningMethod:
+                $ref: '#/components/schemas/positioningMethod-Type'
+          - type: object
+            description: The configuration parameters which are specific for Logged MDT. 
+            properties:
+              anonymizationOfMdtData:
+                $ref: '#/components/schemas/anonymizationOfMdtData-Type'
+              areaScope:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AreaScope'
+              sensorInformation:
+                $ref: '#/components/schemas/sensorInformation-Type'
+              traceCollectionEntityId:
+                $ref: '#/components/schemas/traceCollectionEntityId-Type'
+              loggingDuration:
+                $ref: '#/components/schemas/loggingDuration-Type'
+              loggingInterval:
+                $ref: '#/components/schemas/loggingInterval-Type'
+              reportType:
+                $ref: '#/components/schemas/reportType-Type'
+              eventListForEventTriggeredMeasurement:
+                $ref: '#/components/schemas/eventListForEventTriggeredMeasurement-Type'
+              eventThresholdL1:
+                $ref: '#/components/schemas/eventThresholdL1-Type'
+              hysteresisL1:
+                $ref: '#/components/schemas/hysteresisL1-Type'
+              timeToTriggerL1:
+                $ref: '#/components/schemas/timeToTriggerL1-Type'
+              plmnList:
+                $ref: '#/components/schemas/plmnList-Type'
+              areaConfigurationForNeighCells:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AreaConfig'
+          - type: object
+            description: The configuration parameters which are specific for Logged MBSFN. 
+            properties:
+              anonymizationOfMdtData:
+                $ref: '#/components/schemas/anonymizationOfMdtData-Type'
+              areaScope:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AreaScope'
+              loggingDuration:
+                $ref: '#/components/schemas/loggingDuration-Type'
+              loggingInterval:
+                $ref: '#/components/schemas/loggingInterval-Type'
+              plmnList:
+                $ref: '#/components/schemas/plmnList-Type'
+              mbsfnAreaList:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MbsfnArea'
+          - type: object
+            description: The configuration parameters which are specific for Logged MBSFN. 
+            properties:
+              areaScope:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AreaScope'
     ManagedFunction-ncO:
       type: object
       properties:
