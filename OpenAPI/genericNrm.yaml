@@ -1631,7 +1631,7 @@ components:
                   items:
                     $ref: '#/components/schemas/MbsfnArea'
             - type: object
-              description: The configuration parameters which are specific for Logged MBSFN. 
+              description: The configuration parameters which are specific for RLF or RCEF Reports. 
               properties:
                 areaScope:
                   type: array
