@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Slice NRM
-  version: 17.5.0
+  version: 17.6.0
   description: >-
     OAS 3.0.1 specification of the Slice NRM
     @ 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -232,19 +232,35 @@ components:
         nsName:
           type: string
     EmbbEEPerfReq:
-      type: integer
+      type: object
+      properties:
+        kpiType:
+          type: string
+          enum:
+            - NUMOFBITS
+            - NUMOFBITS_RANBASED
+        req:
+          type: number
     UrllcEEPerfReq:
-      type: integer
+      type: object
+      properties:
+        kpiType:
+          type: string
+          enum:
+            - INVOFLATENCY
+            - NUMOFBITS_MULTIPLIED_INVOFLATENCY
+        req:
+          type: number
     MIoTEEPerfReq:
       type: object
       properties:
-        KpiType:
+        kpiType:
           type: string
           enum:
             - MAXREGSUBS
             - MEANACTIVEUES
-        Req:
-          type: integer
+        req:
+          type: number
     EEPerfReq:
       oneOf:
         - $ref: '#/components/schemas/EmbbEEPerfReq'
@@ -321,7 +337,7 @@ components:
         reliability:
           type: string
         energyEfficiency:
-          type: integer 
+          type: number 
         dLDeterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
         uLDeterministicComm:
@@ -349,7 +365,11 @@ components:
           type: integer
         activityFactor:
           type: integer
+        dLThptPerSliceSubnet:
+          $ref: '#/components/schemas/XLThpt'
         dLThptPerUE:
+          $ref: '#/components/schemas/XLThpt'
+        uLThptPerSliceSubnet:
           $ref: '#/components/schemas/XLThpt'
         uLThptPerUE:
           $ref: '#/components/schemas/XLThpt'
@@ -372,7 +392,7 @@ components:
         sliceSimultaneousUse:
           $ref: '#/components/schemas/SliceSimultaneousUse'
         energyEfficiency:
-          type: integer
+          type: number
         termDensity:
           $ref: '#/components/schemas/TermDensity'
         survivalTime:
@@ -411,7 +431,7 @@ components:
         sliceSimultaneousUse:
           $ref: '#/components/schemas/SliceSimultaneousUse'
         energyEfficiency:
-          type: integer
+          $ref: '#/components/schemas/EnergyEfficiency'
         synchronicity:
           $ref: '#/components/schemas/Synchronicity'
         delayTolerance:

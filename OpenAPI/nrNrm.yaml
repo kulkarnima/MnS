@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: NR NRM
-  version: 17.5.0
+  version: 17.6.0
   description: >-
     OAS 3.0.1 specification of the NR NRM
     © 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -256,6 +256,16 @@ components:
           type: integer
 
     MaximumDeviationHoTrigger:
+      type: integer
+      minimum: -20
+      maximum: 20
+
+    MaximumDeviationHoTriggerLow:
+      type: integer
+      minimum: -20
+      maximum: 20
+
+    MaximumDeviationHoTriggerHigh:
       type: integer
       minimum: -20
       maximum: 20
@@ -629,7 +639,13 @@ components:
         - PRB_DL
         - RRC
         - DRB    
-
+    ParameterRange:
+      type: object
+      properties:
+          maxValue:
+            type: integer
+          minValue:
+            type: integer
 #-------- Definition of abstract IOCs --------------------------------------------
 
     RrmPolicy_-Attr:
@@ -685,7 +701,8 @@ components:
               $ref: '#/components/schemas/RimRSGlobal-Single'
             Dynamic5QISet:
               $ref: '5gcNrm.yaml#/components/schemas/Dynamic5QISet-Multiple'
-
+            CCOFunction:
+              $ref: '#/components/schemas/CCOFunction-Single'
     ManagedElement-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -1017,6 +1034,8 @@ components:
           properties:
             cellLocalId:
               type: integer
+            administrativeState:
+              $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
             plmnInfoList:
               $ref: '#/components/schemas/PlmnInfoList'
             nrTac:
@@ -1415,8 +1434,10 @@ components:
                   properties:
                     dmroControl:
                       type: boolean
-                    maximumDeviationHoTrigger:
-                      $ref: '#/components/schemas/MaximumDeviationHoTrigger'
+                    maximumDeviationHoTriggerLow:
+                      $ref: '#/components/schemas/MaximumDeviationHoTriggerLow'
+                    maximumDeviationHoTriggerHigh:
+                      $ref: '#/components/schemas/MaximumDeviationHoTriggerHigh'
                     minimumTimeBetweenHoTriggerChange:
                       $ref: '#/components/schemas/MinimumTimeBetweenHoTriggerChange'
                     tstoreUEcntxt:
@@ -1797,6 +1818,57 @@ components:
                       $ref: '#/components/schemas/LocalAddress'
                     remoteAddress:
                       $ref: '#/components/schemas/RemoteAddress'
+    CCOFunction-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                cCOControl:
+                  type: boolean
+                cCOWeakCoverageParameters:
+                  $ref: '#/components/schemas/CCOWeakCoverageParameters-Single'
+                cCOPilotPollutionParameters:
+                  $ref: '#/components/schemas/CCOPilotPollutionParameters-Single'  
+                cCOOvershootCoverageParameters-Single:
+                  $ref: '#/components/schemas/CCOOvershootCoverageParameters-Single'  
+    CCOParameters-Attr:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                coverageShapeList:
+                  type: integer
+                downlinkTransmitPowerRange:
+                  $ref: '#/components/schemas/ParameterRange'
+                antennaTiltRange:
+                  $ref: '#/components/schemas/ParameterRange'
+                antennaAzimuthRange:
+                  $ref: '#/components/schemas/ParameterRange'
+                digitalTiltRange:
+                  $ref: '#/components/schemas/ParameterRange'
+                digitalAzimuthRange:
+                  $ref: '#/components/schemas/ParameterRange'
+
+    CCOWeakCoverageParameters-Single:
+      allOf:
+        - $ref: '#/components/schemas/CCOParameters-Attr'
+        - type: object
+
+    CCOPilotPollutionParameters-Single:
+      allOf:
+        - $ref: '#/components/schemas/CCOParameters-Attr'
+        - type: object
+    
+    CCOOvershootCoverageParameters-Single:
+      allOf:
+        - $ref: '#/components/schemas/CCOParameters-Attr'
+        - type: object
 
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
 
@@ -2016,3 +2088,7 @@ components:
         - $ref: '#/components/schemas/EP_NgU-Single'
         - $ref: '#/components/schemas/EP_X2U-Single'
         - $ref: '#/components/schemas/EP_S1U-Single'
+        - $ref: '#/components/schemas/CCOFunction-Single'
+        - $ref: '#/components/schemas/CCOWeakCoverageParameters-Single'
+        - $ref: '#/components/schemas/CCOPilotPollutionParameters-Single'
+        - $ref: '#/components/schemas/CCOOvershootCoverageParameters-Single'
