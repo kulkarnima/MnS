@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: 3GPP Edge NRM
-  version: 17.0.0
+  version: 17.1.0
   description: >-
     OAS 3.0.1 specification of the Edge NRM
     © 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -29,7 +29,7 @@ components:
         trackingAreaIdList:
           $ref: 'nrNrm.yaml#/components/schemas/Tai'
         servingPLMN:
-          $ref: 'nrNrm.yaml#/components/schemas/PlmnId'
+          $ref: 'nrNrm.yaml#/components/schemas/PLMNId'
     GeoLoc:
       type: object
       properties:
@@ -74,7 +74,7 @@ components:
           type: integer
         swImageRef:
           type: string
-
+          description: indicates the reference to the actual software image that is represented by URL (see clause 7.1.6.5 in in ETSI NFV IFA-011 [7]).   
 
 #-------- Definition of concrete IOCs --------------------------------------------
 
@@ -85,7 +85,7 @@ components:
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-Attr'
+                - $ref: 'genericNrm.#/components/schemas/SubNetwork-Attr'
         - type: object
           properties:
             Subnetwork:
@@ -104,7 +104,7 @@ components:
             ednIdentifier:
               type: string
             eDNConnectionInfo:
-              $ref: '#/components/schemas/EDNConnectionInfo'         
+              $ref: '#/components/schemas/EDNConnectionInfo'
         - type: object
           properties:
             EASFunction:
@@ -130,6 +130,16 @@ components:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'
                     eASAddress:
                       type: string
+                    eASProviderIdentifier:
+                      type: string
+                    eASType:
+                      type: string
+                - type: object
+                  properties:
+                    EASDiscovery:
+                      $ref: '#/components/schemas/EASDiscovery-Multiple'
+
+                      
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
     EESFunction-Single:
       allOf:
@@ -177,7 +187,25 @@ components:
                       $ref: '#/components/schemas/SoftwareImageInfo'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
-    EASRequirements-Single:
+    ECSDiscovery-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    ueLocation:
+                      $ref: '#/components/schemas/ServingLocation'
+                    eASServingLocation:
+                      $ref: '#/components/schemas/ServingLocation'
+                    eASProviderIdentifier:
+                      type: string
+                    eASType:
+                      type: string
+
+    EASRequirements:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
         - type: object
@@ -215,6 +243,11 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/EdgeDataNetwork-Single'
+    EASDiscovery-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EASDiscovery-Single'   
+
         
 #--------------------------------- Definition ------------------------------------                          
 
@@ -225,4 +258,4 @@ components:
         - $ref: '#/components/schemas/ECSFunction-Single'
         - $ref: '#/components/schemas/EESFunction-Single'
         - $ref: '#/components/schemas/EdgeDataNetwork-Single'
-        - $ref: '#/components/schemas/EASRequirements-Single'
+        - $ref: '#/components/schemas/EASRequirements'
