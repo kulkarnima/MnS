@@ -165,6 +165,7 @@ MnS:
 
     resources-coslaNrm:
       oneOf:
+       - $ref: '#/components/schemas/MnS'        
        - $ref: '#/components/schemas/AssuranceClosedControlLoop-Single'
        - $ref: '#/components/schemas/AssuranceGoal-Single'    
        - $ref: '#/components/schemas/SubNetwork-Single'
