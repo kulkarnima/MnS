@@ -58,7 +58,7 @@ components:
 
 
 #-------- Definition of concrete IOCs --------------------------------------------
-MnS:
+    MnS:
       oneOf:
         - type: object
           properties:
