@@ -79,7 +79,7 @@ module _3gpp-common-qmcjob {
         This attribute shall be present when Management Based Activation is used and if network
         sharing is deployed.";
       uses types3gpp:PLMNId;
-      key PLMNId;
+      key "mcc mnc";
     }
 
     leaf qOETarget {
