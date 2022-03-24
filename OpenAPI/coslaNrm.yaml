@@ -179,6 +179,15 @@ components:
                       $ref: 'comDefs.yaml#/components/schemas/Dn' 
                       
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
+    SubNetwork-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/SubNetwork-Single'
+
+    ManagedElement-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/ManagedElement-Single'
                                 
     AssuranceClosedControlLoop-Multiple:
       type: array
