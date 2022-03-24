@@ -91,10 +91,6 @@ components:
           properties:
             SubNetwork:
               $ref: '#/components/schemas/SubNetwork-Multiple'
-        - type: object
-          properties:
-            ManagedElement:
-              $ref: '#/components/schemas/ManagedElement-Multiple'
 
     SubNetwork-Single:
       allOf:
