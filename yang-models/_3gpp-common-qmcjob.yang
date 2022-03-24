@@ -26,7 +26,8 @@ module _3gpp-common-qmcjob {
       Integration Reference Point (IRP);
       Information Service (IS)";
 
-  revision 2022-01-06 { reference "CR-xxxx"; }
+  revision 2022-03-22 { reference "draftCR"; }
+  revision 2022-01-06 { reference "CR-0142"; }
     
   grouping QMCJobGrp {
     leaf serviceType {
@@ -56,7 +57,7 @@ module _3gpp-common-qmcjob {
         This attribute shall be present when Management Based Activation is used.";
     }
 
-    leaf qoeCollectionEntityAddress {
+    leaf qOOCollectionEntityAddress {
       type union {
         type inet:uri;
         type inet:ip-address;
@@ -66,7 +67,7 @@ module _3gpp-common-qmcjob {
       Ipv4 or Ipv6 address(es) may be used.";
     }
 
-    list plmnTarget {
+    list pLMNTarget {
       min-elements 0;
       max-elements 1;
       description "This parameter defines the PLMN for which sessions shall be selected in the
@@ -80,7 +81,7 @@ module _3gpp-common-qmcjob {
       uses types3gpp:PLMNId;
     }
 
-    leaf qoeTarget {
+    leaf qOETarget {
       description "The QoE target parameter specifies it the QMC is area based or individual UE
         based.";
       type enumeration {
@@ -94,7 +95,7 @@ module _3gpp-common-qmcjob {
     mandatory true;
     }
 
-    leaf qoeReference {
+    leaf qOEReference {
       type string;
       mandatory true;
       description "The QoE reference parameter specify the network request session. 
@@ -117,7 +118,7 @@ module _3gpp-common-qmcjob {
       uses types5g3gpp:SNssai;
     }
 
-    leaf qmcUeConfigurationFileRef {
+    leaf qMCUeConfigurationFileRef {
       type string;
       description "Provides the reference to the UE QMC configuration file.";
       mandatory true;
