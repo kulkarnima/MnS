@@ -372,6 +372,7 @@ module _3gpp-nr-nrm-nrcelldu {
     leaf-list bWPRef {
       description "Reference to corresponding BWP instance.";
       type types3gpp:DistinguishedName;
+      max-elements 3;
     }
 
     leaf-list nRFrequencyRef {
