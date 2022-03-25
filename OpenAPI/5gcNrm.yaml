@@ -243,6 +243,10 @@ components:
             type: integer
         dscp:
           type: integer
+    SnssaiList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Snssai'
 
     PacketErrorRate:
       type: object
@@ -540,7 +544,7 @@ components:
                     weightFactor:
                       $ref: '#/components/schemas/WeightFactor'
                     snssaiList:
-                      $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
+                      $ref: '#/components/schemas/SnssaiList'
                     amfSetRef:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'
                     managedNFProfile:
@@ -591,7 +595,7 @@ components:
                     amfSetId:
                       $ref: '#/components/schemas/AmfSetId'
                     snssaiList:
-                      $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
+                      $ref: '#/components/schemas/SnssaiList'
                     aMFRegionRef:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'
                     aMFSetMemberList:
@@ -613,7 +617,7 @@ components:
                     amfRegionId:
                       $ref: '#/components/schemas/AmfRegionId'
                     snssaiList:
-                      $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
+                      $ref: '#/components/schemas/SnssaiList'
                     aMFSetListRef:
                       $ref: 'comDefs.yaml#/components/schemas/DnList'
     SmfFunction-Single:
@@ -633,7 +637,7 @@ components:
                     sBIFqdn:
                       type: string
                     snssaiList:
-                      $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
+                      $ref: '#/components/schemas/SnssaiList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
@@ -682,7 +686,7 @@ components:
                     nRTACList:
                       $ref: '#/components/schemas/TACList'
                     snssaiList:
-                      $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
+                      $ref: '#/components/schemas/SnssaiList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
@@ -736,7 +740,7 @@ components:
                     sBIFqdn:
                       type: string
                     snssaiList:
-                      $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
+                      $ref: '#/components/schemas/SnssaiList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
@@ -777,7 +781,7 @@ components:
                     sBIFqdn:
                       type: string
                     snssaiList:
-                      $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
+                      $ref: '#/components/schemas/SnssaiList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
@@ -804,7 +808,7 @@ components:
                     sBIFqdn:
                       type: string
                     snssaiList:
-                      $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
+                      $ref: '#/components/schemas/SnssaiList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
@@ -833,7 +837,7 @@ components:
                     sBIFqdn:
                       type: string
                     snssaiList:
-                      $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
+                      $ref: '#/components/schemas/SnssaiList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
     UdsfFunction-Single:
@@ -851,7 +855,7 @@ components:
                     sBIFqdn:
                       type: string
                     snssaiList:
-                      $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
+                      $ref: '#/components/schemas/SnssaiList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
     NrfFunction-Single:
@@ -873,7 +877,7 @@ components:
                     nFProfileList:
                       $ref: '#/components/schemas/NFProfileList'
                     snssaiList:
-                      $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
+                      $ref: '#/components/schemas/SnssaiList'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -898,7 +902,7 @@ components:
                     nFProfileList:
                       $ref: '#/components/schemas/NFProfileList'
                     snssaiList:
-                      $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
+                      $ref: '#/components/schemas/SnssaiList'
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
@@ -971,7 +975,7 @@ components:
                     sBIFqdn:
                       type: string
                     snssaiList:
-                      $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
+                      $ref: '#/components/schemas/SnssaiList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
@@ -1019,7 +1023,7 @@ components:
                     sBIFqdn:
                       type: string
                     snssaiList:
-                      $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
+                      $ref: '#/components/schemas/SnssaiList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
@@ -1052,7 +1056,7 @@ components:
                     sBIFqdn:
                       type: string
                     snssaiList:
-                      $ref: 'nrNrm.yaml#/components/schemas/SnssaiList'
+                      $ref: '#/components/schemas/SnssaiList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     capabilityList:
