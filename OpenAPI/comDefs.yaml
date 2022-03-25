@@ -115,6 +115,31 @@ components:
         - IDEL
         - ACTIVE
         - BUSY
+    GeoCoordinate:
+      type: object
+      properties:
+        latitude:
+          $ref: '#/components/schemas/Latitude'
+        longitude:
+          $ref: '#/components/schemas/Longitude'
+    AreaOfInterest:
+      oneOf:
+        - $ref: '#/components/schemas/GeoAreaToCellMapping'
+        - type: array
+          items:
+            $ref: '#/components/schemas/Tai'
+        - type: array
+          items:
+            $ref: '#/components/schemas/NrCellId'
+    GeoAreaToCellMapping:
+      type: object
+      properties:
+        geoCoordinates:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeoCoordinate'
+        associationThreshold:
+          type: integer
 
     AttributeNameValuePairSet:
       description: >-
