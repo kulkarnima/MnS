@@ -872,7 +872,7 @@ components:
                     taiList:
                       type: array
                       items:
-                        $ref: 'nrNrm.yaml##/components/schemas/Tai'
+                        $ref: 'nrNrm.yaml#/components/schemas/Tai'
                     taiRangeList:
                       type: array
                       items:
