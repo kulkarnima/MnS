@@ -1647,6 +1647,8 @@ components:
                   $ref: 'comDefs.yaml#/components/schemas/DnList'
                 rootObjectInstances:
                   $ref: 'comDefs.yaml#/components/schemas/DnList'
+                serviceConditions:
+                  type: string
                 reportingCtrl:
                   $ref: '#/components/schemas/ReportingCtrl'
             Files:
