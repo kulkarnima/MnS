@@ -582,6 +582,33 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/SliceProfile'
+    FeasibilityResult:
+      description: ->
+        An attribute which specifies the feasibility check result for the feasibility check job.
+      type: string
+      enum:
+        - FEASIBLE
+        - UN_FEASIBLE
+    UnFeasibleReason:
+      description: ->
+        An attribute that specifies the additional reason information if the feasibility check result is unfeasible.The detailed ENUM value is FFS. 
+      type: string
+    ResourceReservationIndicator:
+      description: ->
+        An attribute represents MnS consumer's requirements for resource reservation.
+      type: boolean
+    ReservationExpiration:
+      description: ->
+        An attribute which specifes the validity period of the resource reservation.
+      type: string
+    ResourceReservationStatus:
+      description: ->
+        An attribute which specifies the resource reservation result for the feasibility check job.
+      type: string
+      enum:
+        - RESERVED
+        - UNRESERVED
+
 
 #------------ Definition of concrete IOCs ----------------------------------------
     SubNetwork-Single:
@@ -603,6 +630,8 @@ components:
               $ref: '#/components/schemas/NetworkSliceSubnet-Multiple'
             EP_Transport:
               $ref: '#/components/schemas/EP_Transport-Multiple'
+            FeasibilityCheckJob:
+              $ref: '#/components/schemas/FeasibilityCheckJob-Multiple'
 
     NetworkSlice-Single:
       allOf:
@@ -672,6 +701,30 @@ components:
                   type: string 
                 epApplicationRefs:
                   $ref: 'comDefs.yaml#/components/schemas/DnList'
+    FeasibilityCheckJob-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'     
+        - type: object
+          properties: 
+            attributes:
+              type: object
+              properties:
+                profile:
+                  oneOf: 
+                    - $ref: '#/components/schemas/SliceProfile'
+                    - $ref: '#/components/schemas/ServiceProfile'
+                resourceReservationIndicator:
+                  $ref: '#/components/schemas/ResourceReservationIndicator'
+                reservationExpiration:
+                  $ref: '#/components/schemas/ReservationExpiration'
+                processMonitor:
+                  $ref: 'genericNrm.yaml#/components/schemas/ProcessMonitor'
+                feasibilityResult:
+                  $ref: '#/components/schemas/FeasibilityResult'
+                unFeasibleReason:
+                  $ref: '#/components/schemas/UnFeasibleReason'
+                resourceReservationStatus:
+                  $ref: '#/components/schemas/ResourceReservationStatus'
 
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
     SubNetwork-Multiple:
@@ -693,6 +746,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/EP_Transport-Single'
+    FeasibilityCheckJob-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/FeasibilityCheckJob-Single'   
 
 #------------ Definitions in TS 28.541 for TS 28.532 -----------------------------
 
@@ -702,3 +759,4 @@ components:
        - $ref: '#/components/schemas/NetworkSlice-Single'
        - $ref: '#/components/schemas/NetworkSliceSubnet-Single'
        - $ref: '#/components/schemas/EP_Transport-Single'
+       - $ref: '#/components/schemas/FeasibilityCheckJob-Single'
