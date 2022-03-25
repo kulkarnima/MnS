@@ -246,7 +246,7 @@ components:
     SnssaiList:
       type: array
       items:
-        $ref: '#/components/schemas/Snssai'
+        $ref: 'nrNrm.yaml#/components/schemas/Snssai'
 
     PacketErrorRate:
       type: object
