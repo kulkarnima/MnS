@@ -54,12 +54,6 @@ components:
         - SHARED
         - NON-SHARED
 
-    NetworkSliceSharingIndicator:
-      type: string
-      enum:
-        - SHARED
-        - NON-SHARED
-
     ServiceType:
       type: string
       enum:
@@ -301,6 +295,26 @@ components:
           items:
             $ref: '#/components/schemas/SecFunc'
 
+    ProvisioningRule:
+      type: object
+      properties:
+        ruleType:
+          type: string
+          enum: 
+              - INSTANCE_SHARING_RULE
+              - RESOURCE_SHARING_RULE
+        resourceType:
+          type: string
+        sharingPolicy:
+          type: string
+          enum: 
+              - SHARED
+              - NOT_SHARED
+              - SELECTIVELY_SHARED
+        sharingGroup:
+          type: string		  
+
+
     CNSliceSubnetProfile:
       type: object
       properties:
@@ -322,8 +336,8 @@ components:
           type: integer
         coverageAreaTAList:
           type: integer
-        resourceSharingLevel:
-          $ref: '#/components/schemas/SharingLevel'
+        provisioningRuleList:
+          $ref: '#/components/schemas/ProvisioningRuleList'
         dLMaxPktSize:
           type: integer
         uLMaxPktSize:
@@ -359,8 +373,8 @@ components:
           type: integer
         uEMobilityLevel:
           $ref: '#/components/schemas/MobilityLevel'
-        resourceSharingLevel:
-          $ref: '#/components/schemas/SharingLevel'
+        provisioningRuleList:
+          $ref: '#/components/schemas/ProvisioningRuleList'
         maxNumberofUEs:
           type: integer
         activityFactor:
@@ -444,8 +458,8 @@ components:
           type: integer
         coverageAreaTAList:
           type: integer
-        resourceSharingLevel:
-          $ref: '#/components/schemas/SharingLevel'
+        provisioningRuleList:
+          $ref: '#/components/schemas/ProvisioningRuleList'
         uEMobilityLevel:
           $ref: '#/components/schemas/MobilityLevel'
         uESpeed:
@@ -478,8 +492,8 @@ components:
             $ref: '#/components/schemas/MobilityLevel'
           sst:
             $ref: 'nrNrm.yaml#/components/schemas/Sst'
-          networkSliceSharingIndicator:
-            $ref: '#/components/schemas/NetworkSliceSharingIndicator'
+          provisioningRuleList:
+            $ref: '#/components/schemas/ProvisioningRuleList'
           availability:
             type: number
           delayTolerance:
@@ -582,6 +596,11 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/SliceProfile'
+		
+    ProvisioningRuleList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ProvisioningRule'
 
 #------------ Definition of concrete IOCs ----------------------------------------
     SubNetwork-Single:
