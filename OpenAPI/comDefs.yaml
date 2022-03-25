@@ -19,6 +19,9 @@ components:
     DateTime:
       type: string
       format: date-time
+    FullTime:
+      type: string
+      format: full-time
     Latitude:
       type: number
       format: float
@@ -98,6 +101,14 @@ components:
         - $ref: '#/components/schemas/Fqdn'
     Uri:
       type: string
+
+    TimeInterval:
+      type: object
+      properties:
+        intervalStart:
+          $ref: '#/components/schemas/FullTime'
+        intervalEnd:
+          $ref: '#/components/schemas/FullTime'
 
     AdministrativeState:
       type: string
