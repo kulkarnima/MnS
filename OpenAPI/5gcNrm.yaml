@@ -638,7 +638,7 @@ components:
         snpnId:
           $ref: '#/components/schemas/SnpnId'
         snssai:
-          $ref: '#/components/schemas/Snssai'
+          $ref: 'nrNrm.yaml#/components/schemas/Snssai'
     TaiList:
       type: array
       items:
