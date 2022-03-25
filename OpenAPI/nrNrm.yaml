@@ -311,11 +311,7 @@ components:
         - INITIAL
         - OTHER
         - SUL
-    QuotaType:
-      type: string
-      enum:
-        - STRICT
-        - FLOAT
+
     IsESCoveredBy:
       type: string
       enum:
@@ -775,6 +771,8 @@ components:
               $ref: '#/components/schemas/EP_F1U-Multiple'
             DRACHOptimizationFunction:
               $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
+            OperatorDU:
+              $ref: '#/components/schemas/OperatorDu-Multiple'   
 
     OperatorDu-Single:
       allOf:
@@ -1026,6 +1024,8 @@ components:
               $ref: '#/components/schemas/CPCIConfigurationFunction-Single'
             DRACHOptimizationFunction:
               $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
+            NrOperatorCellDu:
+              $ref: '#/components/schemas/NrOperatorCellDu-Multiple'
 
     NrOperatorCellDu-Single:
       allOf:
@@ -1392,11 +1392,11 @@ components:
                     esNotAllowedTimePeriod:
                       $ref: "#/components/schemas/EsNotAllowedTimePeriod"
                     interRatEsActivationOriginalCellParameters:
-                      $ref: "#/components/schemas/IntraRatEsActivationOriginalCellLoadParameters"
+                      $ref: "#/components/schemas/InterRatEsActivationOriginalCellParameters"
                     interRatEsActivationCandidateCellParameters:
-                      $ref: "#/components/schemas/IntraRatEsActivationOriginalCellLoadParameters"
+                      $ref: "#/components/schemas/InterRatEsActivationCandidateCellParameters"
                     interRatEsDeactivationCandidateCellParameters:
-                      $ref: "#/components/schemas/IntraRatEsActivationOriginalCellLoadParameters"
+                      $ref: "#/components/schemas/InterRatEsDeactivationCandidateCellParameters"
                     isProbingCapable:
                       type: string
                       enum:
