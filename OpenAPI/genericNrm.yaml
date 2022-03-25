@@ -322,7 +322,54 @@ components:
       oneOf:
         - $ref: 'comDefs.yaml#/components/schemas/Ipv4Addr'
         - $ref: 'comDefs.yaml#/components/schemas/Ipv6Addr'
-
+    SchedulingTimes:
+      oneOf:
+        - type: object
+          properties:
+            startTime:
+              $ref: 'comDefs.yaml#/components/schemas/DateTime'
+            endTime:
+              $ref: 'comDefs.yaml#/components/schemas/DateTime'
+        - type: object
+          properties:
+            timeIntervals:
+              type: array
+              items:
+                $ref: 'comDefs.yaml#/components/schemas/TimeInterval'
+        - type: object
+          properties:
+            timeIntervals:
+              type: array
+              items:
+                $ref: 'comDefs.yaml#/components/schemas/TimeInterval'
+            daysOfWeek:
+              type: string
+              enum:
+                - MONDAY
+                - TUESDAY
+                - WEDNESDAY
+                - THURSDAY
+                - FRIDAY
+                - SATURDAY
+                - SUNDAY
+        - type: object
+          properties:
+            timeIntervals:
+              type: array
+              items:
+                $ref: 'comDefs.yaml#/components/schemas/TimeInterval'
+            daysOfMonth:
+              type: integer
+              minimum: 0
+              maximum: 31
+        - type: object
+          properties:
+            timeIntervals:
+              type: array
+              items:
+                $ref: 'comDefs.yaml#/components/schemas/TimeInterval'
+            specialDays:
+              type: string
 
 #-------- Definition of types used in Trace control NRM fragment------------------
                 
@@ -1365,6 +1412,8 @@ components:
           $ref: '#/components/schemas/Files-Multiple'
         MnsRegistry:
           $ref: '#/components/schemas/MnsRegistry-Single'
+        Scheduler:
+          $ref: '#/components/schemas/Scheduler-Multiple'
     ManagedElement-ncO:
       type: object
       properties:
@@ -1833,6 +1882,18 @@ components:
           type: array
           items:
             $ref: 'comDefs.yaml#/components/schemas/Dn'
+    Scheduler-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                schedulingTimes:
+                  $ref: '#/components/schemas/SchedulingTimes'
+                statusActive:
+                  type: boolean
 
 #-------- Definition of YAML arrays for name-contained IOCs ----------------------
 
@@ -1888,6 +1949,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/MnsInfo-Single'
+    Scheduler-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/Scheduler-Single'
 
 #-------- Definitions in TS 28.623 for TS 28.532 ---------------------------------
 
@@ -1917,3 +1982,5 @@ components:
        
        - $ref: '#/components/schemas/MnsRegistry-Single'
        - $ref: '#/components/schemas/MnsInfo-Single'
+
+       - $ref: '#/components/schemas/Scheduler-Single'
