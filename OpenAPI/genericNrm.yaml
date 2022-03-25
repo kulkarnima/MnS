@@ -1365,6 +1365,8 @@ components:
           $ref: '#/components/schemas/Files-Multiple'
         MnsRegistry:
           $ref: '#/components/schemas/MnsRegistry-Single'
+        ManagementDataCollectionJob:
+          $ref: '#/components/schemas/ManagementDataCollectionJob-Multiple'
     ManagedElement-ncO:
       type: object
       properties:
@@ -1720,6 +1722,31 @@ components:
               $ref: '#/components/schemas/TraceJob-Attr'
             Files:
               $ref: '#/components/schemas/Files-Multiple'
+    ManagementDataCollectionJob-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                metrics:
+                  type: array
+                  items:
+                    type: string
+                areaOfInterest:
+                  $ref: '#/components/schemas/AreaOfInterest'
+                reportingCtrl:
+                  $ref: '#/components/schemas/ReportingCtrl'
+                anonymizationOfData-Type:
+                  type: string
+                  enum:
+                    - NO_IDENTITY
+                    - TAC_OF_IMEI
+                operationalState:
+                  $ref: 'comDefs.yaml#/components/schemas/OperationalState
+            Files:
+              $ref: '#/components/schemas/Files-Multiple'
     AlarmList-Single:
       allOf:
         - $ref: '#/components/schemas/Top'
@@ -1868,6 +1895,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/TraceJob-Single'
+    ManagementDataCollectionJob-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/ManagementDataCollectionJob-Single'
     NtfSubscriptionControl-Multiple:
       type: array
       items:
@@ -1905,6 +1936,7 @@ components:
        - $ref: '#/components/schemas/PerfMetricJob-Single'
        - $ref: '#/components/schemas/ThresholdMonitor-Single'
        - $ref: '#/components/schemas/TraceJob-Single'
+       - $ref: '#/components/schemas/ManagementDataCollectionJob-Single'
 
        - $ref: '#/components/schemas/NtfSubscriptionControl-Single'
        - $ref: '#/components/schemas/HeartbeatControl-Single'
