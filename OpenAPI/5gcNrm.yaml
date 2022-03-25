@@ -629,7 +629,7 @@ components:
         mcc:
           $ref: 'comDefs.yaml#/components/schemas/Mcc'
         mnc:
-          $ref: '#/components/schemas/Mnc'
+          $ref: 'comDefs.yaml#/components/schemas/Mnc'
         nid:
           type: string
     SnpnInfo:
