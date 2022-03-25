@@ -43,10 +43,6 @@ components:
           $ref: '#/components/schemas/Sst'
         sd:
           type: string
-    SnssaiList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Snssai'
 
     Mnc:
       type: string
