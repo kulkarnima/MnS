@@ -1735,7 +1735,7 @@ components:
                   items:
                     type: string
                 areaOfInterest:
-                  $ref: '#/components/schemas/AreaOfInterest'
+                  $ref: 'comDefs.yaml#/components/schemas/AreaOfInterest'
                 reportingCtrl:
                   $ref: '#/components/schemas/ReportingCtrl'
                 anonymizationOfData-Type:
