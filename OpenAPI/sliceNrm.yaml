@@ -751,6 +751,7 @@ components:
       items:
         $ref: '#/components/schemas/FeasibilityCheckJob-Single'   
 
+        
 #------------ Definitions in TS 28.541 for TS 28.532 -----------------------------
 
     resources-sliceNrm:
