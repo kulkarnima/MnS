@@ -131,7 +131,7 @@ components:
           enum:
             - TCP
         - type: string
-    SupportedPerfMetricGroup:
+    SupportedMgtDataGroup:
       type: object
       properties:
         performanceMetrics:
@@ -1308,10 +1308,10 @@ components:
             $ref: 'comDefs.yaml#/components/schemas/Mcc'
         priorityLabel:
           type: integer
-        supportedPerfMetricGroups:
+        supportedMgtDataGroups:
           type: array
           items:
-            $ref: '#/components/schemas/SupportedPerfMetricGroup'
+            $ref: '#/components/schemas/SupportedMgtDataGroup'
     ManagedElement-Attr:
       type: object
       properties:
@@ -1335,10 +1335,10 @@ components:
           type: string
         priorityLabel:
           type: integer
-        supportedPerfMetricGroups:
+        supportedMgtDataGroups:
           type: array
           items:
-            $ref: '#/components/schemas/SupportedPerfMetricGroup'
+            $ref: '#/components/schemas/SupportedMgtDataGroup'
 
     SubNetwork-ncO:
       type: object
@@ -1402,10 +1402,10 @@ components:
             $ref: '#/components/schemas/PeeParameter'
         priorityLabel:
           type: integer
-        supportedPerfMetricGroups:
+        supportedMgtDataGroups:
           type: array
           items:
-            $ref: '#/components/schemas/SupportedPerfMetricGroup'
+            $ref: '#/components/schemas/SupportedMgtDataGroup'
     EP_RP-Attr:
       type: object
       properties:
@@ -1413,10 +1413,10 @@ components:
           type: string
         farEndEntity:
           type: string
-        supportedPerfMetricGroups:
+        supportedMgtDataGroups:
           type: array
           items:
-            $ref: '#/components/schemas/SupportedPerfMetricGroup'
+            $ref: '#/components/schemas/SupportedMgtDataGroup'
 
     TraceJob-Attr:
       type: object
