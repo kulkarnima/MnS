@@ -1355,8 +1355,8 @@ components:
           $ref: '#/components/schemas/traceReportingFormat-Type'
         traceTarget:
           $ref: '#/components/schemas/traceTarget-Type'
-        triggeringEvent:
-          $ref: '#/components/schemas/triggeringEvent-Type'
+        triggeringEvents:
+          $ref: '#/components/schemas/triggeringEvents-Type'
         anonymizationOfMdtData:
           $ref: '#/components/schemas/anonymizationOfMdtData-Type'
         areaConfigurationForNeighCell:
