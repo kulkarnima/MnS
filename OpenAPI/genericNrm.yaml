@@ -695,32 +695,159 @@ components:
       type: object
       description: Specifies when to start a Trace Recording Session and which message shall be recorded first, when to stop a Trace Recording Session and which message shall be recorded last respectively. See 3GPP TS 32.422 clause 5.1 for additional detials.
       properties:
-        NetworkElement:
-          type: string
-          enum:
-            - MSC_SERVER
-            - SGSN
-            - MGW
-            - GGSN
-            - BM_SC
-            - MME
-            - SGW
-            - PGW
-            - AMF
-            - SMF
-            - PCF
-            - UPF
-            - AUSF
-            - NEF
-            - NRF
-            - NSSF
-            - SMSF
-            - UDM
-        EventBitmap:
-          type: integer
-      required:
-        - NetworkElement
-        - EventBitmap
+        MSC_SERVER:
+          type: array
+          items:
+            type: string
+            enum:
+              - MO_MT_CALLS
+              - MO_MT_SMS
+              - LU_IMSIattach_IMSIdetach
+              - HANDOVER
+              - SS
+        SGSN:
+          type: array
+          items:
+            type: string
+            enum:
+              - PDPcontext
+              - MO_MT_SMS
+              - RAU_GPRSattach_GPRSdetach
+              - MBMScontext
+        MGW:
+          type: array
+          items:
+            type: string
+            enum:
+              - CONTEXT
+        GGSN:
+          type: array
+          items:
+            type: string
+            enum:
+              - PDPcontext
+              - MBMScontext
+        IMS:
+          type: array
+          items:
+            type: string
+            enum:
+              - SIPsession_StandaloneTransaction
+        BM_SC:
+          type: array
+          items:
+            type: string
+            enum:
+              - MBMSactivation
+        MME:
+          type: array
+          items:
+            type: string
+            enum:
+              - UEinitiatedPDNconnectivityRequest
+              - ServiceRequest
+              - InitialAttach_TAU_Detach
+              - UEinitiatedPDNdisconnection
+              - BearerActivationModificationDeletion
+              - Handover
+        SGW:
+          type: array
+          items:
+            type: string
+            enum:
+              - PDNconnectionCreation
+              - PDNconnectionTermination
+              - BearerActivationModificationDeletion
+        PGW:
+          type: array
+          items:
+            type: string
+            enum:
+              - PDNconnectionCreation
+              - PDNconnectionTermination
+              - BearerActivationModificationDeletion
+        AMF:
+          type: array
+          items:
+            type: string
+            enum:
+              - Registration
+              - ServiceRequest
+              - Handover
+              - UEderegistration
+              - NetworkDeregistration
+              - UEMobilityFromEPC
+              - UEMobilityToEPC
+        SMF:
+          type: array
+          items:
+            type: string
+            enum:
+              - PDUsessionEstablishment
+              - PDUsessionModification
+              - PDUsessionRelease
+              - PDUsessionUPactivationDeactivation
+              - MobilityBtw3gppAndN3gppTo5GC
+              - MobilityFromEpc
+        PCF:
+          type: array
+          items:
+            type: string
+            enum:
+              - AMpolicy
+              - SMpolicy
+              - Authorization
+              - BDTpolicy
+        UPF:
+          type: array
+          items:
+            type: string
+            enum:
+              - N4Session
+        AUSF:
+          type: array
+          items:
+            type: string
+            enum:
+              - UEauthentication
+        NEF:
+          type: array
+          items:
+            type: string
+            enum:
+              - EventExposure
+              - PFDmanagement
+              - ParameterProvision
+              - Trigger
+        NRF:
+          type: array
+          items:
+            type: string
+            enum:
+              - NFmanagement
+              - NFdiscovery
+        NSSF:
+          type: array
+          items:
+            type: string
+            enum:
+              - NSSelection
+              - NSSAI
+        SMSF:
+          type: array
+          items:
+            type: string
+            enum:
+              - SMservice
+        UDM:
+          type: array
+          items:
+            type: string
+            enum:
+              - UEcontext
+              - SubscriberData
+              - UEauthentication
+              - EventExposure
     
     anonymizationOfMdtData-Type:
       description: Specifies level of MDT anonymization. For additional details see 3GPP TS 32.422 clause 5.10.12.
