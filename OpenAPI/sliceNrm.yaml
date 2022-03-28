@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Slice NRM
-  version: 17.6.0
+  version: 17.7.0
   description: >-
     OAS 3.0.1 specification of the Slice NRM
     @ 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -673,6 +673,74 @@ components:
                 epApplicationRefs:
                   $ref: 'comDefs.yaml#/components/schemas/DnList'
 
+    AllocateJob-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    serviceProfileIn:
+                      $ref: '#/components/schemas/ServiceProfile'
+                    sliceProfileIn:
+                      $ref: '#/components/schemas/SliceProfile'
+                    processMonitor:
+                      $ref: 'genericNrm.yaml#/components/schemas/ProcessMonitor'
+                    networkSliceRefOut:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                    networkSliceSubnetRefOut:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                    serviceProfileOut:
+                      $ref: '#/components/schemas/ServiceProfile'
+                    sliceProfileOut:
+                      $ref: '#/components/schemas/SliceProfile'
+
+    DeallocateJob-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    networkSliceRefIn:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                    networkSliceSubnetRefIn:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                    serviceProfileIdIn:
+                      type: string
+                    sliceProfileIdIn:
+                      type: string
+                    processMonitor:
+                      $ref: 'genericNrm.yaml#/components/schemas/ProcessMonitor'
+
+    ModifyJob-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    networkSliceRefIn:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                    networkSliceSubnetRefIn:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                    serviceProfileIdIn:
+                      type: string
+                    sliceProfileIdIn:
+                      type: string
+                    serviceProfileIn:
+                      $ref: '#/components/schemas/ServiceProfile'
+                    sliceProfileIn:
+                      $ref: '#/components/schemas/SliceProfile'
+                    processMonitor:
+                      $ref: 'genericNrm.yaml#/components/schemas/ProcessMonitor'
+
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
     SubNetwork-Multiple:
       type: array
@@ -694,6 +762,22 @@ components:
       items:
         $ref: '#/components/schemas/EP_Transport-Single'
 
+    AllocateJob-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/AllocateJob-Single'
+
+    DeallocateJob-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/DeallocateJob-Single'
+
+    ModifyJob-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/ModifyJob-Single'
+
+
 #------------ Definitions in TS 28.541 for TS 28.532 -----------------------------
 
     resources-sliceNrm:
@@ -702,3 +786,6 @@ components:
        - $ref: '#/components/schemas/NetworkSlice-Single'
        - $ref: '#/components/schemas/NetworkSliceSubnet-Single'
        - $ref: '#/components/schemas/EP_Transport-Single'
+       - $ref: '#/components/schemas/AllocateJob-Single'
+       - $ref: '#/components/schemas/DeallocateJob-Single'
+       - $ref: '#/components/schemas/ModifyJob-Single'
