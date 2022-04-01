@@ -561,6 +561,11 @@ components:
         - $ref: 'comDefs.yaml#/components/schemas/Ipv4Addr'
         - $ref: 'comDefs.yaml#/components/schemas/Ipv6Addr'
     
+    IpSubnetmask:
+      oneof:
+        - $ref: 'comDefs.yaml#/components/schemas/Ipv4Mask'
+        - $ref: 'comDefs.yaml#/components/schemas/Ipv6Prefix'
+
     LogicInterfaceInfo:
       type: object
       properties:
@@ -664,6 +669,8 @@ components:
               properties:
                 ipAddress:
                   $ref: '#/components/schemas/IpAddress'
+                ipSubnetmask:
+                  $ref: '#/components/schemas/IpSubnetmask'
                 logicInterfaceInfo:
                   $ref: '#/components/schemas/LogicInterfaceInfo'
                 nextHopInfo:
