@@ -1031,7 +1031,7 @@ components:
 #         $ref: 'TS29122_CommonData.yaml#/components/schemas/Volume'
 #       nextVolUsageDownlink:
 #         $ref: 'TS29122_CommonData.yaml#/components/schemas/Volume'
-       nextTimeUsage:
+        nextTimeUsage:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/DurationSec'
       required:
         - refUmIds
