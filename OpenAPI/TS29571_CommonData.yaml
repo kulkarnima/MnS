@@ -271,36 +271,36 @@ components:
 #
 ####
 ##### Note: this datatype is commented out as to removed extra inference to TS29510_Nnrf_AccessToken.yaml
-##### only 1st and this four lines are added, line 276- 303 are commented out simply.   By S on 4.4.2022
+##### only 1st and this four lines are added, line 298- 301 are commented out simply.   By S on 4.4.2022
 ####
-#    ProblemDetails:
-#      type: object
-#      properties:
-#        type:
-#          $ref: '#/components/schemas/Uri'
-#        title:
-#          type: string
-#        status:
-#          type: integer
-#        detail:
-#          type: string
-#        instance:
-#          $ref: '#/components/schemas/Uri'
-#        cause:
-#          type: string
-#        invalidParams:
-#          type: array
-#          items:
-#            $ref: '#/components/schemas/InvalidParam'
-#          minItems: 1
-#        supportedFeatures:
-#          $ref: '#/components/schemas/SupportedFeatures'
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/Uri'
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        instance:
+          $ref: '#/components/schemas/Uri'
+        cause:
+          type: string
+        invalidParams:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvalidParam'
+          minItems: 1
+        supportedFeatures:
+          $ref: '#/components/schemas/SupportedFeatures'
 #        accessTokenError:
 #          $ref: 'TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenErr'
 #        accessTokenRequest:
 #          $ref: 'TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenReq'
-#        nrfId:
-#          type: string
+        nrfId:
+          type: string
     Link:
       type: object
       properties:
