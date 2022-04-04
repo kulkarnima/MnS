@@ -692,9 +692,33 @@ submodule _3gpp-ns-nrm-sliceprofile {
       mandatory true;
       type uint64;
     }
+    list dLThptPerSliceSubnet {
+      description "This attribute defines achievable data rate of the
+        network slice subnet in downlink that is available ubiquitously
+        across the coverage area of the slice";
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      uses ns3cmn3gpp:XLThptGrp;
+	  }	
     list dLThptPerUE {
       description "This attribute defines data rate supported by the
         network slice per UE, refer NG.116.";
+      key idx;
+      max-elements 1;
+      leaf idx {
+        description "Synthetic index for the element.";
+        type uint32;
+      }
+      uses ns3cmn3gpp:XLThptGrp;
+    }
+    list uLThptPerSliceSubnet {
+      description "This attribute defines achievable data rate of the
+        network slice subnet in uplink that is available ubiquitously
+        across the coverage area of the slice";
       key idx;
       max-elements 1;
       leaf idx {

@@ -15,7 +15,8 @@ module _3gpp-5gc-nrm-configurable5qiset {
     (and configurable) to the 5G NFs.";
   reference "3GPP TS 28.541";
 
-  revision 2020-08-03 { reference "CR-0321"; }
+  revision 2022-01-07 { reference CR-0643; }
+  revision 2020-08-04 { reference "CR-0321"; }
   revision 2020-06-03 { reference "CR-0286"; }
 
   grouping PacketErrorRate {
@@ -41,7 +42,7 @@ module _3gpp-5gc-nrm-configurable5qiset {
     description "Represents the FiveQICharacteristics IOC.";
     reference "3GPP TS 28.541";
   }
- 
+
   list configurableFiveQIs {
     key fiveQIValue;
     leaf fiveQIValue {
@@ -78,7 +79,6 @@ module _3gpp-5gc-nrm-configurable5qiset {
     
     list packetErrorRate {
       key "scalar exponent";
-      min-elements 0;
       max-elements 1;
       uses PacketErrorRate;
       reference "TS 23.501";
@@ -109,7 +109,7 @@ module _3gpp-5gc-nrm-configurable5qiset {
             uses FiveQICharacteristicsGrp;
         }
     }  
-}
+  }
 
   grouping Configurable5QISetGrp {
     description "Represents the Configurable5QISet IOC.";
@@ -120,8 +120,7 @@ module _3gpp-5gc-nrm-configurable5qiset {
         uses FiveQICharacteristicsGrp;
       }
     }  
-}    
-
+  }    
 
   grouping Configurable5QISetSubtree {
     list Configurable5QISet {

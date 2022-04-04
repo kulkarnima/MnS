@@ -17,8 +17,8 @@ module _3gpp-5gc-nrm-ausffunction {
     information about the AUSF, see 3GPP TS 23.501.";
   reference "3GPP TS 28.541";
   
-
-  revision 2020-11-05 { reference CR-0412 ; }
+  revision 2022-01-07 { reference CR-0643; }
+  revision 2020-11-06 { reference CR-0412 ; }
   revision 2019-10-25 { reference "S5-194457 S5-193518"; }
 
   revision 2019-05-22 {reference "initial revision"; }
