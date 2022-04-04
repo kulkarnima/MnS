@@ -568,7 +568,7 @@ components:
       description: String identifying a IPv4 address mask formatted in the "dotted decimal" notation as defined in RFC 1166.
 
     IpSubnetmask:
-      oneof:
+      oneOf:
         - $ref: '#/components/schemas/Ipv4Mask'
         - $ref: 'comDefs.yaml#/components/schemas/Ipv6Prefix'
 
