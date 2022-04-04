@@ -1,7 +1,4 @@
 ##### Special note: CT R16 local copy for SA5 OAM Forge branch only, it shall not be used otherwise. S5-222029 on 4.4.2022
-# Full commented: (impacted attributes)
-#  ErrorReport
-#
 # Partial commented out: (impacted attributes)
 #  RuleReport SmPolicyContextData SmPolicyUpdateContextData SmPolicyDecision
 #  PccRule TrafficControlData FlowInformation QosNotificationControlInfo ServingNfIdentity
@@ -1477,31 +1474,31 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/BitRateRm'
         extMaxDataBurstVol:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/ExtMaxDataBurstVolRm'
-#    ErrorReport:
-#      type: object
-#      properties:
-#        error:
-#          $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
-#        ruleReports:
-#          type: array
-#          items:
-#            $ref: '#/components/schemas/RuleReport'
-#          minItems: 1
-#          description: Used to report the PCC rule failure.
-#        sessRuleReports:
-#          type: array
-#          items:
-#            $ref: '#/components/schemas/SessionRuleReport'
-#          minItems: 1
-#          description: Used to report the session rule failure.
-#        polDecFailureReports:
-#          type: array
-#          items:
-#            $ref: '#/components/schemas/PolicyDecisionFailureCode'
-#          minItems: 1
-#          description: Used to report failure of the policy decision and/or condition data.
-#        altQosParamId:
-#          type: string
+    ErrorReport:
+      type: object
+      properties:
+        error:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+        ruleReports:
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleReport'
+          minItems: 1
+          description: Used to report the PCC rule failure.
+        sessRuleReports:
+          type: array
+          items:
+            $ref: '#/components/schemas/SessionRuleReport'
+          minItems: 1
+          description: Used to report the session rule failure.
+        polDecFailureReports:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicyDecisionFailureCode'
+          minItems: 1
+          description: Used to report failure of the policy decision and/or condition data.
+        altQosParamId:
+          type: string
     SessionRuleReport:
       type: object
       properties:
