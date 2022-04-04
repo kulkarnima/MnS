@@ -144,11 +144,11 @@ components:
       type: integer
     NotificationType:
       oneOf:
-        - $ref: 'faultMnS.yaml#/components/schemas/AlarmNotificationTypes'
-        - $ref: 'provMnS.yaml#/components/schemas/CmNotificationTypes'
-        - $ref: 'perfMnS.yaml#/components/schemas/PerfNotificationTypes'
-        - $ref: 'heartbeatNtf.yaml#/components/schemas/HeartbeatNotificationTypes'
-        - $ref: 'fileDataReportingMnS.yaml#/components/schemas/FileNotificationTypes'
+        - $ref: 'TS28532_faultMnS.yaml#/components/schemas/AlarmNotificationTypes'
+        - $ref: 'TS28532_provMnS.yaml#/components/schemas/CmNotificationTypes'
+        - $ref: 'TS28532_perfMnS.yaml#/components/schemas/PerfNotificationTypes'
+        - $ref: 'TS28532_heartbeatNtf.yaml#/components/schemas/HeartbeatNotificationTypes'
+        - $ref: 'TS28532_fileDataReportingMnS.yaml#/components/schemas/FileNotificationTypes'
     NotificationHeader:
       type: object
       properties:

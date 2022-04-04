@@ -8,54 +8,54 @@ The links below will open the Swagger Editor/UI and auto-load the OpenAPI YAML f
 ## Network Resource Models (NRM)
 
 * Generic NRM (TS 28.623)
-([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/genericNrm.yaml))
-([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/genericNrm.yaml))
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28623_genericNrm.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28623_genericNrm.yaml))
 
 * Common NRM definitions (TS 28.623)
-([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/comDefs.yaml))
-([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/comDefs.yaml))
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28623_comDefs.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28623_comDefs.yaml))
 
 * NR NRM (TS 28.541)
-([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/nrNrm.yaml))
-([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/nrNrm.yaml))
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28541_nrNrm.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28541_nrNrm.yaml))
 
 * 5GC NRM (TS 28.541)
-([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/5gcNrm.yaml))
-([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/5gcNrm.yaml))
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28541_5gcNrm.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28541_5gcNrm.yaml))
 
 * Slice NRM (TS 28.541)
-([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/sliceNrm.yaml))
-([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/sliceNrm.yaml))
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28541_sliceNrm.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28541_sliceNrm.yaml))
 
 * Communication Service Assurance NRM (TS 28.536)
-([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/coslaNrm.yaml))
-([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/coslaNrm.yaml))
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28536_coslaNrm.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28536_coslaNrm.yaml))
 
 ## Management Services (MnS)
 
 * Provisioning MnS (TS 28.532)
-([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/provMnS.yaml))
-([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/provMnS.yaml))
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28532_provMnS.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28532_provMnS.yaml))
 
 * Fault Supervision MnS (TS 28.532)
-([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/faultMnS.yaml))
-([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/faultMnS.yaml))
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28532_faultMnS.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28532_faultMnS.yaml))
 
 * Performance Monitoring MnS (28.532)
-([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/PerfMnS.yaml))
-([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/PerfMnS.yaml))
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28532_PerfMnS.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28532_PerfMnS.yaml))
 
 * Heartbeat Notifications(TS 28.532)
-([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/heartbeatNtf.yaml))
-([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/heartbeatNtf.yaml))
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28532_heartbeatNtf.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28532_heartbeatNtf.yaml))
 
 * Streaming Data Reporting MnS (TS 28.532)
-([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/streamingDataMnS.yaml))
-([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/streamingDataMnS.yaml))
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28532_streamingDataMnS.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28532_streamingDataMnS.yaml))
 
 * File Data Reporting MnS (TS 28.532)
-([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/fileDataReportingMnS.yaml))
-([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/fileDataReportingMnS.yaml))
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28532_fileDataReportingMnS.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28532_fileDataReportingMnS.yaml))
 
 ## Tools
 
