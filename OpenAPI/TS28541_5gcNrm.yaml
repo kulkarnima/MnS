@@ -310,15 +310,15 @@ components:
         fiveQIValue:
           type: integer
         maxbrUl:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/BitRateRm'
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/BitRateRm'
         maxbrDl:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/BitRateRm'
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/BitRateRm'
         gbrUl:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/BitRateRm'
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/BitRateRm'
         gbrDl:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/BitRateRm'
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/BitRateRm'
         arp:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/Arp'
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Arp'
         qosNotificationControl:
           type: boolean
         reflectiveQos:
@@ -328,11 +328,11 @@ components:
         sharingKeyUl:
           type: string
         maxPacketLossRateDl:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/PacketLossRateRm'
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/PacketLossRateRm'
         maxPacketLossRateUl:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/PacketLossRateRm'
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/PacketLossRateRm'
         extMaxDataBurstVol:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/ExtMaxDataBurstVolRm'
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/ExtMaxDataBurstVolRm'
 
     QosDataList:
       type: array
@@ -343,15 +343,15 @@ components:
       type: object
       properties:
         steerModeValue:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SteerModeValue'
+          $ref: 'TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SteerModeValue'
         active:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/AccessType'
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/AccessType'
         standby:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/AccessTypeRm'
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/AccessTypeRm'
         threeGLoad:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uinteger'
         prioAcc:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/AccessType'
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/AccessType'
 
     TrafficControlData:
       type: object
@@ -359,13 +359,13 @@ components:
         tcId:
           type: string
         flowStatus:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowStatus'
+          $ref: 'TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowStatus'
         redirectInfo:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RedirectInformation'
+          $ref: 'TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RedirectInformation'
         addRedirectInfo:
           type: array
           items:
-            $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RedirectInformation'
+            $ref: 'TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RedirectInformation'
           minItems: 1
         muteNotif:
           type: boolean
@@ -378,19 +378,19 @@ components:
         routeToLocs:
           type: array
           items:
-            $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/RouteToLocation'
+            $ref: 'TS29571_CommonData.yaml#/components/schemas/RouteToLocation'
         traffCorreInd:
           type: boolean
         upPathChgEvent:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/UpPathChgEvent'
+          $ref: 'TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/UpPathChgEvent'
         steerFun:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SteeringFunctionality'
+          $ref: 'TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SteeringFunctionality'
         steerModeDl:
           $ref: '#/components/schemas/SteeringMode'
         steerModeUl:
           $ref: '#/components/schemas/SteeringMode'
         mulAccCtrl:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/MulticastAccessControl'
+          $ref: 'TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/MulticastAccessControl'
 
     TrafficControlDataList:
       type: array
@@ -406,17 +406,17 @@ components:
         flowInfoList:
           type: array
           items:
-            $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FlowInformation'
+            $ref: 'TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FlowInformation'
         applicationId:
           type: string
         appDescriptor:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ApplicationDescriptor'
+          $ref: 'TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ApplicationDescriptor'
         contentVersion:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ContentVersion'
+          $ref: 'TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ContentVersion'
         precedence:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uinteger'
         afSigProtocol:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AfSigProtocol'
+          $ref: 'TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AfSigProtocol'
         isAppRelocatable:
           type: boolean
         isUeAddrPreserved:
@@ -434,11 +434,11 @@ components:
           items:
             $ref: '#/components/schemas/TrafficControlDataList'
         conditionData:
-            $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ConditionData'
+            $ref: 'TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ConditionData'
         tscaiInputDl:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer'
+          $ref: 'TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer'
         tscaiInputUl:
-          $ref: 'https://forge.3gpp.org/rep/all/5G_APIs/raw/REL-16/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer'
+          $ref: 'TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer'
 
 
 #-------- Definition of concrete IOCs --------------------------------------------
