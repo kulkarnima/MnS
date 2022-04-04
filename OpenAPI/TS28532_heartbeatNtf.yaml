@@ -18,7 +18,7 @@ components:
         - notifyHeartbeat
     NotifyHeartbeat:
       allOf:
-        - $ref: 'comDefs.yaml#/components/schemas/NotificationHeader'
+        - $ref: 'TS28532_comDefs.yaml#/components/schemas/NotificationHeader'
         - type: object
           properties:
             heartbeatNtfPeriod:

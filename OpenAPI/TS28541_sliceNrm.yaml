@@ -218,7 +218,7 @@ components:
           serviceProfileId: 
             type: string
           plmnInfoList:
-            $ref: 'nrNrm.yaml#/components/schemas/PlmnInfoList'
+            $ref: 'TS28541_nrNrm.yaml#/components/schemas/PlmnInfoList'
           maxNumberofUEs:
             type: number
           latency:
@@ -226,7 +226,7 @@ components:
           uEMobilityLevel:
             $ref: '#/components/schemas/MobilityLevel'
           sst:
-            $ref: 'nrNrm.yaml#/components/schemas/Sst'
+            $ref: 'TS28541_nrNrm.yaml#/components/schemas/Sst'
           networkSliceSharingIndicator:
             $ref: '#/components/schemas/NetworkSliceSharingIndicator'
           availability:
@@ -274,13 +274,13 @@ components:
             type: string
 
           plmnInfoList:
-            $ref: 'nrNrm.yaml#/components/schemas/PlmnInfoList'
+            $ref: 'TS28541_nrNrm.yaml#/components/schemas/PlmnInfoList'
           perfReq:
             $ref: '#/components/schemas/PerfReq'
           maxNumberofUEs:
             type: number
           coverageAreaTAList:
-            $ref: '5gcNrm.yaml#/components/schemas/TACList'
+            $ref: 'TS28541_5gcNrm.yaml#/components/schemas/TACList'
           latency:
             type: number
           uEMobilityLevel:
@@ -290,8 +290,8 @@ components:
 
     IpAddress:
       oneOf:
-        - $ref: 'comDefs.yaml#/components/schemas/Ipv4Addr'
-        - $ref: 'comDefs.yaml#/components/schemas/Ipv6Addr'
+        - $ref: 'TS28623_comDefs.yaml#/components/schemas/Ipv4Addr'
+        - $ref: 'TS28623_comDefs.yaml#/components/schemas/Ipv6Addr'
     ServiceProfileList:
        type: array
        items:
@@ -317,13 +317,13 @@ components:
 
     SubNetwork-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-Attr'
-        - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-ncO'
+                - $ref: 'TS28623_genericNrm.yaml#/components/schemas/SubNetwork-Attr'
+        - $ref: 'TS28623_genericNrm.yaml#/components/schemas/SubNetwork-ncO'
         - type: object
           properties:
             SubNetwork:
@@ -337,7 +337,7 @@ components:
 
     NetworkSlice-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -345,16 +345,16 @@ components:
                 - type: object
                   properties:
                     networkSliceSubnetRef:
-                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                      $ref: 'TS28623_comDefs.yaml#/components/schemas/Dn'
                     operationalState:
-                      $ref: 'comDefs.yaml#/components/schemas/OperationalState'
+                      $ref: 'TS28623_comDefs.yaml#/components/schemas/OperationalState'
                     administrativeState:
-                      $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
+                      $ref: 'TS28623_comDefs.yaml#/components/schemas/AdministrativeState'
                     serviceProfileList:
                       $ref: '#/components/schemas/ServiceProfileList'
     NetworkSliceSubnet-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -362,24 +362,24 @@ components:
                 - type: object
                   properties:
                     managedFunctionRefList:
-                      $ref: 'comDefs.yaml#/components/schemas/DnList'
+                      $ref: 'TS28623_comDefs.yaml#/components/schemas/DnList'
                     networkSliceSubnetRefList:
-                      $ref: 'comDefs.yaml#/components/schemas/DnList'
+                      $ref: 'TS28623_comDefs.yaml#/components/schemas/DnList'
                     operationalState:
-                      $ref: 'comDefs.yaml#/components/schemas/OperationalState'
+                      $ref: 'TS28623_comDefs.yaml#/components/schemas/OperationalState'
                     administrativeState:
-                      $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
+                      $ref: 'TS28623_comDefs.yaml#/components/schemas/AdministrativeState'
                     nsInfo:
                       $ref: '#/components/schemas/NsInfo'
                     sliceProfileList:
                       $ref: '#/components/schemas/SliceProfileList'
                     epTransportRefList:
-                      $ref: 'comDefs.yaml#/components/schemas/DnList'
+                      $ref: 'TS28623_comDefs.yaml#/components/schemas/DnList'
                     priorityLabel:
                       type: integer
     EP_Transport-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_genericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -394,7 +394,7 @@ components:
                 qosProfile:
                   type: string 
                 epApplicationRefs:
-                  $ref: 'comDefs.yaml#/components/schemas/DnList'
+                  $ref: 'TS28623_comDefs.yaml#/components/schemas/DnList'
                       
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
     SubNetwork-Multiple:
