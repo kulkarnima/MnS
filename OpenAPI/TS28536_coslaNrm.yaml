@@ -76,8 +76,8 @@ components:
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-Attr'
-        - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-ncO'
+                - $ref: 'TS28623_genericNrm.yaml#/components/schemas/SubNetwork-Attr'
+        - $ref: 'TS28623_genericNrm.yaml#/components/schemas/SubNetwork-ncO'
         - type: object
           properties:
             AssuranceClosedControlLoop:
