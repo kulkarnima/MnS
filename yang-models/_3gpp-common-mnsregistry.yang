@@ -5,6 +5,7 @@ module _3gpp-common-mnsregistry {
 
   import _3gpp-common-subnetwork { prefix subnet3gpp; }
   import _3gpp-common-top { prefix top3gpp; }
+  import _3gpp-common-yang-types { prefix types3gpp; }
 
   organization "3GPP SA5";
   contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
@@ -12,13 +13,13 @@ module _3gpp-common-mnsregistry {
     Class (IOC) that is part of the Generic Network Resource Model (NRM).";
   reference "3GPP TS 28.623 Generic Network Resource Model (NRM)";
 
+  revision 2021-11-23 { reference "S5-216090"; }
+  revision 2021-10-18 { reference "S5-215263"; }
   revision 2021-08-29 { reference "Initial revision, S5-214388"; }
-
-  grouping MNSRegistryGrp {
-    description "Represents the MNSRegistry IOC.";
-    reference "3GPP TS 28.541";
-    uses top3gpp:Top_Grp;
-    
+  
+  grouping MNSInfoGrp {
+    description "Represents the MNSInfo IOC.";
+    reference "3GPP TS 28.622";
     leaf mnsLabel {
       description "Human-readable name of management service.";
       mandatory true;
@@ -28,9 +29,10 @@ module _3gpp-common-mnsregistry {
     leaf mnsType {
       description "Type of management service.";
       type enumeration {
-         enum PROVISIONING;
-         enum FAULT_SUPERVISION; 
-         enum PERFORMANCE_ASSURANCE;
+         enum ProvMnS;
+         enum FaultSupervisionMnS;
+         enum StreamingDataReportingMnS;
+         enum FileDataReportingMnS;
       }
     }
     
@@ -44,16 +46,29 @@ module _3gpp-common-mnsregistry {
       mandatory true;
       type string;
     }    
+    
+    leaf-list mnsScope {
+      description "List of top level addresses (Root DN) of the supported 3GPP models.";
+      min-elements 1;
+      type types3gpp:DistinguishedName;
     }
     
-    augment "/subnet3gpp:SubNetwork" {
+  }
+  
+  augment "/subnet3gpp:SubNetwork" {
     list MNSRegistry {
       description "Represents the MNSRegistry IOC.";
-      key id;   
-      uses top3gpp:Top_Grp;      
-      container attributes {
-        uses MNSRegistryGrp;
+      reference "3GPP TS 28.622";
+      uses top3gpp:Top_Grp;
+      key id;
+      max-elements 1;
+      list MNSInfo {
+        description "Represents the MNSInfo IOC.";
+        reference "3GPP TS 28.622";
+        uses top3gpp:Top_Grp;
+        key "mnsType mnsVersion mnsAddress";
+        uses MNSInfoGrp;
       }
     }
- }
-}
+  }
+}	
