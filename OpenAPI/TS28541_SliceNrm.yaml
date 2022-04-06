@@ -561,16 +561,16 @@ components:
         - $ref: 'TS28623_ComDefs.yaml#/components/schemas/Ipv4Addr'
         - $ref: 'TS28623_ComDefs.yaml#/components/schemas/Ipv6Addr'
     
-    LogicInterfaceInfo:
+    LogicalInterfaceInfo:
       type: object
       properties:
-         logicalInterfceType:
+         logicalInterfaceType:
            type: string
            enum: 
             - VLAN
             - MPLS
             - Segment
-         logicalInterfceId:
+         logicalInterfaceId:
            type: string
 
     ServiceProfileList:
@@ -722,8 +722,8 @@ components:
               properties:
                 ipAddress:
                   $ref: '#/components/schemas/IpAddress'
-                logicInterfaceInfo:
-                  $ref: '#/components/schemas/LogicInterfaceInfo'
+                logicalInterfaceInfo:
+                  $ref: '#/components/schemas/LogicalInterfaceInfo'
                 nextHopInfo:
                   type: string 
                 qosProfile:
