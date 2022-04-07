@@ -588,12 +588,12 @@ components:
       type: string
       enum:
         - FEASIBLE
-        - UN_FEASIBLE
-    UnFeasibleReason:
+        - INFEASIBLE
+    InFeasibleReason:
       description: ->
-        An attribute that specifies the additional reason information if the feasibility check result is unfeasible.The detailed ENUM value is FFS. 
+        An attribute that specifies the additional reason information if the feasibility check result is infeasible.The detailed ENUM value is FFS. 
       type: string
-    ResourceReservationIndicator:
+    ResourceReservation:
       description: ->
         An attribute represents MnS consumer's requirements for resource reservation.
       type: boolean
@@ -713,16 +713,16 @@ components:
                   oneOf: 
                     - $ref: '#/components/schemas/SliceProfile'
                     - $ref: '#/components/schemas/ServiceProfile'
-                resourceReservationIndicator:
-                  $ref: '#/components/schemas/ResourceReservationIndicator'
+                resourceReservation:
+                  $ref: '#/components/schemas/ResourceReservation'
                 reservationExpiration:
                   $ref: '#/components/schemas/ReservationExpiration'
                 processMonitor:
                   $ref: 'genericNrm.yaml#/components/schemas/ProcessMonitor'
                 feasibilityResult:
                   $ref: '#/components/schemas/FeasibilityResult'
-                unFeasibleReason:
-                  $ref: '#/components/schemas/UnFeasibleReason'
+                inFeasibleReason:
+                  $ref: '#/components/schemas/InFeasibleReason'
                 resourceReservationStatus:
                   $ref: '#/components/schemas/ResourceReservationStatus'
 
