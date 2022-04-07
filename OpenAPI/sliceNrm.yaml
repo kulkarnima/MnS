@@ -731,7 +731,6 @@ components:
                   $ref: '#/components/schemas/ResourceReservationStatus'
                 recommendedRequirement:
                   $ref: '#/components/schemas/RecommendedRequirement'
-
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
     SubNetwork-Multiple:
       type: array
