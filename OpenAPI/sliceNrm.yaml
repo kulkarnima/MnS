@@ -597,10 +597,14 @@ components:
       description: ->
         An attribute that specifies the recommended network slicing related requirements (i.e. ServiceProfile and SliceProfile information) which can be supported by the MnS producer.. 
       type: string
-    RequestedResourceReservation:
+    ResourceReservation:
       description: ->
         An attribute represents MnS consumer's requirements for resource reservation.
       type: boolean
+    RequestedReservationExpiration:
+      description: ->
+        An attribute which specifes MnS consuner's requirements for the validity period of the resource reservation.
+      type: string    
     ResourceReservationStatus:
       description: ->
         An attribute which specifies the resource reservation result for the feasibility check job.
