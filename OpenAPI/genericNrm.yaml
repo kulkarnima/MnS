@@ -323,6 +323,79 @@ components:
         - $ref: 'comDefs.yaml#/components/schemas/Ipv4Addr'
         - $ref: 'comDefs.yaml#/components/schemas/Ipv6Addr'
 
+    PlmnId:
+      type: object
+      properties:
+        mcc:
+          $ref: '#/components/schemas/Mcc'
+        mnc:
+          $ref: '#/components/schemas/Mnc'
+
+    AccessToken:
+      type: object
+      properties:
+        tokenId:
+          type: string
+        context:
+          type: array
+          items: 
+            type: string
+        issuer:
+          type: string
+        permInfoRef:
+          $ref: 'comDefs.yaml#/components/schemas/DnList'
+
+    AuthenSessionContext:
+      type: string
+      enum:
+        - LOCATION
+        - TIMEING
+        - IDENTITY_STATUS
+
+    AuthSession: 
+      type: object
+      properties:
+        sessionId:
+          type: string
+        authState:
+          type: string
+          enum:
+            - AUTHENTICATED
+            - AUTHENTICATING
+        context:
+          type: string
+          type: array
+            items:
+              $ref: '#/components/schemas/ AuthenSessionContext'
+        assocClient:
+          type: string
+        assertion:
+          type: string
+        accessToken:
+          $ref: '#/components/schemas/AccessToken'
+        permInfoRef:
+          $ref: 'comDefs.yaml#/components/schemas/DnList'
+
+    AuthSessionList:
+      type: array
+      items:
+        $ref: '#/components/schemas/AuthSession'
+        
+    Sst:
+      type: integer
+      maximum: 255
+    Snssai:
+      type: object
+      properties:
+        sst:
+          $ref: '#/components/schemas/Sst'
+        sd:
+          type: string
+
+     SnssaiList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Snssai'
 
 #-------- Definition of types used in Trace control NRM fragment------------------
                 
@@ -1365,6 +1438,16 @@ components:
           $ref: '#/components/schemas/Files-Multiple'
         MnsRegistry:
           $ref: '#/components/schemas/MnsRegistry-Single'
+        Identity4AC:
+          $ref: '#/components/schemas/Identity4AC-Multiple'
+        GroupOfIdentity:
+          $ref: '#/components/schemas/GroupOfIdentity-Multiple'
+        Policy4Authn:
+          $ref: '#/components/schemas/Policy4Authn-Multiple'
+        ResourceProfile:
+          $ref: '#/components/schemas/ResourceProfile-Multiple'
+        PermInfo:
+          $ref: '#/components/schemas/PermInfo-Multiple'
     ManagedElement-ncO:
       type: object
       properties:
@@ -1384,6 +1467,16 @@ components:
           $ref: '#/components/schemas/FileDownloadJob-Multiple'
         Files:
           $ref: '#/components/schemas/Files-Multiple'
+        Identity4AC:
+          $ref: '#/components/schemas/Identity4AC-Multiple'
+        GroupOfIdentity:
+          $ref: '#/components/schemas/GroupOfIdentity-Multiple'
+        Policy4Authn:
+          $ref: '#/components/schemas/Policy4Authn-Multiple'
+        ResourceProfile:
+          $ref: '#/components/schemas/ResourceProfile-Multiple'
+        PermInfo:
+          $ref: '#/components/schemas/PermInfo-Multiple'
 
 #-------- Definition of abstract IOCs --------------------------------------------
 
@@ -1834,6 +1927,155 @@ components:
           items:
             $ref: 'comDefs.yaml#/components/schemas/Dn'
 
+    Identity4AC-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            identifier:
+              type: string
+            identifierType:
+              type: string
+              enum:
+                - USER_NAME
+                - EMAIL_ADDRESS
+                - IP_ADDRESS
+                - PHONE_NUMBER
+                - FQDN
+            identityType:
+              type: string
+              enum:
+                - HUMAN_MNS_CONSUMER
+                - MNS_CONSUMER_MNF
+                - MNS_CONSUMER_PORTAL 
+                - MNS_PRODUCER
+            identityStatus:
+              type: string
+              enum:
+                - SECURE
+                - UNSECURE
+                - UNKNOWN 
+            identityOwner:
+              type: string 
+            identityDomain:
+              type: string
+            authSessionList:
+              $ref: '#/components/schemas/AuthSessionList'
+            credentialType:
+              type: string
+              enum:
+                - SECRET
+                - JWT
+            credential:
+              type: string
+            groupOfIdentityRef:
+              $ref: 'comDefs.yaml#/components/schemas/Dn'
+    
+    GroupOfIdentity-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            groupName:
+              type: string
+            groupType:
+              type: string
+              enum:
+                - HUMAN_MNS
+                - CONSUMER
+                - MNS_CONSUMER_MNF
+                - MNS_CONSUMER_PORTAL
+                - MNS_PRODUCER
+            groupOwner:
+              type: string
+            groupDomain:
+              type: string
+              enum:
+                - E2E
+                - CORE
+                - RAN
+            plmnIds:
+              type: array
+              items:
+                $ref: '#/components/schemas/PlmnId'
+            sNSSAIs:
+              #$ref: 'comDefs.yaml#/components/schemas/SnssaiList'
+              $ref: '#/components/schemas/SnssaiList'
+            noOfMembers:
+              type: integer
+            policy4AuthnRef:
+              $ref: 'comDefs.yaml#/components/schemas/Dn'
+            identity4ACRef:
+              $ref: 'comDefs.yaml#/components/schemas/Dn'
+            permInfoRef:
+              $ref: 'comDefs.yaml#/components/schemas/Dn'
+
+    Policy4Authn-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            policies:
+              type: array
+              items:
+                type: string
+          
+    AccessRight-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            operation:
+              type: string
+              enum:
+                - CREATE
+                - DELETE
+                - READ
+                - UPDATE
+            attribute:
+              type: string
+            childObjectClass:
+              type: string
+            childObjectInstance:
+              $ref: 'comDefs.yaml#/components/schemas/Dn'
+            managedEntityRef:
+              $ref: 'comDefs.yaml#/components/schemas/Dn'
+
+    ResourceProfile-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            resourceOwner:
+              type: string
+            resourceDomain:
+              type: string
+              enum:
+                - E2E_DOMAIN
+                - CORE_DOMAIN
+                - RAN_DOMAIN
+            plmnIds:
+              type: array
+              items:
+                $ref: '#/components/schemas/PlmnId'
+            sNSSAIs:
+              #$ref: 'comDefs.yaml#/components/schemas/Snssai'
+              $ref: '#/components/schemas/SnssaiList'
+
+    PermInfo-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            preCondition:
+              type: string
+            postCondition:
+              type: string
+            accessRightRef:
+              $ref: 'comDefs.yaml#/components/schemas/Dn'
+            identity4ACRef:
+              $ref: 'comDefs.yaml#/components/schemas/Dn'
+
 #-------- Definition of YAML arrays for name-contained IOCs ----------------------
 
     VsDataContainer-Multiple:
@@ -1888,6 +2130,30 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/MnsInfo-Single'
+    Identity4AC-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/Identity4AC-Single'
+    GroupOfIdentity-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/GroupOfIdentity-Single'
+    Policy4Authn-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/Policy4Authn-Single'
+    AccessRight-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/AccessRight-Single'
+    ResourceProfile-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/ResourceProfile-Single'
+    PermInfo-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/PermInfo-Single'
 
 #-------- Definitions in TS 28.623 for TS 28.532 ---------------------------------
 
@@ -1917,3 +2183,10 @@ components:
        
        - $ref: '#/components/schemas/MnsRegistry-Single'
        - $ref: '#/components/schemas/MnsInfo-Single'
+
+       - $ref: '#/components/schemas/Identity4AC-Single'
+       - $ref: '#/components/schemas/GroupOfIdentity-Single'
+       - $ref: '#/components/schemas/Policy4Authn-Single'
+       - $ref: '#/components/schemas/AccessRight-Single'
+       - $ref: '#/components/schemas/ResourceProfile-Single'
+       - $ref: '#/components/schemas/PermInfo-Single'
