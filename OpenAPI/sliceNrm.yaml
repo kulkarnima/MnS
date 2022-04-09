@@ -593,18 +593,14 @@ components:
       description: ->
         An attribute that specifies the additional reason information if the feasibility check result is infeasible.The detailed ENUM value is FFS. 
       type: string
-    RecommendedRequirement:
+    RecommendedRequirements:
       description: ->
         An attribute that specifies the recommended network slicing related requirements (i.e. ServiceProfile and SliceProfile information) which can be supported by the MnS producer.. 
       type: string
-    ResourceReservation:
+    RequestedResourceReservation:
       description: ->
         An attribute represents MnS consumer's requirements for resource reservation.
       type: boolean
-    ReservationExpiration:
-      description: ->
-        An attribute which specifes the validity period of the resource reservation.
-      type: string
     ResourceReservationStatus:
       description: ->
         An attribute which specifies the resource reservation result for the feasibility check job.
@@ -612,6 +608,15 @@ components:
       enum:
         - RESERVED
         - UNRESERVED
+        - USED
+    ReservationExpiration:
+      description: ->
+        An attribute which specifes the actual validity period of the resource reservation..
+      type: string
+    ReservationFailureReason:
+      description: ->
+        An attribute that specifies the additional reason information if the reservation is failed. 
+      type: string
 
 
 #------------ Definition of concrete IOCs ----------------------------------------
@@ -719,8 +724,8 @@ components:
                     - $ref: '#/components/schemas/ServiceProfile'
                 resourceReservation:
                   $ref: '#/components/schemas/ResourceReservation'
-                reservationExpiration:
-                  $ref: '#/components/schemas/ReservationExpiration'
+                requestedReservationExpiration:
+                  $ref: '#/components/schemas/RequestedReservationExpiration'
                 processMonitor:
                   $ref: 'genericNrm.yaml#/components/schemas/ProcessMonitor'
                 feasibilityResult:
@@ -729,8 +734,12 @@ components:
                   $ref: '#/components/schemas/InFeasibleReason'
                 resourceReservationStatus:
                   $ref: '#/components/schemas/ResourceReservationStatus'
-                recommendedRequirement:
-                  $ref: '#/components/schemas/RecommendedRequirement'
+                reservationFailureReason:
+                  $ref: '#/components/schemas/ReservationFailureReason'
+                reservationExpiration:
+                  $ref: '#/components/schemas/ReservationExpiration'               
+                recommendedRequirements:
+                  $ref: '#/components/schemas/RecommendedRequirements'
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
     SubNetwork-Multiple:
       type: array
