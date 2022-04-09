@@ -327,9 +327,9 @@ components:
       type: object
       properties:
         mcc:
-          $ref: '#/components/schemas/Mcc'
+          $ref: 'comDefs.yaml#/components/schemas/Mcc'
         mnc:
-          $ref: '#/components/schemas/Mnc'
+          $ref: 'comDefs.yaml#/components/schemas/Mnc'
 
     AccessToken:
       type: object
