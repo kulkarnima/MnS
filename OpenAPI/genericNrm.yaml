@@ -1443,6 +1443,8 @@ components:
           $ref: '#/components/schemas/GroupOfIdentity-Multiple'
         Policy4Authn:
           $ref: '#/components/schemas/Policy4Authn-Multiple'
+        AccessRight:
+          $ref: '#/components/schemas/AccessRight-Multiple'
         ResourceProfile:
           $ref: '#/components/schemas/ResourceProfile-Multiple'
         PermInfo:
@@ -1472,6 +1474,8 @@ components:
           $ref: '#/components/schemas/GroupOfIdentity-Multiple'
         Policy4Authn:
           $ref: '#/components/schemas/Policy4Authn-Multiple'
+        AccessRight:
+          $ref: '#/components/schemas/AccessRight-Multiple'
         ResourceProfile:
           $ref: '#/components/schemas/ResourceProfile-Multiple'
         PermInfo:
