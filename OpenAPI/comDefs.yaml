@@ -22,6 +22,19 @@ components:
     FullTime:
       type: string
       format: full-time
+    DateMonth:
+      type: string
+      format: date-month
+    DateMonthDay:
+      type: string
+      format: date-mday
+    DayInYear:
+      type: object
+      properties:
+        month:
+          $ref: '#/components/schemas/DateMonth'
+        monthDay:
+          $ref: '#/components/schemas/DateMonthDay'
     Latitude:
       type: number
       format: float
