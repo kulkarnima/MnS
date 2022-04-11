@@ -161,6 +161,8 @@ components:
                     eESAddress:
                       type: array
                       item: string
+                    softwareImageInfo:
+                      $ref: '#/components/schemas/SoftwareImageInfo'
                     serviceContinuitySupport:
                       type: boolean
                     eASFunctonRef:
@@ -185,6 +187,8 @@ components:
                       $ref: 'comDefs.yaml#/components/schemas/DnList'
                     eESFuncitonRef:
                       $ref: 'comDefs.yaml#/components/schemas/DnList'
+                    softwareImageInfo:
+                      $ref: '#/components/schemas/SoftwareImageInfo'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
     EASRequirements-Single:
