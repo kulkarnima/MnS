@@ -255,11 +255,6 @@ components:
         NRPci:
           type: integer
 
-    MaximumDeviationHoTrigger:
-      type: integer
-      minimum: -20
-      maximum: 20
-
     MaximumDeviationHoTriggerLow:
       type: integer
       minimum: -20
@@ -1452,8 +1447,10 @@ components:
                   properties:
                     dlboControl:
                       type: boolean
-                    maximumDeviationHoTrigger:
-                          $ref: '#/components/schemas/MaximumDeviationHoTrigger'
+                    maximumDeviationHoTriggerLow:
+                      $ref: '#/components/schemas/MaximumDeviationHoTriggerLow'
+                    maximumDeviationHoTriggerHigh:
+                      $ref: '#/components/schemas/MaximumDeviationHoTriggerHigh'
                     minimumTimeBetweenHoTriggerChange:
                           $ref: '#/components/schemas/MinimumTimeBetweenHoTriggerChange'
 
