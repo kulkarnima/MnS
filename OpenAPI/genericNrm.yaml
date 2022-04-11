@@ -322,7 +322,7 @@ components:
       oneOf:
         - $ref: 'comDefs.yaml#/components/schemas/Ipv4Addr'
         - $ref: 'comDefs.yaml#/components/schemas/Ipv6Addr'
-    SchedulingTimes:
+    SchedulingTime:
       oneOf:
         - type: object
           properties:
@@ -369,7 +369,7 @@ components:
               items:
                 $ref: 'comDefs.yaml#/components/schemas/TimeInterval'
             specialDays:
-              type: string
+              $ref: 'comDefs.yaml#/components/schemas/DayInYear'
 
 #-------- Definition of types used in Trace control NRM fragment------------------
                 
@@ -1433,6 +1433,8 @@ components:
           $ref: '#/components/schemas/FileDownloadJob-Multiple'
         Files:
           $ref: '#/components/schemas/Files-Multiple'
+        Scheduler:
+          $ref: '#/components/schemas/Scheduler-Multiple'
 
 #-------- Definition of abstract IOCs --------------------------------------------
 
