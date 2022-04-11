@@ -1892,8 +1892,8 @@ components:
             attributes:
               type: object
               properties:
-                schedulingTimes:
-                  $ref: '#/components/schemas/SchedulingTimes'
+                schedulingTime:
+                  $ref: '#/components/schemas/SchedulingTime'
                 statusActive:
                   type: boolean
 
