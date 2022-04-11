@@ -302,9 +302,6 @@ components:
           type: string
           enum: 
               - INSTANCE_SHARING_RULE
-              - RESOURCE_SHARING_RULE
-        resourceType:
-          type: string
         sharingPolicy:
           type: string
           enum: 
@@ -336,6 +333,8 @@ components:
           type: integer
         coverageAreaTAList:
           type: integer
+        resourceSharingLevel:
+          $ref: '#/components/schemas/SharingLevel'        
         provisioningRuleList:
           $ref: '#/components/schemas/ProvisioningRuleList'
         dLMaxPktSize:
@@ -373,6 +372,8 @@ components:
           type: integer
         uEMobilityLevel:
           $ref: '#/components/schemas/MobilityLevel'
+        resourceSharingLevel:
+          $ref: '#/components/schemas/SharingLevel'
         provisioningRuleList:
           $ref: '#/components/schemas/ProvisioningRuleList'
         maxNumberofUEs:
@@ -458,6 +459,8 @@ components:
           type: integer
         coverageAreaTAList:
           type: integer
+        resourceSharingLevel:
+          $ref: '#/components/schemas/SharingLevel'
         provisioningRuleList:
           $ref: '#/components/schemas/ProvisioningRuleList'
         uEMobilityLevel:
