@@ -17,7 +17,8 @@ module _3gpp-nr-nrm-ep {
     Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
-  revision 2021-04-30 { reference CR-0490 ; }
+  revision 2022-01-07 { reference CR-0643; }
+  revision 2021-05-01 { reference CR-0490; }
   revision 2021-03-03 { reference CR-0435 ; }
   revision 2021-02-17 { reference CR-0470; }
   revision 2020-11-17 { reference CR-0410 ; }

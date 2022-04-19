@@ -417,6 +417,7 @@ components:
             - $ref: 'nrNrm.yaml#/components/schemas/resources-nrNrm'
             - $ref: '5gcNrm.yaml#/components/schemas/resources-5gcNrm'
             - $ref: 'sliceNrm.yaml#/components/schemas/resources-sliceNrm'
+            - $ref: 'intentNrm.yaml#/components/schemas/resources-intentNrm'            
 
     MoiChange:
       type: object

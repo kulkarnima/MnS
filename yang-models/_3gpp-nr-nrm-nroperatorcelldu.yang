@@ -30,6 +30,14 @@ module _3gpp-nr-nrm-nroperatorcelldu {
       type int32 { range "0..16383"; }
     }
 
+    leaf administrativeState  {
+      description "Administrative state of the NROperatorCellDU. Indicates the
+        permission to use or prohibition against using the cell, imposed
+        through the OAM services.";
+      type types3gpp:AdministrativeState;
+      default LOCKED;
+    }
+
     list pLMNInfoList {
       description "The PLMNInfoList is a list of PLMNInfo data type. It 
         defines which PLMNs that can be served by the NR cell, and which 
