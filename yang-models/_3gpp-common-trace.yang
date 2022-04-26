@@ -22,7 +22,7 @@ module _3gpp-common-trace {
       Integration Reference Point (IRP);
       Information Service (IS)";
 
-  revision 2022-03-24 { reference "draftCR"; }
+  revision 2022-04-27 { reference "CR-0158"; }
   revision 2021-10-18 { reference "CR-0139"; }
   revision 2021-07-22 { reference "CR-0137"; }
   revision 2021-01-25 { reference "CR-0122"; }
