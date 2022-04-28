@@ -130,8 +130,8 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/AttributeNameValuePairSet'
-        minItems: 1
-        maxItems: 2
+      minItems: 1
+      maxItems: 2
 
     Filter:
       description: >-
