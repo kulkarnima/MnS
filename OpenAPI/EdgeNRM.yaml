@@ -74,8 +74,21 @@ components:
           type: integer
         swImageRef:
           type: string
-
-
+    EESRegistrationInfo:
+      type: object
+      properties:
+        minimumDisk:
+          type: integer
+        minimumRAM:
+          type: integer
+        swImageRef:
+          type: string
+        registrationExpiry:
+          type: string
+        registrationID:
+          type: string
+        secCredential:
+          type: string
 #-------- Definition of concrete IOCs --------------------------------------------
 
     SubNetwork-Single:
@@ -152,7 +165,9 @@ components:
                     serviceContinuitySupport:
                       type: boolean
                     eASFunctonRef:
-                      $ref: 'comDefs.yaml#/components/schemas/DnList'  
+                      $ref: 'comDefs.yaml#/components/schemas/DnList'
+                    eESRegistrationInfo:
+                      $ref: '#/components/schemas/EESRegistrationInfo'  
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
     ECSFunction-Single:
