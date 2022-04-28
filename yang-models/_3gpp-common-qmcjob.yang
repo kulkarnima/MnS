@@ -81,7 +81,7 @@ module _3gpp-common-qmcjob {
     }
 
     leaf qoeTarget {
-      description "The QoE target parameter specifies it the QMC is area based or individual UE
+      description "The QoE target parameter specifies if the QMC is area based or individual UE
         based.";
       type enumeration {
       enum AREA_BASED_QMC {
