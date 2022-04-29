@@ -26,6 +26,7 @@ module _3gpp-common-qmcjob {
       Integration Reference Point (IRP);
       Information Service (IS)";
 
+  revision 2022-04-29 { reference "CR-0171"; }
   revision 2022-03-22 { reference "draftCR"; }
   revision 2022-01-06 { reference "CR-0142"; }
     
@@ -35,15 +36,9 @@ module _3gpp-common-qmcjob {
         type.";
       mandatory true;
       type enumeration {
-      enum DASH {
-        value 0;
-      }
-      enum MTSI {
-        value 1;
-      }
-      enum VR {
-        value 2;
-      }
+      enum DASH;
+      enum MTSI;
+      enum VR;
     }
     }
 
@@ -57,7 +52,7 @@ module _3gpp-common-qmcjob {
         This attribute shall be present when Management Based Activation is used.";
     }
 
-    leaf qOOCollectionEntityAddress {
+    leaf qoECollectionEntityAddress {
       type union {
         type inet:uri;
         type inet:ip-address;
@@ -82,16 +77,12 @@ module _3gpp-common-qmcjob {
       key "mcc mnc";
     }
 
-    leaf qOETarget {
+    leaf qoETarget {
       description "The QoE target parameter specifies it the QMC is area based or individual UE
         based.";
       type enumeration {
-      enum AREA_BASED_QMC {
-        value 0;
-      }
-      enum INDIVIDUAL_BASED_QMC {
-        value 1;
-      }
+      enum AREA_BASED;
+      enum UE_BASED;
     }
     mandatory true;
     }
@@ -119,9 +110,10 @@ module _3gpp-common-qmcjob {
       uses types5g3gpp:SNssai;
     }
 
-    leaf qMCUeConfigurationFileRef {
+    leaf contAppLayerMeasConfigRef {
       type string;
-      description "Provides the reference to the UE QMC configuration file.";
+      description "Provides the reference to the UE QMC configuration file.
+      Value is a URI including the protocol, address, and filename for the file transfer.";
       mandatory true;
     }
   }
