@@ -35,12 +35,12 @@ paths:
           in: query
           required: false
           schema:
-            $ref: 'TS28623_comDefs.yaml#/components/schemas/Dn'
+            $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
         - name: filter
           in: query
           required: false
           schema:
-            $ref: 'TS28623_comDefs.yaml#/components/schemas/Filter'
+            $ref: 'TS28623_ComDefs.yaml#/components/schemas/Filter'
       responses:
         '200':
           description: >-
@@ -57,7 +57,7 @@ paths:
                       - type: object
                         properties:
                           lastNotificationHeader:
-                            $ref: 'TS28623_comDefs.yaml#/components/schemas/NotificationHeader'
+                            $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationHeader'
                       - $ref: '#/components/schemas/AlarmRecord'
                       - type: object
                         properties:
@@ -68,7 +68,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS28623_comDefs.yaml#/components/schemas/ErrorResponse'
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
     patch:
       summary: 'Clear, acknowledge or unacknowledge multiple alarms'
       description: >-
@@ -130,7 +130,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS28623_comDefs.yaml#/components/schemas/ErrorResponse'
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
   /alarms/{alarmId}:
     patch:
       summary: 'Clear, acknowledge or unacknowledge a single alarm'
@@ -163,7 +163,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS28623_comDefs.yaml#/components/schemas/ErrorResponse'
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
   /alarms/{alarmId}/comments:
     post:
       summary: Add a comment to a single alarm
@@ -203,7 +203,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS28623_comDefs.yaml#/components/schemas/ErrorResponse'
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
 
   /subscriptions:
     post:
@@ -238,7 +238,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS28623_comDefs.yaml#/components/schemas/ErrorResponse'
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
       callbacks:
         notifyNewAlarm:
           '{request.body#/consumerReference}':
@@ -262,7 +262,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'TS28623_comDefs.yaml#/components/schemas/ErrorResponse'
+                        $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
         notifyClearedAlarm:
           '{request.body#/consumerReference}':
             post:
@@ -283,7 +283,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'TS28623_comDefs.yaml#/components/schemas/ErrorResponse'
+                        $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
         notifyChangedAlarm:
           '{request.body#/consumerReference}':
             post:
@@ -304,7 +304,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'TS28623_comDefs.yaml#/components/schemas/ErrorResponse'
+                        $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
         notifyChangedAlarmGeneral:
           '{request.body#/consumerReference}':
             post:
@@ -327,7 +327,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'TS28623_comDefs.yaml#/components/schemas/ErrorResponse'
+                        $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
         notifyCorrelatedNotificationChanged:
           '{request.body#/consumerReference}':
             post:
@@ -348,7 +348,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'TS28623_comDefs.yaml#/components/schemas/ErrorResponse'
+                        $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
         notifyAckStateChanged:
           '{request.body#/consumerReference}':
             post:
@@ -369,7 +369,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'TS28623_comDefs.yaml#/components/schemas/ErrorResponse'
+                        $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
         notifyComments:
           '{request.body#/consumerReference}':
             post:
@@ -390,7 +390,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'TS28623_comDefs.yaml#/components/schemas/ErrorResponse'
+                        $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
         notifyPotentialFaultyAlarmList:
           '{request.body#/consumerReference}':
             post:
@@ -411,7 +411,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'TS28623_comDefs.yaml#/components/schemas/ErrorResponse'
+                        $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
         notifyAlarmListRebuilt:
           '{request.body#/consumerReference}':
             post:
@@ -432,7 +432,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'TS28623_comDefs.yaml#/components/schemas/ErrorResponse'
+                        $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
   /subscriptions/{subscriptionId}:
     delete:
       summary: Delete a subscription
@@ -458,7 +458,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS28623_comDefs.yaml#/components/schemas/ErrorResponse'
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
 
 components:
   schemas:
@@ -527,9 +527,9 @@ components:
         high:
           oneOf:
             - type: integer
-            - $ref: 'TS28623_comDefs.yaml#/components/schemas/Float'
+            - $ref: 'TS28623_ComDefs.yaml#/components/schemas/Float'
         low:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/Float'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Float'
     ThresholdLevelInd:
       oneOf:
         - type: object
@@ -548,11 +548,11 @@ components:
         observedValue:
           oneOf:
             - type: integer
-            - $ref: 'TS28623_comDefs.yaml#/components/schemas/Float'
+            - $ref: 'TS28623_ComDefs.yaml#/components/schemas/Float'
         thresholdLevel:
           $ref: '#/components/schemas/ThresholdLevelInd'
         armTime:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/DateTime'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/DateTime'
       required:
         - observedMeasurement
         - observedValue
@@ -560,11 +560,11 @@ components:
       type: object
       properties:
         sourceObjectInstance:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/Dn'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
         notificationIds:
           type: array
           items:
-            $ref: 'TS28623_comDefs.yaml#/components/schemas/NotificationId'
+            $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationId'
       required:
         - sourceObjectInstance
         - notificationIds
@@ -587,15 +587,15 @@ components:
         # alarmId:
         #  $ref: '#/components/schemas/AlarmId'
         objectInstance:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/Dn'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
         notificationId:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/NotificationId'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationId'
         alarmRaisedTime:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/DateTime'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/DateTime'
         alarmChangedTime:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/DateTime'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/DateTime'
         alarmClearedTime:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/DateTime'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/DateTime'
         alarmType:
           $ref: '#/components/schemas/AlarmType'
         probableCause:
@@ -607,7 +607,7 @@ components:
         backedUpStatus:
           type: boolean
         backUpObject:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/Dn'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
         trendIndication:
           $ref: '#/components/schemas/TrendIndication'
         thresholdinfo:
@@ -615,21 +615,21 @@ components:
         correlatedNotifications:
           $ref: '#/components/schemas/CorrelatedNotifications'
         stateChangeDefinition:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/AttributeValueChangeSet'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/AttributeValueChangeSet'
         monitoredAttributes:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/AttributeNameValuePairSet'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/AttributeNameValuePairSet'
         proposedRepairActions:
           type: string
         additionalText:
           type: string
         additionalInformation:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/AttributeNameValuePairSet'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/AttributeNameValuePairSet'
 
         rootCauseIndicator:
           type: boolean
 
         ackTime:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/DateTime'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/DateTime'
         ackUserId:
           type: string
         ackSystemId:
@@ -670,7 +670,7 @@ components:
 
     NotifyNewAlarm:
       allOf:
-        - $ref: 'TS28623_comDefs.yaml#/components/schemas/NotificationHeader'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationHeader'
         - type: object
           required:
             - alarmId
@@ -691,7 +691,7 @@ components:
             backedUpStatus:
               type: boolean
             backUpObject:
-              $ref: 'TS28623_comDefs.yaml#/components/schemas/Dn'
+              $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
             trendIndication:
               $ref: '#/components/schemas/TrendIndication'
             thresholdInfo:
@@ -699,20 +699,20 @@ components:
             correlatedNotifications:
               $ref: '#/components/schemas/CorrelatedNotifications'
             stateChangeDefinition:
-              $ref: 'TS28623_comDefs.yaml#/components/schemas/AttributeValueChangeSet'
+              $ref: 'TS28623_ComDefs.yaml#/components/schemas/AttributeValueChangeSet'
             monitoredAttributes:
-              $ref: 'TS28623_comDefs.yaml#/components/schemas/AttributeNameValuePairSet'
+              $ref: 'TS28623_ComDefs.yaml#/components/schemas/AttributeNameValuePairSet'
             proposedRepairActions:
               type: string
             additionalText:
               type: string
             additionalInformation:
-              $ref: 'TS28623_comDefs.yaml#/components/schemas/AttributeNameValuePairSet'
+              $ref: 'TS28623_ComDefs.yaml#/components/schemas/AttributeNameValuePairSet'
             rootCauseIndicator:
               type: boolean
     NotifyNewSecAlarm:
       allOf:
-        - $ref: 'TS28623_comDefs.yaml#/components/schemas/NotificationHeader'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationHeader'
         - type: object
           required:
             - alarmId
@@ -736,7 +736,7 @@ components:
             additionalText:
               type: string
             additionalInformation:
-              $ref: 'TS28623_comDefs.yaml#/components/schemas/AttributeNameValuePairSet'
+              $ref: 'TS28623_ComDefs.yaml#/components/schemas/AttributeNameValuePairSet'
             rootCauseIndicator:
               type: boolean
             serviceUser:
@@ -747,7 +747,7 @@ components:
               type: string
     NotifyClearedAlarm:
       allOf:
-        - $ref: 'TS28623_comDefs.yaml#/components/schemas/NotificationHeader'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationHeader'
         - type: object
           required:
             - alarmId
@@ -771,7 +771,7 @@ components:
               type: string
     NotifyChangedAlarm:
       allOf:
-        - $ref: 'TS28623_comDefs.yaml#/components/schemas/NotificationHeader'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationHeader'
         - type: object
           required:
             - alarmId
@@ -789,7 +789,7 @@ components:
               $ref: '#/components/schemas/PerceivedSeverity'
     NotifyChangedAlarmGeneral:
       allOf:
-        - $ref: 'TS28623_comDefs.yaml#/components/schemas/NotificationHeader'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationHeader'
         - type: object
           required:
             - alarmId
@@ -810,28 +810,28 @@ components:
             backedUpStatus:
               type: boolean
             backUpObject:
-              $ref: 'TS28623_comDefs.yaml#/components/schemas/Dn'
+              $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
             trendIndication:
               $ref: '#/components/schemas/TrendIndication'
             thresholdInfo:
               $ref: '#/components/schemas/ThresholdInfo'
             stateChangeDefinition:
-              $ref: 'TS28623_comDefs.yaml#/components/schemas/AttributeValueChangeSet'
+              $ref: 'TS28623_ComDefs.yaml#/components/schemas/AttributeValueChangeSet'
             monitoredAttributes:
-              $ref: 'TS28623_comDefs.yaml#/components/schemas/AttributeNameValuePairSet'
+              $ref: 'TS28623_ComDefs.yaml#/components/schemas/AttributeNameValuePairSet'
             proposedRepairActions:
               type: string
             additionalText:
               type: string
             additionalInformation:
-              $ref: 'TS28623_comDefs.yaml#/components/schemas/AttributeNameValuePairSet'
+              $ref: 'TS28623_ComDefs.yaml#/components/schemas/AttributeNameValuePairSet'
             rootCauseIndicator:
               type: boolean
             changedAlarmAttributes:
-              $ref: 'TS28623_comDefs.yaml#/components/schemas/AttributeNameValuePairSet'
+              $ref: 'TS28623_ComDefs.yaml#/components/schemas/AttributeNameValuePairSet'
     NotifyChangedSecAlarmGeneral:
       allOf:
-        - $ref: 'TS28623_comDefs.yaml#/components/schemas/NotificationHeader'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationHeader'
         - type: object
           required:
             - alarmId
@@ -853,7 +853,7 @@ components:
             additionalText:
               type: string
             additionalInformation:
-              $ref: 'TS28623_comDefs.yaml#/components/schemas/AttributeNameValuePairSet'
+              $ref: 'TS28623_ComDefs.yaml#/components/schemas/AttributeNameValuePairSet'
             rootCauseIndicator:
               type: boolean
             serviceUser:
@@ -863,10 +863,10 @@ components:
             securityAlarmDetector:
               type: string
             changedAlarmAttributes:
-              $ref: 'TS28623_comDefs.yaml#/components/schemas/AttributeNameValuePairSet'
+              $ref: 'TS28623_ComDefs.yaml#/components/schemas/AttributeNameValuePairSet'
     NotifyCorrelatedNotificationChanged:
       allOf:
-        - $ref: 'TS28623_comDefs.yaml#/components/schemas/NotificationHeader'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationHeader'
         - type: object
           required:
             - alarmId
@@ -880,7 +880,7 @@ components:
               type: boolean
     NotifyAckStateChanged:
       allOf:
-        - $ref: 'TS28623_comDefs.yaml#/components/schemas/NotificationHeader'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationHeader'
         - type: object
           required:
             - alarmId
@@ -906,7 +906,7 @@ components:
               type: string
     NotifyComments:
       allOf:
-        - $ref: 'TS28623_comDefs.yaml#/components/schemas/NotificationHeader'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationHeader'
         - type: object
           required:
             - alarmId
@@ -927,7 +927,7 @@ components:
               $ref: '#/components/schemas/Comments'
     NotifyPotentialFaultyAlarmList:
       allOf:
-        - $ref: 'TS28623_comDefs.yaml#/components/schemas/NotificationHeader'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationHeader'
         - type: object
           required:
             - reason
@@ -936,7 +936,7 @@ components:
               type: string
     NotifyAlarmListRebuilt:
       allOf:
-        - $ref: 'TS28623_comDefs.yaml#/components/schemas/NotificationHeader'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationHeader'
         - type: object
           required:
             - reason
@@ -1033,7 +1033,7 @@ components:
       type: object
       properties:
         commentTime:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/DateTime'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/DateTime'
         commentUserId:
           type: string
         commentSystemId:
@@ -1051,8 +1051,8 @@ components:
       type: object
       properties:
         consumerReference:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/Uri'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Uri'
         timeTick:
           type: integer
         filter:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/Filter'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Filter'
