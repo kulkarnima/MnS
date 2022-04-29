@@ -22,7 +22,7 @@ components:
             type: array
             items:
               $ref: "#/components/schemas/IntentContext"
-          intentFulfillmentInfo:
+          intentFulfilmentInfo:
             $ref: "#/components/schemas/FulfilmentInfo"
     IntentExpectation:
       type: object
@@ -127,7 +127,7 @@ components:
       enum:
           - FULFILLED
           - NOT_FULFILLED
-    NotFullfilledState:
+    NotFulfilledState:
       type: string
       enum:
           - ACKNOWLEDGED
@@ -135,19 +135,19 @@ components:
           - DEGRADED
           - SUSPENDED
           - TERMINATED
-          - FULFILLMENTFAILED
+          - FULFILMENTFAILED
     FulfilmentInfo:
       type: object
       properties:
         fulfilStatus:
           $ref: "#/components/schemas/FulfilStatus"
-        notFullfilledState:
+        notFulfilledState:
           description: ->
-            An attribute which is used when FulfillmentInfo is implemented for IntentFulfillmentInfo
+            An attribute which is used when FulfilmentInfo is implemented for IntentFulfilmentInfo
           $ref: "#/components/schemas/NotFullfilledState"
         notFullfilledReasons:
           description: ->
-            An attribute which is used when FulfillmentInfo is implemented for IntentFulfillmentInfo
+            An attribute which is used when FulfilmentInfo is implemented for IntentFulfilmentInfo
           type: string
     ExpectationVerb:
       type: string
