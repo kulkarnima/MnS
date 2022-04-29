@@ -280,7 +280,7 @@ components:
           maxNumberofUEs:
             type: number
           coverageAreaTAList:
-            $ref: 'TS28541_5gcNrm.yaml#/components/schemas/TACList'
+            $ref: 'TS28541_5GcNrm.yaml#/components/schemas/TACList'
           latency:
             type: number
           uEMobilityLevel:
