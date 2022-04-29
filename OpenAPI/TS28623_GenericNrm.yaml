@@ -39,9 +39,9 @@ components:
         siteDescription:
           type: string
         siteLatitude:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/Latitude'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Latitude'
         siteLongitude:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/Longitude'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Longitude'
         equipmentType:
           type: string
         environmentType:
@@ -60,7 +60,7 @@ components:
         thresholdValue:
           oneOf:
             - type: integer
-            - $ref: 'TS28623_comDefs.yaml#/components/schemas/Float'
+            - $ref: 'TS28623_ComDefs.yaml#/components/schemas/Float'
         hysteresis:
           oneOf:
             - type: integer
@@ -109,7 +109,7 @@ components:
       type: object
       properties:
         host:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/HostAddr'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/HostAddr'
         port:
           type: integer
     NFServiceType:
@@ -164,11 +164,11 @@ components:
             fileReportingPeriod:
               type: integer
             fileLocation:
-              $ref: 'TS28623_comDefs.yaml#/components/schemas/Uri'
+              $ref: 'TS28623_ComDefs.yaml#/components/schemas/Uri'
         - type: object
           properties:
             streamTarget:
-              $ref: 'TS28623_comDefs.yaml#/components/schemas/Uri'
+              $ref: 'TS28623_ComDefs.yaml#/components/schemas/Uri'
     Scope:
       type: object
       properties:
@@ -199,9 +199,9 @@ components:
       type: object
       properties:
         mcc:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/Mcc'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Mcc'
         mnc:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/Mnc'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Mnc'
         tac:
           $ref: '#/components/schemas/Tac'
     AreaConfig:
@@ -243,8 +243,8 @@ components:
       pattern: '^[A-Fa-f0-9]{9}$'
     IpAddr:
       oneOf:
-        - $ref: 'TS28623_comDefs.yaml#/components/schemas/Ipv4Addr'
-        - $ref: 'TS28623_comDefs.yaml#/components/schemas/Ipv6Addr'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/Ipv4Addr'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/Ipv6Addr'
 
 
 #-------- Definition of types used in Trace control NRM fragment------------------
@@ -627,9 +627,9 @@ components:
       description: The PLMN for which sessions shall be selected in the Trace Session in case of management based activation when several PLMNs are supported in the RAN (this means that shared cells and not shared cells are allowed for the specified PLMN. Note that the PLMN Target might differ from the PLMN specified in the Trace Reference, as that specifies the PLMN that is containing the management system requesting the Trace Session from the NE. See 3GPP TS 32.422 clause 5.9b for additional details.
       properties:
         mcc:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/Mcc'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Mcc'
         mnc:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/Mnc'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Mnc'
       required:
         - mcc
         - mnc
@@ -650,9 +650,9 @@ components:
       description: The Trace Reference parameter shall be globally unique, therefore the Trace Reference shall compose as follows - MCC+MNC+Trace ID, where the MCC and MNC are coming with the Trace activation request from the management system to identify one PLMN containing the management system, and Trace ID is a 3 byte Octet String. See 3GPP TS 32.422 clause 5.6 for additional details.
       properties:
         mcc:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/Mcc'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Mcc'
         mnc:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/Mnc'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Mnc'
         traceId:
           type: string
       required:
@@ -1050,9 +1050,9 @@ components:
         type: object
         properties:
           mcc:
-            $ref: 'TS28623_comDefs.yaml#/components/schemas/Mcc'
+            $ref: 'TS28623_ComDefs.yaml#/components/schemas/Mcc'
           mnc:
-            $ref: 'TS28623_comDefs.yaml#/components/schemas/Mnc'
+            $ref: 'TS28623_ComDefs.yaml#/components/schemas/Mnc'
         required:
           - mcc
           - mnc
@@ -1190,7 +1190,7 @@ components:
         objectClass:
           type: string
         objectInstance:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/Dn'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
         VsDataContainer:
           $ref: '#/components/schemas/VsDataContainer-Multiple'
       required:
@@ -1204,7 +1204,7 @@ components:
         objectClass:
           type: string
         objectInstance:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/Dn'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
         VsDataContainer:
           $ref: '#/components/schemas/VsDataContainer-Multiple'
       required:
@@ -1224,7 +1224,7 @@ components:
         setOfMcc:
           type: array
           items:
-            $ref: 'TS28623_comDefs.yaml#/components/schemas/Mcc'
+            $ref: 'TS28623_ComDefs.yaml#/components/schemas/Mcc'
         priorityLabel:
           type: integer
         supportedPerfMetricGroups:
@@ -1245,7 +1245,7 @@ components:
         locationName:
           type: string
         managedBy:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/DnList'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
         vendorName:
           type: string
         userDefinedState:
@@ -1340,7 +1340,7 @@ components:
         tjPLMNTarget:
           $ref: '#/components/schemas/tjPLMNTarget-Type'
         tjStreamingTraceConsumerURI:
-          $ref: 'TS28623_comDefs.yaml#/components/schemas/Uri'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Uri'
         tjTraceCollectionEntityAddress:
           $ref: '#/components/schemas/IpAddr'
         tjTraceDepth:
@@ -1471,11 +1471,11 @@ components:
                   items:
                     $ref: '#/components/schemas/Operation'
                 administrativeState:
-                  $ref: 'TS28623_comDefs.yaml#/components/schemas/AdministrativeState'
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/AdministrativeState'
                 operationalState:
-                  $ref: 'TS28623_comDefs.yaml#/components/schemas/OperationalState'
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/OperationalState'
                 usageState:
-                  $ref: 'TS28623_comDefs.yaml#/components/schemas/UsageState'
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/UsageState'
                 registrationState:
                   $ref: '#/components/schemas/RegistrationState'
     ManagementNode-Single:
@@ -1489,7 +1489,7 @@ components:
                 userLabel:
                   type: string
                 managedElements:
-                  $ref: 'TS28623_comDefs.yaml#/components/schemas/DnList'
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
                 vendorName:
                   type: string
                 userDefinedState:
@@ -1509,7 +1509,7 @@ components:
               type: object
               properties:
                 systemDN:
-                  $ref: 'TS28623_comDefs.yaml#/components/schemas/Dn'
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
     MeContext-Single:
       allOf:
         - $ref: '#/components/schemas/Top'
@@ -1529,9 +1529,9 @@ components:
               type: object
               properties:
                 administrativeState:
-                  $ref: 'TS28623_comDefs.yaml#/components/schemas/AdministrativeState'
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/AdministrativeState'
                 operationalState:
-                  $ref: 'TS28623_comDefs.yaml#/components/schemas/OperationalState'
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/OperationalState'
                 jobId:
                   type: string
                 performanceMetrics:
@@ -1542,9 +1542,9 @@ components:
                   type: integer
                   minimum: 1
                 objectInstances:
-                  $ref: 'TS28623_comDefs.yaml#/components/schemas/DnList'
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
                 rootObjectInstances:
-                  $ref: 'TS28623_comDefs.yaml#/components/schemas/DnList'
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
                 reportingCtrl:
                   $ref: '#/components/schemas/ReportingCtrl'
     ThresholdMonitor-Single:
@@ -1556,9 +1556,9 @@ components:
               type: object
               properties:
                 administrativeState:
-                  $ref: 'TS28623_comDefs.yaml#/components/schemas/AdministrativeState'
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/AdministrativeState'
                 operationalState:
-                  $ref: 'TS28623_comDefs.yaml#/components/schemas/OperationalState'
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/OperationalState'
                 performanceMetrics:
                   type: array
                   items:
@@ -1571,9 +1571,9 @@ components:
                   type: integer
                   minimum: 1
                 objectInstances:
-                  $ref: 'TS28623_comDefs.yaml#/components/schemas/DnList'
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
                 rootObjectInstances:
-                  $ref: 'TS28623_comDefs.yaml#/components/schemas/DnList'
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
     NtfSubscriptionControl-Single:
       allOf:
         - $ref: '#/components/schemas/Top'
@@ -1583,15 +1583,15 @@ components:
               type: object
               properties:
                 notificationRecipientAddress:
-                  $ref: 'TS28623_comDefs.yaml#/components/schemas/Uri'
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/Uri'
                 notificationTypes:
                   type: array
                   items:
-                    $ref: 'TS28623_comDefs.yaml#/components/schemas/NotificationType'
+                    $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationType'
                 scope:
                   $ref: '#/components/schemas/Scope'
                 notificationFilter:
-                  $ref: 'TS28623_comDefs.yaml#/components/schemas/Filter'                
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/Filter'                
             HeartbeatControl:
               $ref: '#/components/schemas/HeartbeatControl-Single'
     HeartbeatControl-Single:
@@ -1624,20 +1624,20 @@ components:
               type: object
               properties:
                 administrativeState:
-                  $ref: 'TS28623_comDefs.yaml#/components/schemas/AdministrativeState'
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/AdministrativeState'
                 operationalState:
-                  $ref: 'TS28623_comDefs.yaml#/components/schemas/OperationalState'
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/OperationalState'
                 numOfAlarmRecords:
                   type: integer
                 lastModification:
-                  $ref: 'TS28623_comDefs.yaml#/components/schemas/DateTime'
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/DateTime'
                 alarmRecords:
                   description: >-
                      This resource represents a map of alarm records.
                      The alarmIds are used as keys in the map.
                   type: object
                   additionalProperties:
-                    $ref: 'TS28532_faultMnS.yaml#/components/schemas/AlarmRecord'
+                    $ref: 'TS28532_FaultMnS.yaml#/components/schemas/AlarmRecord'
 
 #-------- Definition of YAML arrays for name-contained IOCs ----------------------
 

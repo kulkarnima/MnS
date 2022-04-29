@@ -96,9 +96,9 @@ components:
               type: object
               properties:
                     operationalState:
-                      $ref: 'TS28623_comDefs.yaml#/components/schemas/OperationalState'
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/OperationalState'
                     administrativeState:
-                      $ref: 'TS28623_comDefs.yaml#/components/schemas/AdministrativeState'
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/AdministrativeState'
                     controlLoopLifeCyclePhase:
                       $ref: '#/components/schemas/ControlLoopLifeCyclePhase'
             AssuranceGoal:
@@ -126,9 +126,9 @@ components:
                     sliceProfileId:
                       type: string
                     networkSliceRef:
-                      $ref: 'TS28623_comDefs.yaml#/components/schemas/Dn'
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
                     networkSliceSubnetRef:
-                      $ref: 'TS28623_comDefs.yaml#/components/schemas/Dn' 
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn' 
                       
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
                                 
