@@ -22,13 +22,15 @@ components:
             type: array
             items:
               $ref: "#/components/schemas/IntentContext"
-          intentFulfilStatus:
-            $ref: "#/components/schemas/IntentFulfilStatus"
+          intentFulfillmentInfo:
+            $ref: "#/components/schemas/FulfilmentInfo"
     IntentExpectation:
       type: object
       properties:
         expectationId:
           type: string
+        expectationVerb:
+            $ref: "#/components/schemas/ExpectationVerb"          
         expectationObjects:
           type: array
           items:
@@ -41,7 +43,9 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ExpectationContext"
-    
+        expectationfulfilmentInfo:
+            $ref: "#/components/schemas/FulfilmentInfo"
+
     ExpectationObject:
       type: object
       properties:
@@ -118,11 +122,39 @@ components:
         - Is_greater_than
         - Is_within_the_range
 
-    IntentFulfilStatus:
+    FulfilStatus:
       type: string
       enum:
           - FULFILLED
           - NOT_FULFILLED
+    NotFullfilledState:
+      type: string
+      enum:
+          - ACKNOWLEDGED
+          - COMPLIANT
+          - DEGRADED
+          - SUSPENDED
+          - TERMINATED
+          - FULFILLMENTFAILED
+    FulfilmentInfo:
+      type: object
+      properties:
+        fulfilStatus:
+          $ref: "#/components/schemas/FulfilStatus"
+        notFullfilledState:
+          description: ->
+            An attribute which is used when FulfillmentInfo is implemented for IntentFulfillmentInfo
+          $ref: "#/components/schemas/NotFullfilledState"
+        notFullfilledReasons:
+          description: ->
+            An attribute which is used when FulfillmentInfo is implemented for IntentFulfillmentInfo
+          type: string
+    ExpectationVerb:
+      type: string
+      enum:
+          - DELIVER
+          - ENSURE
+   
    #-------Definition of the concrete ExpectationTarget dataType----------#     
     WeakRSRPRatioTarget:
       type: object
@@ -141,6 +173,8 @@ components:
           maximum: 100
         targetContexts:
           $ref: "#/components/schemas/WeakRSRPContext"
+        targetFulfilmentInfo:
+          $ref: "#/components/schemas/FulfilmentInfo"
 
     WeakRSRPContext:
       type: object
@@ -173,6 +207,8 @@ components:
           maximum: 100
         targetContexts:
           $ref: "#/components/schemas/LowSINRContext"
+        targetFulfilmentInfo:
+          $ref: "#/components/schemas/FulfilmentInfo"
 
     LowSINRContext:
       type: object
@@ -201,6 +237,8 @@ components:
             - Is_greater_than
         targetValueRange:
           type: integer
+        targetFulfilmentInfo:
+          $ref: "#/components/schemas/FulfilmentInfo"
 
     AveDLRANUEThptTarget:
       type: object
@@ -215,6 +253,8 @@ components:
             - Is_greater_than
         targetValueRange:
           type: integer
+        targetFulfilmentInfo:
+          $ref: "#/components/schemas/FulfilmentInfo"
 
     LowULRANUEThptRatioTarget:
       type: object
@@ -233,6 +273,8 @@ components:
           maximum: 100
         targetContexts:
           $ref: "#/components/schemas/LowULRANUEThptContext"
+        targetFulfilmentInfo:
+          $ref: "#/components/schemas/FulfilmentInfo"
 
     LowULRANUEThptContext:
       type: object
@@ -265,6 +307,8 @@ components:
           maximum: 100
         targetContexts:
           $ref: "#/components/schemas/LowDLRANUEThptContext"
+        targetFulfilmentInfo:
+          $ref: "#/components/schemas/FulfilmentInfo"
 
     LowDLRANUEThptContext:
       type: object
