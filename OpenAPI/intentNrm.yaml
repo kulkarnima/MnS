@@ -144,7 +144,7 @@ components:
         notFulfilledState:
           description: ->
             An attribute which is used when FulfilmentInfo is implemented for IntentFulfilmentInfo
-          $ref: "#/components/schemas/NotFullfilledState"
+          $ref: "#/components/schemas/NotFulfilledState"
         notFullfilledReasons:
           description: ->
             An attribute which is used when FulfilmentInfo is implemented for IntentFulfilmentInfo
