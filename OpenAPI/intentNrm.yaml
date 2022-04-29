@@ -149,6 +149,7 @@ components:
           description: ->
             An attribute which is used when FulfilmentInfo is implemented for IntentFulfilmentInfo
           type: string
+          
     ExpectationVerb:
       type: string
       enum:
