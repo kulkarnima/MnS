@@ -307,9 +307,9 @@ components:
         maxNumberofUEs:
           type: integer
         dLLatency:
-          type: integer
+          type: number
         uLLatency:
-          type: integer
+          type: number
         dLThptPerSliceSubnet:
           $ref: '#/components/schemas/XLThpt'
         dLThptPerUE:
@@ -354,9 +354,9 @@ components:
         coverageAreaTAList:
           type: integer
         dLLatency:
-          type: integer
+          type: number
         uLLatency:
-          type: integer
+          type: number
         uEMobilityLevel:
           $ref: '#/components/schemas/MobilityLevel'
         resourceSharingLevel:
