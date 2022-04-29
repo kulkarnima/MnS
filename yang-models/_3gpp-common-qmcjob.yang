@@ -112,7 +112,8 @@ module _3gpp-common-qmcjob {
 
     leaf contAppLayerMeasConfigRef {
       type string;
-      description "Provides the reference to the UE QMC configuration file.
+      description "Provides the reference to the container for application layer measurement
+      configuration.
       Value is a URI including the protocol, address, and filename for the file transfer.";
       mandatory true;
     }
