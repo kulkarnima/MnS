@@ -635,13 +635,12 @@ components:
           $ref: '#/components/schemas/SnpnId'
         snssai:
           $ref: 'nrNrm.yaml#/components/schemas/Snssai'
-		TaiList:
+    TaiList:
       type: array
       items:
         $ref: 'nrNrm.yaml#/components/schemas/Tai' 
 
 #-------- Definition of concrete IOCs --------------------------------------------
-
     SubNetwork-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
