@@ -61,13 +61,13 @@ components:
 
     SubNetwork-Single:
       allOf:
-        - $ref: 'TS28623_genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'TS28623_genericNrm.yaml#/components/schemas/SubNetwork-Attr'
-        - $ref: 'TS28623_genericNrm.yaml#/components/schemas/SubNetwork-ncO'
+                - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/SubNetwork-Attr'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/SubNetwork-ncO'
         - type: object
           properties:
             AssuranceClosedControlLoop:
@@ -75,13 +75,13 @@ components:
  
     ManagedElement-Single:
       allOf:
-        - $ref: 'TS28623_genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'TS28623_genericNrm.yaml#/components/schemas/ManagedElement-Attr'
-        - $ref: 'TS28623_genericNrm.yaml#/components/schemas/ManagedElement-ncO'
+                - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedElement-Attr'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedElement-ncO'
         - type: object
           properties:
             AssuranceClosedControlLoop:
@@ -89,7 +89,7 @@ components:
 
     AssuranceClosedControlLoop-Single:
       allOf:
-        - $ref: 'TS28623_genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -106,7 +106,7 @@ components:
 
     AssuranceGoal-Single:
       allOf:
-        - $ref: 'TS28623_genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
