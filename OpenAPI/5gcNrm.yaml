@@ -213,7 +213,7 @@ components:
         allowedSNPNs:
           type: array
           items:
-            $ref: 'nrNrm.yaml#/components/schemas/SnpnInfo'
+            $ref: '#/components/schemas/SnpnInfo'
         allowedNfTypes:
           type: array
           items:
