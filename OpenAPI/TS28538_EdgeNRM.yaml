@@ -27,9 +27,9 @@ components:
         cellIdList:
           type: integer
         trackingAreaIdList:
-          $ref: 'nrNrm.yaml#/components/schemas/Tai'
+          $ref: 'TS28541_NrNrm.yaml#/components/schemas/Tai'
         servingPLMN:
-          $ref: 'nrNrm.yaml#/components/schemas/PlmnId'
+          $ref: 'TS28541_NrNrm.yaml#/components/schemas/PlmnId'
     GeoLoc:
       type: object
       properties:
@@ -80,12 +80,12 @@ components:
 
     SubNetwork-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-Attr'
+                - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/SubNetwork-Attr'
         - type: object
           properties:
             Subnetwork:
@@ -94,11 +94,11 @@ components:
               $ref: '#/components/schemas/ECSFunction-Multiple'
             EdgeDataNetwork:
               $ref: '#/components/schemas/EdgeDataNetwork-Multiple'
-        - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-ncO'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/SubNetwork-ncO'
 
     EdgeDataNetwork-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             ednIdentifier:
@@ -114,12 +114,12 @@ components:
    
     EASFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
+                - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
                     eASIdentifier:
@@ -127,18 +127,18 @@ components:
                     eESAddress:
                       type: string
                     eASRequirementsRef:
-                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
                     eASAddress:
                       type: string
-        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
     EESFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
+                - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
                     eESIdentifier:
@@ -152,17 +152,17 @@ components:
                     serviceContinuitySupport:
                       type: boolean
                     eASFunctonRef:
-                      $ref: 'comDefs.yaml#/components/schemas/DnList'  
-        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'  
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
     ECSFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
+                - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
                     eCSAddress:
@@ -170,16 +170,16 @@ components:
                     providerIdentifier:
                       type: string
                     edgeDataNetworkRef:
-                      $ref: 'comDefs.yaml#/components/schemas/DnList'
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
                     eESFuncitonRef:
-                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
                     softwareImageInfo:
                       $ref: '#/components/schemas/SoftwareImageInfo'
-        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
     EASRequirements-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             requiredEASservingLocation:
