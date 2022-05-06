@@ -72,6 +72,12 @@ components:
       items:
          $ref: '#/components/schemas/AssuranceTarget'
 
+    AssuranceScope:
+      type: object
+      properties:
+        taiList:
+          $ref: 'nrNrm.yaml#/components/schemas/TaiList'
+
 
 #-------- Definition of concrete IOCs --------------------------------------------
 
@@ -137,6 +143,8 @@ components:
                       $ref: '#/components/schemas/AssuranceGoalStatusObserved'
                     assuranceGoalStatusPredicted:
                       $ref: '#/components/schemas/AssuranceGoalStatusPredicted'
+                    assuranceScope:
+                      $ref: '#/components/schemas/AssuranceScope'
                     serviceProfileId:
                       type: string
                     sliceProfileId:
