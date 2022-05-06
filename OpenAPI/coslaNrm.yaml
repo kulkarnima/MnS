@@ -133,7 +133,7 @@ components:
                     administrativeState:
                       $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
                     controlLoopLifeCyclePhase:
-                      $ref: '#/components/schemas/ControlLoopLifeCyclePhase
+                      $ref: '#/components/schemas/ControlLoopLifeCyclePhase'
                     aCCLDisallowedList:
                       $ref: '#/components/schemas/ACCLDisallowedAttribute'
             AssuranceGoal:
