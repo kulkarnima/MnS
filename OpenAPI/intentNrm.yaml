@@ -513,7 +513,7 @@ components:
         contextValueRange:
           type: array
           items:
-            $ref: "EdgeNRM.yaml#/components/schemas/EDNidentifier"
+            $ref: "EdgeNRM.yaml#/components/schemas/EdnIdentifier"
     EdgeIdenfiticationLocContext:
       type: object
       properties:
