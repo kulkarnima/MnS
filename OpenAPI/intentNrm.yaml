@@ -49,6 +49,7 @@ components:
           type: string
           enum:
             - RAN_SubNetwrok  #--value for Radio Network Expectation--#
+            - Service_Support #--value for Service Support Expectation--#
             - TBD    #-This will be added based on defined scenario specfic intent expectation-#
         objectInstance:
           $ref: "comDefs.yaml#/components/schemas/Dn"
