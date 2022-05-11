@@ -67,7 +67,16 @@ components:
         - $ref: "#/components/schemas/LowULRANUEThptRatioTarget"
         - $ref: "#/components/schemas/LowDLRANUEThptRatioTarget"
       #--ExpectationTargets defind for Radio Network Expectation (ObjectType is RAN_SubNetwork)- #   
-      
+      #--ExpectationTargets defind for Service Support Expectation (ObjectType is Service_Support)-#
+        - $ref: "#/components/schemas/DLThptPerUETarget"
+        - $ref: "#/components/schemas/ULThptPerUETarget"
+        - $ref: "#/components/schemas/DLLatencyTarget"
+        - $ref: "#/components/schemas/ULLatencyTarget"
+        - $ref: "#/components/schemas/MaxNumberofUEsTarget"
+        - $ref: "#/components/schemas/ActivityFactorTarget"
+        - $ref: "#/components/schemas/UESpeedTarget"
+      #--ExpectationTargets defind for Service Support Expectation (ObjectType is Service_Support)-#
+
       #--ExpectationTargets defind for other Scenario specific Expectation-----TBD---------------# 
       #--ExpectationTargets defind for other Scenario specific Expectation-----TBD---------------# 
     
@@ -81,6 +90,11 @@ components:
         - $ref: "#/components/schemas/NRFqBandContext"
         - $ref: "#/components/schemas/RATContext"
       #--ObjectContext defind for Radio Network Expectation (ObjectType is RAN_SubNetwork)------#   
+      #--ObjectContext defind for Service Support Expectation (ObjectType is Service_Support)-------#
+        - $ref: "#/components/schemas/EdgeIdenfiticationIdContext"
+        - $ref: "#/components/schemas/EdgeIdenfiticationLocContext"
+        - $ref: "#/components/schemas/CoverageAreaTAContext"
+      #--ObjectContext defind for Service Support Expectation (ObjectType is ServiceSupport)-------#
 
       #--ObjectContext defind for other Scenario specific Expectation -----------TBD------------#  
       #--ObjectContext defind for other Scenario specific Expectation -----------TBD------------#  
@@ -98,6 +112,13 @@ components:
           type: array
           items:
             type: number
+      oneOf:
+      #--ExpectationContext defind for Service Support Expectation (ObjectType is Service_Support)- #
+        - $ref: "#/components/schemas/ServiceStartTimeContext"
+        - $ref: "#/components/schemas/ServiceEndTimeContext"
+        - $ref: "#/components/schemas/UEMobilityLevelContext"
+        - $ref: "#/components/schemas/ResourceSharingLevelContext"
+      #--ExpectationContext defind for Service Support Expectation (ObjectType is Service_Support)- #    
 
     IntentContext:
       type: object
@@ -279,6 +300,118 @@ components:
             - Is_less_than
         contextValueRange:
           type: number
+    DLThptPerUETarget:
+      type: object
+      properties:
+        targetName:
+          type: string
+          enum:
+            - DLThptPerUE
+        targetCondition:
+          type: string
+          enum:
+            - Is_greater_than
+        targetValueRange:
+          type: array
+          items:
+            $ref: "sliceNrm.yaml#/components/schemas/DLThptPerUE"
+   
+    ULThptPerUETarget:
+      type: object
+      properties:
+        targetName:
+          type: string
+          enum:
+            - ULThptPerUE
+        targetCondition:
+          type: string
+          enum:
+            - Is_greater_than
+        targetValueRange:
+          type: array
+          items:
+            $ref: "sliceNrm.yaml#/components/schemas/ULThptPerUE"
+    
+    DLLatencyTarget:
+      type: object
+      properties:
+        targetName:
+          type: string
+          enum:
+            - DLLatency
+        targetCondition:
+          type: string
+          enum:
+            - Is_less_than
+        targetValueRange:
+          type: array
+          items:
+            $ref: "sliceNrm.yaml#/components/schemas/DLLatency"
+   
+    ULLatencyTarget:
+      type: object
+      properties:
+        targetName:
+          type: string
+          enum:
+            - ULLantency
+        targetCondition:
+          type: string
+          enum:
+            - Is_less_than
+        targetValueRange:
+          type: array
+          items:
+            $ref: "sliceNrm.yaml#/components/schemas/ULLantency"
+  
+    MaxNumberofUEsTarget:
+      type: object
+      properties:
+        targetAttribute:
+          type: string
+          enum:
+            - MaxNumberofUEs
+        targetCondition:
+          type: string
+          enum:
+            - Is_less _than
+        targetValueRange:
+          type: array
+          items:
+            $ref: "sliceNrm.yaml#/components/schemas/MaxNumberofUEs"
+
+    ActivityFactorTarget:
+      type: object
+      properties:
+        targetName:
+          type: string
+          enum:
+            - ActivityFactor
+        targetCondition:
+          type: string
+          enum:
+            - Is_equal _than
+        targetValueRange:
+          type: array
+          items:
+            $ref: "sliceNrm.yaml#/components/schemas/ActivityFactor"
+
+    UESpeedTarget:
+      type: object
+      properties:
+        targetName:
+          type: string
+          enum:
+            - UESpeed
+        targetCondition:
+          type: string
+          enum:
+            - Is_less_than
+        targetValueRange:
+          type: array
+          items:
+            $ref: "sliceNrm.yaml#/components/schemas/UESpeed"
+
    #-------Definition of the concrete ExpectationTarget  dataType----------#  
    
    #-------Definition of the concrete ObjectTarget dataType----------------#  
@@ -366,8 +499,119 @@ components:
               - UTRAN
               - EUTRAN
               - NR
+    EdgeIdenfiticationIdContext:
+      type: object
+      properties:
+        contextAttribute:
+          type: string
+          enum:
+            - EdgeIdentificationId
+        contextCondition:
+          type: string
+          enum:
+            - Is_equal_than
+        contextValueRange:
+          type: array
+          items:
+            $ref: "edgeNrm.yaml#/components/schemas/EDNidentifier"
+    EdgeIdenfiticationLocContext:
+      type: object
+      properties:
+        contextAttribute:
+          type: string
+          enum:
+            - EdgeIdentificationLoc
+        contextCondition:
+          type: string
+          enum:
+            - Is_equal_than
+        contextValueRange:
+          type: array
+          items:
+            $ref: "edgeNrm.yaml#/components/schemas/GeoLoc"
+    CoverageAreaTAContext:
+      type: object
+      properties:
+        contextAttribute:
+          type: string
+          enum:
+            - CoverageAreaTA
+        contextCondition:
+          type: string
+          enum:
+            - Is_within_the_range
+        contextValueRange:
+          type: array
+          items:
+            $ref: "edgeNrm.yaml#/components/schemas/CoverageAreaTAList"
+
+   
    #-------Definition of the concrete ObjectTarget dataType----------------#
    
+   #-------Definition of the concrete ExpectionContext dataType----------------#
+    ServiceStartTimeContext:
+      type: object
+      properties:
+        contextAttribute:
+          type: string
+          enum:
+            - ServiceStartTime
+        contextCondition:
+          type: string
+          enum:
+            - Is_equal_than
+        contextValueRange:
+          type: array
+          items:
+            $ref: "#/components/schemas/StartTimeStamp"
+    ServiceEndTimeContext:
+      type: object
+      properties:
+        contextAttribute:
+          type: string
+          enum:
+            - ServiceEndTime
+        contextCondition:
+          type: string
+          enum:
+            - Is_equal_than
+        contextValueRange:
+          type: array
+          items:
+            $ref: "#/components/schemas/EndTimeStamp"
+    
+    UEMobilityLevelContext:
+      type: object
+      properties:
+        contextAttribute:
+          type: string
+          enum:
+            - UEMobilityLevel
+        contextCondition:
+          type: string
+          enum:
+            - Is_within_the_range
+        contextValueRange:
+          type: array
+          items:
+             $ref: "sliceNrm.yaml#/components/schemas/UEMobilityLevel"
+    ResourceSharingLevelContext:
+      type: object
+      properties:
+        contextAttribute:
+          type: string
+          enum:
+            - ResourceSharingLevel
+        contextCondition:
+          type: string
+          enum:
+            - Is_within_the_range
+        contextValueRange:
+          type: array
+          items:
+            $ref: "sliceNrm.yaml#/components/schemas/ResourceSharingLevel"
+   #-------Definition of the concrete ExpectionContext dataType----------------#
+
    #------Definition of JSON arrays for name-contained IOCs ---------------#
                                 
     Intent-Multiple:
