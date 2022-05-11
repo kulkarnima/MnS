@@ -145,7 +145,7 @@ components:
                       type: string
                     eASRequirementsRef:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'
-                    eASFunctionRef:
+                    eESFunctionRef:
                       $ref: 'comDefs.yaml#/components/schemas/DnList'
                     eASAddress:
                       type: string
