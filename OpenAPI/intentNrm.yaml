@@ -515,6 +515,8 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/EdnIdentifier"
+    EdnIdentifier:
+      type: string
     EdgeIdenfiticationLocContext:
       type: object
       properties:
