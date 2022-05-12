@@ -74,23 +74,14 @@ components:
           type: integer
         swImageRef:
           type: string
-    EASRegistrationInfo:
+    RegistrationInfo:
       type: object
       properties:
-        eASregistrationExpiry:
+        registrationExpiry:
           type: string
-        eASregistrationID:
+        registrationID:
           type: string
-        eASsecCredential:
-          type: string
-    EESRegistrationInfo:
-      type: object
-      properties:
-        eESregistrationExpiry:
-          type: string
-        eESregistrationID:
-          type: string
-        eESsecCredential:
+        secCredential:
           type: string
 
 #-------- Definition of concrete IOCs --------------------------------------------
@@ -149,8 +140,8 @@ components:
                       $ref: 'comDefs.yaml#/components/schemas/DnList'
                     eASAddress:
                       type: string
-                    eASRegistrationInfo:
-                      $ref: '#/components/schemas/EASRegistrationInfo'  
+                    registrationInfo:
+                      $ref: '#/components/schemas/RegistrationInfo'  
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
     EESFunction-Single:
       allOf:
@@ -174,8 +165,8 @@ components:
                       type: boolean
                     eASFunctionRef:
                       $ref: 'comDefs.yaml#/components/schemas/DnList'  
-                    eESRegistrationInfo:
-                      $ref: '#/components/schemas/EESRegistrationInfo'  
+                    registrationInfo:
+                      $ref: '#/components/schemas/RegistrationInfo'  
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
     ECSFunction-Single:
