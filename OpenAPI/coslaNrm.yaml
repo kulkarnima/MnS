@@ -71,14 +71,11 @@ components:
       type: array
       items:
          $ref: '#/components/schemas/AssuranceTarget'
-
-    AttributeName:
-      type: string
-      
+     
     AttributeNameList:
       type: array
       items:
-         $ref: '#/components/schemas/AttributeName'
+         type: string
           
     ACCLDisallowedAttribute:
       type: object
