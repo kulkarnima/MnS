@@ -547,7 +547,9 @@ components:
           type: array
           items:
             $ref: "sliceNrm.yaml#/components/schemas/CoverageAreaTAList"
-
+    CoverageAreaTAList:
+          type: integer
+   
    
    #-------Definition of the concrete ObjectTarget dataType----------------#
    
