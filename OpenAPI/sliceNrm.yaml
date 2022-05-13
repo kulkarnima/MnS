@@ -688,9 +688,9 @@ components:
                       $ref: '#/components/schemas/SliceProfile'
                     processMonitor:
                       $ref: 'genericNrm.yaml#/components/schemas/ProcessMonitor'
-                    networkSliceRef:
+                    networkSliceRefOut:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'
-                    networkSliceSubnetRef:
+                    networkSliceSubnetRefOut:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'
 
     DeallocateJob-Single:
@@ -708,6 +708,11 @@ components:
                       type: string
                     processMonitor:
                       $ref: 'genericNrm.yaml#/components/schemas/ProcessMonitor'
+                    networkSliceRef:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                    networkSliceSubnetRef:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+
 
     ModifyJob-Single:
       allOf:
@@ -724,6 +729,11 @@ components:
                       $ref: '#/components/schemas/SliceProfile'
                     processMonitor:
                       $ref: 'genericNrm.yaml#/components/schemas/ProcessMonitor'
+                    networkSliceRef:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                    networkSliceSubnetRef:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+
 
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
     SubNetwork-Multiple:
