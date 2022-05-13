@@ -582,6 +582,20 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/SliceProfile'
+    NetworkSliceSubnetCapabilities:
+      type: object
+      properties:
+          dLlatency: 
+            type: integer
+          uLlatency:
+            $ref: integer
+          dLThptPerSliceSubnet:
+            $ref: '#/components/schemas/XLThpt'
+          uLThptPerSliceSubnet:
+            $ref: '#/components/schemas/XLThpt'
+          coverageAreaTAIList:
+            type: integer
+
 
 #------------ Definition of concrete IOCs ----------------------------------------
     SubNetwork-Single:
@@ -603,6 +617,9 @@ components:
               $ref: '#/components/schemas/NetworkSliceSubnet-Multiple'
             EP_Transport:
               $ref: '#/components/schemas/EP_Transport-Multiple'
+            NetworkSliceSubnetProviderCapabilities:
+              $ref: '#/components/schemas/NetworkSliceSubnetProviderCapabilities-Multiple'
+
 
     NetworkSlice-Single:
       allOf:
@@ -672,6 +689,18 @@ components:
                   type: string 
                 epApplicationRefs:
                   $ref: 'comDefs.yaml#/components/schemas/DnList'
+    
+    NetworkSliceSubnetProviderCapabilities-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                avaliableCapabilities:
+                  $ref: '#/components/schemas/NetworkSliceSubnetCapabilities'
+
 
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
     SubNetwork-Multiple:
@@ -693,7 +722,12 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/EP_Transport-Single'
-
+    
+    NetworkSliceSubnetProviderCapabilities-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/NetworkSliceSubnetProviderCapabilities-Single'
+        
 #------------ Definitions in TS 28.541 for TS 28.532 -----------------------------
 
     resources-sliceNrm:
@@ -702,3 +736,4 @@ components:
        - $ref: '#/components/schemas/NetworkSlice-Single'
        - $ref: '#/components/schemas/NetworkSliceSubnet-Single'
        - $ref: '#/components/schemas/EP_Transport-Single'
+       - $ref: '#/components/schemas/NetworkSliceSubnetProviderCapabilities-Single'
