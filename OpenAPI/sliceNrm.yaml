@@ -323,8 +323,6 @@ components:
           type: integer
         resourceSharingLevel:
           $ref: '#/components/schemas/SharingLevel'
-        provisioningRuleList:
-          $ref: '#/components/schemas/ProvisioningRuleList'
         dLMaxPktSize:
           type: integer
         uLMaxPktSize:
@@ -362,8 +360,6 @@ components:
           $ref: '#/components/schemas/MobilityLevel'
         resourceSharingLevel:
           $ref: '#/components/schemas/SharingLevel'
-        provisioningRuleList:
-          $ref: '#/components/schemas/ProvisioningRuleList'
         maxNumberofUEs:
           type: integer
         activityFactor:
@@ -608,11 +604,6 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/SliceProfile'
-
-    ProvisioningRuleList:
-      type: array
-      items:
-        $ref: '#/components/schemas/ProvisioningRule'
 
 #------------ Definition of concrete IOCs ----------------------------------------
     SubNetwork-Single:
