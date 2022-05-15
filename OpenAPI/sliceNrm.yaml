@@ -53,6 +53,11 @@ components:
       enum:
         - SHARED
         - NON-SHARED
+    NetworkSliceSharingIndicator:
+      type: string
+      enum:
+        - SHARED
+        - NON-SHARED
 
     ServiceType:
       type: string
@@ -295,22 +300,6 @@ components:
           items:
             $ref: '#/components/schemas/SecFunc'
 
-    ProvisioningRule:
-      type: object
-      properties:
-        ruleType:
-          type: string
-          enum: 
-              - INSTANCE_SHARING_RULE
-        sharingPolicy:
-          type: string
-          enum: 
-              - SHARED
-              - NOT_SHARED
-              - SELECTIVELY_SHARED
-        sharingGroup:
-          type: string
-
     CNSliceSubnetProfile:
       type: object
       properties:
@@ -476,6 +465,25 @@ components:
           $ref: '#/components/schemas/DeterministicComm'
         survivalTime:
           type: string
+    ProvisioningRule:
+      type: object
+      properties:
+        ruleType:
+          type: string
+          enum: 
+              - INSTANCE_SHARING_RULE
+        sharingPolicy:
+          type: string
+          enum: 
+              - SHARED
+              - NOT_SHARED
+              - SELECTIVELY_SHARED
+        sharingGroup:
+          type: string
+    ProvisioningRuleList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ProvisioningRule'
 
     ServiceProfile:
       type: object
@@ -494,8 +502,6 @@ components:
             $ref: '#/components/schemas/MobilityLevel'
           sst:
             $ref: 'nrNrm.yaml#/components/schemas/Sst'
-          provisioningRuleList:
-            $ref: '#/components/schemas/ProvisioningRuleList'
           availability:
             type: number
           delayTolerance:
@@ -558,6 +564,9 @@ components:
             $ref: '#/components/schemas/NSSAASupport'
           n6Protection:
             $ref: '#/components/schemas/N6Protection'
+          provisioningRuleList:
+            $ref: '#/components/schemas/ProvisioningRuleList'
+
     SliceProfile:
       type: object
       properties:
@@ -571,7 +580,8 @@ components:
             $ref: '#/components/schemas/RANSliceSubnetProfile'
           topSliceSubnetProfile:
             $ref: '#/components/schemas/TopSliceSubnetProfile'
-
+          provisioningRuleList:
+            $ref: '#/components/schemas/ProvisioningRuleList'
     IpAddress:
       oneOf:
         - $ref: 'comDefs.yaml#/components/schemas/Ipv4Addr'
