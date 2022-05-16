@@ -582,19 +582,7 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/SliceProfile'
-    NetworkSliceSubnetCapabilities:
-      type: object
-      properties:
-          dLlatency: 
-            type: integer
-          uLlatency:
-            $ref: integer
-          dLThptPerSliceSubnet:
-            $ref: '#/components/schemas/XLThpt'
-          uLThptPerSliceSubnet:
-            $ref: '#/components/schemas/XLThpt'
-          coverageAreaTAIList:
-            type: integer
+
 
 
 #------------ Definition of concrete IOCs ----------------------------------------
@@ -698,8 +686,16 @@ components:
             attributes:
               type: object
               properties:
-                avaliableCapabilities:
-                  $ref: '#/components/schemas/NetworkSliceSubnetCapabilities'
+                dLlatency: 
+                  type: integer
+                uLlatency:
+                  $ref: integer
+                dLThptPerSliceSubnet:
+                  $ref: '#/components/schemas/XLThpt'
+                uLThptPerSliceSubnet:
+                  $ref: '#/components/schemas/XLThpt'
+                coverageAreaTAIList:
+                  type: integer
 
 
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
