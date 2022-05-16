@@ -689,13 +689,15 @@ components:
                 dLlatency: 
                   type: integer
                 uLlatency:
-                  $ref: integer
+                  type: integer
                 dLThptPerSliceSubnet:
                   $ref: '#/components/schemas/XLThpt'
                 uLThptPerSliceSubnet:
                   $ref: '#/components/schemas/XLThpt'
                 coverageAreaTAIList:
-                  type: integer
+                  type: array
+                  items:
+                    type: string
 
 
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
