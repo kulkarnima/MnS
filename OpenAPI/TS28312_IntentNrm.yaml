@@ -56,7 +56,7 @@ components:
             - Service_Support  #value for Service Support Expectation--#
             - TBD    #-This will be added based on defined scenario specfic intent expectation-#
         objectInstance:
-          $ref: "TS28623_comDefs.yaml#/components/schemas/Dn"
+          $ref: "TS28623_ComDefs.yaml#/components/schemas/Dn"
         objectContexts:
           type: array
           items:
