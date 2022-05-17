@@ -1,7 +1,13 @@
 openapi: 3.0.1
 info:
   title: Intent NRM
-  description: OAS 3.0.1 specification of the Intent NRM
+  description: >-
+    OAS 3.0.1 definition of the Intent NRM
+    © 2022, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    All rights reserved.
+externalDocs:
+  description: 3GPP TS 28.312; Intent driven management services for mobile networks
+  url: http://www.3gpp.org/ftp/Specs/archive/28_series/28.312/
   version: 17.0.0
 paths: {}
 components:
