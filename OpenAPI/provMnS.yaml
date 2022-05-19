@@ -1,10 +1,10 @@
 openapi: 3.0.1
 info:
   title: Provisioning MnS
-  version: 16.5.0
+  version: 16.11.0
   description: >-
     OAS 3.0.1 definition of the Provisioning MnS
-    © 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    © 2022, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 externalDocs:
   description: 3GPP TS 28.532; Generic management services
@@ -406,12 +406,18 @@ components:
           properties:
             id:
               type: string
+            objectClass:
+              type: string
+            objectInstance:
+              $ref: 'comDefs.yaml#/components/schemas/Dn'
             attributes:
               type: object
           additionalProperties:
             type: array
             items:
               type: object
+          required:
+            - id
         - anyOf:
             - $ref: 'genericNrm.yaml#/components/schemas/resources-genericNrm'
             - $ref: 'nrNrm.yaml#/components/schemas/resources-nrNrm'
