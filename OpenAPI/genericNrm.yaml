@@ -322,7 +322,37 @@ components:
       oneOf:
         - $ref: 'comDefs.yaml#/components/schemas/Ipv4Addr'
         - $ref: 'comDefs.yaml#/components/schemas/Ipv6Addr'
-
+    ManagementData:
+      oneOf:
+      - type: array
+        items:
+          type: string
+          enum:
+            - COVERAGE
+            - CAPACITY
+            - ENERGY_EFFICIENCY
+            - MOBILITY
+            - ACCESSIBILITY
+      - type: array
+        items:
+          type: string
+    NodeFilter:
+      type: object
+      properties:
+        areaOfInterest:
+          $ref: 'comDefs.yaml#/components/schemas/AreaOfInterest'
+        networkDomain:
+          type: string
+          enum:
+            - CN
+            - RAN
+        cpUpType:
+          type: string
+          enum:
+            - CP
+            - UP
+        sst:
+          type: integer
 
 #-------- Definition of types used in Trace control NRM fragment------------------
                 
@@ -1312,6 +1342,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SupportedPerfMetricGroup'
+        supportedTraceMetrics:
+          type: array
+          items:
+            type: string
     ManagedElement-Attr:
       type: object
       properties:
@@ -1339,6 +1373,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SupportedPerfMetricGroup'
+        supportedTraceMetrics:
+          type: array
+          items:
+            type: string
 
     SubNetwork-ncO:
       type: object
@@ -1353,10 +1391,12 @@ components:
           $ref: '#/components/schemas/PerfMetricJob-Multiple'
         ThresholdMonitor:
           $ref: '#/components/schemas/ThresholdMonitor-Multiple'
-        NtfSubscriptionControl:
-          $ref: '#/components/schemas/NtfSubscriptionControl-Multiple'
         TraceJob:
           $ref: '#/components/schemas/TraceJob-Multiple'
+        ManagementDataCollection:
+          $ref: '#/components/schemas/ManagementDataCollection-Multiple'
+        NtfSubscriptionControl:
+          $ref: '#/components/schemas/NtfSubscriptionControl-Multiple'
         AlarmList:
           $ref: '#/components/schemas/AlarmList-Single'
         FileDownloadJob:
@@ -1374,10 +1414,10 @@ components:
           $ref: '#/components/schemas/PerfMetricJob-Multiple'
         ThresholdMonitor:
           $ref: '#/components/schemas/ThresholdMonitor-Multiple'
-        NtfSubscriptionControl:
-          $ref: '#/components/schemas/NtfSubscriptionControl-Multiple'
         TraceJob:
           $ref: '#/components/schemas/TraceJob-Multiple'
+        NtfSubscriptionControl:
+          $ref: '#/components/schemas/NtfSubscriptionControl-Multiple'
         AlarmList:
           $ref: '#/components/schemas/AlarmList-Single'
         FileDownloadJob:
@@ -1406,6 +1446,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SupportedPerfMetricGroup'
+        supportedTraceMetrics:
+          type: array
+          items:
+            type: string
     EP_RP-Attr:
       type: object
       properties:
@@ -1720,6 +1764,27 @@ components:
               $ref: '#/components/schemas/TraceJob-Attr'
             Files:
               $ref: '#/components/schemas/Files-Multiple'
+    ManagementDataCollection-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                managementData:
+                  $ref: '#/components/schemas/ManagementData'
+                targetNodeFilter:
+                  $ref: '#/components/schemas/NodeFilter'
+                collectionTimeWindow:
+                  $ref: 'comDefs.yaml#/components/schemas/TimeWindow'
+                reportingCtrl:
+                  type: string
+                dataScope:
+                  type: string
+                  enum:
+                    - SNSSAI
+                    - 5QI
     AlarmList-Single:
       allOf:
         - $ref: '#/components/schemas/Top'
@@ -1868,6 +1933,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/TraceJob-Single'
+    ManagementDataCollection-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/ManagementDataCollection-Single'
     NtfSubscriptionControl-Multiple:
       type: array
       items:
@@ -1905,7 +1974,8 @@ components:
        - $ref: '#/components/schemas/PerfMetricJob-Single'
        - $ref: '#/components/schemas/ThresholdMonitor-Single'
        - $ref: '#/components/schemas/TraceJob-Single'
-
+       - $ref: '#/components/schemas/ManagementDataCollection-Single'
+       
        - $ref: '#/components/schemas/NtfSubscriptionControl-Single'
        - $ref: '#/components/schemas/HeartbeatControl-Single'
 
