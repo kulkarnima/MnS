@@ -335,7 +335,7 @@ components:
         sliceSimultaneousUse:
           $ref: '#/components/schemas/SliceSimultaneousUse'
         reliability:
-          type: string
+          type: number
         energyEfficiency:
           type: number 
         dLDeterministicComm:
@@ -343,7 +343,7 @@ components:
         uLDeterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
         survivalTime:
-          type: string
+          type: number
         nssaaSupport:
           $ref: '#/components/schemas/NSSAASupport'
         n6Protection:
@@ -376,7 +376,7 @@ components:
         uESpeed:
           type: integer
         reliability:
-          type: string
+          type: number
         serviceType:
           $ref: '#/components/schemas/ServiceType'
         dLMaxPktSize:
@@ -396,7 +396,7 @@ components:
         termDensity:
           $ref: '#/components/schemas/TermDensity'
         survivalTime:
-          type: string
+          type: number
         synchronicity:
           $ref: '#/components/schemas/SynchronicityRANSubnet'
         dLDeterministicComm:
@@ -451,7 +451,7 @@ components:
         uESpeed:
           type: integer
         reliability:
-          type: string
+          type: number
         serviceType:
           $ref: '#/components/schemas/ServiceType'
         dLDeterministicComm:
@@ -459,7 +459,7 @@ components:
         uLDeterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
         survivalTime:
-          type: string
+          type: number
 
     ServiceProfile:
       type: object
@@ -527,9 +527,9 @@ components:
           jitter:
             type: integer
           survivalTime:
-            type: string
+            type: number
           reliability:
-            type: string
+            type: number
           maxDLDataVolume:
             type: string
           maxULDataVolume:
