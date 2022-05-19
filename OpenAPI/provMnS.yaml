@@ -156,6 +156,9 @@ paths:
                   application/json:
                     schema:
                       $ref: '#/components/schemas/NotifyMoiChanges'
+                  application/yang-data+json:
+                    schema:
+                      $ref: '#/components/schemas/NotifyMoiChanges'
               responses:
                 '204':
                   description: >-
@@ -381,9 +384,9 @@ components:
     Operation:
       type: string
       enum:
-        - CREATE
-        - DELETE
-        - REPLACE
+        - add
+        - remove
+        - replace
     ScopeType:
       type: string
       enum:
@@ -437,14 +440,16 @@ components:
           type: string
         sourceIndicator:
           $ref: '#/components/schemas/SourceIndicator'
+        op:
+          $ref: '#/components/schemas/Operation'
         path:
           $ref: 'comDefs.yaml#/components/schemas/Uri'
-        operation:
-          $ref: '#/components/schemas/Operation'
-        value:
-          oneOf:
-            - $ref: 'comDefs.yaml#/components/schemas/AttributeNameValuePairSet'
-            - $ref: 'comDefs.yaml#/components/schemas/AttributeValueChangeSet'
+        value: {}
+        oldValue: {}
+      required:
+        - notificationId
+        - op
+        - path
 
     NotifyMoiCreation:
       allOf:
