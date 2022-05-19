@@ -1621,28 +1621,28 @@ components:
             $ref: '#/components/schemas/MbsfnArea'
         measurementPeriodLte:
           $ref: '#/components/schemas/measurementPeriodLte-Type'
-        tjMDTMeasurementPeriodUMTS:
-          $ref: '#/components/schemas/tjMDTMeasurementPeriodUMTS-Type'
-        tjMDTMeasurementQuantity:
-          $ref: '#/components/schemas/tjMDTMeasurementQuantity-Type'
-        tjMDTM4ThresholdUmts:
-          $ref: '#/components/schemas/tjMDTM4ThresholdUmts-Type'
-        tjMDTPLMNList:
-          $ref: '#/components/schemas/tjMDTPLMNList-Type'
-        tjMDTPositioningMethod:
-          $ref: '#/components/schemas/tjMDTPositioningMethod-Type'
-        tjMDTReportAmount:
-          $ref: '#/components/schemas/tjMDTReportAmount-Type'
-        tjMDTReportingTrigger:
-          $ref: '#/components/schemas/tjMDTReportingTrigger-Type'
-        tjMDTReportInterval:
-          $ref: '#/components/schemas/tjMDTReportInterval-Type'
-        tjMDTReportType:
-          $ref: '#/components/schemas/tjMDTReportType-Type'
-        tjMDTSensorInformation:
-          $ref: '#/components/schemas/tjMDTSensorInformation-Type'
-        tjMDTTraceCollectionEntityID:
-          $ref: '#/components/schemas/tjMDTTraceCollectionEntityID-Type'
+        measurementPeriodUmts:
+          $ref: '#/components/schemas/measurementPeriodUmts-Type'
+        measurementQuantity:
+          $ref: '#/components/schemas/measurementQuantity-Type'
+        eventThresholdUphUmts:
+          $ref: '#/components/schemas/eventThresholdUphUmts-Type'
+        plmnList:
+          $ref: '#/components/schemas/plmnList-Type'
+        positioningMethod:
+          $ref: '#/components/schemas/positioningMethod-Type'
+        reportAmount:
+          $ref: '#/components/schemas/reportAmount-Type'
+        reportingTrigger:
+          $ref: '#/components/schemas/reportingTrigger-Type'
+        reportInterval:
+          $ref: '#/components/schemas/reportInterval-Type'
+        reportType:
+          $ref: '#/components/schemas/reportType-Type'
+        sensorInformation:
+          $ref: '#/components/schemas/sensorInformation-Type'
+        traceCollectionEntityId:
+          $ref: '#/components/schemas/traceCollectionEntityId-Type'
 
     ManagedFunction-ncO:
       type: object
