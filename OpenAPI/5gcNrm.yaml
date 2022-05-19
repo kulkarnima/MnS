@@ -213,7 +213,7 @@ components:
         allowedSNPNs:
           type: array
           items:
-            $ref: 'nrNrm.yaml#/components/schemas/SnpnInfo'
+            $ref: '#/components/schemas/SnpnInfo'
         allowedNfTypes:
           type: array
           items:
@@ -623,6 +623,26 @@ components:
       type: array
       items:
         $ref: 'nrNrm.yaml#/components/schemas/Snssai'
+    SnpnId:
+      type: object
+      properties:
+        mcc:
+          $ref: 'comDefs.yaml#/components/schemas/Mcc'
+        mnc:
+          $ref: 'comDefs.yaml#/components/schemas/Mnc'
+        nid:
+          type: string
+    SnpnInfo:
+      type: object
+      properties:
+        snpnId:
+          $ref: '#/components/schemas/SnpnId'
+        snssai:
+          $ref: 'nrNrm.yaml#/components/schemas/Snssai'
+    TaiList:
+      type: array
+      items:
+        $ref: 'nrNrm.yaml#/components/schemas/Tai' 
 
 #-------- Definition of concrete IOCs --------------------------------------------
 
@@ -731,11 +751,11 @@ components:
                     interPlmnFQDN:
                       type: string
                     taiList:
-                      $ref: 'nrNrm.yaml#/components/schemas/TaiList'
+                      $ref: '#/components/schemas/TaiList'
                     taiRangeList:
                       type: array
                       items:
-                        $ref: 'nrNrm.yaml#/components/schemas/TaiRange'
+                        $ref: '#/components/schemas/TaiRange'
                     weightFactor:
                       $ref: '#/components/schemas/WeightFactor'
                     snssaiList:
@@ -856,7 +876,7 @@ components:
                     taiRangeList:
                       type: array
                       items:
-                        $ref: 'nrNrm.yaml#/components/schemas/TaiRange'
+                        $ref: '#/components/schemas/TaiRange'
                     pwgFqdn:
                       type: string
                     pgwAddrList:
@@ -1309,7 +1329,7 @@ components:
                       type: boolean
                     taiList:
                       items:
-                        $ref: 'nrNrm.yaml#/components/schemas/TaiList'
+                        $ref: '#/components/schemas/TaiList'
                     taiRangeList:
                       type: array
                       items:
@@ -1340,7 +1360,7 @@ components:
                         $ref: '#/components/schemas/NsacfInfoSnssai'
                     taiList:
                       items:
-                        $ref: 'nrNrm.yaml#/components/schemas/TaiList'
+                        $ref: '#/components/schemas/TaiList'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
