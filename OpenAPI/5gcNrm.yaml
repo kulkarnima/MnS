@@ -611,14 +611,6 @@ components:
           type: string
         5GCNFRef:
           $ref: 'comDefs.yaml#/components/schemas/Dn'
-
-    UPFConnectionInfo:
-      type: object
-      properties:
-        uPFIpAddress:
-          type: string
-        uPFRef:
-          $ref: 'comDefs.yaml#/components/schemas/Dn'
     SnpnId:
       type: object
       properties:
@@ -639,6 +631,14 @@ components:
       type: array
       items:
         $ref: 'nrNrm.yaml#/components/schemas/Tai' 
+    UPFConnectionInfo:
+      type: object
+      properties:
+        uPFIpAddress:
+          type: string
+        uPFRef:
+          $ref: 'comDefs.yaml#/components/schemas/Dn'
+
 
 #-------- Definition of concrete IOCs --------------------------------------------
     SubNetwork-Single:
