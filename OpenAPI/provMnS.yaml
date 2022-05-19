@@ -406,12 +406,18 @@ components:
           properties:
             id:
               type: string
+            objectClass:
+              type: string
+            objectInstance:
+              $ref: 'comDefs.yaml#/components/schemas/Dn'
             attributes:
               type: object
           additionalProperties:
             type: array
             items:
               type: object
+          required:
+            - id
         - anyOf:
             - $ref: 'genericNrm.yaml#/components/schemas/resources-genericNrm'
             - $ref: 'nrNrm.yaml#/components/schemas/resources-nrNrm'
