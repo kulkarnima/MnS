@@ -55,6 +55,8 @@ components:
       properties:
         inferenceOutputName:
           type: string
+        performanceMetric:
+          type: string
         performanceScore:
           type: number
           format: float
