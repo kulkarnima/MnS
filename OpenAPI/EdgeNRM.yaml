@@ -26,7 +26,7 @@ components:
       properties:
         cellIdList:
           type: array
-          item: 
+          items: 
             type: integer
         trackingAreaIdList:
           $ref: 'nrNrm.yaml#/components/schemas/TaiList'
@@ -58,10 +58,10 @@ components:
       properties:
         affinityEAS:
           type: array
-          item: string
+          items: string
         antiAffinityEAS:
           type: array
-          item: string
+          items: string
     VirtualResource:
       type: object
       properties:
@@ -136,12 +136,12 @@ components:
                       type: string
                     eESAddress:
                       type: array
-                      item: string
+                      items: string
                     eASRequirementsRef:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'
                     eASAddress:
                       type: array
-                      item: string
+                      items: string
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
     EESFunction-Single:
       allOf:
@@ -161,7 +161,7 @@ components:
                         $ref: '#/components/schemas/ServingLocation'
                     eESAddress:
                       type: array
-                      item: string
+                      items: string
                     softwareImageInfo:
                       $ref: '#/components/schemas/SoftwareImageInfo'
                     serviceContinuitySupport:
