@@ -25,9 +25,11 @@ components:
       type: object
       properties:
         cellIdList:
-          type: integer
+          type: array
+          items: 
+            type: integer
         trackingAreaIdList:
-          $ref: 'nrNrm.yaml#/components/schemas/Tai'
+          $ref: 'nrNrm.yaml#/components/schemas/TaiList'
         servingPLMN:
           $ref: 'nrNrm.yaml#/components/schemas/PlmnId'
     GeoLoc:
@@ -55,9 +57,13 @@ components:
       type: object
       properties:
         affinityEAS:
-          type: string
+          type: array
+          items:
+            type: string
         antiAffinityEAS:
-          type: string
+          type: array
+          items: 
+            type: string
     VirtualResource:
       type: object
       properties:
@@ -65,6 +71,8 @@ components:
           type: integer
         virtualDisk:
           type: integer
+        virtualCPU:
+          type: string
     SoftwareImageInfo:
       type: object
       properties:
@@ -72,6 +80,10 @@ components:
           type: integer
         minimumRAM:
           type: integer
+        discFormat:
+          type: string
+        operatingSystem:
+          type: string      
         swImageRef:
           type: string
 
@@ -125,11 +137,15 @@ components:
                     eASIdentifier:
                       type: string
                     eESAddress:
-                      type: string
+                      type: array
+                      items:
+                        type: string
                     eASRequirementsRef:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'
                     eASAddress:
-                      type: string
+                      type: array
+                      items: 
+                        type: string
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
     EESFunction-Single:
       allOf:
@@ -144,9 +160,13 @@ components:
                     eESIdentifier:
                       type: string
                     eESServingLocation:
-                      $ref: '#/components/schemas/ServingLocation'
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/ServingLocation'
                     eESAddress:
-                      type: string
+                      type: array
+                      items:
+                        type: string
                     softwareImageInfo:
                       $ref: '#/components/schemas/SoftwareImageInfo'
                     serviceContinuitySupport:
@@ -172,7 +192,7 @@ components:
                     edgeDataNetworkRef:
                       $ref: 'comDefs.yaml#/components/schemas/DnList'
                     eESFuncitonRef:
-                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                      $ref: 'comDefs.yaml#/components/schemas/DnList'
                     softwareImageInfo:
                       $ref: '#/components/schemas/SoftwareImageInfo'
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
