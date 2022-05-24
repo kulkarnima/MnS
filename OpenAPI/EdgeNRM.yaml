@@ -58,10 +58,12 @@ components:
       properties:
         affinityEAS:
           type: array
-          items: string
+          items:
+            type: string
         antiAffinityEAS:
           type: array
-          items: string
+          items: 
+            type: string
     VirtualResource:
       type: object
       properties:
@@ -136,12 +138,14 @@ components:
                       type: string
                     eESAddress:
                       type: array
-                      items: string
+                      items:
+                        type: string
                     eASRequirementsRef:
                       $ref: 'comDefs.yaml#/components/schemas/Dn'
                     eASAddress:
                       type: array
-                      items: string
+                      items: 
+                        type: string
         - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
     EESFunction-Single:
       allOf:
@@ -161,7 +165,8 @@ components:
                         $ref: '#/components/schemas/ServingLocation'
                     eESAddress:
                       type: array
-                      items: string
+                      items:
+                        type: string
                     softwareImageInfo:
                       $ref: '#/components/schemas/SoftwareImageInfo'
                     serviceContinuitySupport:
