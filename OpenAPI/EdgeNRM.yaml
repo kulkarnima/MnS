@@ -26,7 +26,8 @@ components:
       properties:
         cellIdList:
           type: array
-          item: integer
+          item: 
+            type: integer
         trackingAreaIdList:
           $ref: 'nrNrm.yaml#/components/schemas/TaiList'
         servingPLMN:
