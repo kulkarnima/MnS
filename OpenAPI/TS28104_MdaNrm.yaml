@@ -43,13 +43,13 @@ components:
         filterValue:
           type: string
         threshold:
-          $ref: 'genericNrm.yaml#/components/schemas/ThresholdInfo'
+          $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ThresholdInfo'
         analyticsPeriod:
           type: array
           items:
-            $ref: 'comDefs.yaml#/components/schemas/DateTime'
+            $ref: 'TS28623_ComDefs.yaml#/components/schemas/DateTime'
         timeOut:
-          $ref: 'comDefs.yaml#/components/schemas/DateTime'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/DateTime'
 
     ReportingMethod:
       type: string
@@ -59,14 +59,14 @@ components:
         - NOTIFICATION
 
     ReportingTarget:
-      $ref: 'comDefs.yaml#/components/schemas/Uri'
+      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Uri'
 
     AnalyticsScope:
       oneOf:
         - type: object
           properties:
             managedEntitiesScope:
-              $ref: 'comDefs.yaml#/components/schemas/DnList'
+              $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
         - type: object
           properties:
             areaScope:
@@ -92,9 +92,9 @@ components:
       type: object
       properties:
         latitude:
-          $ref: 'comDefs.yaml#/components/schemas/Latitude'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Latitude'
         longitude:
-          $ref: 'comDefs.yaml#/components/schemas/Longitude'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Longitude'
 
 
 #-------- Definition of abstract IOCs --------------------------------------------
@@ -105,12 +105,12 @@ components:
 
     SubNetwork-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
-              $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-Attr'
-        - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-ncO'
+              $ref: 'TS28623_GenericNrm.yaml#/components/schemas/SubNetwork-Attr'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/SubNetwork-ncO'
         - type: object
           properties:
             SubNetwork:
@@ -125,12 +125,12 @@ components:
 
     ManagedElement-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
-              $ref: 'genericNrm.yaml#/components/schemas/ManagedElement-Attr'
-        - $ref: 'genericNrm.yaml#/components/schemas/ManagedElement-ncO'
+              $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedElement-Attr'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedElement-ncO'
         - type: object
           properties:
             MDAFunction:
@@ -138,17 +138,17 @@ components:
 
     MDAFunction-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-Attr'
+                - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
                     supportedMDACapabilities:
                       $ref: '#/components/schemas/MDATypes'
-        - $ref: 'genericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
             MDARequest:
@@ -156,7 +156,7 @@ components:
 
     MDARequest-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -172,12 +172,12 @@ components:
                     analyticsScope:
                       $ref: '#/components/schemas/AnalyticsScope'
                     startTime:
-                      $ref: 'comDefs.yaml#/components/schemas/DateTime'
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/DateTime'
                     stopTime:
-                      $ref: 'comDefs.yaml#/components/schemas/DateTime'
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/DateTime'
 
     MDAReport-Single:
-      $ref: 'mdaReport.yaml#/components/schemas/MDAReport'
+      $ref: 'TS28104_MdaReport.yaml#/components/schemas/MDAReport'
 
 
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
