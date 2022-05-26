@@ -752,7 +752,7 @@ components:
                     - $ref: '#/components/schemas/SliceProfile'
                     - $ref: '#/components/schemas/ServiceProfile'
                 resourceReservation:
-                  $ref: '#/components/schemas/ResourceReservationIndicator'
+                  $ref: '#/components/schemas/ResourceReservation'
                 requestedReservationExpiration:
                   $ref: '#/components/schemas/RequestedReservationExpiration'
                 processMonitor:
