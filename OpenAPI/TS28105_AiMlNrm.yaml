@@ -173,7 +173,7 @@ components:
                     requestStatus:
                       $ref: '#/components/schemas/RequestStatus'
                     expectedRuntimeContext:
-                      $ref: 'comDefs.yaml#/components/schemas/DateTime'
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/DateTime'
                     performanceRequirements:
                       $ref: '#/components/schemas/PerformanceRequirements'
                     cancelRequest:
