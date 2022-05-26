@@ -573,6 +573,17 @@ components:
 
 #-------- Definition of concrete IOCs --------------------------------------------
 
+    MnS:
+      oneOf:
+        - type: object
+          properties:
+            SubNetwork:
+              $ref: '#/components/schemas/SubNetwork-Multiple'
+        - type: object
+          properties:
+            ManagedElement:
+              $ref: '#/components/schemas/ManagedElement-Multiple'
+
     SubNetwork-Single:
       allOf:
         - $ref: 'genericNrm.yaml#/components/schemas/Top'
@@ -1819,6 +1830,8 @@ components:
 
     resources-nrNrm:
       oneOf:
+        - $ref: '#/components/schemas/MnS'
+
         - $ref: '#/components/schemas/SubNetwork-Single'
         - $ref: '#/components/schemas/ManagedElement-Single'
 
