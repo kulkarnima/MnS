@@ -22,7 +22,7 @@ module _3gpp-5gc-nrm-FiveQiDscpMappingSet {
         range 0..255 ;
       }
       min-elements 1;
-      description " Identifies the 5QI values that are mapped to a same DSCP, as specified in TS 28.541.";
+      description " Identifies the 5QI values that are mapped to a same DSCP";
      }
      
     leaf dscp {

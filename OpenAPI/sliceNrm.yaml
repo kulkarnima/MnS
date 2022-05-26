@@ -307,9 +307,9 @@ components:
         maxNumberofUEs:
           type: integer
         dLLatency:
-          type: integer
+          type: number
         uLLatency:
-          type: integer
+          type: number
         dLThptPerSliceSubnet:
           $ref: '#/components/schemas/XLThpt'
         dLThptPerUE:
@@ -335,7 +335,7 @@ components:
         sliceSimultaneousUse:
           $ref: '#/components/schemas/SliceSimultaneousUse'
         reliability:
-          type: string
+          type: number
         energyEfficiency:
           type: number 
         dLDeterministicComm:
@@ -343,7 +343,7 @@ components:
         uLDeterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
         survivalTime:
-          type: string
+          type: number
         nssaaSupport:
           $ref: '#/components/schemas/NSSAASupport'
         n6Protection:
@@ -354,9 +354,9 @@ components:
         coverageAreaTAList:
           type: integer
         dLLatency:
-          type: integer
+          type: number
         uLLatency:
-          type: integer
+          type: number
         uEMobilityLevel:
           $ref: '#/components/schemas/MobilityLevel'
         resourceSharingLevel:
@@ -376,7 +376,7 @@ components:
         uESpeed:
           type: integer
         reliability:
-          type: string
+          type: number
         serviceType:
           $ref: '#/components/schemas/ServiceType'
         dLMaxPktSize:
@@ -396,7 +396,7 @@ components:
         termDensity:
           $ref: '#/components/schemas/TermDensity'
         survivalTime:
-          type: string
+          type: number
         synchronicity:
           $ref: '#/components/schemas/SynchronicityRANSubnet'
         dLDeterministicComm:
@@ -451,7 +451,7 @@ components:
         uESpeed:
           type: integer
         reliability:
-          type: string
+          type: number
         serviceType:
           $ref: '#/components/schemas/ServiceType'
         dLDeterministicComm:
@@ -459,7 +459,7 @@ components:
         uLDeterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
         survivalTime:
-          type: string
+          type: number
 
     ServiceProfile:
       type: object
@@ -527,9 +527,9 @@ components:
           jitter:
             type: integer
           survivalTime:
-            type: string
+            type: number
           reliability:
-            type: string
+            type: number
           maxDLDataVolume:
             type: string
           maxULDataVolume:
@@ -623,6 +623,8 @@ components:
       type: string
 
 
+
+
 #------------ Definition of concrete IOCs ----------------------------------------
     SubNetwork-Single:
       allOf:
@@ -645,6 +647,8 @@ components:
               $ref: '#/components/schemas/EP_Transport-Multiple'
             FeasibilityCheckJob:
               $ref: '#/components/schemas/FeasibilityCheckJob-Multiple'
+            NetworkSliceSubnetProviderCapabilities:
+              $ref: '#/components/schemas/NetworkSliceSubnetProviderCapabilities-Multiple'
 
     NetworkSlice-Single:
       allOf:
@@ -743,7 +747,28 @@ components:
                 reservationExpiration:
                   $ref: '#/components/schemas/ReservationExpiration'               
                 recommendedRequirements:
-                  $ref: '#/components/schemas/RecommendedRequirements'
+                  $ref: '#/components/schemas/RecommendedRequirements'  
+    NetworkSliceSubnetProviderCapabilities-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                dLlatency: 
+                  type: integer
+                uLlatency:
+                  type: integer
+                dLThptPerSliceSubnet:
+                  $ref: '#/components/schemas/XLThpt'
+                uLThptPerSliceSubnet:
+                  $ref: '#/components/schemas/XLThpt'
+                coverageAreaTAIList:
+                  type: array
+                  items:
+                    type: string
+
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
     SubNetwork-Multiple:
       type: array
@@ -768,6 +793,11 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/FeasibilityCheckJob-Single'   
+    
+    NetworkSliceSubnetProviderCapabilities-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/NetworkSliceSubnetProviderCapabilities-Single'
 
         
 #------------ Definitions in TS 28.541 for TS 28.532 -----------------------------
@@ -779,3 +809,4 @@ components:
        - $ref: '#/components/schemas/NetworkSliceSubnet-Single'
        - $ref: '#/components/schemas/EP_Transport-Single'
        - $ref: '#/components/schemas/FeasibilityCheckJob-Single'
+       - $ref: '#/components/schemas/NetworkSliceSubnetProviderCapabilities-Single'

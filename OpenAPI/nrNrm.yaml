@@ -43,10 +43,6 @@ components:
           $ref: '#/components/schemas/Sst'
         sd:
           type: string
-    SnssaiList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Snssai'
 
     Mnc:
       type: string
@@ -73,22 +69,6 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/PlmnInfo'
-    SnpnId:
-      type: object
-      properties:
-        mcc:
-          $ref: 'comDefs.yaml#/components/schemas/Mcc'
-        mnc:
-          $ref: '#/components/schemas/Mnc'
-        nid:
-          type: string
-    SnpnInfo:
-      type: object
-      properties:
-        snpnId:
-          $ref: '#/components/schemas/SnpnId'
-        snssai:
-          $ref: '#/components/schemas/Snssai'
     cagId:
       type: string
     nid:
@@ -140,25 +120,6 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Tai' 
-    NrtacRange: 
-      type: object
-      properties:
-        nRTACstart:
-          type: string
-        nRTACend:
-          type: string
-        nRTACpattern:
-          type: string
-    TaiRange:
-      type: object
-      properties:
-        plmnId:
-          $ref: '#/components/schemas/PlmnId'
-        nRTACRangeList:
-          type: array
-          items: 
-             $ref: '#/components/schemas/NrtacRange'
-
     BackhaulAddress:
       type: object
       properties:
@@ -311,11 +272,7 @@ components:
         - INITIAL
         - OTHER
         - SUL
-    QuotaType:
-      type: string
-      enum:
-        - STRICT
-        - FLOAT
+
     IsESCoveredBy:
       type: string
       enum:
@@ -775,6 +732,8 @@ components:
               $ref: '#/components/schemas/EP_F1U-Multiple'
             DRACHOptimizationFunction:
               $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
+            OperatorDU:
+              $ref: '#/components/schemas/OperatorDu-Multiple'   
 
     OperatorDu-Single:
       allOf:
@@ -1026,6 +985,8 @@ components:
               $ref: '#/components/schemas/CPCIConfigurationFunction-Single'
             DRACHOptimizationFunction:
               $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
+            NrOperatorCellDu:
+              $ref: '#/components/schemas/NrOperatorCellDu-Multiple'
 
     NrOperatorCellDu-Single:
       allOf:
@@ -1392,11 +1353,11 @@ components:
                     esNotAllowedTimePeriod:
                       $ref: "#/components/schemas/EsNotAllowedTimePeriod"
                     interRatEsActivationOriginalCellParameters:
-                      $ref: "#/components/schemas/IntraRatEsActivationOriginalCellLoadParameters"
+                      $ref: "#/components/schemas/InterRatEsActivationOriginalCellParameters"
                     interRatEsActivationCandidateCellParameters:
-                      $ref: "#/components/schemas/IntraRatEsActivationOriginalCellLoadParameters"
+                      $ref: "#/components/schemas/InterRatEsActivationCandidateCellParameters"
                     interRatEsDeactivationCandidateCellParameters:
-                      $ref: "#/components/schemas/IntraRatEsActivationOriginalCellLoadParameters"
+                      $ref: "#/components/schemas/InterRatEsDeactivationCandidateCellParameters"
                     isProbingCapable:
                       type: string
                       enum:

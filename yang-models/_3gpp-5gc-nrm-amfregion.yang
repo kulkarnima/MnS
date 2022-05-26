@@ -13,11 +13,12 @@ module _3gpp-5gc-nrm-amfregion {
   contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
   description "This IOC represents the AMF Region which consists one or
     multiple AMF Sets.";
+  reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
-  revision 2020-11-05 { reference CR-0412 ; }
+  revision 2022-01-07 { reference CR-0643; }
+  revision 2020-11-06 { reference CR-0412 ; }
   revision 2019-10-28 { reference S5-193518 ; }
-  revision 2019-06-11 {
- reference "Ericsson refactoring."; }
+  revision 2019-06-11 { reference ""; }
   
   grouping AMFRegionGrp {
     description "Represents the AMFRegion IOC";
