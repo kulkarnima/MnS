@@ -71,13 +71,25 @@ components:
       type: array
       items:
          $ref: '#/components/schemas/AssuranceTarget'
+     
+    AttributeNameList:
+      type: array
+      items:
+         type: string
+          
+    ACCLDisallowedAttributes:
+      type: object
+      properties:
+        managedEntityIdentifier:
+          $ref: 'comDefs.yaml#/components/schemas/Dn'
+        attributeNameList:
+          $ref: '#/components/schemas/AttributeNameList'
 
     AssuranceScope:
       type: object
       properties:
         taiList:
           $ref: 'nrNrm.yaml#/components/schemas/TaiList'
-
 
 #-------- Definition of concrete IOCs --------------------------------------------
 
@@ -123,6 +135,8 @@ components:
                       $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
                     controlLoopLifeCyclePhase:
                       $ref: '#/components/schemas/ControlLoopLifeCyclePhase'
+                    aCCLDisallowedList:
+                      $ref: '#/components/schemas/ACCLDisallowedAttributes'
             AssuranceGoal:
               $ref: '#/components/schemas/AssuranceGoal-Multiple'
 
