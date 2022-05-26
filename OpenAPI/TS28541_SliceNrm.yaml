@@ -733,7 +733,7 @@ components:
     
     NetworkSliceSubnetProviderCapabilities-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -753,7 +753,7 @@ components:
                     type: string
     FeasibilityCheckJob-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'     
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'     
         - type: object
           properties: 
             attributes:
@@ -768,7 +768,7 @@ components:
                 requestedReservationExpiration:
                   $ref: '#/components/schemas/RequestedReservationExpiration'
                 processMonitor:
-                  $ref: 'genericNrm.yaml#/components/schemas/ProcessMonitor'
+                  $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ProcessMonitor'
                 feasibilityResult:
                   $ref: '#/components/schemas/FeasibilityResult'
                 inFeasibleReason:

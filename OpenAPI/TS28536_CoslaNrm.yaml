@@ -81,7 +81,7 @@ components:
       type: object
       properties:
         managedEntityIdentifier:
-          $ref: 'comDefs.yaml#/components/schemas/Dn'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
         attributeNameList:
           $ref: '#/components/schemas/AttributeNameList'
 
@@ -89,7 +89,7 @@ components:
       type: object
       properties:
         taiList:
-          $ref: 'nrNrm.yaml#/components/schemas/TaiList'
+          $ref: 'TS28541_NrNrm.yaml#/components/schemas/TaiList'
 
 #-------- Definition of concrete IOCs --------------------------------------------
     MnS:

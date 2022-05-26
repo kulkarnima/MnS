@@ -412,7 +412,7 @@ components:
             objectClass:
               type: string
             objectInstance:
-              $ref: 'comDefs.yaml#/components/schemas/Dn'
+              $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
             attributes:
               type: object
           additionalProperties:

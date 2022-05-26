@@ -622,14 +622,14 @@ components:
     SnssaiList:
       type: array
       items:
-        $ref: 'nrNrm.yaml#/components/schemas/Snssai'
+        $ref: 'TS28541_NrNrm.yaml#/components/schemas/Snssai'
     SnpnId:
       type: object
       properties:
         mcc:
-          $ref: 'comDefs.yaml#/components/schemas/Mcc'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Mcc'
         mnc:
-          $ref: 'comDefs.yaml#/components/schemas/Mnc'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Mnc'
         nid:
           type: string
     SnpnInfo:
@@ -638,11 +638,11 @@ components:
         snpnId:
           $ref: '#/components/schemas/SnpnId'
         snssai:
-          $ref: 'nrNrm.yaml#/components/schemas/Snssai'
+          $ref: 'TS28541_NrNrm.yaml#/components/schemas/Snssai'
     TaiList:
       type: array
       items:
-        $ref: 'nrNrm.yaml#/components/schemas/Tai' 
+        $ref: 'TS28541_NrNrm.yaml#/components/schemas/Tai' 
 
 #-------- Definition of concrete IOCs --------------------------------------------
     ProvMnS:

@@ -354,7 +354,7 @@ components:
           enum:
             - Is_greater_than
         targetValueRange:
-          $ref: "sliceNrm.yaml#/components/schemas/XLThpt"
+          $ref: "TS28541_SliceNrm.yaml#/components/schemas/XLThpt"
     ULThptPerUETarget:
       type: object
       properties:
@@ -367,7 +367,7 @@ components:
           enum:
             - Is_greater_than
         targetValueRange:
-          $ref: "sliceNrm.yaml#/components/schemas/XLThpt"
+          $ref: "TS28541_SliceNrm.yaml#/components/schemas/XLThpt"
     DLLatencyTarget:
       type: object
       properties:
@@ -611,7 +611,7 @@ components:
         contextValueRange:
           type: array
           items:
-            $ref: "sliceNrm.yaml#/components/schemas/MobilityLevel"
+            $ref: "TS28541_SliceNrm.yaml#/components/schemas/MobilityLevel"
     ResourceSharingLevelContext:
       type: object
       properties:
@@ -626,7 +626,7 @@ components:
         contextValueRange:
           type: array
           items:
-            $ref: "sliceNrm.yaml#/components/schemas/SharingLevel"
+            $ref: "TS28541_SliceNrm.yaml#/components/schemas/SharingLevel"
    #-------Definition of the concrete ExpectionContext dataType----------------#
 
    
