@@ -82,7 +82,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'comDefs.yaml#/components/schemas/ErrorResponse'
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
       callbacks:
         notifyMOICreation:
           '{request.body#/notificationRecipientAddress}':
@@ -104,7 +104,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'comDefs.yaml#/components/schemas/ErrorResponse'
+                        $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
         notifyMOIDeletion:
           '{request.body#/notificationRecipientAddress}':
             post:
@@ -125,7 +125,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'comDefs.yaml#/components/schemas/ErrorResponse'
+                        $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
         notifyMOIAttributeValueChanges:
           '{request.body#/notificationRecipientAddress}':
             post:
@@ -146,7 +146,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'comDefs.yaml#/components/schemas/ErrorResponse'
+                        $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
         notifyMOIChanges:
           '{request.body#/notificationRecipientAddress}':
             post:
@@ -170,7 +170,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'comDefs.yaml#/components/schemas/ErrorResponse'
+                        $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
     get:
       summary: Reads one or multiple resources
       description: >-
@@ -199,7 +199,7 @@ paths:
             document.
           required: false
           schema:
-            $ref: 'comDefs.yaml#/components/schemas/Filter'
+            $ref: 'TS28623_ComDefs.yaml#/components/schemas/Filter'
         - name: attributes
           in: query
           description: >-
@@ -242,7 +242,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'comDefs.yaml#/components/schemas/ErrorResponse'
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
     patch:
       summary: Patches one or multiple resources
       description: >-
@@ -299,7 +299,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'comDefs.yaml#/components/schemas/ErrorResponse'
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
     delete:
       summary: Deletes one or multiple resources
       description: >-
@@ -327,7 +327,7 @@ paths:
             document.
           required: false
           schema:
-            $ref: 'comDefs.yaml#/components/schemas/Filter'
+            $ref: 'TS28623_ComDefs.yaml#/components/schemas/Filter'
       responses:
         '200':
           description: >-
@@ -346,24 +346,24 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: 'comDefs.yaml#/components/schemas/Uri'
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/Uri'
         default:
           description: Error case.
           content:
             application/json:
               schema:
-                $ref: 'comDefs.yaml#/components/schemas/ErrorResponse'
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
 components:
   schemas:
     CorrelatedNotification:
       type: object
       properties:
         source:
-          $ref: 'comDefs.yaml#/components/schemas/Dn'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
         notificationIds:
           type: array
           items:
-            $ref: 'comDefs.yaml#/components/schemas/NotificationId'
+            $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationId'
       required:
         - source
         - notificationIds
@@ -422,16 +422,16 @@ components:
           required:
             - id
         - anyOf:
-            - $ref: 'genericNrm.yaml#/components/schemas/resources-genericNrm'
-            - $ref: 'nrNrm.yaml#/components/schemas/resources-nrNrm'
-            - $ref: '5gcNrm.yaml#/components/schemas/resources-5gcNrm'
-            - $ref: 'sliceNrm.yaml#/components/schemas/resources-sliceNrm'
+            - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/resources-genericNrm'
+            - $ref: 'TS28541_NrNrm.yaml#/components/schemas/resources-nrNrm'
+            - $ref: 'TS28541_5GcNrm.yaml#/components/schemas/resources-5gcNrm'
+            - $ref: 'TS28541_SliceNrm.yaml#/components/schemas/resources-sliceNrm'
 
     MoiChange:
       type: object
       properties:
         notificationId:
-          $ref: 'comDefs.yaml#/components/schemas/NotificationId'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationId'
         correlatedNotifications:
           type: array
           items:
@@ -443,7 +443,7 @@ components:
         op:
           $ref: '#/components/schemas/Operation'
         path:
-          $ref: 'comDefs.yaml#/components/schemas/Uri'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Uri'
         value: {}
         oldValue: {}
       required:
@@ -453,7 +453,7 @@ components:
 
     NotifyMoiCreation:
       allOf:
-        - $ref: 'comDefs.yaml#/components/schemas/NotificationHeader'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationHeader'
         - type: object
           properties:
             correlatedNotifications:
@@ -465,10 +465,10 @@ components:
             sourceIndicator:
               $ref: '#/components/schemas/SourceIndicator'
             attributeList:
-              $ref: 'comDefs.yaml#/components/schemas/AttributeNameValuePairSet'
+              $ref: 'TS28623_ComDefs.yaml#/components/schemas/AttributeNameValuePairSet'
     NotifyMoiDeletion:
       allOf:
-        - $ref: 'comDefs.yaml#/components/schemas/NotificationHeader'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationHeader'
         - type: object
           properties:
             correlatedNotifications:
@@ -480,10 +480,10 @@ components:
             sourceIndicator:
               $ref: '#/components/schemas/SourceIndicator'
             attributeList:
-              $ref: 'comDefs.yaml#/components/schemas/AttributeNameValuePairSet'
+              $ref: 'TS28623_ComDefs.yaml#/components/schemas/AttributeNameValuePairSet'
     NotifyMoiAttributeValueChanges:
       allOf:
-        - $ref: 'comDefs.yaml#/components/schemas/NotificationHeader'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationHeader'
         - type: object
           properties:
             correlatedNotifications:
@@ -495,12 +495,12 @@ components:
             sourceIndicator:
               $ref: '#/components/schemas/SourceIndicator'
             attributeListValueChanges:
-              $ref: 'comDefs.yaml#/components/schemas/AttributeValueChangeSet'
+              $ref: 'TS28623_ComDefs.yaml#/components/schemas/AttributeValueChangeSet'
           required:
             - attributeListValueChanges
     NotifyMoiChanges:
       allOf:
-        - $ref: 'comDefs.yaml#/components/schemas/NotificationHeader'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationHeader'
         - type: object
           properties:
             moiChanges:
