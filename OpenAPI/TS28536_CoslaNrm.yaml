@@ -71,13 +71,13 @@ components:
 
     SubNetwork-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-Attr'
-        - $ref: 'genericNrm.yaml#/components/schemas/SubNetwork-ncO'
+                - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/SubNetwork-Attr'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/SubNetwork-ncO'
         - type: object
           properties:
             AssuranceClosedControlLoop:
@@ -85,13 +85,13 @@ components:
  
     ManagedElement-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
               allOf:
-                - $ref: 'genericNrm.yaml#/components/schemas/ManagedElement-Attr'
-        - $ref: 'genericNrm.yaml#/components/schemas/ManagedElement-ncO'
+                - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedElement-Attr'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedElement-ncO'
         - type: object
           properties:
             AssuranceClosedControlLoop:
@@ -99,16 +99,16 @@ components:
 
     AssuranceClosedControlLoop-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
               type: object
               properties:
                     operationalState:
-                      $ref: 'comDefs.yaml#/components/schemas/OperationalState'
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/OperationalState'
                     administrativeState:
-                      $ref: 'comDefs.yaml#/components/schemas/AdministrativeState'
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/AdministrativeState'
                     controlLoopLifeCyclePhase:
                       $ref: '#/components/schemas/ControlLoopLifeCyclePhase'
             AssuranceGoal:
@@ -116,7 +116,7 @@ components:
 
     AssuranceGoal-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -136,9 +136,9 @@ components:
                     sliceProfileId:
                       type: string
                     networkSliceRef:
-                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
                     networkSliceSubnetRef:
-                      $ref: 'comDefs.yaml#/components/schemas/Dn' 
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn' 
                       
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
     SubNetwork-Multiple:

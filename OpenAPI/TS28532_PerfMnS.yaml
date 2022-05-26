@@ -39,7 +39,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'comDefs.yaml#/components/schemas/ErrorResponse'
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
 components:
   schemas:
     PerfNotificationTypes:
@@ -49,7 +49,7 @@ components:
     PerfMetricValue:
       oneOf:
         - type: integer
-        - $ref: 'comDefs.yaml#/components/schemas/Float'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/Float'
     PerfMetricDirection:
       type: string
       enum:
@@ -57,7 +57,7 @@ components:
         - DOWN
     NotifyThresholdCrossing:
       allOf:
-        - $ref: 'comDefs.yaml#/components/schemas/NotificationHeader'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationHeader'
         - type: object
           properties:
             observedPerfMetricName:
