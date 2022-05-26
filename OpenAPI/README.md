@@ -35,6 +35,10 @@ The links below will open the Swagger Editor/UI and auto-load the OpenAPI YAML f
 ([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28312_IntentNrm.yaml))
 ([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28312_IntentNrm.yaml))
 
+* Edge NRM (TS 28.538)
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28538_EdgeNRM.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28538_EdgeNRM.yaml))
+
 ## Management Services (MnS)
 
 * Provisioning MnS (TS 28.532)
