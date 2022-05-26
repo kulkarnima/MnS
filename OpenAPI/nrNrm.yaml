@@ -43,10 +43,6 @@ components:
           $ref: '#/components/schemas/Sst'
         sd:
           type: string
-    SnssaiList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Snssai'
 
     Mnc:
       type: string
@@ -246,11 +242,7 @@ components:
         - INITIAL
         - OTHER
         - SUL
-    QuotaType:
-      type: string
-      enum:
-        - STRICT
-        - FLOAT
+
     IsESCoveredBy:
       type: string
       enum:
@@ -1266,11 +1258,11 @@ components:
                     esNotAllowedTimePeriod:
                       $ref: "#/components/schemas/EsNotAllowedTimePeriod"
                     interRatEsActivationOriginalCellParameters:
-                      $ref: "#/components/schemas/IntraRatEsActivationOriginalCellLoadParameters"
+                      $ref: "#/components/schemas/InterRatEsActivationOriginalCellParameters"
                     interRatEsActivationCandidateCellParameters:
-                      $ref: "#/components/schemas/IntraRatEsActivationOriginalCellLoadParameters"
+                      $ref: "#/components/schemas/InterRatEsActivationCandidateCellParameters"
                     interRatEsDeactivationCandidateCellParameters:
-                      $ref: "#/components/schemas/IntraRatEsActivationOriginalCellLoadParameters"
+                      $ref: "#/components/schemas/InterRatEsDeactivationCandidateCellParameters"
                     isProbingCapable:
                       type: string
                       enum:
