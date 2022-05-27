@@ -1441,11 +1441,11 @@ components:
                 - type: object
                   properties:
                     eASServiceArea:
-                      $ref: 'TS28538_EdgeNRM.yaml#/components/schemas/ServingLocation'
+                      $ref: 'TS28538_EdgeNrm.yaml#/components/schemas/ServingLocation'
                     eESServiceArea:
-                      $ref: 'TS28538_EdgeNRM.yaml#/components/schemas/ServingLocation'
+                      $ref: 'TS28538_EdgeNrm.yaml#/components/schemas/ServingLocation'
                     eDNServiceArea:
-                      $ref: 'TS28538_EdgeNRM.yaml#/components/schemas/ServingLocation'
+                      $ref: 'TS28538_EdgeNrm.yaml#/components/schemas/ServingLocation'
                     eASIpAddress:
                       type: string
                     eESIpAddress:
