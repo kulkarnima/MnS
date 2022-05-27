@@ -36,8 +36,20 @@ The links below will open the Swagger Editor/UI and auto-load the OpenAPI YAML f
 ([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28312_IntentNrm.yaml))
 
 * Edge NRM (TS 28.538)
-([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28538_EdgeNRM.yaml))
-([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28538_EdgeNRM.yaml))
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28538_EdgeNrm.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28538_EdgeNrm.yaml))
+
+* MDA NRM (TS 28.104)
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28104_MdaNrm.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28104_MdaNrm.yaml))
+
+* MDA Report NRM (TS 28.104)
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28104_MdaReport.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28104_MdaReport.yaml))
+
+* AI/ML NRM (TS 28.105)
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28105_AiMlNrm.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28105_AiMlNrm.yaml))
 
 ## Management Services (MnS)
 

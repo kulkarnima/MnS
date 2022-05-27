@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Provisioning MnS
-  version: 16.5.0
+  version: 17.1.0
   description: >-
     OAS 3.0.1 definition of the Provisioning MnS
     © 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
