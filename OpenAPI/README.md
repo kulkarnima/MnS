@@ -62,8 +62,8 @@ The links below will open the Swagger Editor/UI and auto-load the OpenAPI YAML f
 ([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28532_FaultMnS.yaml))
 
 * Performance Measurement Job Control MnS (28.550)
-([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28550_PerMeasJobCtlMnS.yaml))
-([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28550_PerMeasJobCtlMnS.yaml))
+([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28550_PerfMeasJobCtrlMnS.yaml))
+([UI](https://forge.3gpp.org/swagger/tools/loader.html?action=ui&yaml=OpenAPI/TS28550_PerfMeasJobCtrlMnS.yaml))
 
 * File Data Reporting MnS MnS (TS 28.532)
 ([Editor](https://forge.3gpp.org/swagger/tools/loader.html?yaml=OpenAPI/TS28532_FileDataReportingMnS.yaml))
