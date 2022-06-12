@@ -22,6 +22,7 @@ module _3gpp-common-trace {
       Integration Reference Point (IRP);
       Information Service (IS)";
 
+  revision 2022-04-27 { reference "CR-0159"; }
   revision 2021-10-18 { reference "CR-0139"; }
   revision 2021-07-22 { reference "CR-0137"; }
   revision 2021-01-25 { reference "CR-0122"; }
@@ -396,7 +397,7 @@ module _3gpp-common-trace {
     }
 
     leaf tjStreamingTraceConsumerURI {
-      when './tjTraceReportingFormat  = "STREAMING"';
+      when '../tjTraceReportingFormat  = "STREAMING"';
       type inet:uri;
       mandatory true;
       description "URI of the Streaming Trace data reporting MnS consumer
@@ -408,8 +409,8 @@ module _3gpp-common-trace {
     }
 
     leaf tjTraceCollectionEntityAddress {
-      when './tjTraceReportingFormat  = "FILE_BASED" or '
-        +'./tjJobType = "LOGGED_MDT_ONLY" or ./tjJobType = "LOGGED_MBSFN_MDT"';
+      when '../tjTraceReportingFormat  = "FILE_BASED" or '
+        +'../tjJobType = "LOGGED_MDT_ONLY" or ../tjJobType = "LOGGED_MBSFN_MDT"';
       type union {
         type inet:uri;
         type inet:ip-address;
@@ -422,8 +423,8 @@ module _3gpp-common-trace {
     }
 
     leaf tjTraceDepth {
-      when './tjJobType = "TRACE_ONLY"'
-        +  ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+      when '../tjJobType = "TRACE_ONLY"'
+        +  ' or ../tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
       type enumeration  {
         enum MINIMUM;
         enum MEDIUM;
@@ -540,7 +541,7 @@ module _3gpp-common-trace {
     }
 
     leaf tjTriggeringEvent {
-      when './tjJobType = "TRACE" or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+      when '../tjJobType = "TRACE_ONLY" or ../tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
       type string ;
       mandatory true;
       description "Specifies the triggering event parameter of the trace session.
@@ -550,7 +551,7 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTAnonymizationOfData {
-      when ./tjMDTAreaScope ;
+      when ../tjMDTAreaScope ;
       type enumeration {
         enum NO_IDENTITY;
         enum TAC_OF_IMEI;
@@ -561,7 +562,7 @@ module _3gpp-common-trace {
     }
 
     list tjMDTAreaConfigurationForNeighCell {
-      when './tjJobType = "LOGGED_MDT_ONLY"';
+      when '../tjJobType = "LOGGED_MDT_ONLY"';
       key "idx";
       min-elements 1;
       leaf idx { type uint32 ; }
@@ -603,8 +604,8 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTCollectionPeriodRrmLte {
-      when './tjJobType = "IMMEDIATE_MDT_ONLY"' 
-        +  ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+      when '../tjJobType = "IMMEDIATE_MDT_ONLY"' 
+        +  ' or ../tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
       type uint32 {
         range "250|500|1000|2000|3000|4000|6000|8000|12000|16000|20000|"
           +"24000|28000|32000|64000";
@@ -618,8 +619,8 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTCollectionPeriodM6Lte {
-      when './tjJobType = "IMMEDIATE_MDT_ONLY"' 
-        +  ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+      when '../tjJobType = "IMMEDIATE_MDT_ONLY"' 
+        +  ' or ../tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
       type uint32 {
         range "1024|2048|5120|10240";
       }
@@ -632,8 +633,8 @@ module _3gpp-common-trace {
     }
     
     leaf tjMDTCollectionPeriodM7Lte {
-      when './tjJobType = "IMMEDIATE_MDT_ONLY"' 
-        +  ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+      when '../tjJobType = "IMMEDIATE_MDT_ONLY"' 
+        +  ' or ../tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
       type uint16 {
         range 1..60 ;
       }
@@ -645,8 +646,8 @@ module _3gpp-common-trace {
     }
     
     leaf tjMDTCollectionPeriodRrmUmts {
-      when './tjJobType = "IMMEDIATE_MDT_ONLY"'
-        +  ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+      when '../tjJobType = "IMMEDIATE_MDT_ONLY"'
+        +  ' or ../tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
       type uint32 {
         range "1024|1280|2048|2560|5120|"
           +"10240|60000";
@@ -660,8 +661,8 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTCollectionPeriodRrmNR {
-      when './tjJobType = "IMMEDIATE_MDT_ONLY"'
-        + ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+      when '../tjJobType = "IMMEDIATE_MDT_ONLY"'
+        + ' or ../tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
       type uint32 {
         range "1024|2048|5120|10240|60000";
       }
@@ -674,8 +675,8 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTCollectionPeriodM6NR {
-      when './tjJobType = "IMMEDIATE_MDT_ONLY"'
-        + ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+      when '../tjJobType = "IMMEDIATE_MDT_ONLY"'
+        + ' or ../tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
       type enumeration {
         enum 120ms;
         enum 240ms;
@@ -700,8 +701,8 @@ module _3gpp-common-trace {
     }
     
     leaf tjMDTCollectionPeriodM7NR {
-      when './tjJobType = "IMMEDIATE_MDT_ONLY"'
-        + ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+      when '../tjJobType = "IMMEDIATE_MDT_ONLY"'
+        + ' or ../tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
       type uint32 {
         range "1..60";
       }
@@ -713,7 +714,7 @@ module _3gpp-common-trace {
     }
     
     leaf tjMDTEventListForTriggeredMeasurement {
-      when './tjJobType = "LOGGED_MDT_ONLY"';
+      when '../tjJobType = "LOGGED_MDT_ONLY"';
       type enumeration {
         enum OUT_OF_COVERAGE ;
         enum A2_EVENT ;
@@ -739,7 +740,7 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTListOfMeasurements {
-      when './tjJobType = "IMMEDIATE_MDT"';
+      when '../tjJobType = "IMMEDIATE_MDT_ONLY"';
       type int64;
       mandatory true;
       description "It specifies the UE measurements that shall be collected in
@@ -749,7 +750,7 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTLoggingDuration {
-      when './tjJobType = "LOGGED_MDT_ONLY" or ./tjJobType = "LOGGED_MBSFN_MDT"';
+      when '../tjJobType = "LOGGED_MDT_ONLY" or ../tjJobType = "LOGGED_MBSFN_MDT"';
       type uint32 {
         range "600|1200|2400|3600|5400|7200";
       }
@@ -763,7 +764,7 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTLoggingInterval {
-      when './tjJobType = "LOGGED_MDT_ONLY" or ./tjJobType = "LOGGED_MBSFN_MDT"';
+      when '../tjJobType = "LOGGED_MDT_ONLY" or ../tjJobType = "LOGGED_MBSFN_MDT"';
       type uint32 {
         range "1280|2560|5120|10240|20480|"
           +"30720|40960|61440";
@@ -777,7 +778,7 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTLoggingEventThreshold {
-      when './tjJobType = "LOGGED_MDT_ONLY" or ./tjJobType = "LOGGED_MBSFN_MDT"';
+      when '../tjJobType = "LOGGED_MDT_ONLY" or ../tjJobType = "LOGGED_MBSFN_MDT"';
       type uint32 {
         range "0..127";
       }
@@ -791,7 +792,7 @@ module _3gpp-common-trace {
     }
     
     leaf tjMDTLoggedHysteresis {
-      when './tjJobType = "LOGGED_MDT_ONLY" or ./tjJobType = "LOGGED_MBSFN_MDT"';
+      when '../tjJobType = "LOGGED_MDT_ONLY" or ../tjJobType = "LOGGED_MBSFN_MDT"';
       type uint32 {
         range "0..30";
       }
@@ -805,7 +806,7 @@ module _3gpp-common-trace {
     }
     
     leaf tjMDTLoggedTimeToTrigger {
-      when './tjJobType = "LOGGED_MDT_ONLY" or ./tjJobType = "LOGGED_MBSFN_MDT"';
+      when '../tjJobType = "LOGGED_MDT_ONLY" or ../tjJobType = "LOGGED_MBSFN_MDT"';
       type int32 ;
       description "It specifies the threshold which should trigger 
         the reporting in case of event based reporting of logged NR MDT. 
@@ -817,7 +818,7 @@ module _3gpp-common-trace {
     }
     
     leaf-list tjMDTMBSFNAreaList {
-      when './tjJobType = "LOGGED_MBSFN_MDT"';
+      when '../tjJobType = "LOGGED_MBSFN_MDT"';
       type string;
       min-elements 1;
       max-elements 8;
@@ -828,8 +829,8 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTMeasurementPeriodLTE {
-          when './tjJobType = "IMMEDIATE_MDT_ONLY"'
-            +  ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+          when '../tjJobType = "IMMEDIATE_MDT_ONLY"'
+            +  ' or ../tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
       type uint32 {
         range "1024|1280|2048|2560|5120|"
           +"10240|60000";
@@ -844,8 +845,8 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTMeasurementPeriodUMTS {
-      when './tjJobType = "IMMEDIATE_MDT_ONLY"'
-        +  'or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+      when '../tjJobType = "IMMEDIATE_MDT_ONLY"'
+        +  'or ../tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
       type uint32 {
         range "250|500|1000|2000|3000|4000|6000|8000|12000|16000|20000|"
           +"24000|28000|32000|64000";
@@ -860,8 +861,8 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTMeasurementQuantity {
-      when './tjJobType = "IMMEDIATE_MDT_ONLY"'
-        +  ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+      when '../tjJobType = "IMMEDIATE_MDT_ONLY"'
+        +  ' or ../tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
       type uint64 ;
       mandatory true;
       description "It specifies the measurements that are collected in an MDT
@@ -870,8 +871,8 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTM4ThresholdUmts {
-      when './tjJobType = "IMMEDIATE_MDT_ONLY"' 
-        +  ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+      when '../tjJobType = "IMMEDIATE_MDT_ONLY"' 
+        +  ' or ../tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
       type uint16 {
         range 0..31 ;
       }        
@@ -883,7 +884,7 @@ module _3gpp-common-trace {
     }
     
     list tjMDTPLMList {
-      when './tjJobType = "LOGGED_MDT_ONLY"';
+      when '../tjJobType = "LOGGED_MDT_ONLY"';
       key "mcc mnc";
       uses types3gpp:PLMNId;
       min-elements 1;
@@ -894,8 +895,8 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTPositioningMethod {
-      when './tjJobType = "IMMEDIATE_MDT_ONLY"'
-        +  ' or ./tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+      when '../tjJobType = "IMMEDIATE_MDT_ONLY"'
+        +  ' or ../tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
       type enumeration {
         enum GNSS;
         enum E_CELL_ID;
@@ -907,8 +908,8 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTReportAmount {
-      when './tjJobType = "IMMEDIATE_MDT_ONLY"'
-        +  ' and ./tjMDTReportingTrigger = "PERIODICAL"';
+      when '../tjJobType = "IMMEDIATE_MDT_ONLY"'
+        +  ' and ../tjMDTReportingTrigger = "PERIODICAL"';
       type union {
         type uint32 {
           range "1|4|8|16|32|64" ;
@@ -927,7 +928,7 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTReportingTrigger {
-      when './tjJobType = "IMMEDIATE_MDT_ONLY"';
+      when '../tjJobType = "IMMEDIATE_MDT_ONLY"';
       type enumeration {
         enum PERIODICAL;
         enum A2_FOR_LTE;
@@ -947,8 +948,8 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTReportInterval {
-      when './tjJobType = "IMMEDIATE_MDT_ONLY"'
-        +  ' and ./tjMDTReportingTrigger = "PERIODICAL"';
+      when '../tjJobType = "IMMEDIATE_MDT_ONLY"'
+        +  ' and ../tjMDTReportingTrigger = "PERIODICAL"';
       type uint32 {
         range "120|240|250|480|500|640|1000|1024|2000|2048|3000|4000|"
           +"5120|6000|8000|10240|12000|16000|20000|"
@@ -966,7 +967,7 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTReportType {
-      when './tjJobType = "LOGGED_MDT_ONLY"';
+      when '../tjJobType = "LOGGED_MDT_ONLY"';
       type enumeration {
         enum PERIODICAL;
         enum EVENT_TRIGGERED;
@@ -991,7 +992,7 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTTraceCollectionEntityID {
-      when './tjJobType = "LOGGED_MDT_ONLY" or ./tjJobType = "LOGGED_MBSFN_MDT"';
+      when '../tjJobType = "LOGGED_MDT_ONLY" or ../tjJobType = "LOGGED_MBSFN_MDT"';
       type uint8;
       mandatory true;
       description "It specifies the TCE Id which is sent to the UE in 
