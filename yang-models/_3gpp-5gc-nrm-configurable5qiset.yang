@@ -10,11 +10,12 @@ module _3gpp-5gc-nrm-configurable5qiset {
   
   organization "3gpp SA5";
   contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
-  description "This IOC represents the non-standardized 5QIs, including 
+  description "This IOC represents the configurable 5QIs, including 
     their QoS characteristics, that need to be pre-configured 
     (and configurable) to the 5G NFs.";
   reference "3GPP TS 28.541";
 
+  revision 2022-04-29 { reference "CR-0729"; }
   revision 2022-01-07 { reference CR-0643; }
   revision 2020-08-04 { reference "CR-0321"; }
   revision 2020-06-03 { reference "CR-0286"; }
