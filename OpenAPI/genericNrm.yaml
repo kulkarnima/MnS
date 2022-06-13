@@ -343,15 +343,17 @@ components:
               items:
                 $ref: 'comDefs.yaml#/components/schemas/TimeInterval'
             daysOfWeek:
-              type: string
-              enum:
-                - MONDAY
-                - TUESDAY
-                - WEDNESDAY
-                - THURSDAY
-                - FRIDAY
-                - SATURDAY
-                - SUNDAY
+              type: array
+              items:
+                type: string
+                enum:
+                  - MONDAY
+                  - TUESDAY
+                  - WEDNESDAY
+                  - THURSDAY
+                  - FRIDAY
+                  - SATURDAY
+                  - SUNDAY
         - type: object
           properties:
             timeIntervals:
@@ -359,17 +361,11 @@ components:
               items:
                 $ref: 'comDefs.yaml#/components/schemas/TimeInterval'
             daysOfMonth:
-              type: integer
-              minimum: 0
-              maximum: 31
-        - type: object
-          properties:
-            timeIntervals:
               type: array
               items:
-                $ref: 'comDefs.yaml#/components/schemas/TimeInterval'
-            specialDays:
-              $ref: 'comDefs.yaml#/components/schemas/DayInYear'
+                type: integer
+                minimum: 0
+                maximum: 31
 
 #-------- Definition of types used in Trace control NRM fragment------------------
                 
