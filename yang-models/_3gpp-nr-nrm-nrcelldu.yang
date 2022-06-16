@@ -374,6 +374,12 @@ module _3gpp-nr-nrm-nrcelldu {
       type types3gpp:DistinguishedName;
     }
 
+    leaf-list bWPSetRef {
+      description "Reference to corresponding BWPSet instance.";
+      min-elements 1;
+      type BWPSet;
+    }
+
     leaf-list nRFrequencyRef {
       description "Reference to corresponding NRFrequency instance.";
       type types3gpp:DistinguishedName;
