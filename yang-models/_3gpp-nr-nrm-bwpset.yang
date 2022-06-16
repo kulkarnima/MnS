@@ -20,7 +20,7 @@ module _3gpp-nr-nrm-bwpset {
     description "Represents the BWPSet IOC.";
     reference "3GPP TS 28.541";
     uses mf3gpp:ManagedFunctionGrp;
-
+  }
   augment "/me3gpp:ManagedElement/gnbdu3gpp:GNBDUFunction" {
 
     list BWPList {
@@ -33,5 +33,4 @@ module _3gpp-nr-nrm-bwpset {
       uses mf3gpp:ManagedFunctionContainedClasses;
     }
   }
-}
 }
