@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: File Data Reporting MnS
-  version: 16.10.0
+  version: 16.11.0
   description: >-
     OAS 3.0.1 definition of the File Data Reporting MnS
     © 2021, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -42,7 +42,7 @@ paths:
             became available
           required: false
           schema:
-            $ref: 'comDefs.yaml#/components/schemas/DateTime'
+            $ref: 'TS28623_ComDefs.yaml#/components/schemas/DateTime'
         - name: endTime
           in: query
           description: >-
@@ -50,7 +50,7 @@ paths:
             became available
           required: false
           schema:
-            $ref: 'comDefs.yaml#/components/schemas/DateTime'
+            $ref: 'TS28623_ComDefs.yaml#/components/schemas/DateTime'
       responses:
         '200':
           description: >-
@@ -68,7 +68,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'comDefs.yaml#/components/schemas/ErrorResponse'
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
   /subscriptions:
     post:
       summary: Create a subscription
@@ -80,7 +80,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'faultMnS.yaml#/components/schemas/Subscription'
+              $ref: 'TS28532_FaultMnS.yaml#/components/schemas/Subscription'
       responses:
         '201':
           description: >-
@@ -90,7 +90,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'faultMnS.yaml#/components/schemas/Subscription'
+                $ref: 'TS28532_FaultMnS.yaml#/components/schemas/Subscription'
           headers:
             Location:
               description: URI of the newly created subscription resource
@@ -102,7 +102,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'comDefs.yaml#/components/schemas/ErrorResponse'
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
       callbacks:
         notifyFileReady:
           '{request.body#/consumerReference}':
@@ -124,7 +124,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'comDefs.yaml#/components/schemas/ErrorResponse'
+                        $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
         notifyFilePreparationError:
           '{request.body#/consumerReference}':
             post:
@@ -145,7 +145,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'comDefs.yaml#/components/schemas/ErrorResponse'
+                        $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
   /subscriptions/{subscriptionId}:
     delete:
       summary: Delete a subscription
@@ -171,7 +171,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'comDefs.yaml#/components/schemas/ErrorResponse'
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/ErrorResponse'
 components:
   schemas:
     FileDataType:
@@ -190,13 +190,13 @@ components:
       type: object
       properties:
         fileLocation:
-          $ref: 'comDefs.yaml#/components/schemas/Uri'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Uri'
         fileSize:
           type: integer
         fileReadyTime:
-          $ref: 'comDefs.yaml#/components/schemas/DateTime'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/DateTime'
         fileExpirationTime:
-          $ref: 'comDefs.yaml#/components/schemas/DateTime'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/DateTime'
         fileCompression:
           type: string
         fileFormat:
@@ -205,7 +205,7 @@ components:
            $ref: '#/components/schemas/FileDataType'
     NotifyFileReady:
       allOf:
-        - $ref: 'comDefs.yaml#/components/schemas/NotificationHeader'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationHeader'
         - type: object
           properties:
             fileInfoList:
@@ -216,7 +216,7 @@ components:
               type: string
     NotifyFilePreparationError:
       allOf:
-        - $ref: 'comDefs.yaml#/components/schemas/NotificationHeader'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/NotificationHeader'
         - type: object
           properties:
             fileInfoList:
