@@ -145,7 +145,7 @@ module _3gpp-5gc-nrm-configurable5qiset {
     uses Configurable5QISetSubtree;
   }
 
-  augment "/mf3gpp:ManagedElement" {
+  augment "/mf3gpp:ManagedFunctionGrp" {
     uses Configurable5QISetSubtree;
   }
 }
