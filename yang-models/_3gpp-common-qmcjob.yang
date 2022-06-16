@@ -73,8 +73,10 @@ module _3gpp-common-qmcjob {
     leaf qMCTarget {
       description "Specifies whether the QMC is area based or individual UE based.
         allowedValues: AREA_BASED, UE_BASED ";
-      type string;
-    }
+      type enumeration {
+        enum AREA_BASED;
+        enum UE_BASED;
+      }
     mandatory true;
     }
 
