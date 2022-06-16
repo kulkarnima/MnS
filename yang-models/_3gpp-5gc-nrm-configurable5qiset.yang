@@ -16,6 +16,7 @@ module _3gpp-5gc-nrm-configurable5qiset {
     (and configurable) to the 5G NFs.";
   reference "3GPP TS 28.541";
 
+  revision 2022-06-16 { reference "CR-xxxx"; }
   revision 2022-01-07 { reference CR-0643; }
   revision 2020-08-04 { reference "CR-0321"; }
   revision 2020-06-03 { reference "CR-0286"; }
@@ -144,7 +145,7 @@ module _3gpp-5gc-nrm-configurable5qiset {
     uses Configurable5QISetSubtree;
   }
 
-  augment "/mf3gpp:ManagedFunction" {
+  augment "/mf3gpp:ManagedFunctionContainedClasses" {
     uses Configurable5QISetSubtree;
   }
 }
