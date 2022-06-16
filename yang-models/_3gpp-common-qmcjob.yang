@@ -95,7 +95,8 @@ module _3gpp-common-qmcjob {
 
     list sliceScope {
       min-elements 0;
-      description " Contains a list of S-NSSAIs (Single Network Slice Selection Assistance Information). A Network Slice end to end is identified by S-NSSAI ";
+      description " Contains a list of S-NSSAIs (Single Network Slice Selection Assistance Information). 
+        A Network Slice end to end is identified by S-NSSAI ";
       key "sd sst";
       uses types5g3gpp:SNssai;
     }
