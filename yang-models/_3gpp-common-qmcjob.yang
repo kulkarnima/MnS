@@ -94,7 +94,7 @@ module _3gpp-common-qmcjob {
 
     list sliceScope {
       min-elements 0;
-      description " Contains a list of S-NSSAIs (Single Network Slice Selection Assistance
+      description "Contains a list of S-NSSAIs (Single Network Slice Selection Assistance
         Information).  A Network Slice end to end is identified by S-NSSAI ";
       key "sd sst";
       uses types5g3gpp:SNssai;
@@ -102,11 +102,10 @@ module _3gpp-common-qmcjob {
 
     leaf qMCConfigFile {
       type string;
-      description " Provides a reference to a file including the parameters for configuration of 
+      description "Provides a reference to a file including the parameters for configuration of 
         application layer measurements, known as Container for Application Layer Measurement 
-        Configuration.
-        Location of the file incl. the file transfer protocol, and the file name for the case the 
-        file content cannot be retrieved by reading the "fileContent" attribute.";
+        Configuration.  Location of the file incl. the file transfer protocol, and the file name
+        for the case the file content cannot be retrieved by reading the 'fileContent' attribute.";
       mandatory true;
     }
   }
