@@ -139,11 +139,6 @@ components:
       properties:
         nFSrvGroupId:
           type: string
-    UpfInfo:
-      type: object
-      properties:
-        smfServingAreas:
-          type: string
     SupportedDataSetId:
       type: string
       description: any of enumrated value
@@ -165,7 +160,6 @@ components:
       oneOf:
         - $ref: '#/components/schemas/UdmInfo'
         - $ref: '#/components/schemas/AusfInfo'
-        - $ref: '#/components/schemas/UpfInfo'
         - $ref: '#/components/schemas/Udrinfo'
     NotificationType:      
       type: string
@@ -643,6 +637,43 @@ components:
       type: array
       items:
         $ref: 'TS28541_NrNrm.yaml#/components/schemas/Tai' 
+    InterfaceUpfInfoItem:
+      type: object
+      properties:
+        interfaceType:
+        type: string
+        enum:
+          - IPV4ENDPOINTADDRESSES
+          - IPV6ENDPOINTADDRESSES
+          - FQDN
+        ipv4EndpointAddresses:
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Ipv4Addr'
+        ipv6EndpointAddresses:
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Ipv6Addr'
+        fqdn:
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Fqdn'
+        networkInstance:
+          type: string
+
+    AtsssCapability:
+      type: object
+      properties:
+        atsssLL:
+          type: boolean
+        mptcp:
+          type: boolean
+        rttWithoutPmf:
+          type: boolean
+
+    IpInterface:
+      type: object
+      properties:
+        ipv4EndpointAddresses:
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Ipv4Addr'
+        ipv6EndpointAddresses:
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Ipv6Addr'
+        fqdn:
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Fqdn'
 
 #-------- Definition of concrete IOCs --------------------------------------------
     ProvMnS:
@@ -948,12 +979,48 @@ components:
                 - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
-                    plmnIdList:
-                      $ref: 'TS28541_NrNrm.yaml#/components/schemas/PlmnIdList'
+                    pLMNInfoList:
+                      $ref: 'TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
                     nRTACList:
                       $ref: '#/components/schemas/TACList'
-                    snssaiList:
-                      $ref: '#/components/schemas/SnssaiList'
+                    cNSIIdList:
+                      $ref: '#/components/schemas/CNSIIdList'
+                    smfServingArea:
+                       type: string
+                    interfaceUpfInfoList:
+                       type: array
+                       items:
+                         $ref: '#/components/schemas/InterfaceUpfInfoItem'
+                    iwkEpsInd:
+                       type: boolean
+                    pduSessionTypes:
+                       type: enum
+                    atsssCapability:
+                       $ref: '#/components/schemas/AtsssCapability'
+                    ueIpAddrInd:
+                       type: boolean
+                    taiList:
+                      $ref: '#/components/schemas/TaiList''
+                    taiRangeList:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/TaiRange'
+                    wAgfInfo:
+                      $ref: '#/components/schemas/IpInterface'
+                    tngfInfo:
+                      $ref: '#/components/schemas/IpInterface'
+                    twifInfo:
+                      $ref: '#/components/schemas/IpInterface'
+                    priority:
+                      type: integer
+                    redundantGtpu:
+                      type: boolean
+                    ipups:
+                      type: boolean
+                    dataForwarding:
+                      type: boolean
+                    supportedPfcpFeatures:
+                      type: string
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     supportedBMOList:
