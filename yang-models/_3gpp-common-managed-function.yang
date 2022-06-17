@@ -324,7 +324,7 @@ module _3gpp-common-managed-function {
       if-feature TraceUnderManagedFunction ;
     }
 
-    uses fiveqi3gpp:configurable5qiset;
+    uses fiveqi3gpp:FiveQiCharacteristicsSubtree ;
     
   }
 }
