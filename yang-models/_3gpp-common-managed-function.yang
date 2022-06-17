@@ -7,7 +7,7 @@ module _3gpp-common-managed-function {
   import _3gpp-common-top { prefix top3gpp; }
   import _3gpp-common-measurements { prefix meas3gpp; }
   import _3gpp-common-trace { prefix trace3gpp; }
-  import _3gpp-5gc-nrm-configurable5qiset { prefix 5qi3gpp; }
+  import _3gpp-5gc-nrm-configurable5qiset { prefix fiveqi3gpp; }
 
   organization "3GPP SA5";
   contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
@@ -324,7 +324,7 @@ module _3gpp-common-managed-function {
       if-feature TraceUnderManagedFunction ;
     }
 
-    uses 5qi3gpp:Configurable5QISetSubtree;
+    uses fiveqi3gpp:configurable5qiset;
     
   }
 }
