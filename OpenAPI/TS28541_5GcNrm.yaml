@@ -641,11 +641,11 @@ components:
       type: object
       properties:
         interfaceType:
-        type: string
-        enum:
-          - IPV4ENDPOINTADDRESSES
-          - IPV6ENDPOINTADDRESSES
-          - FQDN
+          type: string
+          enum:
+            - IPV4ENDPOINTADDRESSES
+            - IPV6ENDPOINTADDRESSES
+            - FQDN
         ipv4EndpointAddresses:
           $ref: 'TS28623_ComDefs.yaml#/components/schemas/Ipv4Addr'
         ipv6EndpointAddresses:
@@ -994,7 +994,13 @@ components:
                     iwkEpsInd:
                        type: boolean
                     pduSessionTypes:
-                       type: enum
+                      type: string
+                      enum:
+                        - IPV4
+                        - IPV6
+                        - IPV4V6
+                        - UNSTRUCTURED
+                        - ETHERNET
                     atsssCapability:
                        $ref: '#/components/schemas/AtsssCapability'
                     ueIpAddrInd:
