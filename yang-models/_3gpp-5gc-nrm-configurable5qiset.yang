@@ -7,7 +7,6 @@ module _3gpp-5gc-nrm-configurable5qiset {
   import _3gpp-common-top { prefix top3gpp; }
   import _3gpp-common-managed-element { prefix me3gpp; }
   import _3gpp-common-subnetwork { prefix subnet3gpp; }
-  import _3gpp-common-managed-function { prefix mf3gpp; }
   
   organization "3gpp SA5";
   contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
