@@ -621,6 +621,23 @@ components:
       description: ->
         An attribute that specifies the additional reason information if the reservation is failed. 
       type: string
+    IsolationProfile:
+      type: object
+      properties:
+        isolationDataTypeList:
+          type: array
+          items:
+            type: string
+            enum:
+              - CM
+              - PM
+              - FM
+              - MDT
+              - QOE
+              - TRACE DATA
+              - ANALYTIC REPORT
+        isolationRule:
+          type: string
 
 
 
@@ -679,6 +696,8 @@ components:
                       $ref: 'TS28623_ComDefs.yaml#/components/schemas/AdministrativeState'
                     serviceProfileList:
                       $ref: '#/components/schemas/ServiceProfileList'
+                    isolationGroupRef:
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
 
     NetworkSliceSubnet-Single:
       allOf:
@@ -711,6 +730,8 @@ components:
                         - TOP_SLICESUBNET
                         - RAN_SLICESUBNET
                         - CN_SLICESUBNET
+                    isolationGroupRef:
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
 
     EP_Transport-Single:
       allOf:
@@ -782,6 +803,30 @@ components:
                   $ref: '#/components/schemas/ReservationExpiration'
                 recommendedRequirements:
                   $ref: '#/components/schemas/RecommendedRequirements'
+
+    IsolationGroup-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    isolationProfile:
+                      $ref: '#/components/schemas/IsolationGroup-Single'
+                    groupType:
+                      type: string
+                      enum:
+                         - NSCS
+                         - TENANTS
+                         - SLICE
+                    groupName:
+                      type: string
+                    networkSliceListRef:
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
+                    networkSliceSubnetRefList:
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
 
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
     SubNetwork-Multiple:
