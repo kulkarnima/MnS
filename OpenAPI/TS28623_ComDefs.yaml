@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Common Type Definitions
-  version: 17.0.0
+  version: 17.1.0
   description: >-
     OAS 3.0.1 specification of common type definitions in the Generic NRM
     © 2021, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -130,8 +130,8 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/AttributeNameValuePairSet'
-        minItems: 1
-        maxItems: 2
+      minItems: 1
+      maxItems: 2
 
     Filter:
       description: >-
@@ -144,11 +144,11 @@ components:
       type: integer
     NotificationType:
       oneOf:
-        - $ref: 'faultMnS.yaml#/components/schemas/AlarmNotificationTypes'
-        - $ref: 'provMnS.yaml#/components/schemas/CmNotificationTypes'
-        - $ref: 'perfMnS.yaml#/components/schemas/PerfNotificationTypes'
-        - $ref: 'heartbeatNtf.yaml#/components/schemas/HeartbeatNotificationTypes'
-        - $ref: 'fileDataReportingMnS.yaml#/components/schemas/FileNotificationTypes'
+        - $ref: 'TS28532_FaultMnS.yaml#/components/schemas/AlarmNotificationTypes'
+        - $ref: 'TS28532_ProvMnS.yaml#/components/schemas/CmNotificationTypes'
+        - $ref: 'TS28532_PerfMnS.yaml#/components/schemas/PerfNotificationTypes'
+        - $ref: 'TS28532_HeartbeatNtf.yaml#/components/schemas/HeartbeatNotificationTypes'
+        - $ref: 'TS28532_FileDataReportingMnS.yaml#/components/schemas/FileNotificationTypes'
     NotificationHeader:
       type: object
       properties:
