@@ -7,7 +7,8 @@ module _3gpp-common-managed-function {
   import _3gpp-common-top { prefix top3gpp; }
   import _3gpp-common-measurements { prefix meas3gpp; }
   import _3gpp-common-trace { prefix trace3gpp; }
-  
+  import _3gpp-5gc-nrm-configurable5qiset { prefix 5qi3gpp; }
+
   organization "3GPP SA5";
   contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
   description "The module defines a base class/grouping for major 3GPP 
@@ -20,6 +21,7 @@ module _3gpp-common-managed-function {
     
     3GPP TS 28.620 
     Umbrella Information Model (UIM)";
+  revision 2022-06-16 { reference "CR-xxxx"; }
   revision 2022-01-07 { reference "CR-0146"; }
   revision 2021-01-25 { reference "CR-0122"; }  
   revision 2020-09-30 { reference "CR-bbbb"; }  
@@ -321,5 +323,8 @@ module _3gpp-common-managed-function {
     uses trace3gpp:TraceSubtree {
       if-feature TraceUnderManagedFunction ;
     }
+
+    uses 5qi3gpp:Configurable5QISetSubtree;
+    
   }
 }
