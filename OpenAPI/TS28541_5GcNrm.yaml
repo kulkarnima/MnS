@@ -1000,7 +1000,7 @@ components:
                     ueIpAddrInd:
                        type: boolean
                     taiList:
-                      $ref: '#/components/schemas/TaiList''
+                      $ref: '#/components/schemas/TaiList'
                     taiRangeList:
                       type: array
                       items:
