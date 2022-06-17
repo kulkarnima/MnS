@@ -240,6 +240,10 @@ components:
           type: array
           items:
             type: string
+        lcHSupportInd:
+          type: boolean
+        olcHSupportInd:
+          type: boolean
         nfSetRecoveryTimeList:
           type: array
           items:
