@@ -94,7 +94,7 @@ components:
         - $ref: '#/components/schemas/GeoAreaToCellMapping'
         - type: array
           items:
-            $ref: 'TS28623_GgenericNrm.yaml#/components/schemas/Tai'
+            $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Tai'
         - type: array
           items:
             $ref: '#/components/schemas/NrCellId'
