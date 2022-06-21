@@ -1907,7 +1907,7 @@ components:
                 targetNodeFilter:
                   $ref: '#/components/schemas/NodeFilter'
                 collectionTimeWindow:
-                  $ref: 'comDefs.yaml#/components/schemas/TimeWindow'
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/TimeWindow'
                 reportingCtrl:
                   type: string
                 dataScope:
