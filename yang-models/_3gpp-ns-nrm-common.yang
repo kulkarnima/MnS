@@ -110,7 +110,7 @@ module _3gpp-ns-nrm-common {
       mandatory true;
 
       type enumeration {
-        enum INSTANCE_SHARING_RULE
+        enum INSTANCE_SHARING_RULE;
       }
 
       leaf sharingPolicy {
@@ -127,7 +127,8 @@ module _3gpp-ns-nrm-common {
 
       leaf sharingGroup {
         description "This attribute indicates the group associated with a rule in
-        case of selectively sharing. The group name is chosen by the MnS consumerand is treated as an opaque value by the MnS prodcuer.";
+        case of selectively sharing. The group name is chosen by the MnS consumerand
+        is treated as an opaque value by the MnS producer.";
         type string;
       }
     }
