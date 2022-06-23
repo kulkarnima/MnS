@@ -1,0 +1,323 @@
+module _3gpp-ns-nrm-provisioningjobs {
+  yang-version 1.1;
+  namespace urn:3gpp:sa5:_3gpp-ns-nrm-provisioningjobs;
+  prefix pjobs3gpp;
+
+  import _3gpp-common-subnetwork { prefix subnet3gpp; }
+  import _3gpp-common-yang-types { prefix types3gpp; }
+  import _3gpp-common-top { prefix top3gpp; }
+  import _3gpp-ns-nrm-networkslice { prefix ns3gpp; }
+  import _3gpp-ns-nrm-networkslicesubnet { prefix nss3gpp; }
+
+  organization "3GPP SA5";
+  contact 
+    "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
+  description "Defines IOCs for network slicing provisioning.";
+  reference "3GPP TS 28.541
+    Management and orchestration; 
+    5G Network Resource Model (NRM);
+    Information model definitions for network slice NRM (chapter 6)
+    ";
+
+  revision 2022-04-29 {
+    reference "CR-NNN";
+  }
+
+  grouping AllocateJobGrp {
+    list serviceProfile {
+      description "An attribute which holds the network slice related
+        requirements. It is used to provide input to certain asynchronous
+        network slice provisioning procedures.
+        The attribute value is provided by the MnS consumer when creating the
+        related Job MOI. Depending on scenario, values for certain
+        sub-attributes may also be assigned by the MnS producer.";
+      max-elements 1;
+      key "idx";
+      leaf idx {
+        type uint32;
+      }
+      uses ns3gpp:ServiceProfileGrp;
+    }
+
+    list sliceProfile {
+      description "An attribute which holds the network slice subnet related
+        requirements. It is used to provide input to certain asynchronous
+        network slice provisioning procedures.
+        The attribute value is provided by the MnS consumer when creating the
+        related Job MOI. Depending on scenario, values for certain
+        sub-attributes may also be assigned by the MnS producer.";
+      max-elements 1;
+      key "idx";
+      leaf idx {
+        type uint32;
+      }
+      uses nss3gpp:SliceProfileGrp;
+    }
+
+    list processMonitor {
+      description "An attribute containing information about a background
+        process associated with a network slice provisioning Job MOI.
+        The attribute value including sub-attributes are updated by the MnS
+        producer.";
+      min-elements 1;
+      max-elements 1;
+      config false;
+      uses types3gpp:ProcessMonitor;
+    }
+
+    leaf networkSliceRefOut {
+      description "An attribute containing the DN of a NetworkSlice instance
+        selected by the MnS producer as part of an asynchronous allocation
+        procedure.
+        The attribute value is populated by the MnS producer when the allocation
+        procedure has finished successfully.";
+      config false;
+      type types3gpp:DistinguishedName;
+    }
+
+    leaf networkSliceSubnetRefOut {
+      description "An attribute containing the DN of a NetworkSliceSubnet
+        instance selected by the MnS producer as part of an asynchronous
+        allocation procedure.
+        The attribute value is populated by the MnS producer when the allocation
+        procedure has finished successfully.";
+      config false;
+      type types3gpp:DistinguishedName;
+    }
+  }
+
+  grouping DeallocateJobGrp {
+    leaf serviceProfileId {
+      description "An attribute which holds an ID of a ServiceProfile instance.
+        It is used for certain asynchronous network slice provisioning
+        procedures to indicate a target instance.
+        The attribute value is provided by the MnS consumer when creating the
+        related Job MOI.";
+      type string;
+    }
+
+    leaf sliceProfileId {
+      description "An attribute which holds an ID of a SliceProfile instance.
+        It is used for certain asynchronous network slice provisioning
+        procedures to indicate a target instance.
+        The attribute value is provided by the MnS consumer when creating the
+        related Job MOI.";
+      type string;
+    }
+
+    list processMonitor {
+      description "An attribute containing information about a background
+        process associated with a network slice provisioning Job MOI.
+        The attribute value including sub-attributes are updated by the MnS
+        producer.";
+      min-elements 1;
+      max-elements 1;
+      config false;
+      uses types3gpp:ProcessMonitor;
+    }
+
+    leaf networkSliceRef {
+      description "An attribute which holds a DN of a NetworkSlice instance.
+        It is used for certain asynchronous network slice provisioning
+        procedures to indicate a target instance.
+        The attribute value is provided by the MnS consumer when creating the
+        related Job MOI.";
+      type types3gpp:DistinguishedName;
+    }
+
+    leaf networkSliceSubnetRef {
+      description "An attribute which holds a DN of a NetworkSliceSubnet
+        instance. It is used for certain asynchronous network slice
+        provisioning procedures to indicate a target instance.
+        The attribute value is provided by the MnS consumer when creating the
+        related Job MOI.";
+      type types3gpp:DistinguishedName;
+    }
+  }
+
+  grouping ModifyJobGrp {
+    list serviceProfile {
+      description "An attribute which holds the network slice related
+        requirements. It is used to provide input to certain asynchronous
+        network slice provisioning procedures.
+        The attribute value is provided by the MnS consumer when creating the
+        related Job MOI. Depending on scenario, values for certain
+        sub-attributes may also be assigned by the MnS producer.";
+      max-elements 1;
+      key "idx";
+      leaf idx {
+        type uint32;
+      }
+      uses ns3gpp:ServiceProfileGrp;
+    }
+
+    list sliceProfile {
+      description "An attribute which holds the network slice subnet related
+        requirements. It is used to provide input to certain asynchronous
+        network slice provisioning procedures.
+        The attribute value is provided by the MnS consumer when creating the
+        related Job MOI. Depending on scenario, values for certain
+        sub-attributes may also be assigned by the MnS producer.";
+      max-elements 1;
+      key "idx";
+      leaf idx {
+        type uint32;
+      }
+      uses nss3gpp:SliceProfileGrp;
+    }
+
+    list processMonitor {
+      description "An attribute containing information about a background
+        process associated with a network slice provisioning Job MOI.
+        The attribute value including sub-attributes are updated by the MnS
+        producer.";
+      min-elements 1;
+      max-elements 1;
+      config false;
+      uses types3gpp:ProcessMonitor;
+    }
+
+    leaf networkSliceRef {
+      description "An attribute which holds a DN of a NetworkSlice instance.
+        It is used for certain asynchronous network slice provisioning
+        procedures to indicate a target instance.
+        The attribute value is provided by the MnS consumer when creating the
+        related Job MOI.";
+      type types3gpp:DistinguishedName;
+    }
+
+    leaf networkSliceSubnetRef {
+      description "An attribute which holds a DN of a NetworkSliceSubnet
+        instance. It is used for certain asynchronous network slice
+        provisioning procedures to indicate a target instance.
+        The attribute value is provided by the MnS consumer when creating the
+        related Job MOI.";
+      type types3gpp:DistinguishedName;
+    }
+
+  }
+
+  augment "/subnet3gpp:SubNetwork" {
+    list AllocateJob {
+      description "This IOC represents a network slice or network slice subnet
+        allocation job that is used for asynchronous network slicing
+        provisioning procedures. It can be name-contained by SubNetwork.
+        To initiate an allocation procedure, the MnS consumer creates an
+        instance of the AllocateJob IOC and provides the slice or slice subnet
+        requirements via initial attribute values. To initiate a network slice
+        allocation procedure, the serviceProfile attribute shall be present.
+        To initiate a network slice subnet allocation procedure, the
+        sliceProfile attribute shall be present. If the MnS consumer wishes to
+        use already reserved resources, the supplied profile shall include a
+        serviceProfileId or sliceProfileId that matches the serviceProfileId
+        or sliceProfileId from an existing instance of
+        FeasibilityCheckAndReservationJob that has successfully completed a
+        reservation process. If the MnS consumer doesn’t wish to use already
+        reserved resources, the supplied profile shall not contain any
+        serviceProfileId or sliceProfileId. In this case the serviceProfileId
+        or sliceProfileId will be assigned by the MnS producer as part of the
+        allocation process.
+        Note: When reserved resources are used, the MnS producer may reject a
+        request if some requirement values in the profile are different from
+        the corresponding profile in the
+        FeasibilityCheckAndResourceReservationJob.
+        To obtain the progress information of an AllocateJob instance, the MnS
+        consumer can monitor the progress of the AllocateJob via the
+        processMonitor attribute.
+        When the value of processMonitor.status is FINISHED, the corresponding
+        allocation procedure has been completed successfully. In this state
+        additional MOI attribute values will have been assigned by the MnS
+        producer.
+        - For a network slice allocation procedure, the attribute
+          networkSliceRefOut will contain the DN of the selected NetworkSlice
+          instance, which can be either an existing instance or a newly
+          created instance. In addition, the serviceProfile attribute will
+          contain also any values assigned by the MnS producer.
+        - For a network slice subnet allocation procedure, the attribute
+          networkSliceSubnetRefOut will contain the DN of the selected
+          NetworkSliceSubnet instance, which can be either an existing
+          instance or a newly created instance. In addition, the sliceProfile
+          attribute will contain also any values assigned by the MnS producer.
+        If the procedure fails, the additional output attributes will not be
+        populated by the MnS produicer.
+        Once an AllocateJob instance has reached one of the possible end
+        states as indicated by the processMonitor.status attribute, it should
+        be deleted by the MnS consumer.";
+      key id;
+      uses top3gpp:Top_Grp;
+
+      container attributes {
+        uses AllocateJobGrp;
+      }
+    }
+
+    list DeallocateJob {
+      description "This IOC represents a network slice or network slice subnet
+        deallocation job that is used for asynchronous network slicing
+        provisioning procedures. It can be name-contained by SubNetwork.
+        To initiate a deallocation procedure, the MnS consumer creates an
+        instance of the DeallocateJob IOC and indicates the ServiceProfile or
+        SliceProfile to be deallocated via its associated identifiers provided
+        as initial attribute values. To initiate a network slice deallocation
+        procedure, the networkSliceRef and serviceProfileId attributes shall
+        be present. To initiate a network slice subnet deallocation procedure,
+        the networkSliceSubnetRef and sliceProfileId attributes shall be
+        present.
+
+        To obtain the progress information of a DeallocateJob instance, the
+        MnS consumer can monitor the progress of the DeallocateJob via the
+        processMonitor attribute.
+        Once a DeallocateJob instance has reached one of the possible end
+        states as indicated by the processMonitor.status attribute, it should
+        be deleted by the MnS consumer.";
+      key id;
+      uses top3gpp:Top_Grp;
+
+      container attributes {
+        uses DeallocateJobGrp;
+      }
+    }
+
+    list ModifyJob {
+      description "This IOC represents a network slice or network slice subnet
+        modification job that is used for asynchronous network slicing
+        provisioning procedures. It can be name-contained by SubNetwork.
+        To initiate a modification procedure, the MnS consumer creates an
+        instance of the ModifyJob IOC and provides the associated identifiers
+        and updated requirements via initial attribute values. To initiate a
+        network slice modification procedure, the networkSliceRef and
+        serviceProfile attributes shall be present. The serviceProfile shall
+        include a serviceProfileId that uniquely identifies a previously
+        allocated ServiceProfile. To initiate a network slice subnet
+        modification procedure, the networkSliceSubnetRef and sliceProfile
+        attributes shall be present. The sliceProfile shall includeing a
+        sliceProfileId that uniquely identifies a previously allocated
+        SliceProfile.
+        In all cases the MnS consumer must provide the full set
+        of requirements as input rather than only the changed requirements.
+        This is because the MnS producer would otherwise not be able to deduce
+        whether a missing attribute value represents no requirement or an
+        unchanged requirement. If there is an existing instance of
+        FeasibilityCheckAndReservationJob that has successfully completed a
+        reservation process for the same serviceProfileId or sliceProfileId,
+        the MnS producer will perform the modification using the already
+        reserved resources.
+        Note: When reserved resources are used, the MnS producer may reject a
+        request if some requirement values in the profile are different from
+        the corresponding profile in the
+        FeasibilityCheckAndResourceReservationJob.
+        To obtain the progress information of a ModifyJob instance, the MnS
+        consumer can monitor the progress of the ModifyJob via the
+        processMonitor attribute.
+        Once a ModifyJob instance has reached one of the possible end states
+        as indicated by the processMonitor.status attribute, it should be
+        deleted by the MnS consumer.";
+      key id;
+      uses top3gpp:Top_Grp;
+    
+      container attributes {
+        uses ModifyJobGrp;
+      }
+    }
+  }
+}
