@@ -99,11 +99,11 @@ module _3gpp-ns-nrm-common {
   }
   grouping ProvisioningRuleGrp {
     description "represents the information that is captured in a 
-       provisioning rule from a network slice or network slice subnet
-       provisioning MnS consumer. Provisioning rules are associated with
-       a particular ServiceProfile or SliceProfile and are part of the
-       complete set of requirements to be fulfilled by network slice or
-       network slice subnet MnS producer.";
+      provisioning rule from a network slice or network slice subnet
+      provisioning MnS consumer. Provisioning rules are associated with
+      a particular ServiceProfile or SliceProfile and are part of the
+      complete set of requirements to be fulfilled by network slice or
+      network slice subnet MnS producer.";
 
     leaf ruleType {
       description "This attribute specifies the type of provisioning rule.";
@@ -116,15 +116,15 @@ module _3gpp-ns-nrm-common {
 
     leaf sharingPolicy {
       description "This attribute specifies sharing policy for an instance 
-         sharing rule. In case of selectively shared sharingGroup also needs to be 
-         provided.";
-        mandatory true;
+        sharing rule. In case of selectively shared sharingGroup also needs to be 
+        provided.";
+      mandatory true;
         
-        type enumeration {
-          enum SHARED;
-          enum NOT_SHARED;
-          enum SELECTIVELY_SHARED;
-        }
+      type enumeration {
+        enum SHARED;
+        enum NOT_SHARED;
+        enum SELECTIVELY_SHARED;
+      }
     }
 
     leaf sharingGroup {
