@@ -783,6 +783,67 @@ components:
                 recommendedRequirements:
                   $ref: '#/components/schemas/RecommendedRequirements'
 
+    AllocateJob-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    serviceProfile:
+                      $ref: '#/components/schemas/ServiceProfile'
+                    sliceProfile:
+                      $ref: '#/components/schemas/SliceProfile'
+                    processMonitor:
+                      $ref: 'genericNrm.yaml#/components/schemas/ProcessMonitor'
+                    networkSliceRefOut:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                    networkSliceSubnetRefOut:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+
+    DeallocateJob-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    serviceProfileId:
+                      type: string
+                    sliceProfileId:
+                      type: string
+                    processMonitor:
+                      $ref: 'genericNrm.yaml#/components/schemas/ProcessMonitor'
+                    networkSliceRef:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                    networkSliceSubnetRef:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+
+    ModifyJob-Single:
+      allOf:
+        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    serviceProfile:
+                      $ref: '#/components/schemas/ServiceProfile'
+                    sliceProfile:
+                      $ref: '#/components/schemas/SliceProfile'
+                    processMonitor:
+                      $ref: 'genericNrm.yaml#/components/schemas/ProcessMonitor'
+                    networkSliceRef:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                    networkSliceSubnetRef:
+                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+
+
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
     SubNetwork-Multiple:
       type: array
@@ -812,7 +873,22 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/FeasibilityCheckJob-Single'   
-        
+
+    AllocateJob-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/AllocateJob-Single'
+
+    DeallocateJob-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/DeallocateJob-Single'
+
+    ModifyJob-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/ModifyJob-Single'
+
 #------------ Definitions in TS 28.541 for TS 28.532 -----------------------------
 
     resources-sliceNrm:
@@ -825,3 +901,6 @@ components:
        - $ref: '#/components/schemas/EP_Transport-Single'
        - $ref: '#/components/schemas/NetworkSliceSubnetProviderCapabilities-Single'
        - $ref: '#/components/schemas/FeasibilityCheckJob-Single'       
+       - $ref: '#/components/schemas/AllocateJob-Single'
+       - $ref: '#/components/schemas/DeallocateJob-Single'
+       - $ref: '#/components/schemas/ModifyJob-Single'
