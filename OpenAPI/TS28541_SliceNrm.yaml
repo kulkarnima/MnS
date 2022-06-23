@@ -785,7 +785,7 @@ components:
 
     AllocateJob-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -797,15 +797,15 @@ components:
                     sliceProfile:
                       $ref: '#/components/schemas/SliceProfile'
                     processMonitor:
-                      $ref: 'genericNrm.yaml#/components/schemas/ProcessMonitor'
+                      $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ProcessMonitor'
                     networkSliceRefOut:
-                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
                     networkSliceSubnetRefOut:
-                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
 
     DeallocateJob-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -817,15 +817,15 @@ components:
                     sliceProfileId:
                       type: string
                     processMonitor:
-                      $ref: 'genericNrm.yaml#/components/schemas/ProcessMonitor'
+                      $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ProcessMonitor'
                     networkSliceRef:
-                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
                     networkSliceSubnetRef:
-                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
 
     ModifyJob-Single:
       allOf:
-        - $ref: 'genericNrm.yaml#/components/schemas/Top'
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
           properties:
             attributes:
@@ -837,11 +837,11 @@ components:
                     sliceProfile:
                       $ref: '#/components/schemas/SliceProfile'
                     processMonitor:
-                      $ref: 'genericNrm.yaml#/components/schemas/ProcessMonitor'
+                      $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ProcessMonitor'
                     networkSliceRef:
-                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
                     networkSliceSubnetRef:
-                      $ref: 'comDefs.yaml#/components/schemas/Dn'
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
 
 
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
