@@ -26,13 +26,14 @@ module _3gpp-common-qmcjob {
       Integration Reference Point (IRP);
       Information Service (IS)";
 
+  revision 2022-06-29 { reference "S5-224249"; } 
   revision 2022-04-29 { reference "CR-0171"; }
   revision 2022-03-22 { reference "draftCR"; }
   revision 2022-01-06 { reference "CR-0142"; }
     
   grouping QMCJobGrp {
     leaf serviceType {
-      description "Specifies an end user service/end user service type for QoE measurements.";
+      description "Specifies an end user service type for QoE measurements.";
       mandatory true;
       type enumeration {
       enum DASH;
@@ -104,8 +105,7 @@ module _3gpp-common-qmcjob {
       type string;
       description "Provides a reference to a file including the parameters for configuration of 
         application layer measurements, known as Container for Application Layer Measurement 
-        Configuration.  Location of the file incl. the file transfer protocol, and the file name
-        for the case the file content cannot be retrieved by reading the 'fileContent' attribute.";
+        Configuration.";
       mandatory true;
     }
   }
