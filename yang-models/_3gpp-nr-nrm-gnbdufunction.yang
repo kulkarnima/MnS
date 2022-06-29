@@ -15,7 +15,7 @@ module _3gpp-nr-nrm-gnbdufunction {
     Object Class (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
-  revision 2022-06-16 { reference draftCR ; }
+  revision 2022-06-16 { reference "S5-224314" ; }
   revision 2021-10-28 { reference CR-0607 ; }
   revision 2021-04-30 { reference CR-0490 ; }
   revision 2020-10-02 { reference CR-0384 ; }
