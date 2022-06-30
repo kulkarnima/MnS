@@ -26,12 +26,12 @@ components:
       properties:
         cellIdList:
           type: array
-          items:
+          items: 
             type: integer
         trackingAreaIdList:
           $ref: 'TS28541_NrNrm.yaml#/components/schemas/TaiList'
         servingPLMN:
-          $ref: 'TS28541_NrNrm.yaml#/components/schemas/PlmnId'
+          $ref: 'TS28541_NrNrm.yaml#/components/schemas/PLMNId'
     GeoLoc:
       type: object
       properties:
@@ -42,7 +42,7 @@ components:
     GeographicalCoordinates:
       type: object
       properties:
-        lattitude:
+        latitude:
           type: integer
         longitude:
           type: integer
@@ -58,12 +58,10 @@ components:
       properties:
         affinityEAS:
           type: array
-          items:
+          items: 
             type: string
         antiAffinityEAS:
-          type: array
-          items:
-            type: string
+          type: string
     VirtualResource:
       type: object
       properties:
@@ -71,8 +69,16 @@ components:
           type: integer
         virtualDisk:
           type: integer
-        virutalCPU:
+        virtualCPU:
           type: string
+    Duration:
+      type: object
+      properties:
+        startTime:
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/DateTime' 
+        endTime:
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/DateTime'
+
     SoftwareImageInfo:
       type: object
       properties:
@@ -86,15 +92,29 @@ components:
           type: string
         swImageRef:
           type: string
-    RegistrationInfo:
-      type: object
-      properties:
-        registrationExpiry:
-          type: string
-        registrationID:
-          type: string
-        secCredential:
-          type: string
+          description: indicates the reference to the actual software image that is represented by URL (see clause 7.1.6.5 in ETSI NFV IFA-011 [7]).   
+
+    EASServicePermission:
+      type: string
+      description: any of enumrated value
+      enum:
+        - TRIAL
+        - SILVER
+        - GOLD
+    EASFeature:
+      type: string
+      description: any of enumrated value
+      enum:
+        - SINGLE
+        - MULTIPLE
+    EASStatus:
+      type: string
+      description: any of enumrated value
+      enum:
+        - ENABLED
+        - DISABLED
+
+
 
 #-------- Definition of concrete IOCs --------------------------------------------
     MnS:
@@ -112,14 +132,14 @@ components:
             attributes:
               allOf:
                 - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/SubNetwork-Attr'
-        - type: object
-          properties:
-            Subnetwork:
-              $ref: '#/components/schemas/SubNetwork-Multiple'
-            ECSFunction:
-              $ref: '#/components/schemas/ECSFunction-Multiple'
-            EdgeDataNetwork:
-              $ref: '#/components/schemas/EdgeDataNetwork-Multiple'
+                - type: object
+                  properties:
+                    Subnetwork:
+                      $ref: '#/components/schemas/SubNetwork-Multiple'
+                    ECSFunction:
+                      $ref: '#/components/schemas/ECSFunction-Multiple'
+                    EdgeDataNetwork:
+                      $ref: '#/components/schemas/EdgeDataNetwork-Multiple'
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/SubNetwork-ncO'
 
     EdgeDataNetwork-Single:
@@ -130,7 +150,7 @@ components:
             ednIdentifier:
               type: string
             eDNConnectionInfo:
-              $ref: '#/components/schemas/EDNConnectionInfo'         
+              $ref: '#/components/schemas/EDNConnectionInfo'
         - type: object
           properties:
             EASFunction:
@@ -152,19 +172,52 @@ components:
                       type: string
                     eESAddress:
                       type: array
-                      items:
+                      items: 
                         type: string
                     eASRequirementsRef:
                       $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
-                    eESFunctionRef:
-                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
                     eASAddress:
                       type: array
-                      items:
+                      items: 
                         type: string
-                    registrationInfo:
-                      $ref: '#/components/schemas/RegistrationInfo'  
+                    eASProfileRef:
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+
+    EASProfile:
+      allOf:
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            aCID:
+              type: string
+            eASProvider:
+              type: string
+            eASType:
+               type: string
+            eASdescription:
+              type: string
+            eASSchedule:
+              $ref: '#/components/schemas/Duration'
+            eASGeographicalServiceArea:
+              $ref: '#/components/schemas/GeoLoc'
+            eASTopologicalServiceArea:
+              $ref: '#/components/schemas/TopologicalServiceArea'
+            eASServicePermissionLevel:
+              $ref: '#/components/schemas/EASServicePermission'
+            eASFeature:
+              $ref: '#/components/schemas/EASFeature'
+            eASServiceContinuitySupport:
+              type: boolean
+            eASDNAI:
+              type: string
+            eASAvailabilityReportingPeriod:
+              type: integer
+            eASStatus:
+              $ref: '#/components/schemas/EASStatus'
+
+
+
     EESFunction-Single:
       allOf:
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -183,16 +236,14 @@ components:
                         $ref: '#/components/schemas/ServingLocation'
                     eESAddress:
                       type: array
-                      items:
+                      items: 
                         type: string
                     softwareImageInfo:
                       $ref: '#/components/schemas/SoftwareImageInfo'
                     serviceContinuitySupport:
                       type: boolean
-                    eASFunctionRef:
+                    eASFunctonRef:
                       $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'  
-                    registrationInfo:
-                      $ref: '#/components/schemas/RegistrationInfo'  
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
     ECSFunction-Single:
@@ -217,7 +268,7 @@ components:
                       $ref: '#/components/schemas/SoftwareImageInfo'
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
-    EASRequirements-Single:
+    EASRequirements:
       allOf:
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
@@ -227,7 +278,7 @@ components:
             affinityAntiAffinity:
               $ref: '#/components/schemas/AffinityAntiAffinity'
             serviceContinuity:
-              type: boolean
+               type: boolean
             virtualResource:
               $ref: '#/components/schemas/VirtualResource'
             softwareImageInfo:
@@ -266,4 +317,5 @@ components:
         - $ref: '#/components/schemas/ECSFunction-Single'
         - $ref: '#/components/schemas/EESFunction-Single'
         - $ref: '#/components/schemas/EdgeDataNetwork-Single'
-        - $ref: '#/components/schemas/EASRequirements-Single'
+        - $ref: '#/components/schemas/EASRequirements'
+        - $ref: '#/components/schemas/EASProfile'
