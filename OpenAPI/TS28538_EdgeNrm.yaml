@@ -180,8 +180,6 @@ components:
                       type: array
                       items: 
                         type: string
-                    eASProfileRef:
-                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
     EASProfile:
