@@ -156,8 +156,6 @@ components:
                         type: string
                     eASRequirementsRef:
                       $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
-                    eESFunctionRef:
-                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
                     eASAddress:
                       type: array
                       items:
