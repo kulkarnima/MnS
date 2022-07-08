@@ -144,5 +144,4 @@ module _3gpp-5g-common-yang-types {
       enum Sunday;
     }
   }
-
 }
