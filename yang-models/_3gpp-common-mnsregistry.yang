@@ -47,9 +47,9 @@ module _3gpp-common-mnsregistry {
     }
 
     leaf-list mnsScope {
-      description "List of the managed object instances that can be accessed 
-        using the MnS. If a complete SubNetwork can be accessed using the MnS, 
-        this attribute may contain the DN of the SubNetwork instead of the 
+      description "List of the managed object instances that can be accessed
+        using the MnS. If a complete SubNetwork can be accessed using the MnS,
+        this attribute may contain the DN of the SubNetwork instead of the
         DNs of the individual managed entities within the SubNetwork.";
       min-elements 1;
       type types3gpp:DistinguishedName;
@@ -63,31 +63,31 @@ module _3gpp-common-mnsregistry {
       uses top3gpp:Top_Grp;
       key id;
       max-elements 1;
-      
+
       list MNSInfo {
-        description "This IOC represents an available Management Service (MnS) 
-          and provides the data required to support its discovery.  
+        description "This IOC represents an available Management Service (MnS)
+          and provides the data required to support its discovery.
           It is name-contained by MnsRegistry.
 
-          This information is used by the consumer to discover the producers 
-          of specific Management Services and to derive the addresses of the 
+          This information is used by the consumer to discover the producers
+          of specific Management Services and to derive the addresses of the
           Management Service.
 
-          Attributes mnsLabel, mnsType, and mnsVersion are used to describe 
+          Attributes mnsLabel, mnsType, and mnsVersion are used to describe
           the Management Service.
 
-          Attribute mnsAddress is used to provide addressing information for 
+          Attribute mnsAddress is used to provide addressing information for
           the Management Service operations.
 
-          Attribute mnsScope is used to provide information about the 
-          management scope of the Management Service. The management scope is 
-          defined as the set of managed object instances that can be accessed 
+          Attribute mnsScope is used to provide information about the
+          management scope of the Management Service. The management scope is
+          defined as the set of managed object instances that can be accessed
           using the Management Service.";
-          
+
         uses top3gpp:Top_Grp;
         key "mnsType mnsVersion mnsAddress";
         uses MnsInfoGrp;
       }
     }
   }
-}	
+}
