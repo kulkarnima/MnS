@@ -15,6 +15,7 @@ module _3gpp-common-yang-types {
 
   revision 2022-02-09 { reference "CR-0144"; }
   revision 2021-11-01 { reference "CR-0141"; }
+  
   revision 2021-09-30 {
     description "Added Longitude, Latitude, TenthOfDegrees, OnOff.";
     reference "CR-0138";
@@ -68,7 +69,7 @@ module _3gpp-common-yang-types {
 
       The progress of the process is described by the 'status' and 
       'progressPercentage' attributes. Additional textual qualifications for 
-      the 'status' attribute may be provided by the 'progessStateInfo' and 
+      the 'status' attribute may be provided by the 'progressStateInfo' and 
       'resultStateInfo' attributes.
 
       When the process is instantiated, the 'status' is set to 'NOT_RUNNING' 
@@ -80,7 +81,7 @@ module _3gpp-common-yang-types {
 
       During the 'RUNNING' state the 'progressPercentage' attribute may be 
       repeatedly updated. The exact semantic of this attribute is subject to 
-      further specialisation. The 'progessInfo' attribute may be used to 
+      further specialisation. The 'progressInfo' attribute may be used to 
       provide additional textual information in the 'NOT_RUNNING', 'CANCELLING' 
       and 'RUNNING' states. Further specialisation of 
       'progressStateInfo' may be provided where this data type is 

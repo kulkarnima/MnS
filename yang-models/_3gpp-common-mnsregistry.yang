@@ -16,16 +16,15 @@ module _3gpp-common-mnsregistry {
   revision 2021-11-23 { reference "S5-216090"; }
   revision 2021-10-18 { reference "S5-215263"; }
   revision 2021-08-29 { reference "Initial revision, S5-214388"; }
-  
-  grouping MNSInfoGrp {
-    description "Represents the MNSInfo IOC.";
-    reference "3GPP TS 28.622";
+
+  grouping MnsInfoGrp {
+    description "Represents the MnsInfo IOC.";
     leaf mnsLabel {
       description "Human-readable name of management service.";
       mandatory true;
       type string;
     }
-    
+
     leaf mnsType {
       description "Type of management service.";
       type enumeration {
@@ -35,39 +34,59 @@ module _3gpp-common-mnsregistry {
          enum FileDataReportingMnS;
       }
     }
-    
+
     leaf mnsVersion {
       description "Version of management service.";
       type string;
-    }    
-    
+    }
+
     leaf mnsAddress {
       description "Addressing information for Management Service operations.";
       mandatory true;
       type string;
-    }    
-    
+    }
+
     leaf-list mnsScope {
-      description "List of the managed object instances that can be accessed using the MnS. If a complete SubNetwork can be accessed using the MnS, this attribute may contain the DN of the SubNetwork instead of the DNs of the individual managed entities within the SubNetwork.";
+      description "List of the managed object instances that can be accessed 
+        using the MnS. If a complete SubNetwork can be accessed using the MnS, 
+        this attribute may contain the DN of the SubNetwork instead of the 
+        DNs of the individual managed entities within the SubNetwork.";
       min-elements 1;
       type types3gpp:DistinguishedName;
     }
-    
   }
-  
+
   augment "/subnet3gpp:SubNetwork" {
     list MNSRegistry {
-      description "Represents the MNSRegistry IOC.";
-      reference "3GPP TS 28.622";
+      description "Represents the MNSRegistry IOC.
+        The IOC is instantiated by the system.";
       uses top3gpp:Top_Grp;
       key id;
       max-elements 1;
+      
       list MNSInfo {
-        description "Represents the MNSInfo IOC.";
-        reference "3GPP TS 28.622";
+        description "This IOC represents an available Management Service (MnS) 
+          and provides the data required to support its discovery.  
+          It is name-contained by MnsRegistry.
+
+          This information is used by the consumer to discover the producers 
+          of specific Management Services and to derive the addresses of the 
+          Management Service.
+
+          Attributes mnsLabel, mnsType, and mnsVersion are used to describe 
+          the Management Service.
+
+          Attribute mnsAddress is used to provide addressing information for 
+          the Management Service operations.
+
+          Attribute mnsScope is used to provide information about the 
+          management scope of the Management Service. The management scope is 
+          defined as the set of managed object instances that can be accessed 
+          using the Management Service.";
+          
         uses top3gpp:Top_Grp;
         key "mnsType mnsVersion mnsAddress";
-        uses MNSInfoGrp;
+        uses MnsInfoGrp;
       }
     }
   }
