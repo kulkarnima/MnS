@@ -12,7 +12,6 @@ module _3gpp-nr-nrm-nrcelldu {
   import _3gpp-5g-common-yang-types { prefix types5g3gpp; }
   import ietf-yang-types { prefix yang; }
 
-
   organization "3GPP SA5";
   contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
   description "Defines the YANG mapping of the NRCellDU Information Object
