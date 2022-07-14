@@ -341,7 +341,7 @@ components:
       type: object
       properties:
         areaOfInterest:
-          $ref: 'comDefs.yaml#/components/schemas/AreaOfInterest'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/AreaOfInterest'
         networkDomain:
           type: string
           enum:

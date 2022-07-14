@@ -77,13 +77,13 @@ components:
         assuranceGoalStatusId:
           type: string
         assuranceGoalId:
-          $ref: 'comDefs.yaml#/components/schemas/Dn'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
         assuranceGoalStatusObserved:
           $ref: '#/components/schemas/AssuranceGoalStatusObserved'
         assuranceGoalStatusPredicted:
           $ref: '#/components/schemas/AssuranceGoalStatusPredicted'
         assuranceGoalRef:
-          $ref: 'comDefs.yaml#/components/schemas/Dn'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
 
     AssuranceGoalStatusList:
       type: array
@@ -185,9 +185,9 @@ components:
             AssuranceGoal:
               $ref: '#/components/schemas/AssuranceGoal-Multiple'
               networkSliceRef:
-                $ref: 'comDefs.yaml#/components/schemas/Dn'
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
               networkSliceSubnetRef:
-                $ref: 'comDefs.yaml#/components/schemas/Dn'
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
 
     AssuranceGoal-Single:
       allOf:
