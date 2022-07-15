@@ -16,7 +16,7 @@ module _3gpp-nr-nrm-dlbofunction {
     Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
-  revision 2022-03-25 { reference "CR-XXXX"; }
+  revision 2022-03-25 { reference "CR-0683"; }
   revision 2021-10-22 { reference "CR-0577"; }  
 
   feature DLBOUnderGNBCUCPFunction {
@@ -49,6 +49,7 @@ module _3gpp-nr-nrm-dlbofunction {
         type int32 { range "-20..20"; }
         units "0.5 dB";
     }
+
     leaf maximumDeviationHoTriggerHigh {
       description "This parameter defines the maximum allowed upper 
         deviation of the Handover Trigger, from the default point of 
