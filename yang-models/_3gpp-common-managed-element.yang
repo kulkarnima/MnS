@@ -8,6 +8,7 @@ module _3gpp-common-managed-element {
   import _3gpp-common-measurements { prefix meas3gpp; }
   import _3gpp-common-subscription-control { prefix subscr3gpp; }
   import _3gpp-common-fm { prefix fm3gpp; }
+  import _3gpp-common-scheduler { prefix sched3gpp; }
   import _3gpp-common-trace { prefix trace3gpp; }
 
   organization "3GPP SA5";
@@ -49,6 +50,10 @@ module _3gpp-common-managed-element {
 
   feature FmUnderManagedElement {
     description "The FmSubtree shall be contained under ManagedElement";
+  }
+  
+  feature SchedulerUnderManagedElement {
+    description "The Scheduler shall be contained under ManagedElement";
   }
   
   feature TraceUnderManagedElement {
@@ -240,6 +245,10 @@ module _3gpp-common-managed-element {
       if-feature FmUnderManagedElement;
     }
 
+    uses sched3gpp:SchedulerSubtree {
+      if-feature SchedulerUnderManagedElement;
+    }
+    
     uses trace3gpp:TraceSubtree {
       if-feature TraceUnderManagedElement;
     }

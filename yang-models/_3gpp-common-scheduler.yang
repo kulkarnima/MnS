@@ -1,0 +1,155 @@
+module _3gpp-common-scheduler {
+  yang-version 1.1;
+  namespace "urn:3gpp:sa5:_3gpp-common-scheduler";
+  prefix "sched3gpp";
+
+  import ietf-yang-types { prefix yang; }
+  import _3gpp-common-top { prefix top3gpp; }
+
+  organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
+
+  description "Defines a Fault Management model";
+
+  reference "3GPP TS 28.623
+      Generic Network Resource Model (NRM)
+      Integration Reference Point (IRP);
+      Solution Set (SS) definitions
+
+      3GPP TS 28.622
+      Generic Network Resource Model (NRM)
+      Integration Reference Point (IRP);
+      Information Service (IS)";
+
+  revision 2022-07-19 { reference "CR-xxxx"; }
+  
+  grouping TimeIntervalGrp {
+    description "This data type defines a time interval within one day. 
+      If the whole day shall be selected, intervalStart shall be set to 
+      00:00:00 and intervalEnd shall be set to 23:59:59.";
+    
+  
+    leaf intervalStart {
+      type yang:time;
+      mandatory true;
+      description "It indicates the time when the service shall be started.";
+    }
+    
+    leaf intervalEnd {
+      type yang:time;
+      mandatory true;
+      description "It indicates the time when the service shall be stopped.";
+    }
+  }
+  
+  grouping SchedulerGrp {
+    description "Represents the Scheduler IOC.";
+    
+    list schedulingTimes {
+      key idx;
+      description "Defines the time interval(s) when the scheduler as 
+        statusActive=True. Intervals can be defined using one 
+        of four possible scheduling methods: 
+        1)  One time interval: The attributes 'startTime' and 'endTime' present 
+        the active scheduling time. If no endTime is configured, the 
+        scheduling times runs until deletion of the managed object instance.
+        2)  Daily periodicity: Several active intervals per day can be 
+        configured in attribute 'timeIntervals'. The active scheduling times 
+        recur each day.
+        3)  Weekly periodicity: Several active intervals for one day can be 
+        configured in attribute 'timeIntervals'. The active scheduling times 
+        recur on the days of the weeks configured by attribute 'daysOfWeek'. 
+        4)  Monthly periodicity: Several active intervals for one day can be 
+        configured in attribute 'timeIntervals'. The active scheduling times 
+        recur on the days of the months configured by attribute 'daysOfMonth'.";
+      
+      leaf idx {type uint32; }
+    
+      choice schedulingTime {
+        mandatory true;
+        case one-time-interval {
+          leaf startTime {
+            type yang:date-and-time;
+            mandatory true;
+            description "";
+          }
+      
+          leaf endTime {
+            type yang:date-and-time;      
+          }
+        }
+        case periodic {
+          list timeIntervals {
+            key "intervalStart intervalEnd";
+            min-elements 1;
+            description "Intervals within one day for which the service 
+              shall be active.
+              If the whole day shall be selected, intervalStart shall be set to 
+              00:00:00 and intervalEnd shall be set to 23:59:59.";
+            uses TimeIntervalGrp;
+          }
+      
+          choice schedulingPeriod {
+            case weekly {
+              leaf daysOfWeek {
+                type enumeration {
+                  enum MONDAY;
+                  enum TUESDAY;
+                  enum WEDNESDAY;
+                  enum THURSDAY;
+                  enum FRIDAY;
+                  enum SATURDAY;
+                  enum SUNDAY;
+                }
+              }
+            }
+            case monthly {
+              leaf daysOfMonth {
+                type uint8 {
+                  range 0..31 ;
+                }
+                description "Indicates the days in a month.
+                  Value 0 presents the last day of the month";
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    leaf statusActive {
+      type boolean;
+      config false;
+      mandatory true;
+      description "Indicates whether the configured constraints are 
+        currently fulfilled or not.";
+    }
+  }  
+  
+
+  grouping SchedulerSubtree {
+    description "Contains the Scheduler.
+      Should be used in all classes (or classes inheriting from)
+      - SubNetwork
+      - ManagedElement
+
+      If some YAM wants to augment these classes/list/groupings they must
+      augment all user classes!";
+
+    list Scheduler {
+      key id;
+      description "Defines a time scheduler. The schedulingTimes 
+        allows to configure one or several active intervals. The active 
+        intervals can be configured to occur once or recur periodically.
+
+        The leaf statusActive switches between TRUE and FALSE depending on 
+        whether the configured time constraints are currently 
+        fulfilled or not.";
+
+      uses top3gpp:Top_Grp ;
+      container attributes {
+        uses SchedulerGrp ;
+      }
+    }
+  }  
+}

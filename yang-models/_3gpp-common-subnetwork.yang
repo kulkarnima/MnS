@@ -8,6 +8,7 @@ module _3gpp-common-subnetwork {
   import _3gpp-common-measurements { prefix meas3gpp; }
   import _3gpp-common-subscription-control { prefix subscr3gpp; }
   import _3gpp-common-fm { prefix fm3gpp; }
+  import _3gpp-common-scheduler { prefix sched3gpp; }
   import _3gpp-common-trace { prefix trace3gpp; }
   import ietf-yang-schema-mount { prefix yangmnt; }
 
@@ -66,6 +67,10 @@ module _3gpp-common-subnetwork {
 
   feature FmUnderSubNetwork {
     description "The FmSubtree shall be contained under SubNetwork";
+  }
+  
+  feature SchedulerUnderSubNetwork {
+    description "The Scheduler shall be contained under SubNetwork";
   }
   
   feature TraceUnderSubNetwork {
@@ -198,6 +203,10 @@ module _3gpp-common-subnetwork {
 
     uses fm3gpp:FmSubtree {
       if-feature FmUnderSubNetwork;
+    }
+    
+    uses sched3gpp:SchedulerSubtree {
+      if-feature SchedulerUnderSubNetwork;
     }
     
     uses trace3gpp:TraceSubtree {
