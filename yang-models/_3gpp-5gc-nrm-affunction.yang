@@ -12,7 +12,7 @@ module _3gpp-5gc-nrm-affunction {
   description "This IOC is defined only to describe the IOCs representing
                its interaction interface with 5GC (i.e. EP_Rx and EP_N5).
                It has no attributes defined.";
-  reference "3GPP TS 28.541-TEST";
+  reference "3GPP TS 28.541-test";
   
   revision 2019-10-28 { reference S5-193518 ; }
   
