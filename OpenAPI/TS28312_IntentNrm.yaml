@@ -12,7 +12,6 @@ externalDocs:
 paths: {}
 components:
   schemas:
-
     Intent-Single:
       allOf:
       - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'    
@@ -36,7 +35,6 @@ components:
             $ref: "#/components/schemas/FulfilmentInfo"
 
    #-------Definition of the IntentExpectation dataType ----------#    
-   
     IntentExpectation:
       description: >-
         This data type is the "IntentExpectation" data type without specialisations
@@ -59,8 +57,7 @@ components:
           items:
             $ref: "#/components/schemas/ExpectationContext"
         expectationfulfilmentInfo:
-            $ref: "#/components/schemas/FulfilmentInfo"
-            
+            $ref: "#/components/schemas/FulfilmentInfo"            
     RadioNetworkExpectation:
       description: >-
         This data type is the "IntentExpectation" data type with specialisations to represent MnS consumer's expectations for radio network  delivering and performance assurance    
@@ -91,8 +88,7 @@ components:
           items:
             $ref: "#/components/schemas/ExpectationContext"
         expectationfulfilmentInfo:
-            $ref: "#/components/schemas/FulfilmentInfo"      
-            
+            $ref: "#/components/schemas/FulfilmentInfo"                  
     ServiceSupportExpectation:
       description: >-
         This data type is the "IntentExpectation" data type with specialisations to represent MnS consumer's expectations for service deployment    
@@ -150,8 +146,7 @@ components:
         objectContexts:
           type: array
           items:
-            $ref: "#/components/schemas/ObjectContext"  
-            
+            $ref: "#/components/schemas/ObjectContext"           
     RadioNetworkExpectationObject:
       description: >-
         This data type is the "ExpectationObject" data type with specialisations for RadioNetworkExpectation
@@ -173,8 +168,7 @@ components:
               - $ref: "#/components/schemas/PLMNContext"
               - $ref: "#/components/schemas/NRFqBandContext"
               - $ref: "#/components/schemas/RATContext"
-              - $ref: "#/components/schemas/ObjectContext"    
-              
+              - $ref: "#/components/schemas/ObjectContext"               
     ServiceSupportExpectationObject: 
       description: >-
         This data type is the "ExpectationObject" data type with specialisations for ServiceSupportExpectation
@@ -195,10 +189,8 @@ components:
               - $ref: "#/components/schemas/EdgeIdenfiticationLocContext"
               - $ref: "#/components/schemas/CoverageAreaTAContext"   
               - $ref: "#/components/schemas/ObjectContext"   
-
    #-------Definition of the ExpectationObject dataType ----------#    
 
-   
    #-------Definition of the generic dataType --------------#    
     Condition:
       type: string
@@ -207,13 +199,11 @@ components:
         - Is_less_than
         - Is_greater_than
         - Is_within_the_range
-
     FulfilStatus:
       type: string
       enum:
           - FULFILLED
           - NOT_FULFILLED
-
     NotFulfilledState:
       type: string
       enum:
@@ -223,7 +213,6 @@ components:
           - SUSPENDED
           - TERMINATED
           - FULFILMENTFAILED
-
     FulfilmentInfo:
       type: object
       properties:
@@ -237,13 +226,13 @@ components:
           description: ->
             An attribute which is used when FulfilmentInfo is implemented for IntentFulfilmentInfo
           type: string
-
     ExpectationVerb:
       type: string
       enum:
           - DELIVER
           - ENSURE
    #-------Definition of the generic dataType --------------#    
+
    #-------Definition of the IntentContext dataType --------------#    
     IntentContext:
       description: >-
@@ -308,7 +297,6 @@ components:
           $ref: "#/components/schemas/WeakRSRPContext"
         targetFulfilmentInfo:
           $ref: "#/components/schemas/FulfilmentInfo"
-
     WeakRSRPContext:
       description: >-
         This data type is the "TargetContext" data type with specialisations for WeakRSRPContext
@@ -324,7 +312,6 @@ components:
             - Is_less_than
         contextValueRange:
           type: number
-
     LowSINRRatioTarget:
       description: >-
         This data type is the "ExpectationTarget" data type with specialisations for LowSINRatioTarget
@@ -346,7 +333,6 @@ components:
           $ref: "#/components/schemas/LowSINRContext"
         targetFulfilmentInfo:
           $ref: "#/components/schemas/FulfilmentInfo"
-
     LowSINRContext:
       description: >-
         This data type is the "TargetContext" data type with specialisations for LowSINRContext
@@ -362,7 +348,6 @@ components:
             - Is_less_than
         contextValueRange:
           type: integer
-
     AveULRANUEThptTarget:
       description: >-
         This data type is the "ExpectationTarget" data type with specialisations for AveULRANUEThptTarget
@@ -380,7 +365,6 @@ components:
           type: integer
         targetFulfilmentInfo:
           $ref: "#/components/schemas/FulfilmentInfo"
-
     AveDLRANUEThptTarget:
       description: >-
         This data type is the "ExpectationTarget" data type with specialisations for AveDLRANUEThptTarget    
@@ -398,7 +382,6 @@ components:
           type: integer
         targetFulfilmentInfo:
           $ref: "#/components/schemas/FulfilmentInfo"
-
     LowULRANUEThptRatioTarget:
       description: >-
         This data type is the "ExpectationTarget" data type with specialisations for LowULRANUEThptRatioTarget        
@@ -420,7 +403,6 @@ components:
           $ref: "#/components/schemas/LowULRANUEThptContext"
         targetFulfilmentInfo:
           $ref: "#/components/schemas/FulfilmentInfo"
-
     LowULRANUEThptContext:
       description: >-
         This data type is the "TargetContext" data type with specialisations for LowULRANUEThptContext    
@@ -436,7 +418,6 @@ components:
             - Is_less_than
         contextValueRange:
           type: number
-
     LowDLRANUEThptRatioTarget:
       description: >-
         This data type is the "ExpectationTarget" data type with specialisations for LowDLRANUEThptRatioTarget         
@@ -458,7 +439,6 @@ components:
           $ref: "#/components/schemas/LowDLRANUEThptContext"
         targetFulfilmentInfo:
           $ref: "#/components/schemas/FulfilmentInfo"
-
     LowDLRANUEThptContext:
       description: >-
         This data type is the "TargetContext" data type with specialisations for LowDLRANUEThptContext      
@@ -579,7 +559,6 @@ components:
             - Is_less _than
         targetValueRange:
           type: integer
-
    #-------Definition of the concrete ExpectationTarget  dataType----------#  
    
    #-------Definition of the concrete ObjectTarget dataType----------------#
@@ -632,7 +611,6 @@ components:
           type: array
           items:
             $ref: "TS28541_NrNrm.yaml#/components/schemas/NrTac"
-
     PLMNContext:
       description: >-
         This data type is the "ObjectContext" data type with specialisations for PLMNContext       
@@ -650,7 +628,6 @@ components:
           type: array
           items:
             $ref: "TS28541_NrNrm.yaml#/components/schemas/PlmnId"
-
     NRFqBandContext:
       description: >-
         This data type is the "ObjectContext" data type with specialisations for NRFqBandContext       
@@ -668,7 +645,6 @@ components:
           type: array
           items:
             type: string
-
     RATContext:
       description: >-
         This data type is the "ObjectContext" data type with specialisations for RATContext           
@@ -743,7 +719,6 @@ components:
             $ref: "#/components/schemas/CoverageAreaTAList"
     CoverageAreaTAList:
           type: integer
-
    #-------Definition of the concrete ObjectTarget dataType----------------#
    
    #-------Definition of the concrete ExpectionContext dataType----------------#
