@@ -1,0 +1,16 @@
+module xx {
+  yang-version 1.1;
+  namespace "urn:3gpp:xxx";
+  prefix "xxgpp";
+  
+  import ietf-yang-types { prefix yang; }
+
+  organization "3GPP SA5";
+  contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
+  description "Test module to test eforge validation scripts";
+  reference "3GPP TS 28.623";
+
+  revision 2022-07-26 { reference CR-xx ; }
+
+  leaf xx { type string }
+}
