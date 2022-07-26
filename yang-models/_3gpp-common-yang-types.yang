@@ -13,6 +13,7 @@ module _3gpp-common-yang-types {
     network slicing.";
   reference "3GPP TS 28.623";
 
+  revision 2022-07-26 { reference CR-balazs145-r17-623-yang-corrections  }
   revision 2022-02-09 { reference "CR-0144"; }
   revision 2021-11-01 { reference "CR-0141"; }
   
@@ -426,6 +427,24 @@ module _3gpp-common-yang-types {
         description "The resource is partially or fully operable.";
       }
 
+    }
+  }
+  
+  typedef BasicAdministrativeState {
+    reference "3GPP TS 28.625 and ITU-T X.731";
+    type enumeration {
+      enum LOCKED {
+        value 0;
+        description "The resource is administratively prohibited from performing
+                 services for its users.";
+      }
+
+      enum UNLOCKED {
+        value 1;
+        description "The resource is administratively permitted to perform
+          services for its users. This is independent of its inherent
+          operability.";
+      }
     }
   }
   
