@@ -13,7 +13,7 @@ module _3gpp-common-yang-types {
     network slicing.";
   reference "3GPP TS 28.623";
 
-  revision 2022-07-26 { reference CR-balazs145-r17-623-yang-corrections  }
+  revision 2022-07-26 { reference CR-balazs145-r17-623-yang-corrections ; }
   revision 2022-02-09 { reference "CR-0144"; }
   revision 2021-11-01 { reference "CR-0141"; }
   
