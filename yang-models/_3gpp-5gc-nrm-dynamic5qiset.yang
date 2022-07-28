@@ -1,6 +1,5 @@
 module _3gpp-5gc-nrm-dynamic5qiset {
   yang-version 1.1;
-  
   namespace urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset;
   prefix dyn5QIs3gpp;
   
