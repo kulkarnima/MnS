@@ -8,7 +8,6 @@ module _3gpp-nr-nrm-nrcelldu {
   import _3gpp-common-managed-element { prefix me3gpp; }
   import _3gpp-common-top { prefix top3gpp; }
   import _3gpp-nr-nrm-gnbdufunction { prefix gnbdu3gpp; }
-  import _3gpp-nr-nrm-rrmpolicy { prefix nrrrmpolicy3gpp; }
   import _3gpp-5g-common-yang-types { prefix types5g3gpp; }
   import ietf-yang-types { prefix yang; }
 
@@ -18,6 +17,7 @@ module _3gpp-nr-nrm-nrcelldu {
     Class (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2022-07-28 { reference "CR-18-541-yang-corrections"; }
   revision 2021-10-28 { reference CR-0607 ; }
   revision 2021-01-25 { reference CR-0454 ; }
   revision 2020-11-25 { reference CR-0386 ; }
@@ -81,7 +81,6 @@ module _3gpp-nr-nrm-nrcelldu {
     description "Represents the NRCellDU IOC.";
     reference "3GPP TS 28.541";
     uses mf3gpp:ManagedFunctionGrp;
-    uses nrrrmpolicy3gpp:RRMPolicy_Grp;
         
     leaf cellLocalId {
       description "Identifies an NR cell of a gNB. Together with the
