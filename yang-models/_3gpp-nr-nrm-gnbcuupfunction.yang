@@ -7,7 +7,6 @@ module _3gpp-nr-nrm-gnbcuupfunction {
   import _3gpp-common-managed-function { prefix mf3gpp; }
   import _3gpp-common-managed-element { prefix me3gpp; }
   import _3gpp-common-top { prefix top3gpp; }
-  import _3gpp-nr-nrm-rrmpolicy { prefix nrrrmpolicy3gpp; }
   import _3gpp-5g-common-yang-types { prefix types5g3gpp; }
 
   organization "3GPP SA5";
@@ -16,6 +15,7 @@ module _3gpp-nr-nrm-gnbcuupfunction {
     Object Class (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
+  revision 2022-07-27 { reference "CR-17-541-yang-corrections"; }
   revision 2020-11-05 { reference CR-0412 ; }
   revision 2020-08-06 { reference "CR-0333"; }
   revision 2020-08-03 { reference "CR-0321"; }
@@ -98,7 +98,6 @@ module _3gpp-nr-nrm-gnbcuupfunction {
     description "Represents the GNBCUUPFunction IOC.";
     reference "3GPP TS 28.541";
     uses mf3gpp:ManagedFunctionGrp; 
-    uses nrrrmpolicy3gpp:RRMPolicy_Grp;
 
     leaf gNBCUUPId {
       type uint64 {
