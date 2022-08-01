@@ -129,11 +129,6 @@ components:
         $ref: 'TS28541_NrNrm.yaml#/components/schemas/NrTac'
     WeightFactor:
       type: integer
-    UdmInfo:
-      type: object
-      properties:
-        nFSrvGroupId:
-          type: string
     AusfInfo:
       type: object
       properties:
@@ -163,7 +158,6 @@ components:
           type: string
     NFInfo:
       oneOf:
-        - $ref: '#/components/schemas/UdmInfo'
         - $ref: '#/components/schemas/AusfInfo'
         - $ref: '#/components/schemas/UpfInfo'
         - $ref: '#/components/schemas/Udrinfo'
@@ -685,6 +679,18 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/SuciInfo' 
+    SupiRangeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/SupiRange'
+    IdentityRangeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/IdentityRange'
+    InternalGroupIdRangeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/InternalGroupIdRange'
 
 #-------- Definition of concrete IOCs --------------------------------------------
     ProvMnS:
@@ -1127,19 +1133,17 @@ components:
                     groupId:
                       type: string
                     supiRanges:
-                      $ref: '#/components/schemas/SupiRange'
+                      $ref: '#/components/schemas/SupiRangeList'
                     gpsiRanges:
-                      $ref: '#/components/schemas/IdentityRange'
+                      $ref: '#/components/schemas/IdentityRangeList'
                     externalGroupIdentifiersRanges:
-                      $ref: '#/components/schemas/IdentityRange'
+                      $ref: '#/components/schemas/IdentityRangeList'
                     routingIndicators:
                       type: array
                       items:
                         type: string
                     internalGroupIdentifiersRanges:
-                      type: array
-                      items: 
-                        $ref: '#/components/schemas/InternalGroupIdRange'
+                      $ref: '#/components/schemas/InternalGroupIdRangeList'
                     suciInfos:
                       $ref: '#/components/schemas/SuciInfoList'
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
