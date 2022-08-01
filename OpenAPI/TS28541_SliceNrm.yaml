@@ -347,7 +347,13 @@ components:
         nssaaSupport:
           $ref: '#/components/schemas/NSSAASupport'
         n6Protection:
-          $ref: '#/components/schemas/N6Protection'    
+          $ref: '#/components/schemas/N6Protection'
+        kPIMonitoring:
+          $ref: '#/components/schemas/KPIMonitoring'
+        availability:
+          type: number
+        jitter:
+          type: integer
     RANSliceSubnetProfile:
       type: object
       properties:
@@ -403,6 +409,20 @@ components:
           $ref: '#/components/schemas/DeterministicComm'
         uLDeterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
+        kPIMonitoring:
+          $ref: '#/components/schemas/KPIMonitoring'
+        availability:
+          type: number
+        jitter:
+          type: integer
+        v2XCommModels:
+          $ref: '#/components/schemas/V2XCommModels'
+        nBIoT:
+          $ref: '#/components/schemas/NBIoT'
+        maxDLDataVolume:
+          type: string
+        maxULDataVolume:
+          type: string
     TopSliceSubnetProfile:
       type: object
       properties:
@@ -460,6 +480,20 @@ components:
           $ref: '#/components/schemas/DeterministicComm'
         survivalTime:
           type: number
+        kPIMonitoring:
+          $ref: '#/components/schemas/KPIMonitoring'
+        availability:
+          type: number
+        jitter:
+          type: integer
+        v2XCommModels:
+          $ref: '#/components/schemas/V2XCommModels'
+        nBIoT:
+          $ref: '#/components/schemas/NBIoT'
+        maxDLDataVolume:
+          type: string
+        maxULDataVolume:
+          type: string
 
     ServiceProfile:
       type: object
@@ -514,7 +548,7 @@ components:
             $ref: '#/components/schemas/Positioning'
           userMgmtOpen:
             $ref: '#/components/schemas/UserMgmtOpen'
-          v2XModels:
+          v2XCommModels:
             $ref: '#/components/schemas/V2XCommModels'
           coverageArea:
             type: string
