@@ -1135,7 +1135,7 @@ components:
                     routingIndicators:
                       type: array
                       items:
-                        $ref: string
+                        type: string
                     internalGroupIdentifiersRanges:
                       type: array
                       items: 
