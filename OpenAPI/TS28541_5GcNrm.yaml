@@ -1153,7 +1153,7 @@ components:
                     groupId:
                       type: string
                     supiRanges:
-                      $ref: '#/components/schemas/SupiRangeLis'
+                      $ref: '#/components/schemas/SupiRangeList'
                     gpsiRanges:
                       $ref: '#/components/schemas/IdentityRangeList'
                     externalGroupIdentifiersRanges:
