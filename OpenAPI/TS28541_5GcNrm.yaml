@@ -2094,9 +2094,7 @@ components:
                 - type: object
                   properties:
                     configurable5QIs:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/FiveQICharacteristics-Multiple'  
+                      $ref: '#/components/schemas/FiveQICharacteristics-Multiple'  
    
     Dynamic5QISet-Single:
       allOf:
@@ -2108,9 +2106,7 @@ components:
                 - type: object
                   properties:
                     dynamic5QIs:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/FiveQICharacteristics-Multiple'                           
+                      $ref: '#/components/schemas/FiveQICharacteristics-Multiple'                           
                       
     GtpUPathQoSMonitoringControl-Single:
       allOf:
