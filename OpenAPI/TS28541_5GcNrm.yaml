@@ -643,6 +643,46 @@ components:
       type: array
       items:
         $ref: 'TS28541_NrNrm.yaml#/components/schemas/Tai' 
+    SupiRanges:
+      type: object
+      properties:
+        start:
+          type: string
+        end:
+          type: string
+        pattern:
+          type: string
+    IdentityRanges:
+      type: object
+      properties:
+        start:
+          type: string
+        end:
+          type: string
+        pattern:
+          type: string
+    ProseCapability:
+      type: object
+      properties:
+        proseDirectDiscovey:
+          type: boolean
+        proseDirectCommunication:
+          type: boolean
+        proseL2UetoNetworkRelay:
+          type: boolean
+        proseL3UetoNetworkRelay:
+          type: boolean
+        proseL2RemoteUe:
+          type: boolean
+        proseL3RemoteUe:
+          type: boolean
+    V2xCapability:
+      type: object
+      properties:
+        lteV2x:
+          type: boolean
+        nrV2x:
+          type: boolean
 
 #-------- Definition of concrete IOCs --------------------------------------------
     ProvMnS:
@@ -1002,16 +1042,36 @@ components:
                 - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
-                    plmnIdList:
-                      $ref: 'TS28541_NrNrm.yaml#/components/schemas/PlmnIdList'
+                    pLMNInfoList:
+                      $ref: 'TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
                     sBIFqdn:
                       type: string
-                    snssaiList:
-                      $ref: '#/components/schemas/SnssaiList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
+                    groupId:
+                      type: string
+                    dnnList:
+                      type: array
+                      items:
+                        type: string
+                    supiRanges:
+                      $ref: '#/components/schemas/SupiRanges'
+                    gpsiRanges:
+                      $ref: '#/components/schemas/IdentityRanges'
+                    rxDiamHost:
+                      type: string
+                    rxDiamRealm:
+                      type: string
+                    v2xSupportInd:
+                      type: boolean
+                    proseSupportInd:
+                      type: boolean
+                    proseCapability:
+                      $ref: '#/components/schemas/ProseCapability'
+                    v2xCapability:
+                      $ref: '#/components/schemas/V2xCapability'
                     configurable5QISetRef:
                       $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
                     dynamic5QISetRef:
