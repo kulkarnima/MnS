@@ -144,7 +144,7 @@ components:
       properties:
         smfServingAreas:
           type: string
-    SupportedDataSetId:
+    SupportedDataSet:
       type: string
       description: any of enumrated value
       enum:
@@ -152,6 +152,18 @@ components:
         - POLICY
         - EXPOSURE
         - APPLICATION
+        - A_PFD
+        - A_AFTI
+        - A_IPTV
+        - A_BDT
+        - A_SPD
+        - A_EASD
+        - A_AMI
+        - P_UE
+        - P_SCD
+        - P_BDT
+        - P_PLMNUE
+        - P_NSSCD
     Udrinfo:
       type: object
       properties:
@@ -643,6 +655,45 @@ components:
       type: array
       items:
         $ref: 'TS28541_NrNrm.yaml#/components/schemas/Tai' 
+    SupiRange:
+      type: object
+      properties:
+        start:
+          type: string
+        end:
+          type: string
+        pattern:
+          type: string
+    IdentityRange:
+      type: object
+      properties:
+        start:
+          type: string
+        end:
+          type: string
+        pattern:
+          type: string
+    SharedDataIdRange:
+      type: object
+      properties:
+        pattern:
+          type: string
+    SupiRangeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/SupiRange'
+    IdentityRangeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/IdentityRange'
+    SupportedDataSetList:
+      type: array
+      items:
+        $ref: '#/components/schemas/SupportedDataSet'
+    SharedDataIdRangeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/SharedDataIdRange'
 
 #-------- Definition of concrete IOCs --------------------------------------------
     ProvMnS:
@@ -1103,14 +1154,25 @@ components:
                 - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
-                    plmnIdList:
-                      $ref: 'TS28541_NrNrm.yaml#/components/schemas/PlmnIdList'
+                    pLMNInfoList:
+                      $ref: 'TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
                     sBIFqdn:
                       type: string
-                    snssaiList:
-                      $ref: '#/components/schemas/SnssaiList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
+                    groupId:
+                      type: string
+                    supiRanges:
+                      $ref: '#/components/schemas/SupiRangeLis'
+                    gpsiRanges:
+                      $ref: '#/components/schemas/IdentityRangeList'
+                    externalGroupIdentifiersRanges:
+                      $ref: '#/components/schemas/IdentityRangeList'
+                    supportedDataSets:
+                      $ref: '#/components/schemas/SupportedDataSetList'
+                    sharedDataIdRanges:
+                      $ref: '#/components/schemas/SharedDataIdRangeList'
+
     UdsfFunction-Single:
       allOf:
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
