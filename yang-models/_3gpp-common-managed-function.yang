@@ -43,7 +43,8 @@ module _3gpp-common-managed-function {
   }
   
   feature Configurable5QISetUnderManagedFunction {
-    description "The Configurable5QISet shall be contained under ManagedFunction";
+    description "The Configurable5QISet shall be contained under
+    ManagedFunction";
   }
 
   grouping Operation {
