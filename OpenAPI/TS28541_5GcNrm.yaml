@@ -643,7 +643,7 @@ components:
       type: array
       items:
         $ref: 'TS28541_NrNrm.yaml#/components/schemas/Tai' 
-    SupiRanges:
+    SupiRange:
       type: object
       properties:
         start:
@@ -652,7 +652,7 @@ components:
           type: string
         pattern:
           type: string
-    IdentityRanges:
+    IdentityRange:
       type: object
       properties:
         start:
@@ -1057,9 +1057,9 @@ components:
                       items:
                         type: string
                     supiRanges:
-                      $ref: '#/components/schemas/SupiRanges'
+                      $ref: '#/components/schemas/SupiRange'
                     gpsiRanges:
-                      $ref: '#/components/schemas/IdentityRanges'
+                      $ref: '#/components/schemas/IdentityRange'
                     rxDiamHost:
                       type: string
                     rxDiamRealm:
