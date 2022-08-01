@@ -21,7 +21,7 @@ module _3gpp-common-managed-function {
     
     3GPP TS 28.620 
     Umbrella Information Model (UIM)";
-  revision 2022-06-16 { reference "S5-224314"; }
+  revision 2022-06-16 { reference "S5-225xxx"; }
   revision 2022-01-07 { reference "CR-0146"; }
   revision 2021-01-25 { reference "CR-0122"; }  
   revision 2020-09-30 { reference "CR-bbbb"; }  
@@ -41,6 +41,10 @@ module _3gpp-common-managed-function {
     description "The TraceSubtree shall be contained under ManagedFunction";
   }
   
+  feature Configurable5QISetUnderManagedFunction {
+    description "The Configurable5QISet shall be contained under ManagedFunction";
+  }
+
   grouping Operation {
     description "This data type represents an Operation.";
     reference "3gpp TS 28.622";
@@ -324,7 +328,9 @@ module _3gpp-common-managed-function {
       if-feature TraceUnderManagedFunction ;
     }
 
-    uses fiveqi3gpp:FiveQiCharacteristicsSubtree ;
-    
+    uses fiveqi3gpp:FiveQiCharacteristicsSubtree {
+      if-feature Configurable5QISetUnderManagedFunction ;   
+    };
+     
   }
 }
