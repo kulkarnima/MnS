@@ -14,7 +14,7 @@ module _3gpp-nr-nrm-bwpset {
     (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
-  revision 2022-06-29 { reference S5-224352 ; }
+  revision 2022-06-29 { reference CR-0756 ; }
 
   grouping BWPSetGrp {
     description "Represents the BWPSet IOC.";
