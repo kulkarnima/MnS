@@ -643,6 +643,48 @@ components:
       type: array
       items:
         $ref: 'TS28541_NrNrm.yaml#/components/schemas/Tai' 
+    SupiRange:
+      type: object
+      properties:
+        start:
+          type: string
+        end:
+          type: string
+        pattern:
+          type: string
+    IdentityRange:
+      type: object
+      properties:
+        start:
+          type: string
+        end:
+          type: string
+        pattern:
+          type: string
+    InternalGroupIdRange:
+      type: object
+      properties:
+        start:
+          type: string
+        end:
+          type: string
+        pattern:
+          type: string
+    SuciInfo:
+      type: object
+      properties:
+        routingInds: 
+          type: array
+          items:
+            type: string
+        hNwPubKeyIds:
+          type: array
+          items:
+            type: integer
+    SuciInfoList:
+      type: array
+      items:
+        $ref: '#/components/schemas/SuciInfo' 
 
 #-------- Definition of concrete IOCs --------------------------------------------
     ProvMnS:
@@ -1072,18 +1114,34 @@ components:
                 - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
-                    plmnIdList:
-                      $ref: 'TS28541_NrNrm.yaml#/components/schemas/PlmnIdList'
+                    pLMNInfoList:
+                      $ref: 'TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
                     sBIFqdn:
                       type: string
-                    snssaiList:
-                      $ref: '#/components/schemas/SnssaiList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
                     eCSAddrConfigInfo:
                       $ref: '#/components/schemas/ECSAddrConfigInfo'
+                    groupId:
+                      type: string
+                    supiRanges:
+                      $ref: '#/components/schemas/SupiRange'
+                    gpsiRanges:
+                      $ref: '#/components/schemas/IdentityRange'
+                    externalGroupIdentifiersRanges:
+                      $ref: '#/components/schemas/IdentityRange'
+                    routingIndicators:
+                      type: array
+                      items:
+                        $ref: string
+                    internalGroupIdentifiersRanges:
+                      type: array
+                      items: 
+                        $ref: '#/components/schemas/InternalGroupIdRange'
+                    suciInfos:
+                      $ref: '#/components/schemas/SuciInfoList'
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
