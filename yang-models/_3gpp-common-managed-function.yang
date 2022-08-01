@@ -21,7 +21,8 @@ module _3gpp-common-managed-function {
     
     3GPP TS 28.620 
     Umbrella Information Model (UIM)";
-  revision 2022-06-16 { reference "S5-225xxx"; }
+
+  revision 2022-06-16 { reference "CR-0754"; }
   revision 2022-01-07 { reference "CR-0146"; }
   revision 2021-01-25 { reference "CR-0122"; }  
   revision 2020-09-30 { reference "CR-bbbb"; }  
