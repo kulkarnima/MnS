@@ -164,21 +164,11 @@ components:
         - P_BDT
         - P_PLMNUE
         - P_NSSCD
-    Udrinfo:
-      type: object
-      properties:
-        supportedDataSetIds:
-          type: array
-          items:
-            $ref: '#/components/schemas/SupportedDataSetId'
-        nFSrvGroupId:
-          type: string
     NFInfo:
       oneOf:
         - $ref: '#/components/schemas/UdmInfo'
         - $ref: '#/components/schemas/AusfInfo'
         - $ref: '#/components/schemas/UpfInfo'
-        - $ref: '#/components/schemas/Udrinfo'
     NotificationType:      
       type: string
       enum:
