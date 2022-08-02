@@ -682,7 +682,7 @@ components:
                     lifecycleState:
                       $ref: 'TS28623_ComDefs.yaml#/components/schemas/LifecycleState'
                     availabilityStatus:
-                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/AvailabilityStatus’
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/AvailabilityStatus'
 
     NetworkSliceSubnet-Single:
       allOf:
@@ -702,9 +702,9 @@ components:
                     administrativeState:
                       $ref: 'TS28623_ComDefs.yaml#/components/schemas/AdministrativeState'
                     lifecycleState:
-                      $ref: ' TS28623_ComDefs.yaml#/components/schemas/LifecycleState'
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/LifecycleState'
                     availabilityStatus:
-                      $ref: ' TS28623_ComDefs.yaml#/components/schemas/AvailabilityStatus’
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/AvailabilityStatus'
                     nsInfo:
                       $ref: '#/components/schemas/NsInfo'
                     sliceProfileList:
