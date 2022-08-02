@@ -157,6 +157,24 @@ components:
         - IDEL
         - ACTIVE
         - BUSY
+    AvailabilityStatus:
+      type: string
+      enum:
+        - IN_TEST
+        - FAILED
+        - POWER_OFF
+        - OFF_LINE
+        - OFF_DUTY
+        - DEPENDENCY
+        - DEGRADED
+        - NOT_INSTALLED
+        - LOG_FULL
+    LifecycleState:
+      type: string
+      enum:
+        - PLANNED
+        - INSTALLED
+        - PENDING_REMOVAL
 
     AttributeNameValuePairSet:
       description: >-
