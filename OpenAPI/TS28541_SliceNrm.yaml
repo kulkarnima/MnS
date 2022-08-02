@@ -60,13 +60,6 @@ components:
         - SHARED
         - NON-SHARED
 
-    ServiceType:
-      type: string
-      enum:
-        - eMBB
-        - RLLC
-        - MIoT
-        - V2X
     SliceSimultaneousUse:
       type: string
       enum:
@@ -378,7 +371,7 @@ components:
         reliability:
           type: number
         serviceType:
-          $ref: '#/components/schemas/ServiceType'
+          $ref: 'TS28541_NrNrm.yaml#/components/schemas/Sst'
         dLMaxPktSize:
           type: integer
         uLMaxPktSize:
@@ -453,7 +446,7 @@ components:
         reliability:
           type: number
         serviceType:
-          $ref: '#/components/schemas/ServiceType'
+          $ref: 'TS28541_NrNrm.yaml#/components/schemas/Sst'
         dLDeterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
         uLDeterministicComm:
