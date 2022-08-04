@@ -541,7 +541,8 @@ module _3gpp-common-trace {
     }
 
     leaf tjTriggeringEvent {
-      when '../tjJobType = "TRACE_ONLY" or ../tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
+      when '../tjJobType = "TRACE_ONLY" or ' +
+        '../tjJobType = "IMMEDIATE_MDT_AND_TRACE"';
       type string ;
       mandatory true;
       description "Specifies the triggering event parameter of the trace session.
@@ -750,7 +751,8 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTLoggingDuration {
-      when '../tjJobType = "LOGGED_MDT_ONLY" or ../tjJobType = "LOGGED_MBSFN_MDT"';
+      when '../tjJobType = "LOGGED_MDT_ONLY" or' 
+        + ' ../tjJobType = "LOGGED_MBSFN_MDT"';
       type uint32 {
         range "600|1200|2400|3600|5400|7200";
       }
@@ -764,7 +766,8 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTLoggingInterval {
-      when '../tjJobType = "LOGGED_MDT_ONLY" or ../tjJobType = "LOGGED_MBSFN_MDT"';
+      when '../tjJobType = "LOGGED_MDT_ONLY" or' 
+        + ' ../tjJobType = "LOGGED_MBSFN_MDT"';
       type uint32 {
         range "1280|2560|5120|10240|20480|"
           +"30720|40960|61440";
@@ -778,7 +781,8 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTLoggingEventThreshold {
-      when '../tjJobType = "LOGGED_MDT_ONLY" or ../tjJobType = "LOGGED_MBSFN_MDT"';
+      when '../tjJobType = "LOGGED_MDT_ONLY" or' 
+        + ' ../tjJobType = "LOGGED_MBSFN_MDT"';
       type uint32 {
         range "0..127";
       }
@@ -792,7 +796,8 @@ module _3gpp-common-trace {
     }
     
     leaf tjMDTLoggedHysteresis {
-      when '../tjJobType = "LOGGED_MDT_ONLY" or ../tjJobType = "LOGGED_MBSFN_MDT"';
+      when '../tjJobType = "LOGGED_MDT_ONLY" or '
+         + '../tjJobType = "LOGGED_MBSFN_MDT"';
       type uint32 {
         range "0..30";
       }
@@ -806,7 +811,8 @@ module _3gpp-common-trace {
     }
     
     leaf tjMDTLoggedTimeToTrigger {
-      when '../tjJobType = "LOGGED_MDT_ONLY" or ../tjJobType = "LOGGED_MBSFN_MDT"';
+      when '../tjJobType = "LOGGED_MDT_ONLY" or '
+          + '../tjJobType = "LOGGED_MBSFN_MDT"';
       type int32 ;
       description "It specifies the threshold which should trigger 
         the reporting in case of event based reporting of logged NR MDT. 
@@ -992,7 +998,8 @@ module _3gpp-common-trace {
     }
 
     leaf tjMDTTraceCollectionEntityID {
-      when '../tjJobType = "LOGGED_MDT_ONLY" or ../tjJobType = "LOGGED_MBSFN_MDT"';
+      when '../tjJobType = "LOGGED_MDT_ONLY" or ' 
+        + '../tjJobType = "LOGGED_MBSFN_MDT"';
       type uint8;
       mandatory true;
       description "It specifies the TCE Id which is sent to the UE in 
