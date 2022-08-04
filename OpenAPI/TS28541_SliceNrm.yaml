@@ -817,7 +817,7 @@ components:
     FeasibilityCheckJob-Multiple:
       type: array
       items:
-        $ref: '#/components/schemas/FeasibilityCheckJob-Single'   
+        $ref: '#/components/schemas/FeasibilityCheckAndReservationJob-Single'   
         
 #------------ Definitions in TS 28.541 for TS 28.532 -----------------------------
 
