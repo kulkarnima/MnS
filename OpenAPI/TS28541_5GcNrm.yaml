@@ -752,8 +752,8 @@ components:
                 - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
-                    plmnIdList:
-                      $ref: 'TS28541_NrNrm.yaml#/components/schemas/PlmnIdList'
+                    pLMNInfoList:
+                      $ref: 'TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
                     amfIdentifier:
                       $ref: '#/components/schemas/AmfIdentifier'
                     sBIFqdn:
@@ -768,8 +768,6 @@ components:
                         $ref: '#/components/schemas/TaiRange'
                     weightFactor:
                       $ref: '#/components/schemas/WeightFactor'
-                    snssaiList:
-                      $ref: '#/components/schemas/SnssaiList'
                     cNSIIdList:
                       $ref: '#/components/schemas/CNSIIdList'
                     gUAMIdList:
