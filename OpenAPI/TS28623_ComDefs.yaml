@@ -56,12 +56,54 @@ components:
     Tac:
       type: string
       pattern: '(^[A-Fa-f0-9]{4}$)|(^[A-Fa-f0-9]{6}$)'
+    UtraCellId:
+      type: integer
     EutraCellId:
       type: string
       pattern: '^[A-Fa-f0-9]{7}$'
     NrCellId:
       type: string
       pattern: '^[A-Fa-f0-9]{9}$'
+    TimeWindow:
+      type: object
+      properties:
+        startTime:
+          $ref: '#/components/schemas/DateTime'
+        endTime:
+          $ref: '#/components/schemas/DateTime'
+    GeoCoordinate:
+      type: object
+      properties:
+        latitude:
+          $ref: '#/components/schemas/Latitude'
+        longitude:
+          $ref: '#/components/schemas/Longitude'
+    ConvexGeoPolygon:
+      type: array
+      items:
+        $ref: '#/components/schemas/GeoCoordinate'
+    GeoAreaToCellMapping:
+      type: object
+      properties:
+        convexGeoPolygon:
+          $ref: '#/components/schemas/ConvexGeoPolygon'
+        associationThreshold:
+          type: integer
+    AreaOfInterest:
+      oneOf:
+        - $ref: '#/components/schemas/GeoAreaToCellMapping'
+        - type: array
+          items:
+            $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Tai'
+        - type: array
+          items:
+            $ref: '#/components/schemas/NrCellId'
+        - type: array
+          items:
+            $ref: '#/components/schemas/EutraCellId'
+        - type: array
+          items:
+            $ref: '#/components/schemas/UtraCellId'
 
     Fqdn:
       type: string

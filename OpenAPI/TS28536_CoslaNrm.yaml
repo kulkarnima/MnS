@@ -54,23 +54,58 @@ components:
       enum:
         - FULFILLED
         - NOT_FULFILLED
-        
+
+    AssuranceTargetName:
+      type: string
+
     AssuranceTarget:
       type: object
       properties:
         assuranceTargetName:
-          type: string
+          $ref: '#/components/schemas/AssuranceTargetName'
         assuranceTargetValue:
           type: string
+         
+    AssuranceTargetList:
+      type: array
+      items:
+        $ref: '#/components/schemas/AssuranceTarget'
+
+    AssuranceGoalStatus:
+      type: object
+      properties:
+        assuranceGoalStatusId:
+          type: string
+        assuranceGoalId:
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
+        assuranceGoalStatusObserved:
+          $ref: '#/components/schemas/AssuranceGoalStatusObserved'
+        assuranceGoalStatusPredicted:
+          $ref: '#/components/schemas/AssuranceGoalStatusPredicted'
+        assuranceGoalRef:
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
+
+    AssuranceGoalStatusList:
+      type: array
+      items:
+        $ref: '#/components/schemas/AssuranceGoalStatus'
+
+    AssuranceTargetStatus:
+      type: object
+      properties:
+        assuranceTargetStatusId:
+          type: string
+        assuranceTargetName:
+          $ref: '#/components/schemas/AssuranceTargetName'
         assuranceTargetStatusObserved:
           $ref: '#/components/schemas/AssuranceTargetStatusObserved'
         assuranceTargetStatusPredicted:
           $ref: '#/components/schemas/AssuranceTargetStatusPredicted'
          
-    AssuranceTargetList:
+    AssuranceTargetStatusList:
       type: array
       items:
-         $ref: '#/components/schemas/AssuranceTarget'
+         $ref: '#/components/schemas/AssuranceTargetStatus'
      
     AttributeNameList:
       type: array
@@ -149,6 +184,10 @@ components:
                       $ref: '#/components/schemas/ACCLDisallowedAttributes'
             AssuranceGoal:
               $ref: '#/components/schemas/AssuranceGoal-Multiple'
+              networkSliceRef:
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
+              networkSliceSubnetRef:
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
 
     AssuranceGoal-Single:
       allOf:
@@ -163,21 +202,25 @@ components:
                       $ref: '#/components/schemas/ObservationTime'
                     assuranceTargetList:
                       $ref: '#/components/schemas/AssuranceTargetList'
-                    assuranceGoalStatusObserved:
-                      $ref: '#/components/schemas/AssuranceGoalStatusObserved'
-                    assuranceGoalStatusPredicted:
-                      $ref: '#/components/schemas/AssuranceGoalStatusPredicted'
                     assuranceScope:
                       $ref: '#/components/schemas/AssuranceScope'
                     serviceProfileId:
                       type: string
                     sliceProfileId:
                       type: string
-                    networkSliceRef:
-                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
-                    networkSliceSubnetRef:
-                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn' 
-                      
+
+    AssuranceReport-Single:
+      allOf:
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    assuranceGoalStatusList:
+                      $ref: '#/components/schemas/AssuranceGoalStatusList'
+
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
     SubNetwork-Multiple:
       type: array
@@ -206,5 +249,6 @@ components:
        - $ref: '#/components/schemas/MnS'
        - $ref: '#/components/schemas/AssuranceClosedControlLoop-Single'
        - $ref: '#/components/schemas/AssuranceGoal-Single'    
+       - $ref: '#/components/schemas/AssuranceReport-Single'
        - $ref: '#/components/schemas/SubNetwork-Single'
        - $ref: '#/components/schemas/ManagedElement-Single'
