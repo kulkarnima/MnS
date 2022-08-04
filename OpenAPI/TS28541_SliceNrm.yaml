@@ -770,7 +770,7 @@ components:
                 resourceReservation:
                   $ref: '#/components/schemas/ResourceReservation'
                 recommendationRequest:
-                  $ref: '#/components/schemas/RecommendationRequest                
+                  $ref: '#/components/schemas/RecommendationRequest'                
                 requestedReservationExpiration:
                   $ref: '#/components/schemas/RequestedReservationExpiration'
                 processMonitor:
