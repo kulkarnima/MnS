@@ -583,30 +583,34 @@ components:
       items:
         $ref: '#/components/schemas/SliceProfile'
     FeasibilityResult:
-      description: ->
-        An attribute which specifies the feasibility check result for the feasibility check job.
+      description: >-
+        An attribute which specifies the feasibility check result for the feasibility check and reservation job.
       type: string
       enum:
         - FEASIBLE
         - INFEASIBLE
     InFeasibleReason:
-      description: ->
+      description: >-
         An attribute that specifies the additional reason information if the feasibility check result is infeasible.The detailed ENUM value is FFS. 
       type: string
+    RecommendationRequest:
+      description: >-
+        An attribute represents MnS consumer's request for recommended network slice related requirements.
+      type: boolean    
     RecommendedRequirements:
-      description: ->
+      description: >-
         An attribute that specifies the recommended network slicing related requirements (i.e. ServiceProfile and SliceProfile information) which can be supported by the MnS producer.. 
       type: string
     ResourceReservation:
-      description: ->
+      description: >-
         An attribute represents MnS consumer's requirements for resource reservation.
       type: boolean
     RequestedReservationExpiration:
-      description: ->
+      description: >-
         An attribute which specifes MnS consuner's requirements for the validity period of the resource reservation.
       type: string
     ResourceReservationStatus:
-      description: ->
+      description: >-
         An attribute which specifies the resource reservation result for the feasibility check job.
       type: string
       enum:
@@ -614,11 +618,11 @@ components:
         - UNRESERVED
         - USED
     ReservationExpiration:
-      description: ->
+      description: >-
         An attribute which specifes the actual validity period of the resource reservation..
       type: string
     ReservationFailureReason:
-      description: ->
+      description: >-
         An attribute that specifies the additional reason information if the reservation is failed. 
       type: string
 
@@ -751,7 +755,7 @@ components:
                   type: array
                   items:
                     type: string
-    FeasibilityCheckJob-Single:
+    FeasibilityCheckAndReservationJob-Single:
       allOf:
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'     
         - type: object
@@ -765,6 +769,8 @@ components:
                     - $ref: '#/components/schemas/ServiceProfile'
                 resourceReservation:
                   $ref: '#/components/schemas/ResourceReservation'
+                recommendationRequest:
+                  $ref: '#/components/schemas/RecommendationRequest'
                 requestedReservationExpiration:
                   $ref: '#/components/schemas/RequestedReservationExpiration'
                 processMonitor:
@@ -811,7 +817,7 @@ components:
     FeasibilityCheckJob-Multiple:
       type: array
       items:
-        $ref: '#/components/schemas/FeasibilityCheckJob-Single'   
+        $ref: '#/components/schemas/FeasibilityCheckAndReservationJob-Single'   
         
 #------------ Definitions in TS 28.541 for TS 28.532 -----------------------------
 
@@ -824,4 +830,4 @@ components:
        - $ref: '#/components/schemas/NetworkSliceSubnet-Single'
        - $ref: '#/components/schemas/EP_Transport-Single'
        - $ref: '#/components/schemas/NetworkSliceSubnetProviderCapabilities-Single'
-       - $ref: '#/components/schemas/FeasibilityCheckJob-Single'       
+       - $ref: '#/components/schemas/FeasibilityCheckAndReservationJob-Single'       
