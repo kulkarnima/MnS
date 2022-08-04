@@ -1,6 +1,5 @@
 module _3gpp-5gc-nrm-dynamic5qiset {
   yang-version 1.1;
-  
   namespace urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset;
   prefix dyn5QIs3gpp;
   
@@ -15,6 +14,7 @@ module _3gpp-5gc-nrm-dynamic5qiset {
     characteristics.";
   reference "3GPP TS 28.541";
 
+  revision 2022-07-28 { reference "CR-0770"; }
   revision 2022-01-07 { reference CR-0643; }
   revision 2020-10-01 { reference "CR-0393"; }
   revision 2020-08-06 { reference "CR-0333"; }
@@ -22,6 +22,11 @@ module _3gpp-5gc-nrm-dynamic5qiset {
   grouping Dynamic5QISetGrp {
     description "Represents the Dynamic5QISet IOC.";
     list dynamic5QIs {
+      description "This IOC specifies the dynamically assigned 5QIs 
+        including their QoS characteristics, see 3GPP TS 23.501. 
+        The instance of this IOC shall not be created or modified by the 
+        MnS consumer except for the instance associated to 
+        PCFFunction MOI or SMFFunction MOI when the PCF is not deployed.";
     key id;
     uses top3gpp:Top_Grp;
     container attributes {
@@ -40,6 +45,7 @@ module _3gpp-5gc-nrm-dynamic5qiset {
       container attributes {
         uses Dynamic5QISetGrp;
       }
+      uses Conf5QIs3gpp:FiveQICharacteristicsSubtree;
     }  
   }
   

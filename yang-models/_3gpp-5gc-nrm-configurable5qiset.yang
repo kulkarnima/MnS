@@ -1,12 +1,9 @@
 module _3gpp-5gc-nrm-configurable5qiset {
   yang-version 1.1;
-  
   namespace urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset;
-  prefix Conf5QIs3gpp;
+  prefix conf5QIs3gpp;
   
   import _3gpp-common-top { prefix top3gpp; }
-  import _3gpp-common-managed-element { prefix me3gpp; }
-  import _3gpp-common-subnetwork { prefix subnet3gpp; }
   
   organization "3gpp SA5";
   contact "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464";
@@ -15,12 +12,13 @@ module _3gpp-5gc-nrm-configurable5qiset {
     (and configurable) to the 5G NFs.";
   reference "3GPP TS 28.541";
 
+  revision 2022-07-28 { reference "CR-0770"; }
   revision 2022-04-29 { reference "CR-0729"; }
   revision 2022-01-07 { reference CR-0643; }
   revision 2020-08-04 { reference "CR-0321"; }
   revision 2020-06-03 { reference "CR-0286"; }
 
-  grouping PacketErrorRate {
+  grouping PacketErrorRateGrp {
     leaf scalar {
       type uint32 {
         range 0..9 ;
@@ -41,11 +39,6 @@ module _3gpp-5gc-nrm-configurable5qiset {
 
   grouping FiveQICharacteristicsGrp {
     description "Represents the FiveQICharacteristics IOC.";
-    reference "3GPP TS 28.541";
-  }
-
-  list configurableFiveQIs {
-    key fiveQIValue;
     leaf fiveQIValue {
       type uint32 {
         range 0..255 ;
@@ -68,27 +61,34 @@ module _3gpp-5gc-nrm-configurable5qiset {
       type uint32 {
         range 0..127 ;
       }
+      mandatory true;
+      description "It indicates the Priority Level of a 5QI, as specified
+        in TS 23.501.";
     }
     
     leaf packetDelayBudget {
       type uint32 {
         range 0..1023 ;
       }
+      mandatory true;
       description "Indicates the Packet Delay Budget (in unit of 0.5ms)of a 5QI, 
         as specified in TS 23.501 ";
     }
     
     list packetErrorRate {
       key "scalar exponent";
+      min-elements 1;
       max-elements 1;
-      uses PacketErrorRate;
-      reference "TS 23.501";
+      uses PacketErrorRateGrp;
+      description "It indicates the Packet Error Rate of a 5QI,
+        as specified in TS 23.501.";
     }
 
     leaf averagingWindow {
       type uint32 {
         range 0..4095 ;
       }
+      mandatory true;
       units ms;
       reference "TS 23.501";
     }
@@ -97,24 +97,20 @@ module _3gpp-5gc-nrm-configurable5qiset {
       type uint32{
         range 0..4095 ;
       }
+      mandatory true;
       units byte;
     }
 }
 
-  grouping FiveQiCharacteristicsSubtree {
-    description "Represents the FiveQICharacterics IOC.";
-    list FiveQICharacteristics {
-      key id;
-        uses top3gpp:Top_Grp;
-          container attributes {
-            uses FiveQICharacteristicsGrp;
-        }
-    }  
+  grouping Configurable5QISetGrp {
+    description "Represents the Configurable5QISet IOC.
+      No attributes defined.";
   }
 
-  grouping Configurable5QISetGrp {
-    description "Represents the Configurable5QISet IOC.";
-    list configurable5QIs {
+  grouping FiveQICharacteristicsSubtree {
+    list FiveQICharacteristics {
+      description "This specifies the 5QI value and the corresponding
+        QoS characteristics for a 5QI.";
       key id;
       uses top3gpp:Top_Grp;
       container attributes {
@@ -133,14 +129,7 @@ module _3gpp-5gc-nrm-configurable5qiset {
       container attributes {
         uses Configurable5QISetGrp;
       }
+      uses FiveQICharacteristicsSubtree;
     }
-  }
-  
-  augment "/subnet3gpp:SubNetwork" {
-    uses Configurable5QISetSubtree;
-  }
-
-  augment "/me3gpp:ManagedElement" {
-    uses Configurable5QISetSubtree;
   }
 }
