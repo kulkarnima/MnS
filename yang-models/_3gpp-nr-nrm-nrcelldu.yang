@@ -17,7 +17,7 @@ module _3gpp-nr-nrm-nrcelldu {
     Class (IOC) that is part of the NR Network Resource Model (NRM).";
   reference "3GPP TS 28.541 5G Network Resource Model (NRM)";
 
-  revision 2022-07-27 { reference "CR-17-541-yang-corrections"; }
+  revision 2022-07-27 { reference "CR-0769"; }
   revision 2021-10-28 { reference CR-0607 ; }
   revision 2021-01-25 { reference CR-0454 ; }
   revision 2020-11-25 { reference CR-0386 ; }

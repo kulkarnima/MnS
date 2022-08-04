@@ -14,7 +14,7 @@ module _3gpp-5gc-nrm-dynamic5qiset {
     characteristics.";
   reference "3GPP TS 28.541";
 
-  revision 2022-07-27 { reference "CR-17-541-yang-corrections"; }
+  revision 2022-07-27 { reference "CR-0769"; }
   revision 2022-01-07 { reference CR-0643; }
   revision 2020-10-01 { reference "CR-0393"; }
   revision 2020-08-06 { reference "CR-0333"; }
