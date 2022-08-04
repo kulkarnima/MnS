@@ -531,9 +531,9 @@ components:
           reliability:
             type: number
           maxDLDataVolume:
-            type: string
+            type: number
           maxULDataVolume:
-            type: string
+            type: number
           sliceSimultaneousUse:
             $ref: '#/components/schemas/SliceSimultaneousUse'
           energyEfficiency:
