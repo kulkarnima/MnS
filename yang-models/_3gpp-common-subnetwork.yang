@@ -29,7 +29,7 @@ module _3gpp-common-subnetwork {
       3GPP TS 28.620 
       Umbrella Information Model (UIM)";
   
-  revision 2022-07-28 { reference CR-0180 ; }
+  revision 2022-07-26 { reference CR-0180 ; }
   revision 2021-01-16 { reference "CR-0120"; }  
   revision 2020-08-06 { reference "CR-0102"; }  
   revision 2020-06-08 { reference "CR-0092"; }  
