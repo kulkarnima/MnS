@@ -658,8 +658,8 @@ components:
               $ref: '#/components/schemas/EP_Transport-Multiple'
             NetworkSliceSubnetProviderCapabilities:
               $ref: '#/components/schemas/NetworkSliceSubnetProviderCapabilities-Multiple'
-            FeasibilityCheckJob:
-              $ref: '#/components/schemas/FeasibilityCheckJob-Multiple'
+            FeasibilityCheckAndReservationJob:
+              $ref: '#/components/schemas/FeasibilityCheckAndReservationJob-Multiple'
 
 
     NetworkSlice-Single:
@@ -751,7 +751,7 @@ components:
                   type: array
                   items:
                     type: string
-    FeasibilityCheckJob-Single:
+    FeasibilityCheckAndReservationJob-Single:
       allOf:
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'     
         - type: object
@@ -808,10 +808,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/NetworkSliceSubnetProviderCapabilities-Single'
-    FeasibilityCheckJob-Multiple:
+    FeasibilityCheckAndReservationJob-Multiple:
       type: array
       items:
-        $ref: '#/components/schemas/FeasibilityCheckJob-Single'   
+        $ref: '#/components/schemas/FeasibilityCheckAndReservationJob-Single'   
         
 #------------ Definitions in TS 28.541 for TS 28.532 -----------------------------
 
@@ -824,4 +824,4 @@ components:
        - $ref: '#/components/schemas/NetworkSliceSubnet-Single'
        - $ref: '#/components/schemas/EP_Transport-Single'
        - $ref: '#/components/schemas/NetworkSliceSubnetProviderCapabilities-Single'
-       - $ref: '#/components/schemas/FeasibilityCheckJob-Single'       
+       - $ref: '#/components/schemas/FeasibilityCheckAndReservationJob-Single'       
