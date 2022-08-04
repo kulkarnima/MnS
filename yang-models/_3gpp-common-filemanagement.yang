@@ -59,9 +59,9 @@ module _3gpp-common-filemanagement {
 
     leaf cancelJob {
       description "Setting this attribute to TRUE cancels the file download job.
-         As specified in the definition of ProcessMonitor, cancellation is possible in
-         the NOT_STARTED and RUNNING state. Setting the attribute to FALSE has no 
-         observable result.";
+         As specified in the definition of ProcessMonitor, cancellation is 
+         possible in the NOT_STARTED and RUNNING state. Setting the attribute  
+         to FALSE has no observable result.";
       type boolean;
       mandatory true;
     }
