@@ -919,7 +919,107 @@ module _3gpp-common-trace {
         }
       }
       mandatory true;
-      description "It specifies the number of measurement reports that shall be
+      description "It specifies the number of measurement reports in NR and UMTS that shall be
+        taken for periodic reporting while the UE is in connected.
+        The attribute is applicable only for Immediate MDT and when
+        tjMDTReportingTrigger is configured for periodical measurements. In
+        case this attribute is not used, it carries a null semantic.";
+      reference "Clause 5.10.6 of 3GPP TS 32.422";
+    }
+
+    leaf tjMDTReportAmountM1 {
+      when '../tjJobType = "IMMEDIATE_MDT_ONLY"'
+        +  ' and ./tjMDTReportingTrigger = "PERIODICAL"';
+      type union {
+        type uint32 {
+          range "1|4|8|16|32|64" ;
+        }
+        type enumeration {
+          enum INFINITY;
+        }
+      }
+      mandatory true;
+      description "It specifies the number of measurement reports for M1 in LTE that shall be
+        taken for periodic reporting while the UE is in connected.
+        The attribute is applicable only for Immediate MDT and when
+        tjMDTReportingTrigger is configured for periodical measurements. In
+        case this attribute is not used, it carries a null semantic.";
+      reference "Clause 5.10.6 of 3GPP TS 32.422";
+    }
+
+    leaf tjMDTReportAmountM4 {
+      when '../tjJobType = "IMMEDIATE_MDT_ONLY"'
+        +  ' and ./tjMDTReportingTrigger = "PERIODICAL"';
+      type union {
+        type uint32 {
+          range "1|4|8|16|32|64" ;
+        }
+        type enumeration {
+          enum INFINITY;
+        }
+      }
+      mandatory true;
+      description "It specifies the number of measurement reports for M4 in LTE that shall be
+        taken for periodic reporting while the UE is in connected.
+        The attribute is applicable only for Immediate MDT and when
+        tjMDTReportingTrigger is configured for periodical measurements. In
+        case this attribute is not used, it carries a null semantic.";
+      reference "Clause 5.10.6 of 3GPP TS 32.422";
+    }
+
+    leaf tjMDTReportAmountM5 {
+      when '../tjJobType = "IMMEDIATE_MDT_ONLY"'
+        +  ' and ./tjMDTReportingTrigger = "PERIODICAL"';
+      type union {
+        type uint32 {
+          range "1|4|8|16|32|64" ;
+        }
+        type enumeration {
+          enum INFINITY;
+        }
+      }
+      mandatory true;
+      description "It specifies the number of measurement reports for M5 in LTE that shall be
+        taken for periodic reporting while the UE is in connected.
+        The attribute is applicable only for Immediate MDT and when
+        tjMDTReportingTrigger is configured for periodical measurements. In
+        case this attribute is not used, it carries a null semantic.";
+      reference "Clause 5.10.6 of 3GPP TS 32.422";
+    }
+
+    leaf tjMDTReportAmountM6 {
+      when '../tjJobType = "IMMEDIATE_MDT_ONLY"'
+        +  ' and ./tjMDTReportingTrigger = "PERIODICAL"';
+      type union {
+        type uint32 {
+          range "1|4|8|16|32|64" ;
+        }
+        type enumeration {
+          enum INFINITY;
+        }
+      }
+      mandatory true;
+      description "It specifies the number of measurement reports for M6 in LTE that shall be
+        taken for periodic reporting while the UE is in connected.
+        The attribute is applicable only for Immediate MDT and when
+        tjMDTReportingTrigger is configured for periodical measurements. In
+        case this attribute is not used, it carries a null semantic.";
+      reference "Clause 5.10.6 of 3GPP TS 32.422";
+    }
+
+    leaf tjMDTReportAmountM7 {
+      when '../tjJobType = "IMMEDIATE_MDT_ONLY"'
+        +  ' and ./tjMDTReportingTrigger = "PERIODICAL"';
+      type union {
+        type uint32 {
+          range "1|4|8|16|32|64" ;
+        }
+        type enumeration {
+          enum INFINITY;
+        }
+      }
+      mandatory true;
+      description "It specifies the number of measurement reports for M7 in LTE that shall be
         taken for periodic reporting while the UE is in connected.
         The attribute is applicable only for Immediate MDT and when
         tjMDTReportingTrigger is configured for periodical measurements. In
@@ -1062,7 +1162,7 @@ module _3gpp-common-trace {
           - tjMDTCollectionPeriodM7NR (conditional for M7 in NR), 
           - tjMDTReportInterval (conditional for M1 in LTE or NR and M1/M2 in 
             UMTS), 
-          - tjMDTReportAmount (conditional for M1 in LTE or NR and M1/M2 in 
+          - tjMDTReportAmount (conditional for M1, M4, M5, M6 and M7 in LTE, M1 in NR and M1/M2 in 
             UMTS), 
           - tjMDTReportingTrigger (conditional for M1 in LTE or NR and M1/M2 in 
             UMTS), 
