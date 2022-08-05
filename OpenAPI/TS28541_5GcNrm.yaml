@@ -1323,7 +1323,7 @@ components:
                       type: boolean
                     analyticsIdList:
                       type: array
-                      item:
+                      items:
                         $ref: '#/components/schemas/AnalyticsId'
                      
     ScpFunction-Single:
