@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Generic NRM
-  version: 17.1.0
+  version: 17.2.0
   description: >-
     OAS 3.0.1 definition of the Generic NRM
     © 2022, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -322,7 +322,6 @@ components:
       oneOf:
         - $ref: 'TS28623_ComDefs.yaml#/components/schemas/Ipv4Addr'
         - $ref: 'TS28623_ComDefs.yaml#/components/schemas/Ipv6Addr'
-
     ManagementData:
       oneOf:
       - type: array
@@ -341,7 +340,7 @@ components:
       type: object
       properties:
         areaOfInterest:
-          $ref: 'TS28623_ComDefs.yaml#/components/schemas/AreaOfInterest'
+          $ref: 'comDefs.yaml#/components/schemas/AreaOfInterest'
         networkDomain:
           type: string
           enum:
@@ -967,7 +966,7 @@ components:
     beamLevelMeasurement-Type:
       description: Determines whether beam level measurements shall be included in case of immediate MDT M1 measurement in NR. For additional details see 3GPP TS 32.422 clause 5.10.40.
       type: boolean
-    
+
     collectionPeriodRrmLte-Type:
       description: See details in 3GPP TS 32.422 clause 5.10.20.
       type: string
@@ -1414,9 +1413,26 @@ components:
       description: See details in 3GPP TS 32.422 clause 5.10.11. Only TCE Id value may be sent over the air to the UE being configured for Logged MDT.
       type: integer
 
+    VnfLcmInfo:
+      type: object
+      properties:
+        softwareImageInfo:
+          $ref: 'EdgeNRM.yaml#/components/schemas/SoftwareImageInfo
+        virtualCpu:
+          type: integer
+        virtualMemory:
+          type: integer
+        virtualDisk:
+          type: integer
+        maxLatency:
+          type: integer
+        maxBitRate:
+          type: integer
+        minBitRate:
+          type: integer
+
 
 #-------- end of Definition of types used in Trace control NRM fragment ----------
-
 
 #-------- Definition of abstract IOC Top -----------------------------------------
 
@@ -1529,12 +1545,15 @@ components:
           $ref: '#/components/schemas/NtfSubscriptionControl-Multiple'
         AlarmList:
           $ref: '#/components/schemas/AlarmList-Single'
-        FileDownloadJob:
-          $ref: '#/components/schemas/FileDownloadJob-Multiple'
         Files:
           $ref: '#/components/schemas/Files-Multiple'
+        FileDownloadJob:
+          $ref: '#/components/schemas/FileDownloadJob-Multiple'
         MnsRegistry:
           $ref: '#/components/schemas/MnsRegistry-Single'
+        LcmJob:
+          $ref: '#/components/schemas/LcmJob-Multiple'
+
     ManagedElement-ncO:
       type: object
       properties:
@@ -1580,6 +1599,7 @@ components:
           type: array
           items:
             type: string
+
     EP_RP-Attr:
       type: object
       properties:
@@ -1907,7 +1927,7 @@ components:
                 targetNodeFilter:
                   $ref: '#/components/schemas/NodeFilter'
                 collectionTimeWindow:
-                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/TimeWindow'
+                  $ref: 'comDefs.yaml#/components/schemas/TimeWindow'
                 reportingCtrl:
                   type: string
                 dataScope:
@@ -2033,6 +2053,43 @@ components:
           items:
             $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
 
+    LcmJob-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                lcmJobId:
+                  type: string
+                lcmOperation:
+                  type: string
+                  enum:
+                    - INSTANTIATE
+                    - TERMINATE
+                    - UPDATE
+                nfsForInstantiation:
+                  type: string
+                  enum:
+                    - EAS
+                    - EES
+                    - ECS
+                    - PCF
+                    - UPF
+                    - NEF
+                deploymentRequirements:
+                  $ref: 'comDefs.yaml#/components/schemas/Dn'
+                vnfLcmInfo:
+                  $ref: 'EdgeNRM.yaml#/components/schemas/VNFLcmInfo'
+                mEForLcm:
+                  $ref: 'comDefs.yaml#/components/schemas/Dn'
+                lcmJobStatus:
+                  $ref: '#/components/schemas/ProcessMonitor'
+                meMOIRef:
+                  $ref: '#/components/schemas/DN'
+
+
 #-------- Definition of YAML arrays for name-contained IOCs ----------------------
 
     VsDataContainer-Multiple:
@@ -2091,6 +2148,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/MnsInfo-Single'
+    LcmJob-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/LcmJob-Single'
 
 #-------- Definitions in TS 28.623 for TS 28.532 ---------------------------------
 
@@ -2109,15 +2170,17 @@ components:
        - $ref: '#/components/schemas/ThresholdMonitor-Single'
        - $ref: '#/components/schemas/TraceJob-Single'
        - $ref: '#/components/schemas/ManagementDataCollection-Single'
-       
+
        - $ref: '#/components/schemas/NtfSubscriptionControl-Single'
        - $ref: '#/components/schemas/HeartbeatControl-Single'
 
        - $ref: '#/components/schemas/AlarmList-Single'
 
        - $ref: '#/components/schemas/FileDownloadJob-Single'
+
        - $ref: '#/components/schemas/Files-Single'
        - $ref: '#/components/schemas/File-Single'
-       
+
        - $ref: '#/components/schemas/MnsRegistry-Single'
        - $ref: '#/components/schemas/MnsInfo-Single'
+       - $ref: '#/components/schemas/LcmJob-Single'
