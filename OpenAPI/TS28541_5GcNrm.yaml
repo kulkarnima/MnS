@@ -1320,7 +1320,7 @@ components:
                     networkSliceInfoList:
                       $ref: '#/components/schemas/NetworkSliceInfoList'
                     nWDAFControl:
-                      type: bollean
+                      type: boolean
                     analyticsIdList:
                       type: array
                       item:
