@@ -460,6 +460,10 @@ components:
           $ref: '#/components/schemas/DeterministicComm'
         survivalTime:
           type: number
+        nssaaSupport:
+          $ref: '#/components/schemas/NSSAASupport'
+        n6Protection:
+          $ref: '#/components/schemas/N6Protection'
 
     ServiceProfile:
       type: object
