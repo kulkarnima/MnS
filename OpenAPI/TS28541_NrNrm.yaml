@@ -1014,7 +1014,7 @@ components:
             bWPlist:
               type: array
               items:
-                $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
 
     NrOperatorCellDu-Single:
       allOf:
