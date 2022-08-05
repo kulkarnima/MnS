@@ -1164,16 +1164,14 @@ components:
                 - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
-                    plmnIdList:
-                      $ref: 'TS28541_NrNrm.yaml#/components/schemas/PlmnIdList'
+                    pLMNInfoList:
+                      $ref: 'TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
                     sBIFqdn:
                       type: string
                     cNSIIdList:
                       $ref: '#/components/schemas/CNSIIdList'
                     nFProfileList:
                       $ref: '#/components/schemas/NFProfileList'
-                    snssaiList:
-                      $ref: '#/components/schemas/SnssaiList'
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
