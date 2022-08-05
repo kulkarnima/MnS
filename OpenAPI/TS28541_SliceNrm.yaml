@@ -321,7 +321,9 @@ components:
         maxNumberOfPDUSessions:
           type: integer
         coverageAreaTAList:
-          type: integer
+          type: array
+          items:
+            $ref: 'TS28541_NrNrm.yaml#/components/schemas/NrTac'
         resourceSharingLevel:
           $ref: '#/components/schemas/SharingLevel'
         dLMaxPktSize:
@@ -352,7 +354,9 @@ components:
       type: object
       properties:
         coverageAreaTAList:
-          type: integer
+          type: array
+          items:
+            $ref: 'TS28541_NrNrm.yaml#/components/schemas/NrTac'
         dLLatency:
           type: number
         uLLatency:
@@ -443,7 +447,9 @@ components:
         activityFactor:
           type: integer
         coverageAreaTAList:
-          type: integer
+          type: array
+          items:
+            $ref: 'TS28541_NrNrm.yaml#/components/schemas/NrTac'
         resourceSharingLevel:
           $ref: '#/components/schemas/SharingLevel'
         uEMobilityLevel:
@@ -747,10 +753,10 @@ components:
                   $ref: '#/components/schemas/XLThpt'
                 uLThptPerSliceSubnet:
                   $ref: '#/components/schemas/XLThpt'
-                coverageAreaTAIList:
+                coverageAreaTAList:
                   type: array
                   items:
-                    type: string
+                    $ref: 'TS28541_NrNrm.yaml#/components/schemas/NrTac'
     FeasibilityCheckJob-Single:
       allOf:
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'     
