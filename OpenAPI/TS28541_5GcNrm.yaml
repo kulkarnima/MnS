@@ -880,9 +880,7 @@ components:
                       items:
                         $ref: '#/components/schemas/SNssaiSmfInfoItem'
                     taiList:
-                      type: array
-                      items:
-                        $ref: 'TS28541_NrNrm.yaml#/components/schemas/Tai'
+                      $ref: '#/components/schemas/TaiList'
                     taiRangeList:
                       type: array
                       items:
@@ -1338,8 +1336,7 @@ components:
                     isCAPIFSup:
                       type: boolean
                     taiList:
-                      items:
-                        $ref: '#/components/schemas/TaiList'
+                      $ref: '#/components/schemas/TaiList'
                     taiRangeList:
                       type: array
                       items:
@@ -1369,8 +1366,7 @@ components:
                       items:
                         $ref: '#/components/schemas/NsacfInfoSnssai'
                     taiList:
-                      items:
-                        $ref: '#/components/schemas/TaiList'
+                      $ref: '#/components/schemas/TaiList'
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
