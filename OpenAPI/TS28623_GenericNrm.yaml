@@ -1317,6 +1317,71 @@ components:
         - 64
         - INFINITY
 
+    reportAmountM1-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.6.
+      type: string
+      enum:
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+        - 32
+        - 64
+        - INFINITY
+
+    reportAmountM4-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.6.
+      type: string
+      enum:
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+        - 32
+        - 64
+        - INFINITY
+
+    reportAmountM5-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.6.
+      type: string
+      enum:
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+        - 32
+        - 64
+        - INFINITY
+
+    reportAmountM6-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.6.
+      type: string
+      enum:
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+        - 32
+        - 64
+        - INFINITY
+
+    reportAmountM7-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.6.
+      type: string
+      enum:
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+        - 32
+        - 64
+        - INFINITY
+
     reportingTrigger-Type:
       description: See details in 3GPP TS 32.422 clause 5.10.4.
       type: array
@@ -1679,6 +1744,16 @@ components:
         positioningMethod:
           $ref: '#/components/schemas/positioningMethod-Type'
         reportAmount:
+          $ref: '#/components/schemas/reportAmount-Type'
+        reportAmountM1:
+          $ref: '#/components/schemas/reportAmount-Type'
+        reportAmountM4:
+          $ref: '#/components/schemas/reportAmount-Type'
+        reportAmountM5:
+          $ref: '#/components/schemas/reportAmount-Type'
+        reportAmountM6:
+          $ref: '#/components/schemas/reportAmount-Type'
+        reportAmountM7:
           $ref: '#/components/schemas/reportAmount-Type'
         reportingTrigger:
           $ref: '#/components/schemas/reportingTrigger-Type'
