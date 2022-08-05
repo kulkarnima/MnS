@@ -745,6 +745,8 @@ components:
               $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
             OperatorDU:
               $ref: '#/components/schemas/OperatorDu-Multiple'   
+            BWPSet:
+              $ref: '#/components/schemas/BWPSet-Multiple'   
 
     OperatorDu-Single:
       allOf:
@@ -964,9 +966,15 @@ components:
                       items:
                         $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
                     bwpRef:
+                      description: "Condition is BWP sets are not supported"                      
                       type: array
                       items:
                         $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
+                    bwpSetRef:
+                      description: "Condition is BWP sets are supported"
+                      type: array
+                      items:
+                        $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'                    
                     rimRSMonitoringStartTime:
                       type: string
                     rimRSMonitoringStopTime:
@@ -998,6 +1006,15 @@ components:
               $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
             NrOperatorCellDu:
               $ref: '#/components/schemas/NrOperatorCellDu-Multiple'
+    BWPSet-Single:
+      allOf:
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            bWPlist:
+              type: array
+              items:
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn
 
     NrOperatorCellDu-Single:
       allOf:
@@ -1868,6 +1885,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/GnbCuCpFunction-Single'
+    BWPSet-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/BWPSet-Single'
 
     NrCellDu-Multiple:
       type: array
@@ -2024,6 +2045,7 @@ components:
 
         - $ref: '#/components/schemas/NrSectorCarrier-Single'
         - $ref: '#/components/schemas/Bwp-Single'
+        - $ref: '#/components/schemas/BWPSet-Single'        
         - $ref: '#/components/schemas/CommonBeamformingFunction-Single'
         - $ref: '#/components/schemas/Beam-Single'
         - $ref: '#/components/schemas/RRMPolicyRatio-Single'
