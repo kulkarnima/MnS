@@ -724,11 +724,11 @@ components:
                   $ref: '#/components/schemas/IpAddress'
                 logicalInterfaceInfo:
                   $ref: '#/components/schemas/LogicalInterfaceInfo'
-                nextHopInfo:
-                  type: string 
                 qosProfile:
                   type: string 
                 epApplicationRefs:
+                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
+                nextHopinfoRefList:
                   $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
     
     NetworkSliceSubnetProviderCapabilities-Single:
