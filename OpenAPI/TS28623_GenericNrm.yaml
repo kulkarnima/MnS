@@ -324,24 +324,19 @@ components:
         - $ref: 'TS28623_ComDefs.yaml#/components/schemas/Ipv6Addr'
     SchedulingTime:
       oneOf:
-        - type: object
-          properties:
-            startTime:
-              $ref: 'comDefs.yaml#/components/schemas/DateTime'
-            endTime:
-              $ref: 'comDefs.yaml#/components/schemas/DateTime'
+        - $ref: 'TS28623_ComDefs.yaml#/components/schemas/TimeWindow'
         - type: object
           properties:
             timeIntervals:
               type: array
               items:
-                $ref: 'comDefs.yaml#/components/schemas/TimeInterval'
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/TimeInterval'
         - type: object
           properties:
             timeIntervals:
               type: array
               items:
-                $ref: 'comDefs.yaml#/components/schemas/TimeInterval'
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/TimeInterval'
             daysOfWeek:
               type: array
               items:
@@ -359,7 +354,7 @@ components:
             timeIntervals:
               type: array
               items:
-                $ref: 'comDefs.yaml#/components/schemas/TimeInterval'
+                $ref: 'TS28623_ComDefs.yaml#/components/schemas/TimeInterval'
             daysOfMonth:
               type: array
               items:
