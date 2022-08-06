@@ -322,7 +322,50 @@ components:
       oneOf:
         - $ref: 'TS28623_ComDefs.yaml#/components/schemas/Ipv4Addr'
         - $ref: 'TS28623_ComDefs.yaml#/components/schemas/Ipv6Addr'
-
+    SchedulingTime:
+      oneOf:
+        - type: object
+          properties:
+            startTime:
+              $ref: 'comDefs.yaml#/components/schemas/DateTime'
+            endTime:
+              $ref: 'comDefs.yaml#/components/schemas/DateTime'
+        - type: object
+          properties:
+            timeIntervals:
+              type: array
+              items:
+                $ref: 'comDefs.yaml#/components/schemas/TimeInterval'
+        - type: object
+          properties:
+            timeIntervals:
+              type: array
+              items:
+                $ref: 'comDefs.yaml#/components/schemas/TimeInterval'
+            daysOfWeek:
+              type: array
+              items:
+                type: string
+                enum:
+                  - MONDAY
+                  - TUESDAY
+                  - WEDNESDAY
+                  - THURSDAY
+                  - FRIDAY
+                  - SATURDAY
+                  - SUNDAY
+        - type: object
+          properties:
+            timeIntervals:
+              type: array
+              items:
+                $ref: 'comDefs.yaml#/components/schemas/TimeInterval'
+            daysOfMonth:
+              type: array
+              items:
+                type: integer
+                minimum: 0
+                maximum: 31
     ManagementData:
       oneOf:
       - type: array
@@ -1535,6 +1578,8 @@ components:
           $ref: '#/components/schemas/Files-Multiple'
         MnsRegistry:
           $ref: '#/components/schemas/MnsRegistry-Single'
+        Scheduler:
+          $ref: '#/components/schemas/Scheduler-Multiple'
     ManagedElement-ncO:
       type: object
       properties:
@@ -1554,6 +1599,8 @@ components:
           $ref: '#/components/schemas/FileDownloadJob-Multiple'
         Files:
           $ref: '#/components/schemas/Files-Multiple'
+        Scheduler:
+          $ref: '#/components/schemas/Scheduler-Multiple'
 
 #-------- Definition of abstract IOCs --------------------------------------------
 
@@ -2033,6 +2080,19 @@ components:
           items:
             $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
 
+    Scheduler-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                schedulingTime:
+                  $ref: '#/components/schemas/SchedulingTime'
+                statusActive:
+                  type: boolean
+
 #-------- Definition of YAML arrays for name-contained IOCs ----------------------
 
     VsDataContainer-Multiple:
@@ -2091,6 +2151,11 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/MnsInfo-Single'
+    Scheduler-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/Scheduler-Single'
+
 
 #-------- Definitions in TS 28.623 for TS 28.532 ---------------------------------
 
@@ -2121,3 +2186,5 @@ components:
        
        - $ref: '#/components/schemas/MnsRegistry-Single'
        - $ref: '#/components/schemas/MnsInfo-Single'
+
+       - $ref: '#/components/schemas/Scheduler-Single'
