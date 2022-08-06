@@ -1580,6 +1580,8 @@ components:
           $ref: '#/components/schemas/MnsRegistry-Single'
         Scheduler:
           $ref: '#/components/schemas/Scheduler-Multiple'
+        ConditionMonitor:
+          $ref: '#/components/schemas/ConditionMonitor-Multiple'
     ManagedElement-ncO:
       type: object
       properties:
@@ -1601,6 +1603,8 @@ components:
           $ref: '#/components/schemas/Files-Multiple'
         Scheduler:
           $ref: '#/components/schemas/Scheduler-Multiple'
+        ConditionMonitor:
+          $ref: '#/components/schemas/ConditionMonitor-Multiple'
 
 #-------- Definition of abstract IOCs --------------------------------------------
 
@@ -1868,6 +1872,8 @@ components:
                   $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
                 rootObjectInstances:
                   $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
+                serviceConditionsRef:
+                  type: string
                 reportingCtrl:
                   $ref: '#/components/schemas/ReportingCtrl'
             Files:
@@ -2092,6 +2098,18 @@ components:
                   $ref: '#/components/schemas/SchedulingTime'
                 statusActive:
                   type: boolean
+    ConditionMonitor-Single:
+      allOf:
+        - $ref: '#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                conditions:
+                  type: string
+                statusActive:
+                  type: boolean
 
 #-------- Definition of YAML arrays for name-contained IOCs ----------------------
 
@@ -2155,7 +2173,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Scheduler-Single'
-
+    ConditionMonitor-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/ConditionMonitor-Single'
 
 #-------- Definitions in TS 28.623 for TS 28.532 ---------------------------------
 
@@ -2188,3 +2209,4 @@ components:
        - $ref: '#/components/schemas/MnsInfo-Single'
 
        - $ref: '#/components/schemas/Scheduler-Single'
+       - $ref: '#/components/schemas/ConditionMonitor-Single'
