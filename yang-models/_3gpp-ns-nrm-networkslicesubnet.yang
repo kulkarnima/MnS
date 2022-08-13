@@ -118,23 +118,6 @@ module _3gpp-ns-nrm-networkslicesubnet {
     uses subnet3gpp:SubNetworkGrp;
     uses EPTransportGrp;
     
-    leaf operationalState {
-      description "The operational state of the network slice instance. 
-        It describes whether or not the resource is physically installed 
-        and working.";
-      mandatory true;
-      config false;
-      type types3gpp:OperationalState;
-    }
-    
-    leaf administrativeState {
-      description "The administrative state of the network slice instance.
-        It describes the permission to use or prohibition against
-        using the instance, imposed through the OAM services.";
-      mandatory true;
-      type types3gpp:AdministrativeState;
-    }
-    
     list nsInfo {
       description "This list represents the properties of network service 
         information corresponding to the network slice subnet instance.";
