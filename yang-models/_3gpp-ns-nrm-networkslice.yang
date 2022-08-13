@@ -33,21 +33,6 @@ module _3gpp-ns-nrm-networkslice {
 
     uses subnet3gpp:SubNetworkGrp;   // Inherits from SubNetwork
 
-    leaf operationalState {
-      description "The operational state of the network slice instance. 
-        It describes whether or not the resource is physically installed 
-        and working.";
-      config false;
-      type types3gpp:OperationalState;
-    }
-
-    leaf administrativeState {
-      description "The administrative state of the network slice instance. 
-        It describes the permission to use or prohibition against 
-        using the instance, imposed through the OAM services.";
-      type types3gpp:AdministrativeState;
-    }
-
     list serviceProfileList {
       description "A list of service profiles supported by the network 
         slice instance.";
