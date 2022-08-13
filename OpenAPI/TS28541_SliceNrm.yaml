@@ -673,10 +673,6 @@ components:
                   properties:
                     networkSliceSubnetRef:
                       $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
-                    operationalState:
-                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/OperationalState'
-                    administrativeState:
-                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/AdministrativeState'
                     serviceProfileList:
                       $ref: '#/components/schemas/ServiceProfileList'
 
@@ -693,10 +689,6 @@ components:
                       $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
                     networkSliceSubnetRefList:
                       $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
-                    operationalState:
-                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/OperationalState'
-                    administrativeState:
-                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/AdministrativeState'
                     nsInfo:
                       $ref: '#/components/schemas/NsInfo'
                     sliceProfileList:
