@@ -97,4 +97,38 @@ module _3gpp-ns-nrm-common {
   typedef DeterminCommAvailability {
     type Support-enum;
   } 
+  grouping ProvisioningRuleGrp {
+    description " represents the information that is captured in a 
+      provisioning rule from a network slice or network slice subnet
+      provisioning MnS consumer. Provisioing rules are associated with 
+      a particular ServiceProfile or SliceProfile and are part of the 
+      complete set of requirements to be fulfilled by network slice or 
+      network slice subnet MnS producer.";
+
+    leaf ruleType {
+      description "This attribute specifies the type of provisioning rule.";
+      mandatory true;
+
+      type enumeration {
+        enum INSTANCE_SHARING_RULE;
+    }
+
+    leaf sharingPolicy {
+      description "This attribtue specifies the sahring policy for an instance
+      sharing rule. In case of selectively shared sharingGroup also needs to be
+      provided";
+      mandatory true;
+      type enumeration;
+        enum SHARED;
+        enum NOT_SHARED;
+        enum SELECTIVILY_SHARED;
+    }
+
+    leaf sharingGroup {
+      description "This attribute indicates the group associated with a rule in
+      case of selectivility sharing. The group name is chosen by the MnS consumer
+      and is treated as an opaque value by the MnS producer.";
+      type string;
+    }
+  }
 }
