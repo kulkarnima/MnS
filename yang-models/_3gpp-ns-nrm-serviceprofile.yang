@@ -506,6 +506,15 @@ submodule _3gpp-ns-nrm-serviceprofile {
       leaf idx {
         type uint32;
       }
+      list provisioningRuleList {
+        description "A list of network slice or network slice subnet
+          provisioning rules.";
+      key idx;
+
+      leaf idx {
+        type uint32;
+      }
+    }
     }
     }
   }
