@@ -730,7 +730,67 @@ components:
                   type: string 
                 epApplicationRefs:
                   $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
-    
+
+    AllocateJob-Single:
+      allOf:
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    serviceProfile:
+                      $ref: '#/components/schemas/ServiceProfile'
+                    sliceProfile:
+                      $ref: '#/components/schemas/SliceProfile'
+                    processMonitor:
+                      $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ProcessMonitor'
+                    networkSliceRefOut:
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
+                    networkSliceSubnetRefOut:
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
+
+    DeallocateJob-Single:
+      allOf:
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    serviceProfileId:
+                      type: string
+                    sliceProfileId:
+                      type: string
+                    processMonitor:
+                      $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ProcessMonitor'
+                    networkSliceRef:
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
+                    networkSliceSubnetRef:
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
+
+    ModifyJob-Single:
+      allOf:
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    serviceProfile:
+                      $ref: '#/components/schemas/ServiceProfile'
+                    sliceProfile:
+                      $ref: '#/components/schemas/SliceProfile'
+                    processMonitor:
+                      $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ProcessMonitor'
+                    networkSliceRef:
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
+                    networkSliceSubnetRef:
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
+
     NetworkSliceSubnetProviderCapabilities-Single:
       allOf:
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -803,7 +863,22 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/EP_Transport-Single'
-    
+
+    AllocateJob-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/AllocateJob-Single'
+
+    DeallocateJob-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/DeallocateJob-Single'
+
+    ModifyJob-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/ModifyJob-Single'
+
     NetworkSliceSubnetProviderCapabilities-Multiple:
       type: array
       items:
@@ -823,5 +898,8 @@ components:
        - $ref: '#/components/schemas/NetworkSlice-Single'
        - $ref: '#/components/schemas/NetworkSliceSubnet-Single'
        - $ref: '#/components/schemas/EP_Transport-Single'
+       - $ref: '#/components/schemas/AllocateJob-Single'
+       - $ref: '#/components/schemas/DeallocateJob-Single'
+       - $ref: '#/components/schemas/ModifyJob-Single'
        - $ref: '#/components/schemas/NetworkSliceSubnetProviderCapabilities-Single'
        - $ref: '#/components/schemas/FeasibilityCheckJob-Single'       
