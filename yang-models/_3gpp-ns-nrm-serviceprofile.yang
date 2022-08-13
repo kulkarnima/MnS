@@ -498,6 +498,15 @@ submodule _3gpp-ns-nrm-serviceprofile {
           in the RAN in the network slice";
         type ns3cmn:Support-enum;
       }
+      list provisioningRuleList {
+        description "A list of network slice or network slice subnet
+          provisioning rules.";
+      key idx;
+
+      leaf idx {
+        type uint32;
+      }
+    }
     }
   }
 }
