@@ -48,8 +48,7 @@ components:
         - PERSEC
         - PERMIN
         - PERHOUR
-
-    NetworkSliceSharingIndicator:
+    SharingLevel:
       type: string
       enum:
         - SHARED
