@@ -132,3 +132,4 @@ module _3gpp-ns-nrm-common {
       type string;
     }
   }
+}
