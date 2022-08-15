@@ -108,10 +108,8 @@ module _3gpp-ns-nrm-common {
     leaf ruleType {
       description "This attribute specifies the type of provisioning rule.";
       mandatory true;
-
-      type enumeration {
+      type enumeration 
         enum INSTANCE_SHARING_RULE;
-      }
     }
     
     leaf sharingPolicy {
