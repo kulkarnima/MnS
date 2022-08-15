@@ -213,7 +213,7 @@ module _3gpp-ns-nrm-provisioningjobs {
         serviceProfileId or sliceProfileId that matches the serviceProfileId
         or sliceProfileId from an existing instance of
         FeasibilityCheckAndReservationJob that has successfully completed a
-        reservation process. If the MnS consumer doesn’t wish to use already
+        reservation process. If the MnS consumer doesn't wish to use already
         reserved resources, the supplied profile shall not contain any
         serviceProfileId or sliceProfileId. In this case the serviceProfileId
         or sliceProfileId will be assigned by the MnS producer as part of the
