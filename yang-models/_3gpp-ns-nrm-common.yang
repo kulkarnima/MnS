@@ -97,7 +97,7 @@ module _3gpp-ns-nrm-common {
   typedef DeterminCommAvailability {
     type Support-enum;
   } 
-  grouping ProvisioningRuleGrp  {
+  grouping ProvisioningRuleGrp {
     description " represents the information that is captured in a 
       provisioning rule from a network slice or network slice subnet
       provisioning MnS consumer. Provisioing rules are associated with 
