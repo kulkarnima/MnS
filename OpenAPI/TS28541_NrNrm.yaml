@@ -109,7 +109,7 @@ components:
     NrTac:
       type: integer
       maximum: 16777215
-    NrTAcList:
+    NrTacList:
       type: array
       items:
         $ref: '#/components/schemas/NrTac'
