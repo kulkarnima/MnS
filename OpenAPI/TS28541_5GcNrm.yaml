@@ -2315,7 +2315,7 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/AmfRegion-Single'
-    EASDFFunction-multiple:
+    EASDFFunction-Multiple:
       type: array
       items:
         $ref: '#/components/schemas/EASDFFunction-Single'
