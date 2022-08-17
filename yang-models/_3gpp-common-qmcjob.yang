@@ -56,7 +56,6 @@ module _3gpp-common-qmcjob {
     }
 
     list pLMNTarget {
-      min-elements 0;
       max-elements 1;
       description "Defines the PLMN for which sessions shall be selected in 
         the network request session in case of area based QMC when several 
@@ -90,7 +89,6 @@ module _3gpp-common-qmcjob {
     }
 
     list sliceScope {
-      min-elements 0;
       description "Contains a list of S-NSSAIs (Single Network Slice Selection
         Assistance Information).  A Network Slice end to end is identified by
         S-NSSAI.";
