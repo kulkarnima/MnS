@@ -643,7 +643,7 @@ components:
       type: array
       items:
         $ref: 'TS28541_NrNrm.yaml#/components/schemas/Tai' 
-    AnalyticsId:
+    EventId:
       type: string
       enum:
         - NF_LOAD
@@ -1325,7 +1325,7 @@ components:
                     analyticsIds:
                       type: array
                       items:
-                        $ref: '#/components/schemas/AnalyticsId'
+                        $ref: '#/components/schemas/EventId'
          
     ScpFunction-Single:
       allOf:
