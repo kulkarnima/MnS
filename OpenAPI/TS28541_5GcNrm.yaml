@@ -643,6 +643,24 @@ components:
       type: array
       items:
         $ref: 'TS28541_NrNrm.yaml#/components/schemas/Tai' 
+    AnalyticsId:
+      type: string
+      enum:
+        - NF_LOAD
+        - QOS_SUSTAINABILITY
+        - SLICE_LOAD_LEVEL
+        - SERVICE_EXPERIENCE
+        - UE_MOBILITY
+        - UE_COMM
+        - ABNORMAL_BEHAVIOUR
+        - USER_DATA_CONGESTION
+        - NETWORK_PERFORMANCE
+        - NSI_LOAD_LEVEL
+        - DISPERSION
+        - RED_TRANS_EXP
+        - WLAN_PERFORMANCE
+        - DN_PERFORMANCE
+        - SM_CONGESTION
 
 
 #-------- Definition of concrete IOCs --------------------------------------------
@@ -1305,9 +1323,10 @@ components:
                     nWDAFControl:
                       type: boolean
                     analyticsIds:
-                      $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/AnalyticsIds'
-
-                     
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/AnalyticsId'
+         
     ScpFunction-Single:
       allOf:
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
