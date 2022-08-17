@@ -646,6 +646,8 @@ components:
               - N10
               - N11
               - S5-C
+              - N16
+              - N16a
         SMSFInterfaces:
           type: array
           items:
