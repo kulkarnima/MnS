@@ -741,6 +741,8 @@ components:
               $ref: '#/components/schemas/Dynamic5QISet-Multiple'
             EcmConnectionInfo:
               $ref: '#/components/schemas/EcmConnectionInfo-Multiple'
+            EASDFFunction:
+              $ref: '#/components/schemas/EASDFFunction-Multiple'
 
     AmfFunction-Single:
       allOf:
@@ -1428,8 +1430,8 @@ components:
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
-            EP_Nxx:
-              $ref: '#/components/schemas/EP_Nxx-Multiple'
+            EP_N88:
+              $ref: '#/components/schemas/EP_N88-Multiple'
 
     EcmConnectionInfo-Single:
       allOf:
@@ -2029,7 +2031,7 @@ components:
                     remoteAddress:
                       $ref: 'TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
                       
-    EP_Nxx-Single:
+    EP_N88-Single:
       allOf:
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
@@ -2313,6 +2315,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/AmfRegion-Single'
+    EASDFFunction-multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EASDFFunction-Single'
   
     EP_N2-Multiple:
       type: array
@@ -2457,10 +2463,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/EP_Npc8-Single'
-    EP_Nxx-Multiple:
+    EP_N88-Multiple:
       type: array
       items:
-        $ref: '#/components/schemas/EP_Nxx-Single'
+        $ref: '#/components/schemas/EP_N88-Single'
     Configurable5QISet-Multiple:
       type: array
       items:
@@ -2543,7 +2549,7 @@ components:
        - $ref: '#/components/schemas/EP_N32-Single'
        - $ref: '#/components/schemas/EP_N33-Single'       
        - $ref: '#/components/schemas/EP_N60-Single'
-       - $ref: '#/components/schemas/EP_Nxx-Single'
+       - $ref: '#/components/schemas/EP_N88-Single'
 
        - $ref: '#/components/schemas/EP_Npc4-Single'
        - $ref: '#/components/schemas/EP_Npc6-Single'
