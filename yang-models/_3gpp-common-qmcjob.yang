@@ -72,8 +72,8 @@ module _3gpp-common-qmcjob {
     leaf qoETarget {
       type string;
       description "Specifies the target object of the QMC in case of 
-        signalling based QMC.  The qoETarget attribute shall be able to 
-        carry IMSI or SUPI.";
+        signalling based QMC.  The qoETarget attribute shall be able 
+        to carry IMSI or SUPI.";
     mandatory true;
     }
 
