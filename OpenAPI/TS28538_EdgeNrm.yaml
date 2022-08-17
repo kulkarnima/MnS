@@ -215,6 +215,12 @@ components:
                       $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
                     softwareImageInfo:
                       $ref: '#/components/schemas/SoftwareImageInfo'
+                    trackingAreaIdList:
+                      $ref: 'TS28541_NrNrm.yaml#/components/schemas/TaiList'
+                    geographicalLocation:
+                      $ref: '#/components/schemas/GeoLoc'
+                    mcc:
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/Mcc'
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
     EASRequirements-Single:
