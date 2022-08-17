@@ -49,10 +49,7 @@ module _3gpp-common-qmcjob {
     }
 
     leaf qoECollectionEntityAddress {
-      type union {
-        type inet:uri;
-        type inet:ip-address;
-      }
+      type inet:ip-address;
       mandatory true;
       description "Specifies the address to which the QMC records shall be transferred. Ipv4 or, 
         Ipv6 address(es) may be used.";
@@ -71,17 +68,18 @@ module _3gpp-common-qmcjob {
       key "mcc mnc";
     }
 
-    leaf qMCTarget {
-      description "Specifies whether the QMC is area based or individual UE based.
-        allowedValues: AREA_BASED, UE_BASED ";
+    leaf qoETarget {
+      description "Specifies the target object of the QMC in case of signalling based QMC. 
+      The qoETarget attribute shall be able to carry "IMSI” or "SUPI".";
+        allowedValues: IMSI, SUPI ";
       type enumeration {
-        enum AREA_BASED;
-        enum UE_BASED;
+        enum IMSI;
+        enum SUPI;
       }
     mandatory true;
     }
 
-    leaf qOEReference {
+    leaf qoEReference {
       type string;
       mandatory true;
       description "Specifies the network request session. The QoE reference shall be globally 
@@ -111,7 +109,7 @@ module _3gpp-common-qmcjob {
   }
     
    grouping QMCJobSubTree {
-   description "Helps with augmenting QMBJob into multple places.";
+   description "Helps with augmenting QMCJob into multple places.";
     list QMCJob {
       description "Represents the QMCJob IOC.";
       key id;
