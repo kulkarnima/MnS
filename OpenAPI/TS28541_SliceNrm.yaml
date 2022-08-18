@@ -662,8 +662,8 @@ components:
               $ref: '#/components/schemas/EP_Transport-Multiple'
             NetworkSliceSubnetProviderCapabilities:
               $ref: '#/components/schemas/NetworkSliceSubnetProviderCapabilities-Multiple'
-            FeasibilityCheckJob:
-              $ref: '#/components/schemas/FeasibilityCheckJob-Multiple'
+            FeasibilityCheckAndReservationJob:
+              $ref: '#/components/schemas/FeasibilityCheckAndReservationJob-Multiple'
 
 
     NetworkSlice-Single:
@@ -814,7 +814,7 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/NetworkSliceSubnetProviderCapabilities-Single'
-    FeasibilityCheckJob-Multiple:
+    FeasibilityCheckAndReservationJob-Multiple:
       type: array
       items:
         $ref: '#/components/schemas/FeasibilityCheckAndReservationJob-Single'   
