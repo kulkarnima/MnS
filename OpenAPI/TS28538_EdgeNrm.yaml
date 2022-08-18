@@ -73,6 +73,13 @@ components:
           type: integer
         virutalCPU:
           type: string
+    Duration:
+      type: object
+      properties:
+        startTime:
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/DateTime' 
+        endTime:
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/DateTime'
     SoftwareImageInfo:
       type: object
       properties:
@@ -86,16 +93,25 @@ components:
           type: string
         swImageRef:
           type: string
-    RegistrationInfo:
-      type: object
-      properties:
-        registrationExpiry:
-          type: string
-        registrationID:
-          type: string
-        secCredential:
-          type: string
-
+    EASServicePermission:
+      type: string
+      description: any of enumrated value
+      enum:
+        - TRIAL
+        - SILVER
+        - GOLD
+    EASFeature:
+      type: string
+      description: any of enumrated value
+      enum:
+        - SINGLE
+        - MULTIPLE
+    EASStatus:
+      type: string
+      description: any of enumrated value
+      enum:
+        - ENABLED
+        - DISABLED
 #-------- Definition of concrete IOCs --------------------------------------------
     MnS:
       oneOf:
@@ -162,9 +178,36 @@ components:
                       type: array
                       items:
                         type: string
-                    registrationInfo:
-                      $ref: '#/components/schemas/RegistrationInfo'  
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+    EASProfile:
+      allOf:
+        - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            aCID:
+              type: string
+            eASProvider:
+              type: string
+            eASdescription:
+              type: string
+            eASSchedule:
+              $ref: '#/components/schemas/Duration'
+            eASGeographicalServiceArea:
+              $ref: '#/components/schemas/GeoLoc'
+            eASTopologicalServiceArea:
+              $ref: '#/components/schemas/TopologicalServiceArea'
+            eASServicePermissionLevel:
+              $ref: '#/components/schemas/EASServicePermission'
+            eASFeature:
+              $ref: '#/components/schemas/EASFeature'
+            eASServiceContinuitySupport:
+              type: boolean
+            eASDNAI:
+              type: string
+            eASAvailabilityReportingPeriod:
+              type: integer
+            eASStatus:
+              $ref: '#/components/schemas/EASStatus'
     EESFunction-Single:
       allOf:
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -191,8 +234,6 @@ components:
                       type: boolean
                     eASFunctionRef:
                       $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'  
-                    registrationInfo:
-                      $ref: '#/components/schemas/RegistrationInfo'  
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
 
     ECSFunction-Single:
@@ -267,3 +308,4 @@ components:
         - $ref: '#/components/schemas/EESFunction-Single'
         - $ref: '#/components/schemas/EdgeDataNetwork-Single'
         - $ref: '#/components/schemas/EASRequirements-Single'
+        - $ref: '#/components/schemas/EASProfile'
