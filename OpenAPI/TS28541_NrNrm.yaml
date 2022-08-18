@@ -972,9 +972,7 @@ components:
                         $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
                     bwpSetRef:
                       description: "Condition is BWP sets are supported"
-                      type: array
-                      items:
-                        $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'                    
+                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'                    
                     rimRSMonitoringStartTime:
                       type: string
                     rimRSMonitoringStopTime:
@@ -1012,9 +1010,7 @@ components:
         - type: object
           properties:
             bWPlist:
-              type: array
-              items:
-                $ref: 'TS28623_ComDefs.yaml#/components/schemas/Dn'
+              $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
 
     NrOperatorCellDu-Single:
       allOf:
