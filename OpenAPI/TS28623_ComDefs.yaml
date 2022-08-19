@@ -81,12 +81,21 @@ components:
       type: string
       pattern: '^[A-Fa-f0-9]{9}$'
     TimeWindow:
-      type: object
-      properties:
-        startTime:
-          $ref: '#/components/schemas/DateTime'
-        endTime:
-          $ref: '#/components/schemas/DateTime'
+      oneOf:
+        - type: object
+          properties:
+            startTime:
+              $ref: '#/components/schemas/DateTime'
+            endTime:
+              $ref: '#/components/schemas/DateTime'
+        - type: object
+          properties:
+            startTime:
+              $ref: '#/components/schemas/DateTime'
+        - type: object
+          properties:
+            endTime:
+              $ref: '#/components/schemas/DateTime'
     GeoCoordinate:
       type: object
       properties:
