@@ -1872,7 +1872,7 @@ components:
                   $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
                 rootObjectInstances:
                   $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
-                serviceConditionsRef:
+                conditionRef:
                   type: string
                 reportingCtrl:
                   $ref: '#/components/schemas/ReportingCtrl'
@@ -2106,9 +2106,9 @@ components:
             attributes:
               type: object
               properties:
-                conditions:
+                condition:
                   type: string
-                statusActive:
+                conditionsSatisfied:
                   type: boolean
 
 #-------- Definition of YAML arrays for name-contained IOCs ----------------------
