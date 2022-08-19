@@ -370,7 +370,7 @@ components:
           type: integer
         reliability:
           type: number
-        serviceType:
+        sST:
           $ref: 'TS28541_NrNrm.yaml#/components/schemas/Sst'
         dLMaxPktSize:
           type: integer
@@ -445,7 +445,7 @@ components:
           type: integer
         reliability:
           type: number
-        serviceType:
+        sST:
           $ref: 'TS28541_NrNrm.yaml#/components/schemas/Sst'
         dLDeterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
