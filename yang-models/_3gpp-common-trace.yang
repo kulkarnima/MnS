@@ -926,7 +926,7 @@ module _3gpp-common-trace {
         case this attribute is not used, it carries a null semantic.";
       reference "Clause 5.10.6 of 3GPP TS 32.422";
     }
-    leaf tjMDTreportAmountM1LTE {
+    leaf tjreportAmountM1LTE {
       when '../tjJobType = "IMMEDIATE_MDT_ONLY"'
         +  ' and ./tjMDTReportingTrigger = "PERIODICAL"';
       type union {
@@ -946,7 +946,7 @@ module _3gpp-common-trace {
       reference "Clause 5.10.x of 3GPP TS 32.422";
     }
 
-    leaf tjMDTreportAmountM4LTE {
+    leaf tjreportAmountM4LTE {
       when '../tjJobType = "IMMEDIATE_MDT_ONLY"'
         +  ' and ./tjMDTReportingTrigger = "PERIODICAL"';
       type union {
@@ -960,13 +960,12 @@ module _3gpp-common-trace {
       mandatory true;
       description "It specifies the number of measurement reports for M4 in LTE that shall be
         taken for periodic reporting while the UE is in connected.
-        The attribute is applicable only for Immediate MDT and when
-        tjMDTReportingTrigger is configured for periodical measurements. In
-        case this attribute is not used, it carries a null semantic.";
+        The attribute is applicable only for Immediate MDT
+        In case this attribute is not used, it carries a null semantic.";
       reference "Clause 5.10.y of 3GPP TS 32.422";
     }
 
-    leaf tjMDTreportAmountM5LTE {
+    leaf tjreportAmountM5LTE {
       when '../tjJobType = "IMMEDIATE_MDT_ONLY"'
         +  ' and ./tjMDTReportingTrigger = "PERIODICAL"';
       type union {
@@ -980,13 +979,12 @@ module _3gpp-common-trace {
       mandatory true;
       description "It specifies the number of measurement reports for M5 in LTE that shall be
         taken for periodic reporting while the UE is in connected.
-        The attribute is applicable only for Immediate MDT and when
-        tjMDTReportingTrigger is configured for periodical measurements. In
-        case this attribute is not used, it carries a null semantic.";
+        The attribute is applicable only for Immediate MDT
+        In case this attribute is not used, it carries a null semantic.";
       reference "Clause 5.10.z of 3GPP TS 32.422";
     }
 
-    leaf tjMDTreportAmountM6LTE {
+    leaf tjreportAmountM6LTE {
       when '../tjJobType = "IMMEDIATE_MDT_ONLY"'
         +  ' and ./tjMDTReportingTrigger = "PERIODICAL"';
       type union {
@@ -1000,13 +998,12 @@ module _3gpp-common-trace {
       mandatory true;
       description "It specifies the number of measurement reports for M6 in LTE that shall be
         taken for periodic reporting while the UE is in connected.
-        The attribute is applicable only for Immediate MDT and when
-        tjMDTReportingTrigger is configured for periodical measurements. In
-        case this attribute is not used, it carries a null semantic.";
+        The attribute is applicable only for Immediate MDT 
+        In case this attribute is not used, it carries a null semantic.";
       reference "Clause 5.10.a of 3GPP TS 32.422";
     }
 
-    leaf tjMDTreportAmountM7LTE {
+    leaf tjreportAmountM7LTE {
       when '../tjJobType = "IMMEDIATE_MDT_ONLY"'
         +  ' and ./tjMDTReportingTrigger = "PERIODICAL"';
       type union {
@@ -1020,11 +1017,11 @@ module _3gpp-common-trace {
       mandatory true;
       description "It specifies the number of measurement reports for M7 in LTE that shall be
         taken for periodic reporting while the UE is in connected.
-        The attribute is applicable only for Immediate MDT and when
-        tjMDTReportingTrigger is configured for periodical measurements. In
-        case this attribute is not used, it carries a null semantic.";
+        The attribute is applicable only for Immediate MDT 
+        In case this attribute is not used, it carries a null semantic.";
       reference "Clause 5.10.b of 3GPP TS 32.422";
     }
+
 
     leaf tjMDTReportingTrigger {
       when '../tjJobType = "IMMEDIATE_MDT_ONLY"';
@@ -1163,11 +1160,11 @@ module _3gpp-common-trace {
             UMTS), 
           - tjMDTReportAmount (conditional for M1 in NR and M1/M2 in 
             UMTS),
-          -	tjMDTreportAmountM1LTE (conditional for M1 in LTE),
-          -	tjMDTreportAmountM4LTE (conditional for M4 in LTE),
-          -	tjMDTreportAmountM5LTE (conditional for M5 in LTE),
-          -	tjMDTreportAmountM6LTE (conditional for M6 in LTE),
-          -	tjMDTreportAmountM7LTE (conditional for M7 in LTE),
+          -	tjreportAmountM1LTE (conditional for M1 in LTE),
+          -	tjreportAmountM4LTE (conditional for M4 in LTE),
+          -	tjreportAmountM5LTE (conditional for M5 in LTE),
+          -	tjreportAmountM6LTE (conditional for M6 in LTE),
+          -	tjreportAmountM7LTE (conditional for M7 in LTE),
           - tjMDTReportingTrigger (conditional for M1 in LTE or NR and M1/M2 in 
             UMTS), 
           - tjMDTEventThreshold (conditional for A2 event reporting or A2 event 
