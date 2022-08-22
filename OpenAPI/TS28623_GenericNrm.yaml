@@ -1317,6 +1317,71 @@ components:
         - 64
         - INFINITY
 
+    reportAmountM1LTE-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.X.
+      type: string
+      enum:
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+        - 32
+        - 64
+        - INFINITY
+
+    reportAmountM4LTE-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.y.
+      type: string
+      enum:
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+        - 32
+        - 64
+        - INFINITY
+
+    reportAmountM5LTE-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.z.
+      type: string
+      enum:
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+        - 32
+        - 64
+        - INFINITY
+
+    reportAmountM6LTE-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.a.
+      type: string
+      enum:
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+        - 32
+        - 64
+        - INFINITY
+
+    reportAmountM7LTE-Type:
+      description: See details in 3GPP TS 32.422 clause 5.10.b.
+      type: string
+      enum:
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+        - 32
+        - 64
+        - INFINITY
+
     reportingTrigger-Type:
       description: See details in 3GPP TS 32.422 clause 5.10.4.
       type: array
@@ -1680,6 +1745,16 @@ components:
           $ref: '#/components/schemas/positioningMethod-Type'
         reportAmount:
           $ref: '#/components/schemas/reportAmount-Type'
+        reportAmountM1LTE:
+          $ref: '#/components/schemas/reportAmountM1LTE-Type'
+        reportAmountM4LTE:
+          $ref: '#/components/schemas/reportAmountM4LTE-Type'
+        reportAmountM5LTE:
+          $ref: '#/components/schemas/reportAmountM5LTE-Type'
+        reportAmountM6LTE:
+          $ref: '#/components/schemas/reportAmountM6LTE-Type'
+        reportAmountM7LTE:
+          $ref: '#/components/schemas/reportAmountM7LTE-Type'
         reportingTrigger:
           $ref: '#/components/schemas/reportingTrigger-Type'
         reportInterval:
