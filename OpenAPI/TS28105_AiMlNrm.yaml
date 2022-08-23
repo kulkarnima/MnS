@@ -40,9 +40,9 @@ components:
       type: object
       properties:
         inferenceEntityRef:
-          $ref: 'comDefs.yaml#/components/schemas/DnList'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
         dataProviderRef:
-          $ref: 'comDefs.yaml#/components/schemas/DnList'
+          $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
 
     RequestStatus:
       type: string
