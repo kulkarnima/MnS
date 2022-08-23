@@ -643,24 +643,6 @@ components:
       type: array
       items:
         $ref: 'TS28541_NrNrm.yaml#/components/schemas/Tai' 
-    EventId:
-      type: string
-      enum:
-        - NF_LOAD
-        - QOS_SUSTAINABILITY
-        - SLICE_LOAD_LEVEL
-        - SERVICE_EXPERIENCE
-        - UE_MOBILITY
-        - UE_COMM
-        - ABNORMAL_BEHAVIOUR
-        - USER_DATA_CONGESTION
-        - NETWORK_PERFORMANCE
-        - NSI_LOAD_LEVEL
-        - DISPERSION
-        - RED_TRANS_EXP
-        - WLAN_PERFORMANCE
-        - DN_PERFORMANCE
-        - SM_CONGESTION
 
 
 #-------- Definition of concrete IOCs --------------------------------------------
@@ -1320,12 +1302,13 @@ components:
                       $ref: '#/components/schemas/CommModelList'
                     networkSliceInfoList:
                       $ref: '#/components/schemas/NetworkSliceInfoList'
-                    nWDAFControl:
-                      type: boolean
-                    analyticsIds:
+                    adminstrativeState:
+                      $ref: 'TS28623_CommonNrm.yaml#/components/schemas/AdministrativeState'
+                    nwdafEvents:
                       type: array
                       items:
-                        $ref: '#/components/schemas/EventId'
+                        $ref: 'TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent
+
          
     ScpFunction-Single:
       allOf:
