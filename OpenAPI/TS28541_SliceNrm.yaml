@@ -729,7 +729,9 @@ components:
                 epApplicationRefs:
                   $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
                 nextHopinfoRefList:
-                  $ref: 'TS28623_ComDefs.yaml#/components/schemas/DnList'
+                  type: array
+                  items:
+                    type: string
     
     NetworkSliceSubnetProviderCapabilities-Single:
       allOf:
