@@ -1419,7 +1419,7 @@ components:
       type: Object
       properties:
         fiveQIValue:
-          type:integer
+          type: integer
         excessPacketDelayThresholdValue:
           type: string
           enum:
