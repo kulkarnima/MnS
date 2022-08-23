@@ -1302,8 +1302,6 @@ components:
                       $ref: '#/components/schemas/CommModelList'
                     networkSliceInfoList:
                       $ref: '#/components/schemas/NetworkSliceInfoList'
-                    adminstrativeState:
-                      $ref: 'TS28623_ComDefs.yaml#/components/schemas/AdministrativeState'
                     nwdafEvents:
                       type: array
                       items:
