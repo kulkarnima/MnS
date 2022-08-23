@@ -1307,9 +1307,7 @@ components:
                     nwdafEvents:
                       type: array
                       items:
-                        $ref: 'TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent
-
-         
+                        $ref: 'TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent'
     ScpFunction-Single:
       allOf:
         - $ref: 'TS28623_GenericNrm.yaml#/components/schemas/Top'
