@@ -1418,13 +1418,9 @@ components:
       description: Excess Packet Delay Threshould for NR MDT. See details in 3GPP TS 32.422 clause 4.1.1 and 4.1.2.
       type: Object
       properties:
-        fiveQIValue:
-          type: integer
         excessPacketDelayThresholdValue:
           type: string
           enum:
-            - 0.25ms
-            - 0.5ms
             - 1ms
             - 2ms
             - 4ms
@@ -1442,8 +1438,8 @@ components:
             - 150ms
             - 300ms
             - 500ms
-
-
+        fiveQIValue:
+          type: integer
 
 
 #-------- end of Definition of types used in Trace control NRM fragment ----------
