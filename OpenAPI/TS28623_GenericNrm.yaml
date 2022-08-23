@@ -1414,9 +1414,33 @@ components:
       description: See details in 3GPP TS 32.422 clause 5.10.11. Only TCE Id value may be sent over the air to the UE being configured for Logged MDT.
       type: integer
 
-    ExcessPacketDelayThreshouldList-Type:
+    ExcessPacketDelayThreshouldInfo-Type:
       description: Excess Packet Delay Threshould for NR MDT. See details in 3GPP TS 32.422 clause 4.1.1 and 4.1.2.
-      type: string
+      type: Object
+      properties:
+        fiveQIValue:
+          type: string
+          enum:
+            - ms0.25
+            - ms0.5
+            - ms1
+            - ms2
+            - ms4
+            - ms5
+            - ms10
+            - ms20
+            - ms30
+            - ms40
+            - ms50
+            - ms60
+            - ms70
+            - ms80
+            - ms90
+            - ms100
+            - ms150
+            - ms300
+            - ms500
+
 
 
 #-------- end of Definition of types used in Trace control NRM fragment ----------
@@ -1694,8 +1718,8 @@ components:
           $ref: '#/components/schemas/sensorInformation-Type'
         traceCollectionEntityId:
           $ref: '#/components/schemas/traceCollectionEntityId-Type'
-        ExcessPacketDelayThreshouldList:
-          $ref: '#/components/schemas/ExcessPacketDelayThreshouldList-Type'
+        ExcessPacketDelayThreshoulds:
+          $ref: '#/components/schemas/ExcessPacketDelayThreshouldInfo-Type'
 
     ManagedFunction-ncO:
       type: object
