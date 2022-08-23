@@ -30,11 +30,19 @@ components:
         aIMLEntityVersion:
           type: string
         expectedRunTimeContext:
-          type: string
+          $ref: '#/components/schemas/AIMLContext'
         trainingContext:
-          type: string
+          $ref: '#/components/schemas/AIMLContext'
         runTimeContext:
-          type: string
+          $ref: '#/components/schemas/AIMLContext'
+
+    AIMLContext:
+      type: object
+      properties:
+        inferenceEntityRef:
+          $ref: 'comDefs.yaml#/components/schemas/DnList'
+        dataProviderRef:
+          $ref: 'comDefs.yaml#/components/schemas/DnList'
 
     RequestStatus:
       type: string
