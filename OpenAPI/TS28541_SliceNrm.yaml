@@ -593,10 +593,6 @@ components:
       description: >-
         An attribute that specifies the additional reason information if the feasibility check result is infeasible.The detailed ENUM value is FFS. 
       type: string
-    RecommendationRequest:
-      description: >-
-        An attribute represents MnS consumer's request for recommended network slice related requirements.
-      type: boolean
     RecommendedRequirements:
       description: >-
         An attribute that specifies the recommended network slicing related requirements (i.e. ServiceProfile and SliceProfile information) which can be supported by the MnS producer.. 
@@ -768,9 +764,7 @@ components:
                     - $ref: '#/components/schemas/SliceProfile'
                     - $ref: '#/components/schemas/ServiceProfile'
                 resourceReservation:
-                  $ref: '#/components/schemas/ResourceReservation'
-                recommendationRequest:
-                  $ref: '#/components/schemas/RecommendationRequest'                
+                  $ref: '#/components/schemas/ResourceReservation'              
                 requestedReservationExpiration:
                   $ref: '#/components/schemas/RequestedReservationExpiration'
                 processMonitor:
