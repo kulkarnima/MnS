@@ -1414,11 +1414,13 @@ components:
       description: See details in 3GPP TS 32.422 clause 5.10.11. Only TCE Id value may be sent over the air to the UE being configured for Logged MDT.
       type: integer
 
-    ExcessPacketDelayThreshoulds-Type:
+    excessPacketDelayThreshoulds-Type:
       description: Excess Packet Delay Threshould for NR MDT. See details in 3GPP TS 32.422 clause 4.1.1 and 4.1.2.
       type: Object
       properties:
         fiveQIValue:
+          type:integer
+        excessPacketDelayThresholdValue:
           type: string
           enum:
             - ms0.25
@@ -1440,6 +1442,7 @@ components:
             - ms150
             - ms300
             - ms500
+
 
 
 
@@ -1719,7 +1722,7 @@ components:
         traceCollectionEntityId:
           $ref: '#/components/schemas/traceCollectionEntityId-Type'
         excessPacketDelayThreshoulds:
-          $ref: '#/components/schemas/ExcessPacketDelayThreshoulds-Type'
+          $ref: '#/components/schemas/excessPacketDelayThreshoulds-Type'
 
     ManagedFunction-ncO:
       type: object
